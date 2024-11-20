@@ -1,4 +1,11 @@
-# Tirocinio
+# **Tirocinio**
 
-Avvio simulatore: python ./main.py
-Per modificare i parametri, vedere il file parameters.txt
+## **Avvio del Simulatore**
+
+Per avviare il simulatore, utilizza il seguente comando:
+
+```bash
+python ./main.py
+```
+## **Modifica dei parametri**
+Per modificare i parametri, aprire `parameters.txt`
