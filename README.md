@@ -8,7 +8,8 @@ Per avviare il simulatore, utilizza il seguente comando:
 python ./main.py
 ```
 ## **Input**
-Per modificare le specie iniziali, aprire `species.txt`
+Per modificare le specie iniziali, aprire `species.txt` 
+
 Per modificare i parametri, aprire `parameters.txt`
 
 ## **Output**
