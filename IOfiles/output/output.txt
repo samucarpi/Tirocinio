@@ -1,0 +1,40 @@
+Cont           1.35e-16  0.0       
+B              1e-15     0.0       
+BA             1e-15     0.0       
+BB             1e-15     0.0       
+AAB            1e-15     0.0       
+AABA           1e-15     0.01      
+BABA           1e-15     0.01      
+BAAB           1e-15     0.01      
+AABBA          1e-15     0.01      
+BBABA          1e-15     0.01      
+BAABB          1e-15     0.01      
+BBAAB          1e-15     0.01      
+BBBABA         1e-15     0.01      
+BBAABB         1e-15     0.01      
+AABAAB         1e-15     0.01      
+AAAAAAA        1e-15     0.01      
+BAABAAB        1e-15     0.01      
+BAABBAAB       1e-15     0.01      
+BBAABAAB       1e-15     0.01      
+
+10.0 > B ; 1.00E-18
+10.0 > BA ; 1.00E-18
+10.0 > BB ; 1.00E-18
+10.0 > AAB ; 1.00E-18
+AABBA + AAAAAAA > AAB + BA + AAAAAAA ; 0.1
+BBBABA + AAAAAAA > B + BBABA + AAAAAAA ; 0.1
+BBBABA + AAAAAAA > BB + BABA + AAAAAAA ; 0.1
+BBAABB + AAAAAAA > B + BAABB + AAAAAAA ; 0.1
+BBAABB + AAAAAAA > BBAAB + B + AAAAAAA ; 0.1
+AAB + AAB + AABA > AABAAB + AABA ; 0.1
+B + AAB + AABA > BAAB + AABA ; 0.1
+BB + AAB + AABA > BBAAB + AABA ; 0.1
+BAABB + AAB + AABA > BAABBAAB + AABA ; 0.1
+BBAAB + AAB + AABA > BBAABAAB + AABA ; 0.1
+BBABA + AAAAAAA > B + BABA + AAAAAAA ; 0.1
+BB + AAAAAAA > B + B + AAAAAAA ; 0.1
+BAABB + AAAAAAA > BAAB + B + AAAAAAA ; 0.1
+BBAAB + AAAAAAA > B + BAAB + AAAAAAA ; 0.1
+BAABBAAB + AAAAAAA > BAAB + BAAB + AAAAAAA ; 0.1
+BBAABAAB + AAAAAAA > B + BAABAAB + AAAAAAA ; 0.1

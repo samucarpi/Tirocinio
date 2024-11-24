@@ -1,17 +1,18 @@
-
-import random
-import sys
+import random,sys,os
 from tabulate import tabulate
 from termcolor import colored
+
+# Constants
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
 
 # Random functions
 def generateSeed(seed):
     if seed:
-        return random.seed(seed)
+        random.seed(seed)
     else:
         seed = random.randrange(sys.maxsize)
         random.seed(seed)
-        return seed
+    return seed
 
 def calculateProbability(probability):
     return (random.random() < probability)
@@ -42,7 +43,7 @@ def boldGreenTitle(text):
 def error(text):
     return (colored(text,'red',attrs=['bold']))
 
-# Print functions
+# Debug print functions
 def printParameters(parameters):
     print(boldTitle("\nPARAMETRI"))
     if not parameters:
@@ -50,7 +51,7 @@ def printParameters(parameters):
         return
     catalystsParam=["probabilityOfCatalyst","lowerLimitForCatalyst","initialCondensationCatalysts","initialCleavageCatalysts"]
     printSelectedParameters("CATALIZZATORI",parameters, catalystsParam)
-    reactionsParam=["probabilityOfCleavage","minActiveSiteLength","maxActiveSiteLength","maxCondensationLength","maxCleavageLength"]
+    reactionsParam=["probabilityOfCleavage","minActiveSiteLength","maxActiveSiteLength","maxCondensationLength","maxCleavageLength","maxCatalystLength"]
     printSelectedParameters("REAZIONI",parameters, reactionsParam)
 
 def printSelectedParameters(title, parameters, selectedParameters):
@@ -100,3 +101,27 @@ def printReactions(reactions):
             print(r.getReactants()[0]+" + "+r.getReactants()[1]+" + "+r.getReactants()[2]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1])
         else:
             print(r.getReactants()[0]+" + "+r.getReactants()[1]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1]+" + "+r.getProducts()[2])
+
+# Output print functions
+def writeOutputFile(parameters,species,reactions):
+    print(boldTitle("SEED UTILIZZATO: "+str(parameters['seed'])))
+    path = os.path.join(BASE_DIR, "IOfiles/output/"+parameters['outputFile'])
+    with open(path, 'w') as f:
+        f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
+        sortedSpecies=sorted(species,key=len)
+        crossMembraneSpecies=[]
+        for s in sortedSpecies:
+            if len(s.getName())>parameters['maxMembraneLength']:
+                val="0.01"
+            else:
+                val="0.0"
+                crossMembraneSpecies.append(s)
+            f.write(f"{s.getName():<15}{'1e-15':<10}{val:<10}\n")
+        f.write("\n")
+        for s in crossMembraneSpecies:
+            f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
+        for r in reactions:
+            if r.getReactionClass().getCatalyst().getIsCondensation():
+                f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+            else:
+                f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")

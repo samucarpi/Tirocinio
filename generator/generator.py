@@ -1,9 +1,9 @@
-from parser import *
-from objects.species import *
-from objects.catalyst import *
-from objects.reaction import *
-from objects.reactionClass import *
-from utils import *
+from utils.parser import *
+from utils.utils import *
+from .objects.species import *
+from .objects.catalyst import *
+from .objects.reaction import *
+from .objects.reactionClass import *
 
 class Generator:
     def __init__(self, seed=None):
@@ -20,8 +20,11 @@ class Generator:
     
     # Getters and setters
     def setSeed(self, seed):
+        seed=generateSeed(seed)
         self.seed = seed
-        generateSeed(seed)
+
+    def getSeed(self):
+        return self.seed
     
     def setSpecies(self, species):
         self.species = species
@@ -95,12 +98,14 @@ class Generator:
     
     # Parameters initialization
     def initializeParameters(self):
-        parameters = getParameters("./input/parameters.txt")
+        path=os.path.join(BASE_DIR,"IOfiles/input/parameters.txt")
+        parameters = getParameters(path)
         self.setParameters(parameters)
 
     # Species initialization
     def initializeSpecies(self):
-        species = parseInputSpecies("./input/species.txt")
+        path=os.path.join(BASE_DIR,"IOfiles/input/species.txt")
+        species = parseInputSpecies(path)
         self.setSpecies(species)
 
     # Catalysts initialization
@@ -108,29 +113,25 @@ class Generator:
         catalysts = []
         initialCondensationCatalysts = self.getInitialCondensationCatalysts()
         initialCleavageCatalysts = self.getInitialCleavageCatalysts()
-
-        if initialCondensationCatalysts <= 0 and initialCleavageCatalysts <= 0:
+        if initialCondensationCatalysts<=0 and initialCleavageCatalysts<=0:
             self.setCatalysts(catalysts)
             return
-
-        for s in self.getSpecies():
-            if initialCondensationCatalysts <= 0 and initialCleavageCatalysts <= 0:
-                break
-            if self.getParameter('maxCatalystLength')=='ON' and len(s.name)>self.getParameter('maxCondensationLength'):
-                continue
-            if len(s.name)>=self.getParameter('lowerLimitForCatalyst') and len(s.name)>1:
-                isCatalyst = calculateProbability(self.getParameter('probabilityOfCatalyst'))
-                if isCatalyst:
-                    catalyst = Catalyst(s.name, True)
-                    if initialCleavageCatalysts > 0 and calculateProbability(self.getParameter('probabilityOfCleavage')):   
-                        catalyst.setIsCleavage(True)
-                        initialCleavageCatalysts -= 1
-                    elif initialCondensationCatalysts > 0:
-                        catalyst.setIsCondensation(True)
-                        initialCondensationCatalysts -= 1
-                    else:
-                        continue
-                    catalysts.append(catalyst)
+        filteredSpecies=[
+            s for s in self.getSpecies()
+            if((self.getParameter('maxCatalystLength') != 'ON' or len(s.name)<=self.getParameter('maxCondensationLength')) and len(s.name)>=self.getParameter('lowerLimitForCatalyst') and len(s.name)>1
+            )
+        ]
+        catalystsNumber=initialCondensationCatalysts + initialCleavageCatalysts
+        pickedSpecies=random.sample(filteredSpecies, min(catalystsNumber,len(filteredSpecies)))
+        for s in pickedSpecies:
+            catalyst=Catalyst(s.name, True)
+            if initialCleavageCatalysts>0 and calculateProbability(self.getParameter('probabilityOfCleavage')):
+                catalyst.setIsCleavage(True)
+                initialCleavageCatalysts-=1
+            elif initialCondensationCatalysts>0:
+                catalyst.setIsCondensation(True)
+                initialCondensationCatalysts-=1
+            catalysts.append(catalyst)
         self.setCatalysts(catalysts)
 
     def initializeCatalysts(self):
@@ -231,13 +232,15 @@ class Generator:
                         return True
         return False
 
-    def generation(self,species,reactions,reactionClasses,is_recursive=False):
+    def generation(self,species,reactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False):
         newReactions=[]
-        if is_recursive:
-            print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE", 'yellow', attrs=['bold']))
+        if isRecursive:
+            if generateOnOldSpecies:
+                print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE", 'yellow', attrs=['bold']))
+            else:
+                print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE", 'yellow', attrs=['bold']))
         else:
             print(colored("GENERAZIONE DI NUOVE SPECIE", 'yellow', attrs=['bold']))
-            
         for r in reactionClasses:
             if isinstance(r, CondensationReactionClass):
                 newReactions+=self.handleCondensation(r,species)
@@ -246,19 +249,25 @@ class Generator:
         if newReactions:
             self.getReactions().extend(newReactions)
             newSpecies=[]
+            oldSpecies=self.getSpecies()
             for reaction in newReactions:
                 self.addNewSpecies(newSpecies,reaction,type(reaction.getReactionClass()))
             if newSpecies:
-                self.getSpecies().extend(newSpecies)
                 print(colored("SPECIE GENERATE",'green',attrs=['bold']))
+                newReactionClasses=[]
+                areNewReactionClassesGenerated=False
                 for s in newSpecies:
                     if self.addRandomCataylst(s):
+                        areNewReactionClassesGenerated=True
+                        newReactionClasses.append(self.getReactionClasses()[-1])
                         print("• "+s.getName()+" --> SCELTA COME NUOVO CATALIZZATORE")
                         printReactionClasses([self.getReactionClasses()[-1]],new=True)
                         printReactionClasses(self.getReactionClasses())
                     else:
                         print("• "+s.getName())
-                self.generation(newSpecies,reactions,reactionClasses,is_recursive=True)
+                if areNewReactionClassesGenerated:
+                    self.generation(oldSpecies,reactions,newReactionClasses,isRecursive=True,generateOnOldSpecies=True)
+                self.generation(newSpecies,reactions,reactionClasses=self.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False)
             else:
                 print(colored("NESSUNA SPECIE GENERATA",'red',attrs=['bold']))
         else:
@@ -268,11 +277,15 @@ class Generator:
         if type == CondensationReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
                 newSpecies.append(Species(reaction.getProducts()[0], False))
+                self.addSpecies(Species(reaction.getProducts()[0], False))
         elif type == CleavageReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
                 newSpecies.append(Species(reaction.getProducts()[0], False))
+                self.addSpecies(Species(reaction.getProducts()[0], False))
             if reaction.getProducts()[1] not in [s.getName() for s in self.getSpecies()]:
                 newSpecies.append(Species(reaction.getProducts()[1], False))
+                self.addSpecies(Species(reaction.getProducts()[1], False))
+                
     
     def addRandomCataylst(self,species):
         if self.getParameter('maxCatalystLength')=='ON' and len(species.name)>self.getParameter('maxCondensationLength'):
@@ -306,15 +319,12 @@ class Generator:
         species=self.getSpecies()
         reactionClasses=self.getReactionClasses()
         reactions=[]
-        self.generation(species,reactions,reactionClasses,is_recursive=False)
+        self.generation(species,reactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False)
         print(colored("GENERAZIONE TERMINATA",'red',attrs=['bold']))
         printReactions(self.getReactions())
         printSpecies(self.getSpecies(),ended=True)
 
-    # Main 
-    def run(self):
-        print(self.seed)
-        self.initialization()
-        self.reaction()
+    def output(self):
+        writeOutputFile(self.getParameters(),self.getSpecies(),self.getReactions())
 
             

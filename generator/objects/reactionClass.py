@@ -1,5 +1,5 @@
 
-from utils import calculateRandomValue
+from utils.utils import calculateRandomValue
 
 class ReactionClass():
     def __init__(self, catalyst, start, end):
@@ -54,8 +54,18 @@ class CleavageReactionClass(ReactionClass):
     def cleave(self):
         catalyst = self.getCatalyst().getName()
         activesite = catalyst[self.getStart():self.getEnd()]
+        activesite = self.complementaryActivesite(activesite)
         self.calculateSplit(activesite)
         self.addReagent(activesite)
+    
+    def complementaryActivesite(self,activesite):
+        complementary = ""
+        for base in activesite:
+            if base == "A":
+                complementary += "B"
+            elif base == "B":
+                complementary += "A"
+        return complementary
     
 class CondensationReactionClass(ReactionClass):
     def __init__(self, catalyst, start, end):

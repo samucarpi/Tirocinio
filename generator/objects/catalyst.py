@@ -1,5 +1,5 @@
 
-from objects.species import Species
+from .species import Species
 
 class Catalyst(Species):
     def __init__(self, name, isInitial):
