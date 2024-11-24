@@ -1,4 +1,4 @@
-from objects.species import Species
+from generator.objects.species import Species
 
 def parseInputSpecies(inputFile):
     speciesObj=[]
@@ -49,6 +49,14 @@ def getParameters(input_file):
                     parameters['maxCleavageLength']=lines[i+1]
                 case "- LUNGHEZZA MASSIMA PER CATALIZZATORE -":
                     parameters['maxCatalystLength']=lines[i+1]
+                case "- NOME DEL FILE DI OUTPUT -":
+                    if lines[i+1].endswith(".txt"):
+                        parameters['outputFile']=lines[i+1]
+                    else:
+                        parameters['outputFile']=None
+                case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
+                    parameters['maxMembraneLength']=int(lines[i+1])
+
     return parameters
 
 def newSpecies(species):

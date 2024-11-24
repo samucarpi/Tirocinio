@@ -1,9 +1,11 @@
 
-from generator import Generator
+from generator.generator import Generator
 
 def main():
     g=Generator()
-    g.run()
+    g.initialization()
+    g.reaction()
+    g.output()
 
 if __name__=="__main__":
     main()
