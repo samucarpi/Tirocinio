@@ -249,7 +249,7 @@ class Generator:
         if newReactions:
             self.getReactions().extend(newReactions)
             newSpecies=[]
-            oldSpecies=self.getSpecies()
+            oldSpecies=self.getSpecies()[:]
             for reaction in newReactions:
                 self.addNewSpecies(newSpecies,reaction,type(reaction.getReactionClass()))
             if newSpecies:
@@ -266,6 +266,7 @@ class Generator:
                     else:
                         print("• "+s.getName())
                 if areNewReactionClassesGenerated:
+                    print(list(map(lambda s: s.getName(),oldSpecies)))
                     self.generation(oldSpecies,reactions,newReactionClasses,isRecursive=True,generateOnOldSpecies=True)
                 self.generation(newSpecies,reactions,reactionClasses=self.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False)
             else:
