@@ -103,8 +103,8 @@ def printReactions(reactions):
             print(r.getReactants()[0]+" + "+r.getReactants()[1]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1]+" + "+r.getProducts()[2])
 
 # Output print functions
-def writeOutputFile(parameters,species,reactions):
-    print(boldTitle("SEED UTILIZZATO: "+str(parameters['seed'])))
+def writeOutputFile(seed,parameters,species,reactions):
+    print(boldTitle("SEED UTILIZZATO: "+str(seed)))
     path = os.path.join(BASE_DIR, "IOfiles/output/"+parameters['outputFile'])
     with open(path, 'w') as f:
         f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
