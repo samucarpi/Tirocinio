@@ -47,6 +47,15 @@ class ReactionClass():
         while self.getSplit() == 0 or self.getSplit() == len(activesite):
             self.setSplit(calculateRandomValue(0, len(activesite)))
     
+    def complementaryActivesite(self,activesite):
+        complementary = ""
+        for base in activesite:
+            if base == "A":
+                complementary += "B"
+            elif base == "B":
+                complementary += "A"
+        return complementary
+    
 class CleavageReactionClass(ReactionClass):
     def __init__(self, catalyst, start, end):
         super().__init__(catalyst, start, end)
@@ -58,15 +67,6 @@ class CleavageReactionClass(ReactionClass):
         self.calculateSplit(activesite)
         self.addReagent(activesite)
     
-    def complementaryActivesite(self,activesite):
-        complementary = ""
-        for base in activesite:
-            if base == "A":
-                complementary += "B"
-            elif base == "B":
-                complementary += "A"
-        return complementary
-    
 class CondensationReactionClass(ReactionClass):
     def __init__(self, catalyst, start, end):
         super().__init__(catalyst, start, end)
@@ -74,6 +74,7 @@ class CondensationReactionClass(ReactionClass):
     def condense(self):
         catalyst = self.getCatalyst().getName()
         activesite = catalyst[self.getStart():self.getEnd()]
+        activesite = self.complementaryActivesite(activesite)
         self.calculateSplit(activesite)
         reagent1=activesite[:self.getSplit()]
         reagent2=activesite[self.getSplit():]

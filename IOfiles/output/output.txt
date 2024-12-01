@@ -1,17 +1,4 @@
 Cont           1.35e-16  0.0       
-BB             1e-15     0.0       
-AABA           1e-15     0.01      
-BBAA           1e-15     0.01      
-BBBB           1e-15     0.01      
-AABBA          1e-15     0.01      
-BBBABA         1e-15     0.01      
-BBAABB         1e-15     0.01      
-BBBBAA         1e-15     0.01      
-AAAAAAA        1e-15     0.01      
-BBBBBBBB       1e-15     0.01      
+AA             1e-15     0.0       
 
-10.0 > BB ; 1.00E-18
-BBAABB + AABBA > BBAA + BB + AABBA ; 0.1
-BB + BBAA + BBAABB > BBBBAA + BBAABB ; 0.1
-BB + BB + BBAABB > BBBB + BBAABB ; 0.1
-BBBB + BBBB + BBAABB > BBBBBBBB + BBAABB ; 0.1
+10.0 > AA ; 1.00E-18

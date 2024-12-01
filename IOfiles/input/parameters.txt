@@ -3,9 +3,9 @@
 
 ## -- PARAMETRI SULLA GENERAZIONE -- ##
 
-# "None" se non si vuole impostare, altrimenti unnumero
+# "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-None
+6007044295782164685
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
 2
@@ -47,4 +47,4 @@ OFF
 output.txt
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
-3
+2

@@ -124,7 +124,7 @@ class Generator:
         pickedSpecies=random.sample(filteredSpecies, min(catalystsNumber,len(filteredSpecies)))
         for s in pickedSpecies:
             catalyst=Catalyst(s.getName(),True)
-            if initialCleavageCatalysts>0 and calculateProbability(self.getParameter('probabilityOfCleavage')):
+            if initialCleavageCatalysts>0 and (initialCondensationCatalysts<=0 or not calculateProbability(self.getParameter('probabilityOfCleavage'))):
                 catalyst.setIsCleavage(True)
                 initialCleavageCatalysts-=1
             elif initialCondensationCatalysts>0:
@@ -147,18 +147,26 @@ class Generator:
         if not catalysts:
             catalysts=self.getCatalysts()
         for c in catalysts:
-            length=calculateActiveSiteLength(c,self.getMinActiveSiteLength(),self.getMaxActiveSiteLength())
-            start=calculateRandomValue(0,len(c.getName())-length)
-            end=start+length
-            if c.getIsCondensation():
-                reactionClass=CondensationReactionClass(c,start,end)
-                reactionClass.condense()
-            elif c.getIsCleavage():
-                reactionClass=CleavageReactionClass(c,start,end)
-                reactionClass.cleave()
-            self.addReactionClass(reactionClass)
+            while True:
+                length=calculateActiveSiteLength(c,self.getMinActiveSiteLength(),self.getMaxActiveSiteLength())
+                start=calculateRandomValue(0,len(c.getName())-length)
+                end=start+length
+                if c.getIsCondensation():
+                    reactionClass=CondensationReactionClass(c,start,end)
+                    reactionClass.condense()
+                elif c.getIsCleavage():
+                    reactionClass=CleavageReactionClass(c,start,end)
+                    reactionClass.cleave()
+                if not self.checkDuplicatedReactionClass(self.getReactionClasses(),reactionClass):
+                    self.addReactionClass(reactionClass)
+                    break
+                else:
+                    print(colored("REAZIONE DUPLICATA","red",attrs=['bold']))
+
     
     def checkDuplicatedReactionClass(self,reactionClasses,reactionClass):
+        if not reactionClasses:
+            return False
         if isinstance(reactionClass, CondensationReactionClass):
             for r in reactionClasses:
                 if isinstance(r,CondensationReactionClass) and r.getReagents()[0]==reactionClass.getReagents()[0] and r.getReagents()[1]==reactionClass.getReagents()[1] and r.getCatalyst()==reactionClass.getCatalyst():
@@ -245,9 +253,9 @@ class Generator:
 
             if currentIsRecursive:
                 if currentGenerateOnOldSpecies:
-                    print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE"+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                    print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
                 else:
-                    print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE"+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                    print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
             else:
                 print(colored("GENERAZIONE DI NUOVE SPECIE",'yellow',attrs=['bold']))
 

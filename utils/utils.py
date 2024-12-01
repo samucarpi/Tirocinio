@@ -94,6 +94,7 @@ def printReactionClasses(reactionClasses,new=False):
 def printReactions(reactions):
     if not reactions:
         print(error("NESSUNA REAZIONE PRESENTE"))
+        print(error("PER GENERARE LE REAZIONI MODIFICARE I PARAMETRI"))
         return
     print(boldGreenTitle("REAZIONI GENERATE"))
     for r in reactions:
