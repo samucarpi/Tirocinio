@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-6007044295782164685
+None
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
 2

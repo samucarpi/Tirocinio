@@ -161,7 +161,9 @@ class Generator:
                     self.addReactionClass(reactionClass)
                     break
                 else:
-                    print(colored("REAZIONE DUPLICATA","red",attrs=['bold']))
+                    printReactionClasses(self.getReactionClasses())
+                    printReactionClasses([reactionClass],new=True)
+                    print(colored("REGOLA DUPLICATA, RIGENERO","red",attrs=['bold']))
 
     
     def checkDuplicatedReactionClass(self,reactionClasses,reactionClass):
@@ -169,11 +171,11 @@ class Generator:
             return False
         if isinstance(reactionClass, CondensationReactionClass):
             for r in reactionClasses:
-                if isinstance(r,CondensationReactionClass) and r.getReagents()[0]==reactionClass.getReagents()[0] and r.getReagents()[1]==reactionClass.getReagents()[1] and r.getCatalyst()==reactionClass.getCatalyst():
+                if isinstance(r,CondensationReactionClass) and r.getReagents()[0]==reactionClass.getReagents()[0] and r.getReagents()[1]==reactionClass.getReagents()[1] and r.getCatalyst().getName()==reactionClass.getCatalyst().getName():
                     return True
         elif isinstance(reactionClass, CleavageReactionClass):
             for r in reactionClasses:
-                if isinstance(r,CleavageReactionClass) and r.getReagents()[0]==reactionClass.getReagents()[0] and r.getCatalyst()==reactionClass.getCatalyst() and r.getSplit()==reactionClass.getSplit():
+                if isinstance(r,CleavageReactionClass) and r.getReagents()[0]==reactionClass.getReagents()[0] and r.getCatalyst().getName()==reactionClass.getCatalyst().getName() and r.getSplit()==reactionClass.getSplit():
                     return True
         return False
 

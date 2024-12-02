@@ -108,6 +108,7 @@ def writeOutputFile(seed,parameters,species,reactions):
     print(boldTitle("SEED UTILIZZATO: "+str(seed)))
     path = os.path.join(BASE_DIR, "IOfiles/output/"+parameters['outputFile'])
     with open(path, 'w') as f:
+        f.write(f"SEED UTILIZZATO: {seed}\n\n")
         f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
         sortedSpecies=sorted(species,key=len)
         crossMembraneSpecies=[]
@@ -121,8 +122,11 @@ def writeOutputFile(seed,parameters,species,reactions):
         f.write("\n")
         for s in crossMembraneSpecies:
             f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
-        for r in reactions:
-            if r.getReactionClass().getCatalyst().getIsCondensation():
-                f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
-            else:
-                f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+        if not reactions:
+            f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
+        else:
+            for r in reactions:
+                if r.getReactionClass().getCatalyst().getIsCondensation():
+                    f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+                else:
+                    f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
