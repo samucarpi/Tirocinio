@@ -78,7 +78,7 @@ def printReactionClasses(reactionClasses,new=False):
     if not reactionClasses:
         print(error("NESSUNA CLASSE DI REAZIONE PRESENTE"))
         return
-    headers = ["SPECIE", "TIPO", "SITO ATTIVO", "POSIZIONE", "REAZIONE"]
+    headers = ["SPECIE", "TIPO", "SITO ATTIVO", "POSIZIONE", "CLASSE"]
     table = []
     for rc in reactionClasses:
         if rc.getCatalyst().getIsCondensation():
@@ -130,3 +130,17 @@ def writeOutputFile(seed,parameters,species,reactions):
                     f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
                 else:
                     f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+
+def writeRulesFile(parameters,reactionClasses):
+    if not reactionClasses:
+        print(error("NESSUNA CLASSE DI REAZIONE PRESENTE"))
+        print(error("PER GENERARE LE REAZIONI MODIFICARE I PARAMETRI"))
+        return
+    path = os.path.join(BASE_DIR, "IOfiles/output/"+parameters['outputRulesFile'])
+    with open(path, 'w') as f:
+        f.write(f"{"CATALIZZATORE":<15} {"TIPO":<17} {"SITO ATTIVO":<13} {"POSIZIONE":<11} {"CLASSE":<10}\n")
+        for rc in reactionClasses:
+            if rc.getCatalyst().getIsCondensation():
+                f.write(f"{rc.getCatalyst().getName():<15} {'Condensazione':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0]+'+'+rc.getReagents()[1]+'-R':<10}\n")
+            else:
+                f.write(f"{rc.getCatalyst().getName():<15} {'Cleavage':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0][:rc.getSplit()]+' '+rc.getReagents()[0][rc.getSplit():]+'-R':<10}\n")

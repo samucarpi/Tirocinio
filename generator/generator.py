@@ -195,7 +195,7 @@ class Generator:
                         reaction=Reaction(reactionClass)
                         reaction.setReactants([s.getName(),s2.getName(),reactionClass.getCatalyst().getName()])
                         reaction.setProducts([result,reactionClass.getCatalyst().getName()])
-                        if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)):
+                        if not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
                             print(reagent1+" + "+reagent2+" + "+reactionClass.getCatalyst().getName()+" --> "+result+" + "+reactionClass.getCatalyst().getName())
                             reactions.append(reaction)
         return reactions
@@ -217,7 +217,7 @@ class Generator:
                     reaction=Reaction(reactionClass)
                     reaction.setReactants([s.getName(),reactionClass.getCatalyst().getName()])
                     reaction.setProducts([newSpecies1,newSpecies2,reactionClass.getCatalyst().getName()])
-                    if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)):
+                    if not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
                         print(s.getName()+" + "+reactionClass.getCatalyst().getName()+" --> "+newSpecies1+" + "+newSpecies2+" + "+reactionClass.getCatalyst().getName())
                         reactions.append(reaction)
         return reactions
@@ -227,14 +227,14 @@ class Generator:
             return False
         if type == CleavageReactionClass:
             for r in reactions:
-                if r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]):
+                if isinstance(r.getReactionClass(),CleavageReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]):
                     if (r.getProducts()[0]==reaction.getProducts()[0] and r.getProducts()[1]==reaction.getProducts()[1]) or (r.getProducts()[0]==reaction.getProducts()[1] and r.getProducts()[1]==reaction.getProducts()[0]):
                         str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]+" + "+reaction.getProducts()[2]
                         print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
                         return True
-        elif type==CondensationReactionClass:
+        elif type == CondensationReactionClass:
             for r in reactions:
-                if r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and r.getReactants()[2]==(reaction.getReactants()[2]):
+                if isinstance(r.getReactionClass(),CondensationReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and r.getReactants()[2]==(reaction.getReactants()[2]):
                     if r.getProducts()[0]==reaction.getProducts()[0]:
                         str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" + "+reaction.getReactants()[2]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]
                         print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
@@ -353,5 +353,6 @@ class Generator:
 
     def output(self):
         writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getReactions())
+        writeRulesFile(self.getParameters(),self.getReactionClasses())
 
             

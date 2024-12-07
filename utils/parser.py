@@ -56,7 +56,11 @@ def getParameters(input_file):
                         parameters['outputFile']=None
                 case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
                     parameters['maxMembraneLength']=int(lines[i+1])
-
+                case "- NOME DEL FILE DI OUTPUT DELLE REGOLE -":
+                    if lines[i+1].endswith(".txt"):
+                        parameters['outputRulesFile']=lines[i+1]
+                    else:
+                        parameters['outputRulesFile']=None
     return parameters
 
 def newSpecies(species):

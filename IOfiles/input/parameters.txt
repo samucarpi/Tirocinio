@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-None
+8023047669866700061
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
 2
@@ -45,6 +45,9 @@ OFF
 
 - NOME DEL FILE DI OUTPUT -
 output.txt
+
+- NOME DEL FILE DI OUTPUT DELLE REGOLE -
+outputRules.txt
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
 2
