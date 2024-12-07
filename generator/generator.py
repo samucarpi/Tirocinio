@@ -195,7 +195,7 @@ class Generator:
                         reaction=Reaction(reactionClass)
                         reaction.setReactants([s.getName(),s2.getName(),reactionClass.getCatalyst().getName()])
                         reaction.setProducts([result,reactionClass.getCatalyst().getName()])
-                        if not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
+                        if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)) and not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
                             print(reagent1+" + "+reagent2+" + "+reactionClass.getCatalyst().getName()+" --> "+result+" + "+reactionClass.getCatalyst().getName())
                             reactions.append(reaction)
         return reactions
@@ -217,7 +217,7 @@ class Generator:
                     reaction=Reaction(reactionClass)
                     reaction.setReactants([s.getName(),reactionClass.getCatalyst().getName()])
                     reaction.setProducts([newSpecies1,newSpecies2,reactionClass.getCatalyst().getName()])
-                    if not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
+                    if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)) and not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
                         print(s.getName()+" + "+reactionClass.getCatalyst().getName()+" --> "+newSpecies1+" + "+newSpecies2+" + "+reactionClass.getCatalyst().getName())
                         reactions.append(reaction)
         return reactions
