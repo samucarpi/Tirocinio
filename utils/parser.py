@@ -1,4 +1,6 @@
-from generator.objects.species import Species
+from Generator.objects.species import Species
+from Tabulator.objects.rule import Rule
+from .utils import *
 
 def parseInputSpecies(inputFile):
     speciesObj=[]
@@ -66,3 +68,34 @@ def getParameters(input_file):
 def newSpecies(species):
     return Species(species, True)
 
+def getObjects(BASE_DIR):
+    path = os.path.join(BASE_DIR, "IOfiles/Tabulator/input/chemistry.txt")
+    species = []
+    reactions = []
+    with open(path, 'r') as f:
+        lines = f.readlines()
+        counter = 0
+        for line in lines:
+            if not line.strip():
+                counter+=1
+                continue
+            if counter == 1:
+                line=line.split()[0]
+                species.append(line)
+            if counter == 2:
+                if '+' in line:
+                    reactions.append(line.strip())
+    return species,reactions
+
+def getRules(BASE_DIR):
+    path = os.path.join(BASE_DIR, "IOfiles/Tabulator/input/chemistryRules.txt")
+    rules = []
+    with open(path, 'r') as f:
+        lines = f.readlines()
+        lines = [line.strip() for line in lines]
+        lines = lines[1:]
+        for line in lines:
+            line = line.split()
+            rule = Rule(line[0],line[1],line[2],line[3],line[4])
+            rules.append(rule)
+    return rules

@@ -1,9 +1,9 @@
-from utils.parser import *
-from utils.utils import *
-from .objects.species import *
-from .objects.catalyst import *
-from .objects.reaction import *
-from .objects.reactionClass import *
+from Utils.parser import *
+from Utils.utils import *
+from Generator.objects.species import *
+from Generator.objects.catalyst import *
+from Generator.objects.reaction import *
+from Generator.objects.reactionClass import *
 from collections import deque
 
 class Generator:
@@ -99,13 +99,13 @@ class Generator:
     
     # Parameters initialization
     def initializeParameters(self):
-        path = os.path.join(BASE_DIR,"IOfiles/input/parameters.txt")
+        path = os.path.join(BASE_DIR,"IOfiles/Generator/input/parameters.txt")
         parameters = getParameters(path)
         self.setParameters(parameters)
 
     # Species initialization
     def initializeSpecies(self):
-        path = os.path.join(BASE_DIR,"IOfiles/input/species.txt")
+        path = os.path.join(BASE_DIR,"IOfiles/Generator/input/species.txt")
         species = parseInputSpecies(path)
         self.setSpecies(species)
 
@@ -354,5 +354,6 @@ class Generator:
     def output(self):
         writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getReactions())
         writeRulesFile(self.getParameters(),self.getReactionClasses())
+        duplicateFilesForTabulator(self.getParameters())
 
             

@@ -6,6 +6,7 @@ class Catalyst(Species):
         super().__init__(name, isInitial)
         self.isCondensation = False
         self.isCleavage = False
+        self
 
     def setIsCondensation(self, isCondensation):
         self.isCondensation = isCondensation
