@@ -1,5 +1,5 @@
 
-from Tabulator.tabulator import Tabulator
+from .tabulator import Tabulator
 
 def main():
     t = Tabulator()

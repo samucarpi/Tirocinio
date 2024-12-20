@@ -1,9 +1,9 @@
 from Utils.parser import *
 from Utils.utils import *
-from Generator.objects.species import *
-from Generator.objects.catalyst import *
-from Generator.objects.reaction import *
-from Generator.objects.reactionClass import *
+from .objects.species import *
+from .objects.catalyst import *
+from .objects.reaction import *
+from .objects.reactionClass import *
 from collections import deque
 
 class Generator:

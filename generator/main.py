@@ -1,5 +1,5 @@
 
-from Generator.generator import Generator
+from .generator import Generator
 
 def main():
     g=Generator()

@@ -1,7 +1,7 @@
 from Utils.utils import BASE_DIR, writeOnExcelFile
 from Utils.parser import getRules, getObjects
-from Tabulator.objects.catalyst import Catalyst
-from Tabulator.objects.species import Species
+from .objects.catalyst import Catalyst
+from .objects.species import Species
 
 class Tabulator():
 
