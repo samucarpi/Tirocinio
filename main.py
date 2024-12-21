@@ -1,6 +1,6 @@
 import argparse
-from Generator.main import main as generator_main
-from Tabulator.main import main as tabulator_main
+from generator.main import main as gMain
+from tabulator.main import main as tMain
 
 def main():
     parser = argparse.ArgumentParser(description="Esegui il generatore e/o il tabulatore.")
@@ -11,11 +11,10 @@ def main():
         help="Specifica i comandi da eseguire: 'generate', 'tabulate', o entrambi."
     )
     args = parser.parse_args()
-
     if "generate" in args.commands:
-        generator_main()
+        gMain()
     if "tabulate" in args.commands:
-        tabulator_main()
+        tMain()
 
 if __name__ == "__main__":
     main()

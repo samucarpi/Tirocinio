@@ -1,4 +1,4 @@
-from Utils.utils import *
+from utils.utils import *
 
 class Catalyst:
 

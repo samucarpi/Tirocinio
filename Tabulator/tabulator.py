@@ -1,7 +1,7 @@
-from Utils.utils import BASE_DIR, writeOnExcelFile
-from Utils.parser import getRules, getObjects
-from .objects.catalyst import Catalyst
-from .objects.species import Species
+from utils.utils import BASE_DIR, writeOnExcelFile, cleanReaction, orderCatalysts, printTabulatedCatalysts, printTabulatedSpecies
+from utils.parser import getRules, getObjects
+from tabulator.objects.catalyst import Catalyst
+from tabulator.objects.species import Species
 
 class Tabulator():
 
@@ -24,11 +24,7 @@ class Tabulator():
             s.setTotalCatalyzers(self.getReactions())
             s.setSpeciesAsReactar(self.getReactions())
             self.addSpecies(s)
-        self.printSpecies()
-
-    def printSpecies(self):
-        for s in self.getSpecies():
-            print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
+        printTabulatedSpecies(self.getSpecies())
 
     def getSpecies(self):
         return self.species
@@ -49,7 +45,11 @@ class Tabulator():
         self.catalysts.append(catalyst)
 
     def setRules(self):
-        self.rules = getRules(BASE_DIR)
+        rules = getRules(BASE_DIR)
+        if rules:
+            self.rules = rules
+        else:
+            self.rules = []
 
     def getRules(self):
         return self.rules
@@ -60,28 +60,44 @@ class Tabulator():
         self.setCatalysts()
         self.setSpecies()
     
-    def catalystsList(self, rules):
+    def catalystsList(self, rules, reactions):
         catalysts = []
-        for r in rules:
-            if r.getCatalyst() not in catalysts:
-                catalysts.append(r.getCatalyst())
-        return catalysts
+        if not rules:
+            for r in reactions:
+                splitted = r.split('>')
+                reactants = cleanReaction(splitted[0])
+                products = cleanReaction(splitted[1])
+                for reactant in reactants:
+                    if reactant in products and reactant not in catalysts:
+                        catalysts.append(reactant)
+            return catalysts
+        else:
+            for r in rules:
+                if r.getCatalyst() not in catalysts:
+                    catalysts.append(r.getCatalyst())
+            return catalysts
     
     def setCatalysts(self):
-        catalysts = self.catalystsList(self.getRules())
-        for c in catalysts:
-            catalyst = Catalyst(c)
-            catalyst.setLength(c)
-            catalyst.setTotalRules(self.getRules())
-            catalyst.setTotalReactions(self.getReactions())
-            catalyst.setCatalyzerAsReagent(self.getReactions())
-            catalyst.setCatalyzedSpecies(self.getReactions())
-            self.addCatalyst(catalyst)
-        self.printCatalysts()
-        
-    def printCatalysts(self):
-        for c in self.getCatatlysts():
-            print(c.getName(), c.getLength(), c.getTotalRules(), c.getCondensationRules(), c.getCleavageRules(), c.getTotalReactions(), c.getCondensationReactions(), c.getCleavageReactions(), c.getCatalyzerAsReagent(), c.getNumberOfCatalyzedSpecies(), c.getCatalyzedSpecies())
+        catalysts = self.catalystsList(self.getRules(), self.getReactions())
+        if self.getRules():
+            for c in catalysts:
+                catalyst = Catalyst(c)
+                catalyst.setLength(c)
+                catalyst.setTotalRules(self.getRules())
+                catalyst.setTotalReactions(self.getReactions())
+                catalyst.setCatalyzerAsReagent(self.getReactions())
+                catalyst.setCatalyzedSpecies(self.getReactions())
+                self.addCatalyst(catalyst)
+        else:
+            for c in catalysts:
+                catalyst = Catalyst(c)
+                catalyst.setLength(c)
+                catalyst.setTotalReactions(self.getReactions())
+                catalyst.setCatalyzerAsReagent(self.getReactions())
+                catalyst.setCatalyzedSpecies(self.getReactions())
+                self.addCatalyst(catalyst)
+        orderCatalysts(self.getCatatlysts())
+        printTabulatedCatalysts(self.getCatatlysts())
 
     def writeFile(self):
         writeOnExcelFile(self.getCatatlysts(), self.getSpecies())

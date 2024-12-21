@@ -107,10 +107,22 @@ def printReactions(reactions):
         else:
             print(r.getReactants()[0]+" + "+r.getReactants()[1]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1]+" + "+r.getProducts()[2])
 
+def orderCatalysts(catalysts):
+        catalysts = sorted(catalysts, key=lambda x: x.getLength())
+        return catalysts
+
+def printTabulatedCatalysts(catalysts):
+    for c in catalysts:
+        print(c.getName(), c.getLength(), c.getTotalRules(), c.getCondensationRules(), c.getCleavageRules(), c.getTotalReactions(), c.getCondensationReactions(), c.getCleavageReactions(), c.getCatalyzerAsReagent(), c.getNumberOfCatalyzedSpecies(), c.getCatalyzedSpecies())
+
+def printTabulatedSpecies(species):
+        for s in species:
+            print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
+
 # Output print functions
 def writeOutputFile(seed,parameters,species,reactions):
     print(boldTitle("SEED UTILIZZATO: "+str(seed)))
-    path = os.path.join(BASE_DIR, "IOfiles/Generator/output/"+parameters['outputFile'])
+    path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile'])
     with open(path, 'w') as f:
         f.write(f"SEED UTILIZZATO: {seed}\n\n")
         f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
@@ -140,7 +152,7 @@ def writeRulesFile(parameters,reactionClasses):
         print(error("NESSUNA CLASSE DI REAZIONE PRESENTE"))
         print(error("PER GENERARE LE REAZIONI MODIFICARE I PARAMETRI"))
         return
-    path = os.path.join(BASE_DIR, "IOfiles/Generator/output/"+parameters['outputRulesFile'])
+    path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputRulesFile'])
     with open(path, 'w') as f:
         f.write(f"{"CATALIZZATORE":<15} {"TIPO":<17} {"SITO ATTIVO":<13} {"POSIZIONE":<11} {"CLASSE":<10}\n")
         for rc in reactionClasses:
@@ -150,8 +162,8 @@ def writeRulesFile(parameters,reactionClasses):
                 f.write(f"{rc.getCatalyst().getName():<15} {'Cleavage':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0][:rc.getSplit()]+' '+rc.getReagents()[0][rc.getSplit():]+'-R':<10}\n")
 
 def duplicateFilesForTabulator(parameters):
-    shutil.copy(os.path.join(BASE_DIR,"IOfiles/Generator/output/"+parameters['outputFile']),os.path.join(BASE_DIR,"IOfiles/Tabulator/input/chemistry.txt"))
-    shutil.copy(os.path.join(BASE_DIR,"IOfiles/Generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"IOfiles/Tabulator/input/chemistryRules.txt"))
+    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputFile']),os.path.join(BASE_DIR,"io/Tabulator/input/chemistry.txt"))
+    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/Tabulator/input/chemistryRules.txt"))
 
 def cleanReaction(reaction):
     formatted = re.sub(r'[^A-Za-z+]','',reaction)
@@ -171,33 +183,36 @@ def setTitle(ws, title, startRow, startCol, endCol):
 
 def setTableStyle(ws, start_row, columns, df, border, color1, color2):
     for i, row in enumerate(ws.iter_rows(min_row=start_row, max_row=start_row+len(df), min_col=2, max_col=2+len(columns)-1), start=1):
-        if i%2 != 0:
+        if i % 2 != 0:
             fill = color1 
         else:
             fill = color2
         for cell in row:
             cell.border = border
             cell.fill = fill
+            cell.alignment = Alignment(wrap_text=True, vertical='center')
+            cell.alignment = Alignment(vertical='center')
 
-def resizeCells(ws):
-    for col in ws.columns:
+def resizeCells(ws, titles, catalystsColumns, speciesColumns):
+    for col in ws.iter_cols():
         maxLength = 0
         column = col[0].column_letter
         for cell in col:
-            try:
-                if cell.value:
-                    maxLength = max(maxLength, len(str(cell.value)))
-            except:
-                pass
-        adjusted_width = (maxLength + 2)
-        ws.column_dimensions[column].width = adjusted_width
+            if cell.value and isinstance(cell.value, str):
+                if cell.value in titles:
+                    continue
+                if cell.value in catalystsColumns or cell.value in speciesColumns:
+                    cell.alignment = Alignment(horizontal='center', vertical='center')
+                maxLength = max(maxLength, len(cell.value))
+        width = min(maxLength+2, 30)
+        ws.column_dimensions[column].width = width
 
 def writeOnExcelFile(catalysts,species):
 
-    catalystColumns = ['Name', 'Length', 'Reaction class', 'Condensation class', 'Cleavage class', 'Total generated reactions', 'Generated condensation reactions', 'Generated cleavage reactions', 'Catalyzers as reagent', 'Nr. species catalized', 'Species catalized']
+    catalystColumns = ['Name', 'Length', 'Reaction class', 'Condensation class', 'Cleavage class', 'Total generated reactions', 'Generated condensation reactions', 'Generated cleavage reactions', 'Catalyzers as reagent', 'Species catalized', 'Nr. species catalized']
     catalystRows = []
     for c in catalysts:
-        catalystRows.append([c.getName(), c.getLength(), c.getTotalRules(), c.getCondensationRules(),c.getCleavageRules(), c.getTotalReactions(), c.getCondensationReactions(),c.getCleavageReactions(), c.getCatalyzerAsReagent(), c.getNumberOfCatalyzedSpecies(), c.getCatalyzedSpecies()])
+        catalystRows.append([c.getName(), c.getLength(), c.getTotalRules(), c.getCondensationRules(),c.getCleavageRules(), c.getTotalReactions(), c.getCondensationReactions(),c.getCleavageReactions(), c.getCatalyzerAsReagent(), c.getCatalyzedSpecies(), c.getNumberOfCatalyzedSpecies()])
     catalystDf = setTable(pd, catalystRows, catalystColumns)
 
     speciesColumns = ['Name', 'Length', 'Reaction as product', 'Condensation as products', 'Cleavage as products', 'Total catalyzers', 'Condensation catalyzers', 'Cleavage catalyzers', 'Catalyzers', 'Reactions as reactants']
@@ -213,7 +228,7 @@ def writeOnExcelFile(catalysts,species):
                 catalyzerAsSpeciesRows.append([s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(),s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(),s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar()])
     catalyzersAsSpeciesDf = setTable(pd, catalyzerAsSpeciesRows, speciesColumns)
 
-    path = os.path.join(BASE_DIR, "IOfiles/Tabulator/output/output.xlsx")
+    path = os.path.join(BASE_DIR, "io/Tabulator/output/output.xlsx")
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
         catalystDf.to_excel(writer, index=False, startrow=2, startcol=1, sheet_name="Sheet1")
         speciesDf.to_excel(writer, index=False, startrow=len(catalystDf)+5, startcol=1, sheet_name="Sheet1")
@@ -221,12 +236,12 @@ def writeOnExcelFile(catalysts,species):
 
     wb = load_workbook(path)
     ws = wb.active
-
-    setTitle(ws, title="Catalysts Information", startRow=2, startCol=2, endCol=len(catalystColumns)+1)
+    titles = ["Catalysts Information", "Species Information", "Catalyzers as Species Information"]
+    setTitle(ws, titles[0], startRow=2, startCol=2, endCol=len(catalystColumns)+1)
     speciesSR = len(catalystDf)+5
-    setTitle(ws, title="Species Information", startRow=speciesSR, startCol=2, endCol=len(speciesColumns)+1)
+    setTitle(ws, titles[1], startRow=speciesSR, startCol=2, endCol=len(speciesColumns)+1)
     catalyzersAsSpeciesSR = speciesSR+len(speciesDf)+3
-    setTitle(ws, title="Catalyzers as Species Information", startRow=catalyzersAsSpeciesSR, startCol=2, endCol=len(speciesColumns)+1)
+    setTitle(ws, titles[2], startRow=catalyzersAsSpeciesSR, startCol=2, endCol=len(speciesColumns)+1)
 
     white = PatternFill(start_color="ffffff", end_color="ffffff", fill_type="solid")
     lightGray = PatternFill(start_color="f0f0f0", end_color="f0f0f0", fill_type="solid")
@@ -234,6 +249,6 @@ def writeOnExcelFile(catalysts,species):
     setTableStyle(ws, 3, catalystColumns, catalystDf, border, white, lightGray)
     setTableStyle(ws, len(catalystDf)+6, speciesColumns, speciesDf, border, white, lightGray)
     setTableStyle(ws, len(catalystDf)+len(speciesDf)+9, speciesColumns, catalyzersAsSpeciesDf, border, white, lightGray)
-    resizeCells(ws)
+    resizeCells(ws,titles,catalystColumns,speciesColumns)
 
     wb.save(path)

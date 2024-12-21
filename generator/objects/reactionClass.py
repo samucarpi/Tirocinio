@@ -1,5 +1,5 @@
 
-from Utils.utils import calculateRandomValue
+from utils.utils import calculateRandomValue
 
 class ReactionClass():
     def __init__(self, catalyst, start, end):
