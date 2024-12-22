@@ -18,3 +18,9 @@ python ./main.py tabulate
 ```bash
  python ./main.py generate tabulate
 ```
+
+### 4. Debug
+ È possibile visualizzare l'output di generazione e tabulazione via terminale a runtime
+```bash
+ python ./main.py generate tabulate debug
+```
