@@ -101,8 +101,13 @@ class Generator:
     # Parameters initialization
     def initializeParameters(self):
         path = os.path.join(BASE_DIR,"io/Generator/input/parameters.txt")
-        parameters = getParameters(path)
-        self.setParameters(parameters)
+        error,parameters = getParameters(path, self.getSpecies())
+        if error:
+            for message in parameters:
+                print(colored(message,"red",attrs=['bold']))
+            exit()
+        else:
+            self.setParameters(parameters)
 
     # Species initialization
     def initializeSpecies(self):
@@ -154,10 +159,10 @@ class Generator:
                 end=start+length
                 if c.getIsCondensation():
                     reactionClass=CondensationReactionClass(c,start,end)
-                    reactionClass.condense()
+                    reactionClass.condense(self.getParameter('monomers'))
                 elif c.getIsCleavage():
                     reactionClass=CleavageReactionClass(c,start,end)
-                    reactionClass.cleave()
+                    reactionClass.cleave(self.getParameter('monomers'))
                 if not self.checkDuplicatedReactionClass(self.getReactionClasses(),reactionClass):
                     self.addReactionClass(reactionClass)
                     break
@@ -345,12 +350,11 @@ class Generator:
     
     # Initialization and reaction main functions
     def initialization(self):
+        self.initializeSpecies()
         self.initializeParameters()
         self.setSeed(self.getParameter('seed'))
         if self.debug:
             printParameters(self.getParameters())
-        self.initializeSpecies()
-        if self.debug:
             printSpecies(self.getSpecies())
         self.initializeCatalysts()
 

@@ -7,6 +7,13 @@
 - SEED -
 3535624670937410447
 
+# 1° colonna monomero
+# 2° colonna complementare corrispettivo
+# colonne separate da una ","
+- MONOMERI E COMPLEMENTARI -
+A, B
+B, A
+
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
 2
 

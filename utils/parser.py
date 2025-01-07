@@ -20,8 +20,43 @@ def getFileData(inputFile):
                 data.append(line.strip())
     return data
 
-def getParameters(input_file):
+def checkIntData(data, title):
+    try:
+        parameter = int(data)
+        if parameter>=0:
+            return True, ""
+        else:
+            return False, title+" deve essere >= 0"
+    except:
+        return False, title+" non è numerico"
+
+def checkFloatData(data, title):
+    try:
+        parameter = float(data)
+        if parameter>=0:
+            return True, ""
+        else:
+            return False, title+" deve essere >= 0"
+    except:
+        return False, title+" non è numerico"
+    
+def checkOnOffData(data, title):
+    data = data.upper()
+    if data=="ON" or data=="OFF":
+        return True, ""
+    else:
+        return False, title+" deve essere ON o OFF"
+    
+def checkFileData(data, title):
+    if data.endswith(".txt"):
+        return True, ""
+    else:
+        return False, title+" deve terminare con .txt"
+
+def getParameters(input_file, species):
     parameters={}
+    error=False
+    errorMessages=[]
     with open(input_file) as f:
         lines = [line.strip() for line in f if line.strip()]
         for i, line in enumerate(lines):
@@ -29,41 +64,131 @@ def getParameters(input_file):
                 case "- SEED -":
                     if lines[i+1].isdigit():
                         parameters['seed']=int(lines[i+1])
-                    else:
+                    elif lines[i+1]=="None":
                         parameters['seed']=None
+                    else:
+                        error=True
+                        errorMessages.append("Seed non valido")
+                case "- MONOMERI E COMPLEMENTARI -":
+                    i=i+1
+                    items=[]
+                    while lines[i]!="- LIMITE INFERIORE PER ESSERE CATALIZZATORE -":
+                        items.append(lines[i].split())
+                        i=i+1
+                    data=[[c.strip(',') for c in i] for i in items]
+                    monomers = []
+                    speciesMonomers = []
+                    for s in species:
+                        for c in s.name:
+                            if c not in speciesMonomers:
+                                speciesMonomers.append(c)
+                    for d in data:
+                        if d[0] not in speciesMonomers:
+                            error=True
+                            errorMessages.append(f"{d[0]} monomero non presente tra le specie")
+                        monomer = {}
+                        monomer["name"]=d[0]
+                        monomer["complementary"]=d[1]
+                        monomers.append(monomer)
+                    parameters['monomers']=monomers
                 case "- PROBABILITA DI CATALIZZAZIONE -":
-                    parameters['probabilityOfCatalyst']=float(lines[i+1])
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI CATALIZZAZIONE -")
+                    if result[0]:
+                        parameters['probabilityOfCatalyst']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- LIMITE INFERIORE PER ESSERE CATALIZZATORE -":
-                    parameters['lowerLimitForCatalyst']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- LIMITE INFERIORE PER ESSERE CATALIZZATORE -")
+                    if result[0]:
+                        parameters['lowerLimitForCatalyst']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- CATALIZZATORI PER CONDENSAZIONI INIZIALI -":
-                    parameters['initialCondensationCatalysts']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- CATALIZZATORI PER CONDENSAZIONI INIZIALI -")
+                    if result[0]:
+                        parameters['initialCondensationCatalysts']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- CATALIZZATORI PER CLEAVAGE INIZIALI -":
-                    parameters['initialCleavageCatalysts']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- CATALIZZATORI PER CLEAVAGE INIZIALI -")
+                    if result[0]:
+                        parameters['initialCleavageCatalysts']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- PROBABILITA DI ESSERE CLEAVAGE -":
-                    parameters['probabilityOfCleavage']=float(lines[i+1])
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI ESSERE CLEAVAGE -")
+                    if result[0]:
+                        parameters['probabilityOfCleavage']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- MINIMA LUNGHEZZA DEL SITO ATTIVO -":
-                    parameters['minActiveSiteLength']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- MINIMA LUNGHEZZA DEL SITO ATTIVO -")
+                    if result[0]:
+                        parameters['minActiveSiteLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- MASSIMA LUNGHEZZA DEL SITO ATTIVO -":
-                    parameters['maxActiveSiteLength']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA DEL SITO ATTIVO -")
+                    if result[0]:
+                        parameters['maxActiveSiteLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                    if parameters['maxActiveSiteLength']<parameters['minActiveSiteLength']:
+                        error=True
+                        errorMessages.append("La lunghezza massima del sito attivo deve essere >= della lunghezza minima")
                 case "- MASSIMA LUNGHEZZA PER CONDENSAZIONI -":
-                    parameters['maxCondensationLength']=int(lines[i+1])
+                    result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA PER CONDENSAZIONI -")
+                    if result[0]:
+                        parameters['maxCondensationLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- LUNGHEZZA MASSIMA PER CLEAVAGE -":
-                    parameters['maxCleavageLength']=lines[i+1]
+                    result = checkOnOffData(lines[i+1], "- LUNGHEZZA MASSIMA PER CLEAVAGE -")
+                    if result[0]:
+                        parameters['maxCleavageLength']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- LUNGHEZZA MASSIMA PER CATALIZZATORE -":
-                    parameters['maxCatalystLength']=lines[i+1]
+                    result = checkOnOffData(lines[i+1], "- LUNGHEZZA MASSIMA PER CATALIZZATORE -")
+                    if result[0]:
+                        parameters['maxCatalystLength']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
+                    result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -")
+                    if result[0]:
+                        parameters['maxMembraneLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
-                    if lines[i+1].endswith(".txt"):
+                    result = checkFileData(lines[i+1], "- NOME DEL FILE DI OUTPUT -")
+                    if result[0]:
                         parameters['outputFile']=lines[i+1]
                     else:
-                        parameters['outputFile']=None
-                case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
-                    parameters['maxMembraneLength']=int(lines[i+1])
+                        error=True
+                        errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT DELLE REGOLE -":
-                    if lines[i+1].endswith(".txt"):
+                    result = checkFileData(lines[i+1], "- NOME DEL FILE DI OUTPUT DELLE REGOLE -")
+                    if result[0]:
                         parameters['outputRulesFile']=lines[i+1]
                     else:
-                        parameters['outputRulesFile']=None
-    return parameters
+                        error=True
+                        errorMessages.append(result[1])
+    if error:
+        return error, errorMessages
+    else:
+        return error, parameters
 
 def newSpecies(species):
     return Species(species, True)
