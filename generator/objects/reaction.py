@@ -4,6 +4,7 @@ class Reaction():
         self.reactants = []
         self.products = []
         self.reactionClass = reactionClass
+        self.multiplicity = 1
 
     def setReactants(self, reactants):
         self.reactants = reactants
@@ -28,3 +29,9 @@ class Reaction():
     
     def setReactionClass(self, reactionClass):
         self.reactionClass = reactionClass
+
+    def setMultiplicity(self, multiplicity):
+        self.multiplicity = multiplicity
+
+    def getMultiplicity(self):
+        return self.multiplicity

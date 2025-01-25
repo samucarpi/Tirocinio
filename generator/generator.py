@@ -1,5 +1,6 @@
 from utils.parser import *
 from utils.utils import *
+from utils.loader import *
 from generator.objects.species import *
 from generator.objects.catalyst import *
 from generator.objects.reaction import *
@@ -19,6 +20,7 @@ class Generator:
         self.maxActiveSiteLength = 0
         self.reactionClasses = []
         self.reactions = []
+        self.uniqueReactions = []
     
     # Getters and setters
     def setSeed(self, seed):
@@ -97,6 +99,15 @@ class Generator:
     
     def addReaction(self, reaction):
         self.reactions.append(reaction)
+
+    def setUniqueReactions(self, uniqueReactions):
+        self.uniqueReactions = uniqueReactions
+    
+    def getUniqueReactions(self):
+        return self.uniqueReactions
+    
+    def addUniqueReaction(self, uniqueReaction):
+        self.uniqueReactions.append(uniqueReaction)
     
     # Parameters initialization
     def initializeParameters(self):
@@ -203,10 +214,7 @@ class Generator:
                         reaction=Reaction(reactionClass)
                         reaction.setReactants([s.getName(),s2.getName(),reactionClass.getCatalyst().getName()])
                         reaction.setProducts([result,reactionClass.getCatalyst().getName()])
-                        if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)) and not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
-                            if self.debug:
-                                print(reagent1+" + "+reagent2+" + "+reactionClass.getCatalyst().getName()+" --> "+result+" + "+reactionClass.getCatalyst().getName())
-                            reactions.append(reaction)
+                        reactions.append(reaction)              
         return reactions
 
     def handleCleavage(self, reactionClass, species):
@@ -227,32 +235,8 @@ class Generator:
                     reaction=Reaction(reactionClass)
                     reaction.setReactants([s.getName(),reactionClass.getCatalyst().getName()])
                     reaction.setProducts([newSpecies1,newSpecies2,reactionClass.getCatalyst().getName()])
-                    if not self.checkDuplicatedReaction(reactions,reaction,type(reactionClass)) and not self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass)):
-                        if self.debug:
-                            print(s.getName()+" + "+reactionClass.getCatalyst().getName()+" --> "+newSpecies1+" + "+newSpecies2+" + "+reactionClass.getCatalyst().getName())
-                        reactions.append(reaction)
+                    reactions.append(reaction)
         return reactions
-        
-    def checkDuplicatedReaction(self,reactions,reaction,type):
-        if not reactions:
-            return False
-        if type == CleavageReactionClass:
-            for r in reactions:
-                if isinstance(r.getReactionClass(),CleavageReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]):
-                    if (r.getProducts()[0]==reaction.getProducts()[0] and r.getProducts()[1]==reaction.getProducts()[1]) or (r.getProducts()[0]==reaction.getProducts()[1] and r.getProducts()[1]==reaction.getProducts()[0]):
-                        str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]+" + "+reaction.getProducts()[2]
-                        if self.debug:
-                            print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
-                        return True
-        elif type == CondensationReactionClass:
-            for r in reactions:
-                if isinstance(r.getReactionClass(),CondensationReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and r.getReactants()[2]==(reaction.getReactants()[2]):
-                    if r.getProducts()[0]==reaction.getProducts()[0]:
-                        str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" + "+reaction.getReactants()[2]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]
-                        if self.debug:
-                            print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
-                        return True
-        return False
 
     def generation(self, species, reactions, reactionClasses, isRecursive=False, generateOnOldSpecies=False):
         queue = deque([(species,reactions,reactionClasses,isRecursive,generateOnOldSpecies)])
@@ -331,7 +315,6 @@ class Generator:
                 newSpecies.append(Species(reaction.getProducts()[1],False))
                 self.addSpecies(Species(reaction.getProducts()[1],False))
                 
-    
     def addRandomCataylst(self,species):
         if self.getParameter('maxCatalystLength')=='ON' and len(species.name)>self.getParameter('maxCondensationLength'):
             return
@@ -347,6 +330,44 @@ class Generator:
                 self.setReactionClass([catalyst])
                 return True
         return False
+
+    def deleteDuplicatedReactions(self,reactions):
+        duplicatedReactions=[]
+        reactions=reactions[-1::-1]
+        for i,r in enumerate(reactions):
+            reactionClass=r.getReactionClass()
+            result,doubleReaction=self.duplicatedReaction(reactions,r,type(reactionClass),i,duplicatedReactions)
+            if result:
+                duplicatedReactions.append(r)
+                doubleReaction.setMultiplicity(doubleReaction.getMultiplicity()+1)
+        clearedReactions=[r for r in reactions if r not in duplicatedReactions]
+        clearedReactions=clearedReactions[-1::-1]
+        return clearedReactions
+            
+    def duplicatedReaction(self,reactions,reaction,type,position,duplicatedReactions):
+        if type == CleavageReactionClass:
+            for i,r in enumerate(reactions):
+                if i==position or r in duplicatedReactions:
+                    continue
+                if isinstance(r.getReactionClass(),CleavageReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]):
+                    if (r.getProducts()[0]==reaction.getProducts()[0] and r.getProducts()[1]==reaction.getProducts()[1]) or (r.getProducts()[0]==reaction.getProducts()[1] and r.getProducts()[1]==reaction.getProducts()[0]):
+                        if self.debug:
+                            print(r.getReactants()[0]+" + "+r.getReactants()[1]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1]+" + "+r.getProducts()[2])
+                            str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]+" + "+reaction.getProducts()[2]
+                            print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))                        
+                        return True,r
+        elif type == CondensationReactionClass:
+            for i,r in enumerate(reactions):
+                if i==position or r in duplicatedReactions:
+                    continue
+                if isinstance(r.getReactionClass(),CondensationReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and r.getReactants()[2]==(reaction.getReactants()[2]):
+                    if r.getProducts()[0]==reaction.getProducts()[0]:
+                        if self.debug:
+                            print(r.getReactants()[0]+" + "+r.getReactants()[1]+" + "+r.getReactants()[2]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1])
+                            str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" + "+reaction.getReactants()[2]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]
+                            print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
+                        return True,r
+        return False,None
     
     # Initialization and reaction main functions
     def initialization(self):
@@ -357,7 +378,7 @@ class Generator:
             printParameters(self.getParameters())
             printSpecies(self.getSpecies())
         self.initializeCatalysts()
-
+        
     def reaction(self):
         self.setActiveSiteLengthVariables()
         self.setReactionClass()
@@ -365,16 +386,24 @@ class Generator:
             printReactionClasses(self.getReactionClasses())
         species=self.getSpecies()
         reactionClasses=self.getReactionClasses()
-        reactions=[]
-        self.generation(species,reactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False)
+        allReactions=[]
+        if not self.debug:
+            loader=Loader()
+            loader.start()
+        self.generation(species,allReactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False)
+        if not self.debug:
+            loader.stop()
+        allReactions=self.getReactions()
         if self.debug:
             print(colored("GENERAZIONE TERMINATA",'red',attrs=['bold']))
+            print(colored("ELIMINAZIONE DELLE REAZIONI DUPLICATE",'yellow',attrs=['bold']))
+        self.setUniqueReactions(self.deleteDuplicatedReactions(allReactions))
+        if self.debug:
             printReactions(self.getReactions())
             printSpecies(self.getSpecies(),ended=True)
+        print(boldTitle("SEED UTILIZZATO: "+str(self.getSeed())))
 
     def output(self):
-        writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getReactions())
+        writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getReactions(),self.getUniqueReactions())
         writeRulesFile(self.getParameters(),self.getReactionClasses())
         duplicateFilesForTabulator(self.getParameters())
-
-            

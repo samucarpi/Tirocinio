@@ -120,32 +120,54 @@ def printTabulatedSpecies(species):
             print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
 
 # Output print functions
-def writeOutputFile(seed,parameters,species,reactions):
-    print(boldTitle("SEED UTILIZZATO: "+str(seed)))
-    path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile'])
-    with open(path, 'w') as f:
-        f.write(f"SEED UTILIZZATO: {seed}\n\n")
-        f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
-        sortedSpecies=sorted(species,key=len)
-        crossMembraneSpecies=[]
-        for s in sortedSpecies:
-            if len(s.getName())>parameters['maxMembraneLength']:
-                val="0.01"
-            else:
-                val="0.0"
-                crossMembraneSpecies.append(s)
-            f.write(f"{s.getName():<15}{'1e-15':<10}{val:<10}\n")
-        f.write("\n")
-        for s in crossMembraneSpecies:
-            f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
-        if not reactions:
-            f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
-        else:
-            for r in reactions:
-                if r.getReactionClass().getCatalyst().getIsCondensation():
-                    f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
+    allReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-allReactions.txt")
+    uniqueReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-uniqueReactions.txt")
+    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-multiplicyReactions.txt")
+    for file in [allReactionsFile, uniqueReactionsFile, multiplicyReactionsFile]:
+        with open(file, 'w') as f:
+            f.write(f"SEED UTILIZZATO: {seed}\n\n")
+            f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
+            sortedSpecies=sorted(species,key=len)
+            crossMembraneSpecies=[]
+            for s in sortedSpecies:
+                if len(s.getName())>parameters['maxMembraneLength']:
+                    val="0.01"
                 else:
-                    f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+                    val="0.0"
+                    crossMembraneSpecies.append(s)
+                f.write(f"{s.getName():<15}{'1e-15':<10}{val:<10}\n")
+            f.write("\n")
+            for s in crossMembraneSpecies:
+                f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
+            if file == allReactionsFile:   
+                if not allReactions:
+                    f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
+                else:
+                    for r in allReactions:
+                        if r.getReactionClass().getCatalyst().getIsCondensation():
+                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+                        else:
+                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+            if file == uniqueReactionsFile:
+                if not uniqueReactions:
+                    f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
+                else:
+                    for r in uniqueReactions:
+                        if r.getReactionClass().getCatalyst().getIsCondensation():
+                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+                        else:
+                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+            if file == multiplicyReactionsFile:
+                if not uniqueReactions:
+                    f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
+                else:
+                    for r in uniqueReactions:
+                        multiplicity = r.getMultiplicity()
+                        if r.getReactionClass().getCatalyst().getIsCondensation():
+                            f.write(f"{str(multiplicity)}x {r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+                        else:
+                            f.write(f"{str(multiplicity)}x{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
 
 def writeRulesFile(parameters,reactionClasses):
     if not reactionClasses:
@@ -162,7 +184,7 @@ def writeRulesFile(parameters,reactionClasses):
                 f.write(f"{rc.getCatalyst().getName():<15} {'Cleavage':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0][:rc.getSplit()]+' '+rc.getReagents()[0][rc.getSplit():]+'-R':<10}\n")
 
 def duplicateFilesForTabulator(parameters):
-    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputFile']),os.path.join(BASE_DIR,"io/Tabulator/input/chemistry.txt"))
+    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/Tabulator/input/chemistry.txt"))
     shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/Tabulator/input/chemistryRules.txt"))
 
 def cleanReaction(reaction):

@@ -172,12 +172,7 @@ def getParameters(input_file, species):
                         error=True
                         errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
-                    result = checkFileData(lines[i+1], "- NOME DEL FILE DI OUTPUT -")
-                    if result[0]:
                         parameters['outputFile']=lines[i+1]
-                    else:
-                        error=True
-                        errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT DELLE REGOLE -":
                     result = checkFileData(lines[i+1], "- NOME DEL FILE DI OUTPUT DELLE REGOLE -")
                     if result[0]:

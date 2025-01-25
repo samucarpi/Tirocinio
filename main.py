@@ -1,4 +1,5 @@
 import argparse
+from termcolor import colored
 from generator.main import main as gMain
 from tabulator.main import main as tMain
 
@@ -17,10 +18,10 @@ def main():
         debug=False
     if "generate" in args.commands:
         gMain(debug)
-        print("\n-----------------------------------\nGENERAZIONE TERMINATA CON SUCCESSO\n-----------------------------------\n")
+        print(colored("GENERAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "tabulate" in args.commands:
         tMain(debug)
-        print("\n-----------------------------------\nTABULAZIONE TERMINATA CON SUCCESSO\n-----------------------------------\n")
+        print(colored("TABULAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
         
 
 if __name__ == "__main__":

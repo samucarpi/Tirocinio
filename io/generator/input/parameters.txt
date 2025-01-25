@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-3535624670937410447
+4354266171412555527
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -27,7 +27,7 @@ B, A
 0.5
 
 - PROBABILITA DI CATALIZZAZIONE -
-0.1
+0.05
 
 - MINIMA LUNGHEZZA DEL SITO ATTIVO -
 2
@@ -51,7 +51,7 @@ OFF
 ## -- PARAMETRI SULL'OUTPUT -- ##
 
 - NOME DEL FILE DI OUTPUT -
-output.txt
+output
 
 - NOME DEL FILE DI OUTPUT DELLE REGOLE -
 outputRules.txt
