@@ -164,6 +164,13 @@ def getParameters(input_file, species):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- TEMPO MASSIMO DI GENERAZIONE -":
+                    result = checkFloatData(lines[i+1], "- TEMPO MASSIMO DI GENERAZIONE -")
+                    if result[0]:
+                        parameters['maxGenerationTime']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
                     result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -")
                     if result[0]:

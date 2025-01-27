@@ -120,6 +120,45 @@ def printTabulatedSpecies(species):
             print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
 
 # Output print functions
+def deleteReportFile():
+    file=os.path.join(BASE_DIR, "io/Generator/output/report.txt")
+    if os.path.exists(file):
+        os.remove(file)
+
+def writeReportFile(seed,parameters,species,data):
+    file=os.path.join(BASE_DIR, "io/Generator/output/report.txt")
+    with open(file, 'w') as f:
+        f.write("PARAMETRI\n")
+        for key in parameters:
+            f.write(f"{key}: {parameters[key]}\n")
+        f.write("\n")
+        type=data["error"]
+        f.write("DATI\n")
+        if type=="START":
+            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+            f.write("Non sono stati interrotti i processi di sviluppo di nuove reazioni o specie\n")
+        if type=="REACTION":
+            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+            f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante lo sviluppo di nuove reazioni\n")
+            remainingReactions = len(data["reactionClasses"])-len(data["processedReactionClasses"])
+            f.write("Ci sono ancora "+str(remainingReactions)+" classi di reazioni da analizzare: \n")
+            for rc in data["reactionClasses"]:
+                if rc in data["processedReactionClasses"]:
+                    f.write(rc.printReactionClass()+"\n")
+                else:
+                    f.write(rc.printReactionClass()+" <--\n")
+        if type=="SPECIES":
+            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+            f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante la ricerca di nuove specie\n")
+            remainingReactions = len(data["reactions"])-len(data["processedReactions"])
+            f.write("Ci sono ancora "+str(remainingReactions)+" reazioni da analizzare: \n")
+            for r in data["reactions"]:
+                if r in data["processedReactions"]:
+                    f.write(r.printReaction()+"\n")
+                else:
+                    f.write(r.printReaction()+" <--\n")
+                
+
 def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
     allReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-allReactions.txt")
     uniqueReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-uniqueReactions.txt")
@@ -165,9 +204,9 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
                     for r in uniqueReactions:
                         multiplicity = r.getMultiplicity()
                         if r.getReactionClass().getCatalyst().getIsCondensation():
-                            f.write(f"{str(multiplicity)}x {r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
+                            f.write(f"{str(multiplicity)+"x":<2} {r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
                         else:
-                            f.write(f"{str(multiplicity)}x{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+                            f.write(f"{str(multiplicity)+"x":<2} {r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
 
 def writeRulesFile(parameters,reactionClasses):
     if not reactionClasses:

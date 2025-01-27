@@ -35,3 +35,10 @@ class Reaction():
 
     def getMultiplicity(self):
         return self.multiplicity
+    
+    def printReaction(self):
+        if self.getReactionClass().getCatalyst().getIsCleavage():
+            return self.getReactants()[0]+" + "+self.getReactants()[1]+" --> "+self.getProducts()[0]+" + "+self.getProducts()[1]+" + "+self.getProducts()[2]
+        else:
+            return self.getReactants()[0]+" + "+self.getReactants()[1]+" + "+self.getReactants()[2]+" --> "+self.getProducts()[0]+" + "+self.getProducts()[1]
+        

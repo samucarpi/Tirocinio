@@ -55,6 +55,12 @@ class ReactionClass():
                     complementary += m["complementary"]
         return complementary
     
+    def printReactionClass(self):
+        if self.getCatalyst().getIsCleavage():
+            return "R-"+self.getReagents()[0][:self.getSplit()]+self.getReagents()[0][self.getSplit():]+"-R"
+        else:
+            return "R-"+self.getReagents()[0]+" "+self.getReagents()[1]+"-R"
+    
 class CleavageReactionClass(ReactionClass):
     def __init__(self, catalyst, start, end):
         super().__init__(catalyst, start, end)
