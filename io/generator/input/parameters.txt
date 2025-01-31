@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-4354266171412555527
+3921190534582185718
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -15,7 +15,7 @@ A, B
 B, A
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
-2
+3
 
 - CATALIZZATORI PER CONDENSAZIONI INIZIALI -
 1
@@ -36,7 +36,7 @@ B, A
 4
 
 - MASSIMA LUNGHEZZA PER CONDENSAZIONI -
-4
+6
 
 # OFF: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" possono essere reagenti di un cleavage.
 # ON: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" non possono essere reagenti di un cleavage.
@@ -50,7 +50,7 @@ OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-1
+5
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 

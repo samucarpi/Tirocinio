@@ -254,7 +254,7 @@ class Generator:
                     if not duplicatedLocal and not duplicatedGlobal:
                         if self.debug:
                             print(s.getName()+" + "+reactionClass.getCatalyst().getName()+" --> "+newSpecies1+" + "+newSpecies2+" + "+reactionClass.getCatalyst().getName())
-                            reactions.append(reaction)
+                        reactions.append(reaction)
                     else:
                         if rLocal:
                             rLocal.setMultiplicity(rLocal.getMultiplicity()+1)
