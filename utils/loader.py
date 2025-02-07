@@ -6,12 +6,12 @@ class Loader:
         self.stopLoad=True
         self.thread=None
 
-    def start(self):
+    def start(self,string):
         interval=0.5
         def load():
             points = 0
             while not self.stopLoad:
-                str=f"Generazione in corso {'.'*points}{' '*(3 - points)}"
+                str=f"{string} {'.'*points}{' '*(3 - points)}"
                 out=colored(f"\r{str}", color="yellow", attrs=["bold"])
                 sys.stdout.write(out)
                 sys.stdout.flush()

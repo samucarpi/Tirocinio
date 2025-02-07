@@ -1,0 +1,52 @@
+SEED UTILIZZATO: 7142322243600127977
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+BA             1e-15     0.0       
+ABA            1e-15     0.01      
+AABA           1e-15     0.01      
+BABA           1e-15     0.01      
+AABBA          1e-15     0.01      
+BBAAA          1e-15     0.01      
+AAABA          1e-15     0.01      
+ABABA          1e-15     0.01      
+BBBABA         1e-15     0.01      
+BBAABB         1e-15     0.01      
+BABABA         1e-15     0.01      
+AAABBB         1e-15     0.01      
+BAABBA         1e-15     0.01      
+AAAAAAA        1e-15     0.01      
+AAABABA        1e-15     0.01      
+BABABABA       1e-15     0.01      
+BBBBAAAA       1e-15     0.01      
+BBAABBAA       1e-15     0.01      
+BBAABBABA      1e-15     0.01      
+AABBAABBA      1e-15     0.01      
+BBBBBAAAA      1e-15     0.01      
+BAABBAABBA     1e-15     0.01      
+BBAABBAABA     1e-15     0.01      
+BBAABBAABBA    1e-15     0.01      
+AAABBBAABBA    1e-15     0.01      
+BBAABBAAABBB   1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > BA ; 1.00E-18
+B + BBBBAAAA + AAAAAAA > BBBBBAAAA + AAAAAAA ; 0.1
+B + AABBA + AABBAABBA > BAABBA + AABBAABBA ; 0.1
+B + AABBAABBA + AABBAABBA > BAABBAABBA + AABBAABBA ; 0.1
+BBAABB + AABBA + AABBAABBA > BBAABBAABBA + AABBAABBA ; 0.1
+AAABBB + AABBA + AABBAABBA > AAABBBAABBA + AABBAABBA ; 0.1
+BBAABB + AA + BBAABB > BBAABBAA + BBAABB ; 0.1
+BBAABB + AABBA + BBAABB > BBAABBAABBA + BBAABB ; 0.1
+BBAABB + AABA + BBAABB > BBAABBAABA + BBAABB ; 0.1
+BBAABB + AAABBB + BBAABB > BBAABBAAABBB + BBAABB ; 0.1
+AAABABA + BABABABA > AAABA + BA + BABABABA ; 0.1
+BABABA + BABABABA > BABA + BA + BABABABA ; 0.1
+BABABABA + BABABABA > BABA + BABA + BABABABA ; 0.1
+BABABABA + BABABABA > BABABA + BA + BABABABA ; 0.1
+AAABABA + BBBABA > AA + ABABA + BBBABA ; 0.1
+ABABA + BABABABA > ABA + BA + BABABABA ; 0.1

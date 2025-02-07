@@ -412,7 +412,7 @@ class Generator:
         reactionClasses=self.getReactionClasses()
         if not self.debug:
             loader=Loader()
-            loader.start()
+            loader.start(string="Generazione in corso")
         reactions=[]
         data=self.generation(species,reactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False)
         if not self.debug:

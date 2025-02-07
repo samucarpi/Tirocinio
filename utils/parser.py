@@ -232,3 +232,36 @@ def getRules(BASE_DIR):
         return rules
     except:
         return []
+
+def getLauncherParameters(BASE_DIR):
+    input_file = os.path.join(BASE_DIR, "io/launcher/input/parameters.txt")
+    parameters={}
+    error=False
+    errorMessages=[]
+    with open(input_file) as f:
+        lines = [line.strip() for line in f if line.strip()]
+        for i, line in enumerate(lines):
+            match(line):
+                case "- NUMERO DI LANCI -":
+                    result = checkIntData(lines[i+1], "- NUMERO DI LANCI -")
+                    if result[0]:
+                        parameters['launches']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- NOME DELLA SERIE -":
+                    parameters['serieName']=lines[i+1]
+                case "- SEED INIZIALE -":
+                    if lines[i+1].isdigit():
+                        parameters['seed']=int(lines[i+1])
+                    elif lines[i+1]=="None":
+                        parameters['seed']=None
+                    else:
+                        error=True
+                        errorMessages.append("Numero del seed non valido")
+    if error:
+        return error, errorMessages
+    else:
+        return error, parameters
+
+    

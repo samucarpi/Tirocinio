@@ -1,0 +1,12 @@
+# PARAMETRI
+# NON MODIFICARE I TITOLI E LA FORMATTAZIONE GENERALE ( - TITOLO - \n VALORE)
+
+- NUMERO DI LANCI -
+100
+
+- NOME DELLA SERIE -
+serie
+
+#"None" se non si vuole impostare, altrimenti un numero
+- SEED INIZIALE -
+987654568754

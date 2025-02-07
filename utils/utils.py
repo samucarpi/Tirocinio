@@ -9,12 +9,22 @@ from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 # Constants
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+# Utils functions
+def readFile(path):
+    f=open(path)
+    file=f.readlines()
+    f.close()
+    return file
+
+def getRandomValue():
+    return random.randrange(sys.maxsize)
+
 # Random functions
 def generateSeed(seed):
     if seed:
         random.seed(seed)
     else:
-        seed = random.randrange(sys.maxsize)
+        seed=getRandomValue()
         random.seed(seed)
     return seed
 
@@ -312,4 +322,32 @@ def writeOnExcelFile(catalysts,species):
     setTableStyle(ws, len(catalystDf)+len(speciesDf)+9, speciesColumns, catalyzersAsSpeciesDf, border, white, lightGray)
     resizeCells(ws,titles,catalystColumns,speciesColumns)
 
+    wb.save(path)
+
+def writeAnalysOnExcel(data, serieName):
+
+    columns = ['Lap', 'Interrupted', 'All species', 'All reactions', 'Unique species', 'Unique reactions', 'Catalysts']
+    rows = []
+    for r in data:
+        if r[1] == False:
+            r[1] = "No"
+        else:
+            r[1] = "Yes"
+        rows.append(r)
+
+    analystDf = setTable(pd, rows, columns)
+
+    path = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, "analysis.xlsx")
+    with pd.ExcelWriter(path, engine="openpyxl") as writer:
+        analystDf.to_excel(writer, index=False, startrow=2, startcol=1, sheet_name="Sheet1")
+
+    wb = load_workbook(path)
+    ws = wb.active
+    setTitle(ws, "Analysis", startRow=2, startCol=2, endCol=len(columns)+1)
+
+    white = PatternFill(start_color="ffffff", end_color="ffffff", fill_type="solid")
+    lightGray = PatternFill(start_color="f0f0f0", end_color="f0f0f0", fill_type="solid")
+    border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
+    setTableStyle(ws, 3, columns, analystDf, border, white, lightGray)
+    resizeCells(ws, ["Analysis"], columns, columns)
     wb.save(path)
