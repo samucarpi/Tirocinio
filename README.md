@@ -18,9 +18,16 @@ python ./main.py tabulate
 ```bash
  python ./main.py generate tabulate
 ```
+### 4. Lancio di più generazioni
+
+ Dato un file di input `parametri.txt`, lancia più generazioni di specie e reazioni chimiche su parametri specifici.
+```bash
+ python ./main.py launch
+```
 
 ### 4. Debug
- È possibile visualizzare l'output di generazione e tabulazione via terminale a runtime
+ È possibile visualizzare l'output di generazione, tabulazione e lancio via terminale a runtime
 ```bash
  python ./main.py generate tabulate debug
+ python ./main.py launch debug
 ```
