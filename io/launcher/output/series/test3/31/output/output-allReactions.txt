@@ -1,0 +1,53 @@
+SEED UTILIZZATO: 8321200854103127004
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+BA             1e-15     0.0       
+AAB            1e-15     0.01      
+BBB            1e-15     0.01      
+AABA           1e-15     0.01      
+AABBA          1e-15     0.01      
+BBAAA          1e-15     0.01      
+BAAAA          1e-15     0.01      
+BBBABA         1e-15     0.01      
+BBAABB         1e-15     0.01      
+BABABA         1e-15     0.01      
+AAABBB         1e-15     0.01      
+BAABBA         1e-15     0.01      
+AAAAAAA        1e-15     0.01      
+AAABABA        1e-15     0.01      
+ABABABA        1e-15     0.01      
+BABABABA       1e-15     0.01      
+BBBBAAAA       1e-15     0.01      
+AABABABA       1e-15     0.01      
+BBAABBABA      1e-15     0.01      
+AABBAABBA      1e-15     0.01      
+ABABABABA      1e-15     0.01      
+AABABABABA     1e-15     0.01      
+BABABABABA     1e-15     0.01      
+AABBABABABA    1e-15     0.01      
+BBAAABABABA    1e-15     0.01      
+AABABABABABA   1e-15     0.01      
+BBBABABABABA   1e-15     0.01      
+BABABABABABA   1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > BA ; 1.00E-18
+AABBAABBA + BBAABB > AAB + BAABBA + BBAABB ; 0.1
+BBBBAAAA + AAABBB > BBB + BAAAA + AAABBB ; 0.1
+A + BABABA + BABABA > ABABABA + BABABA ; 0.1
+A + BABABABA + BABABA > ABABABABA + BABABA ; 0.1
+AA + BABABA + BABABA > AABABABA + BABABA ; 0.1
+AA + BABABABA + BABABA > AABABABABA + BABABA ; 0.1
+BA + BABABA + BABABA > BABABABA + BABABA ; 0.1
+BA + BABABABA + BABABA > BABABABABA + BABABA ; 0.1
+AABBA + BABABA + BABABA > AABBABABABA + BABABA ; 0.1
+AABA + BABABA + BABABA > AABABABABA + BABABA ; 0.1
+AABA + BABABABA + BABABA > AABABABABABA + BABABA ; 0.1
+BBBABA + BABABA + BABABA > BBBABABABABA + BABABA ; 0.1
+BBAAA + BABABA + BABABA > BBAAABABABA + BABABA ; 0.1
+BABABA + BABABA + BABABA > BABABABABABA + BABABA ; 0.1

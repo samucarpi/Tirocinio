@@ -1,0 +1,80 @@
+SEED UTILIZZATO: 1748802993157482265
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+BA             1e-15     0.0       
+AB             1e-15     0.0       
+ABA            1e-15     0.01      
+BAB            1e-15     0.01      
+AABA           1e-15     0.01      
+AAAB           1e-15     0.01      
+BABA           1e-15     0.01      
+AABBA          1e-15     0.01      
+BBAAA          1e-15     0.01      
+AAABB          1e-15     0.01      
+ABABA          1e-15     0.01      
+BABAB          1e-15     0.01      
+BBBABA         1e-15     0.01      
+BBAABB         1e-15     0.01      
+BABABA         1e-15     0.01      
+AAABBB         1e-15     0.01      
+AABBAB         1e-15     0.01      
+AAAAAAA        1e-15     0.01      
+AAABABA        1e-15     0.01      
+AABBAAA        1e-15     0.01      
+AABBABA        1e-15     0.01      
+BBAAABB        1e-15     0.01      
+BABABABA       1e-15     0.01      
+BBBBAAAA       1e-15     0.01      
+AABBBABA       1e-15     0.01      
+AABBAABB       1e-15     0.01      
+AABBABAB       1e-15     0.01      
+BBAABBABA      1e-15     0.01      
+AABBAABBA      1e-15     0.01      
+AABBBBAAAA     1e-15     0.01      
+BBAAABBAAA     1e-15     0.01      
+AABBABBAAA     1e-15     0.01      
+AABBAABBAB     1e-15     0.01      
+AABBAABBABA    1e-15     0.01      
+BBAAABBBABA    1e-15     0.01      
+BBAAABBAABB    1e-15     0.01      
+AABBABBBABA    1e-15     0.01      
+AABBABBAABB    1e-15     0.01      
+AABBABABABA    1e-15     0.01      
+AAAAAAABBAAA   1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > BA ; 1.00E-18
+10.0 > AB ; 1.00E-18
+AA + BBBABA + BBAAA > AABBBABA + BBAAA ; 0.1
+AA + BBAABB + BBAAA > AABBAABB + BBAAA ; 0.1
+AA + BBAABBABA + BBAAA > AABBAABBABA + BBAAA ; 0.1
+AA + BBAAA + BBAAA > AABBAAA + BBAAA ; 0.1
+AA + BBBBAAAA + BBAAA > AABBBBAAAA + BBAAA ; 0.1
+AAAAAAA + BBAAA + BBAAA > AAAAAAABBAAA + BBAAA ; 0.1
+BBAAA + BBBABA + BBAAA > BBAAABBBABA + BBAAA ; 0.1
+BBAAA + BBAABB + BBAAA > BBAAABBAABB + BBAAA ; 0.1
+BBAAA + BBAAA + BBAAA > BBAAABBAAA + BBAAA ; 0.1
+AAABBB + BBBBAAAA > AAABB + B + BBBBAAAA ; 0.1
+AABBA + B + AABA > AABBAB + AABA ; 0.1
+AABBA + BA + AABA > AABBABA + AABA ; 0.1
+AABBA + BBBABA + AABA > AABBABBBABA + AABA ; 0.1
+AABBA + BBAABB + AABA > AABBABBAABB + AABA ; 0.1
+AABBA + BBAAA + AABA > AABBABBAAA + AABA ; 0.1
+AABBA + BABABA + AABA > AABBABABABA + AABA ; 0.1
+AABBAABBA + B + AABA > AABBAABBAB + AABA ; 0.1
+AABBAABBA + BA + AABA > AABBAABBABA + AABA ; 0.1
+AAABABA + BABABABA > AAAB + ABA + BABABABA ; 0.1
+BABABA + BABABABA > BAB + ABA + BABABABA ; 0.1
+BABABABA + BABABABA > BAB + ABABA + BABABABA ; 0.1
+BABABABA + BABABABA > BABAB + ABA + BABABABA ; 0.1
+BBAAABBBABA + BBBBAAAA > BBAAABB + BABA + BBBBAAAA ; 0.1
+AABBABABABA + BABABABA > AABBAB + ABABA + BABABABA ; 0.1
+AABBABABABA + BABABABA > AABBABAB + ABA + BABABABA ; 0.1
+ABABA + BABABABA > AB + ABA + BABABABA ; 0.1
+BABAB + BABABABA > BAB + AB + BABABABA ; 0.1
+AABBABAB + BABABABA > AABBAB + AB + BABABABA ; 0.1
