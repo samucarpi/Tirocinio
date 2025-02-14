@@ -1,12 +1,29 @@
-# PARAMETRI
+# PARAMETRI 
 # NON MODIFICARE I TITOLI E LA FORMATTAZIONE GENERALE ( - TITOLO - \n VALORE)
+
+# PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
 100
 
 - NOME DELLA SERIE -
-test3
+test4
 
 #"None" se non si vuole impostare, altrimenti un numero
 - SEED INIZIALE -
 987654568754
+
+# PARAMETRI SULLA GENERAZIONE DI SPECIE
+
+#"ON" se si vogliono generare nuove specie per ogni lancio "OFF" altrimenti
+- GENERAZIONE SPECIE -
+OFF
+
+- RAGGIO INTERNO -
+5
+
+- RAGGIO ESTERNO -
+10
+
+- PROBABILITA DI SELEZIONE -
+1

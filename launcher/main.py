@@ -5,7 +5,7 @@ from utils.loader import Loader
 def main(debug):
     l=Launcher(debug)
     l.initialization()
-    loader=Loader()
+    loader = Loader()
     l.launch(loader)
     if not debug:
         loader.stop()

@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-3379896357971424841
+987654568754
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -50,7 +50,7 @@ OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-0.05
+3
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 
@@ -61,4 +61,15 @@ output
 outputRules.txt
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
-2
+2# FILE DI INSERIMENTO DELLE SPECIE CHIMICHE INIZIALI
+
+# - SPECIES -
+A
+B
+AA
+BA
+AAB
+AAA
+AAB
+BBB
+

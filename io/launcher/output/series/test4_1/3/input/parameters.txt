@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-3379896357971424841
+4133971793084466604
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -50,7 +50,7 @@ OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-0.05
+3
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 

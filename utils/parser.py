@@ -187,6 +187,11 @@ def getParameters(input_file, species):
                     else:
                         error=True
                         errorMessages.append(result[1])
+
+    if parameters['lowerLimitForCatalyst'] < parameters['minActiveSiteLength']:
+        error=True
+        errorMessages.append("Il limite inferiore per essere catalizzatore deve essere >= della lunghezza minima del sito attivo")
+        
     if error:
         return error, errorMessages
     else:
@@ -259,6 +264,34 @@ def getLauncherParameters(BASE_DIR):
                     else:
                         error=True
                         errorMessages.append("Numero del seed non valido")
+                case "- GENERAZIONE SPECIE -":
+                    result = checkOnOffData(lines[i+1], "- GENERAZIONE SPECIE -")
+                    if result[0]:
+                        parameters['generateSpecies']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- RAGGIO INTERNO -":
+                    result = checkIntData(lines[i+1], "- RAGGIO INTERNO -")
+                    if result[0]:
+                        parameters['innerRadius']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- RAGGIO ESTERNO -":
+                    result = checkIntData(lines[i+1], "- RAGGIO ESTERNO -")
+                    if result[0]:
+                        parameters['outerRadius']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- PROBABILITA DI SELEZIONE -":
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI SELEZIONE -")
+                    if result[0]:
+                        parameters['selectionProbability']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
     if error:
         return error, errorMessages
     else:
