@@ -1,6 +1,8 @@
 from utils.parser import *
 from utils.utils import *
+from utils.loader import Loader
 from species_generator.generator import Generator as speciesGenerator
+
 import shutil
 
 class Launcher:
@@ -103,19 +105,31 @@ class Launcher:
         with open(path, "w") as f:
             f.writelines(formattedFile)
 
-    def searchRaf(self, serieName, lap):
+    def searchRaf(self, serieName, lap, loader):
         seriePath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output", "output-uniqueReactions.txt")
         venturiPath = os.path.join(BASE_DIR, "utils", "venturi")
-        copyInputDir = f'copy "{seriePath}" "{venturiPath}/In"'
+        copyInputDir = f'copy "{seriePath}" "{venturiPath}/In" > nul 2>&1'
         os.system(copyInputDir)
         uniqueReactionsPath = os.path.join(venturiPath, "In", "output-uniqueReactions.txt")
         self.formatFile(uniqueReactionsPath)
-        executeVenturi = f'cd "{venturiPath}/CRST_src" && python ./Driver.py -v cta > nul 2>&1'
+        if self.debug:
+            loader=Loader()
+            loader.start("Ricerca di raf in corso")
+        executeVenturi = f'cd "{venturiPath}/CRST_src" && python ./Driver.py cta > nul 2>&1'        
         os.system(executeVenturi)
+        if self.debug:
+            loader.stop()
         if os.listdir(venturiPath+"/Out"):
-            print("Raf trovato")
-        shutil.rmtree(venturiPath+"/Out/")
-        
+            outPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output")
+            copyOutputDir = f'copy "{venturiPath+"\\Out\\"+os.listdir(venturiPath+"/Out")[0]}" "{outPath}" '
+            os.system(copyOutputDir)
+            if self.debug:
+                print(colored("Raf individuato","green",attrs=['underline']))
+            shutil.rmtree(venturiPath+"/Out/")
+            os.makedirs(venturiPath+"/Out/")
+        else:
+            if self.debug:
+                print(colored("Raf non individuato","red",attrs=['underline']))
 
     def launch(self, loader):
         launches = self.getLauncherParameter("launches")
@@ -157,6 +171,7 @@ class Launcher:
             os.system(copyOutputDir)
             if self.debug:
                 print(colored("Copia dei file input/output completata","yellow"))
-            self.searchRaf(serieName, i+1)
+            self.searchRaf(serieName, i+1, loader)
         self.writeNewSeed(originalSeed)
-        self.writeNewSpecies(speciesBackup)
+        if self.getLauncherParameter("generateSpecies")=="ON":
+            self.writeNewSpecies(speciesBackup)

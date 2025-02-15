@@ -1,6 +1,5 @@
-from launcher.launcher import Launcher
+from launcher.launcher import Launcher, Loader
 from analyst.main import main as aMain
-from utils.loader import Loader
 
 def main(debug):
     l=Launcher(debug)

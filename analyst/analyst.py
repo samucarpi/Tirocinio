@@ -42,6 +42,7 @@ class Analyst:
     
     def getData(self):
         rows = []
+        regexRAF = r"^Protocell\d+RAF.txt$"
         files = ["output-allReactions.txt","output-uniqueReactions.txt","outputRules.txt"]
         if self.debug:
             print(colored("Analizzo la serie '"+str(self.getParameter("serieName"))+"'","yellow"))
@@ -69,11 +70,16 @@ class Analyst:
             interrupted=False
             if "report.txt" in os.listdir(path):
                 interrupted=True
+            RAFfile = [f for f in os.listdir(path) if re.match(regexRAF, f)]
+            if RAFfile:
+                raf=True
+            else:
+                raf=False
             if self.debug:
                 if interrupted:
                     print(colored("Lancio "+str(lap+1)+" interrotto a causa dello scadere del timer","yellow"))
                 print(colored("Lancio "+str(lap+1)+" analizzato","green",attrs=['bold']))
-            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, catalysts])
+            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, catalysts, raf])
         return rows
     
     def writeFile(self, rows):

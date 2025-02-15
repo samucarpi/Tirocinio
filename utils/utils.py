@@ -326,13 +326,17 @@ def writeOnExcelFile(catalysts,species):
 
 def writeAnalysOnExcel(data, serieName):
 
-    columns = ['Lap', 'Interrupted', 'All species', 'All reactions', 'Unique species', 'Unique reactions', 'Catalysts']
+    columns = ['Lap', 'Interrupted', 'All species', 'All reactions', 'Unique species', 'Unique reactions', 'Catalysts', 'RAF']
     rows = []
     for r in data:
-        if r[1] == False:
+        if not r[1] :
             r[1] = "No"
         else:
             r[1] = "Yes"
+        if not r[7]:
+            r[7] = "No"
+        else:
+            r[7] = "Yes"
         rows.append(r)
 
     analystDf = setTable(pd, rows, columns)
