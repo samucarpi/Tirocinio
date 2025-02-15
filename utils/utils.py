@@ -19,6 +19,24 @@ def readFile(path):
 def getRandomValue():
     return random.randrange(sys.maxsize)
 
+def copyFile(source,destination):
+    shutil.copy(source,destination)
+
+def formatFileForVenturi (path):
+    with open(path, "r") as f:
+        lines = f.readlines()
+    formattedFile = [l for l in lines if l.strip() != "NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI"]
+    formattedFile = formattedFile[2:]
+    with open(path, "w") as f:
+        f.writelines(formattedFile)
+
+def createDirectory(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+def runVenturi(venturiPath):
+    os.system(f'cd "{venturiPath}/CRST_src" && python ./Driver.py cta > nul 2>&1')
+
 # Random functions
 def generateSeed(seed):
     if seed:
@@ -279,7 +297,6 @@ def resizeCells(ws, titles, catalystsColumns, speciesColumns):
         ws.column_dimensions[column].width = width
 
 def writeOnExcelFile(catalysts,species):
-
     catalystColumns = ['Name', 'Length', 'Reaction class', 'Condensation class', 'Cleavage class', 'Total generated reactions', 'Generated condensation reactions', 'Generated cleavage reactions', 'Catalyzers as reagent', 'Species catalized', 'Nr. species catalized']
     catalystRows = []
     for c in catalysts:
@@ -325,7 +342,6 @@ def writeOnExcelFile(catalysts,species):
     wb.save(path)
 
 def writeAnalysOnExcel(data, serieName):
-
     columns = ['Lap', 'Interrupted', 'All species', 'All reactions', 'Unique species', 'Unique reactions', 'Catalysts', 'RAF']
     rows = []
     for r in data:

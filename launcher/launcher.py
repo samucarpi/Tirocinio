@@ -3,8 +3,6 @@ from utils.utils import *
 from utils.loader import Loader
 from species_generator.generator import Generator as speciesGenerator
 
-import shutil
-
 class Launcher:
     def __init__(self, debug):
         self.launcherParameters = None
@@ -56,6 +54,9 @@ class Launcher:
         except FileExistsError:
             print(colored("La serie '"+serieName+"' è già esistente. Sovrascrivere? (Y,N)","red"))
             choice = input("Y/N: ")
+            while choice not in ["Y","N","y","n"]:
+                print(colored("Scelta non valida. Inserire Y o N","red"))
+                choice = input("Y/N: ")
             if choice == "N":
                 dir = os.path.join(BASE_DIR, "io", "launcher", "output", "series")
                 count = 0
@@ -65,7 +66,7 @@ class Launcher:
                 newPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName)
                 os.makedirs(newPath, exist_ok=False)
                 print(colored("Creata una nuova serie: "+serieName,"yellow"))
-            else:
+            elif choice == "Y":
                 shutil.rmtree(path)
                 os.makedirs(path, exist_ok=True)
                 print(colored("Serie '"+serieName+"' sovrascritta","yellow"))
@@ -96,42 +97,33 @@ class Launcher:
         for s in species:
             f.write(s+"\n")
         f.close()
-    
-    def formatFile(self, path):
-        with open(path, "r") as f:
-            lines = f.readlines()
-        formattedFile = [l for l in lines if l.strip() != "NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI"]
-        formattedFile = formattedFile[2:]
-        with open(path, "w") as f:
-            f.writelines(formattedFile)
 
-    def searchRaf(self, serieName, lap, loader):
+    def searchRAF(self, serieName, lap, loader):
         seriePath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output", "output-uniqueReactions.txt")
         venturiPath = os.path.join(BASE_DIR, "utils", "venturi")
-        copyInputDir = f'copy "{seriePath}" "{venturiPath}/In" > nul 2>&1'
-        os.system(copyInputDir)
-        uniqueReactionsPath = os.path.join(venturiPath, "In", "output-uniqueReactions.txt")
-        self.formatFile(uniqueReactionsPath)
+        venturiInputPath = os.path.join(venturiPath, "In","output-uniqueReactions.txt")
+        copyFile(seriePath, venturiInputPath)
+        formatFileForVenturi(venturiInputPath)
         if self.debug:
             loader=Loader()
-            loader.start("Ricerca di raf in corso")
-        executeVenturi = f'cd "{venturiPath}/CRST_src" && python ./Driver.py cta > nul 2>&1'        
-        os.system(executeVenturi)
+            loader.start("Ricerca di RAF in corso")
+        runVenturi(venturiPath)
         if self.debug:
             loader.stop()
-        if os.listdir(venturiPath+"/Out"):
+        venturiOutputPath = os.path.join(venturiPath, "Out")
+        if os.listdir(venturiOutputPath):
             outPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output")
-            copyOutputDir = f'copy "{venturiPath+"\\Out\\"+os.listdir(venturiPath+"/Out")[0]}" "{outPath}" '
-            os.system(copyOutputDir)
+            venturiOutputFilePath = os.path.join(venturiOutputPath, os.listdir(venturiOutputPath)[0])
+            copyFile(venturiOutputFilePath, outPath)
             if self.debug:
-                print(colored("Raf individuato","green",attrs=['underline']))
-            shutil.rmtree(venturiPath+"/Out/")
-            os.makedirs(venturiPath+"/Out/")
+                print(colored("RAF individuato","green",attrs=['underline']))
+            shutil.rmtree(venturiOutputPath)
+            os.makedirs(venturiOutputPath)
         else:
             if self.debug:
-                print(colored("Raf non individuato","red",attrs=['underline']))
+                print(colored("RAF non individuato","red",attrs=['underline']))
 
-    def launch(self, loader):
+    def launch(self):
         launches = self.getLauncherParameter("launches")
         serieName = self.getLauncherParameter("serieName")
         generatorParametersPath = os.path.join(BASE_DIR, "io/generator/input/parameters.txt")
@@ -139,16 +131,17 @@ class Launcher:
         originalSeed = self.getGeneratorParameters()[7].strip()
         self.setGeneratorParameters(generatorParameters)
         serieName = self.createSerie(serieName)
+        loader=Loader()
         if self.getLauncherParameter("generateSpecies")=="ON":
             sGenerator = speciesGenerator(self.debug)
             sGenerator.initialization(self.getLauncherParameter("innerRadius"),self.getLauncherParameter("outerRadius"),self.getLauncherParameter("selectionProbability"))
             originalSpeciesPath = os.path.join(BASE_DIR,"io","generator","input","species.txt")
-            speciesBackup = self.getSpecies(originalSpeciesPath)
+            originalSpecies = self.getSpecies(originalSpeciesPath)
         if not self.debug:
             loader.start("Lanci in corso")
         for i in range(launches):
             if self.getLauncherParameter("generateSpecies")=="ON":
-                species = sGenerator.generateSpecies(speciesBackup)
+                species = sGenerator.generateSpecies(originalSpecies)
                 self.writeNewSpecies(species)
             if not self.getLauncherParameter("seed") or i>0:
                 self.setLauncherParameter("seed", getRandomValue())
@@ -159,19 +152,23 @@ class Launcher:
             os.system("python main.py generate > nul 2>&1")
             if self.debug:
                 print(colored("Generazione completata","green"))
-            makeLapDir = "mkdir io\\launcher\\output\\series\\"+serieName+"\\%d"%(i+1)
-            os.system(makeLapDir)
-            makeInputDir = "mkdir io\\launcher\\output\\series\\"+serieName+"\\%d"%(i+1)+"\\input > nul 2>&1"
-            makeOutputDir = "mkdir io\\launcher\\output\\series\\"+serieName+"\\%d"%(i+1)+"\\output > nul 2>&1"
-            os.system(makeInputDir)
-            os.system(makeOutputDir)
-            copyInputDir = "copy io\\generator\\input\\*.* io\\launcher\\output\\series\\"+serieName+"\\%d"%(i+1)+"\\input > nul 2>&1"
+            lapPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, "%d"%(i+1))
+            createDirectory(lapPath)
+            inputPath = os.path.join(lapPath, "input")
+            createDirectory(inputPath)
+            outputPath = os.path.join(lapPath, "output")
+            createDirectory(outputPath)
+            inputGeneratorPath = os.path.join(BASE_DIR, "io", "generator", "input", "*.*")
+            copyInputDir = "copy "+inputGeneratorPath+" "+inputPath+" > nul 2>&1"
             os.system(copyInputDir)
-            copyOutputDir = "copy io\\generator\\output\\*.* io\\launcher\\output\\series\\"+serieName+"\\%d"%(i+1)+"\\output > nul 2>&1"
+            outputGeneratorPath = os.path.join(BASE_DIR, "io", "generator", "output", "*.*")
+            copyOutputDir = "copy "+outputGeneratorPath+" "+outputPath+" > nul 2>&1"
             os.system(copyOutputDir)
             if self.debug:
                 print(colored("Copia dei file input/output completata","yellow"))
-            self.searchRaf(serieName, i+1, loader)
+            self.searchRAF(serieName, i+1, loader)
         self.writeNewSeed(originalSeed)
         if self.getLauncherParameter("generateSpecies")=="ON":
-            self.writeNewSpecies(speciesBackup)
+            self.writeNewSpecies(originalSpecies)
+        if not self.debug:
+            loader.stop()

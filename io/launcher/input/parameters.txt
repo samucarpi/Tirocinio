@@ -4,7 +4,7 @@
 # PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
-5
+100
 
 - NOME DELLA SERIE -
 test4
@@ -17,13 +17,13 @@ test4
 
 #"ON" se si vogliono generare nuove specie per ogni lancio "OFF" altrimenti
 - GENERAZIONE SPECIE -
-OFF
+ON
 
 - RAGGIO INTERNO -
-5
+3
 
 - RAGGIO ESTERNO -
-10
+6
 
 - PROBABILITA DI SELEZIONE -
-1
+0.20

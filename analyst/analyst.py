@@ -72,14 +72,14 @@ class Analyst:
                 interrupted=True
             RAFfile = [f for f in os.listdir(path) if re.match(regexRAF, f)]
             if RAFfile:
-                raf=True
+                RAF=True
             else:
-                raf=False
+                RAF=False
             if self.debug:
                 if interrupted:
                     print(colored("Lancio "+str(lap+1)+" interrotto a causa dello scadere del timer","yellow"))
                 print(colored("Lancio "+str(lap+1)+" analizzato","green",attrs=['bold']))
-            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, catalysts, raf])
+            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, catalysts, RAF])
         return rows
     
     def writeFile(self, rows):

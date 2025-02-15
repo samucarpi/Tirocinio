@@ -292,6 +292,9 @@ def getLauncherParameters(BASE_DIR):
                     else:
                         error=True
                         errorMessages.append(result[1])
+    if parameters['outerRadius']<parameters['innerRadius']:
+        error=True
+        errorMessages.append("Il raggio esterno deve essere >= del raggio interno")
     if error:
         return error, errorMessages
     else:

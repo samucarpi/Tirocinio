@@ -1,0 +1,19 @@
+SEED UTILIZZATO: 6078016735799048133
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+BA             1e-15     0.0       
+BABA           1e-15     0.01      
+AABBA          1e-15     0.01      
+BBAAA          1e-15     0.01      
+BABABA         1e-15     0.01      
+BAABBA         1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > BA ; 1.00E-18
+1x BABABA + BABABA > BA + BABA + BABABA ; 0.1
+1x B + AABBA + AABBA > BAABBA + AABBA ; 0.1

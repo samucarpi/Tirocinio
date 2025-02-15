@@ -1,0 +1,2 @@
+CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
+BBBABA          Condensazione     BBBABA        4           R-AAAB+AB-R

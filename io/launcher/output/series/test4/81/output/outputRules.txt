@@ -1,0 +1,2 @@
+CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
+BBAABB          Cleavage          BBAABB        3           R-AAB BAA-R

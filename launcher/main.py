@@ -1,11 +1,8 @@
-from launcher.launcher import Launcher, Loader
+from launcher.launcher import Launcher
 from analyst.main import main as aMain
 
 def main(debug):
     l=Launcher(debug)
     l.initialization()
-    loader = Loader()
-    l.launch(loader)
-    if not debug:
-        loader.stop()
+    l.launch()
     aMain(l.getLauncherParameters(),debug)
