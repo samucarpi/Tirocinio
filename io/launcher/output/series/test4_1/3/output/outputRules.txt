@@ -1,0 +1,2 @@
+CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
+AABA            Condensazione     AABA          3           R-BBA+B-R 
