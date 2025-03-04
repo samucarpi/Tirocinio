@@ -143,6 +143,13 @@ class Launcher:
         loader=Loader()
         generatorLoader=Loader()
 
+        venturiPath = os.path.join(BASE_DIR, "utils", "venturi")
+        if "In" not in os.listdir(venturiPath):
+            os.makedirs(os.path.join(venturiPath, "In"))
+        if "Out" not in os.listdir(venturiPath):
+            os.makedirs(os.path.join(venturiPath, "Out"))
+        
+
         if self.getLauncherParameter("generateSpecies").upper()=="ON":
             sGenerator = speciesGenerator(self.debug)
             sGenerator.initialization(self.getLauncherParameter("innerRadius"),self.getLauncherParameter("outerRadius"),self.getLauncherParameter("selectionProbability"),[monomers["name"] for monomers in self.getGeneratorParameterDictionary("monomers")])
