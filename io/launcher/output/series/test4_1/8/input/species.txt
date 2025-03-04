@@ -4,6 +4,9 @@
 A
 B
 AA
+AB
 BA
-AABA
-BBBABA
+BB
+ABA
+BBB
+BABB

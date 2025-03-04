@@ -1,14 +1,17 @@
-SEED UTILIZZATO: 3133551928541303983
+SEED UTILIZZATO: 8148123044477407504
 
 Cont           1.35e-16  0.0       
 A              1e-15     0.0       
 B              1e-15     0.0       
-AA             1e-15     0.0       
-BA             1e-15     0.0       
-AABA           1e-15     0.01      
+AA             1e-15     0.01      
+AB             1e-15     0.01      
+BA             1e-15     0.01      
+BB             1e-15     0.01      
+ABA            1e-15     0.01      
+ABAA           1e-15     0.01      
+BAAA           1e-15     0.01      
+BBBA           1e-15     0.01      
 
 10.0 > A ; 1.00E-18
 10.0 > B ; 1.00E-18
-10.0 > AA ; 1.00E-18
-10.0 > BA ; 1.00E-18
 NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI

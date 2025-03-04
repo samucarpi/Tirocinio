@@ -4,5 +4,7 @@
 A
 B
 AA
+AB
 BA
-AABBA
+BB
+BAAA

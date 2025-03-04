@@ -112,8 +112,7 @@ class Generator:
     
     # Parameters initialization
     def initializeParameters(self):
-        path = os.path.join(BASE_DIR,"io/Generator/input/parameters.txt")
-        error,parameters = getParameters(path, self.getSpecies())
+        error,parameters = getParameters(GENERATOR_PARAMETERS_FILE, self.getSpecies())
         if error:
             for message in parameters:
                 print(colored(message,"red",attrs=['bold']))
@@ -123,8 +122,7 @@ class Generator:
 
     # Species initialization
     def initializeSpecies(self):
-        path = os.path.join(BASE_DIR,"io/Generator/input/species.txt")
-        species = parseInputSpecies(path)
+        species = parseInputSpecies(GENERATOR_SPECIES_FILE)
         self.setSpecies(species)
 
     # Catalysts initialization

@@ -53,7 +53,7 @@ def checkFileData(data, title):
     else:
         return False, title+" deve terminare con .txt"
 
-def getParameters(input_file, species):
+def getParameters(input_file, species, speciesGeneration=False):
     parameters={}
     error=False
     errorMessages=[]
@@ -83,7 +83,7 @@ def getParameters(input_file, species):
                             if c not in speciesMonomers:
                                 speciesMonomers.append(c)
                     for d in data:
-                        if d[0] not in speciesMonomers:
+                        if d[0] not in speciesMonomers and not speciesGeneration:
                             error=True
                             errorMessages.append(f"{d[0]} monomero non presente tra le specie")
                         monomer = {}

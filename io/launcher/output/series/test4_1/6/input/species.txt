@@ -4,5 +4,10 @@
 A
 B
 AA
+AB
 BA
-AABA
+BB
+ABB
+BBA
+ABAA
+ABAB

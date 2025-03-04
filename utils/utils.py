@@ -7,7 +7,9 @@ from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 
 # Constants
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
+GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","generator","input","parameters.txt")
+GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","generator","input","species.txt")
 
 # Utils functions
 def readFile(path):
