@@ -1,0 +1,82 @@
+PRIMA PARTE
+
+Cont	1.35E-16	0								
+A	1.00E-15	0								
+B	1.00E-15	0								
+AA	1.00E-15	0								
+AB	1.00E-15	0								
+BA	1.00E-15	0								
+BB	1.00E-15	0								
+AAA	1.00E-17	1.00E-03								
+AAB	1.00E-17	1.00E-03								
+ABA	1.00E-17	1.00E-03
+
+
+Vi è un elenco di specie chimiche, con tre colonne:
+- nome della specie chimica
+- quantità (e non "concentrazione") presente
+- interazione con il contenitore (il parametro "alfa" del documento "proto_mod00.docx") 
+
+
+SECONDA PARTE
+
+Vi è un elenco di reazioni, in ordine qualsiasi.
+Le reazioni sono di vario tipo.
+Simuliamo 2 gruppi di eventi: (1) reazioni chimiche e (2) interazioni con l'ambiente esterno.
+
+1) Per ogni reazione chimica è indicato (in un'unica riga) l'elenco dei reagenti, l'elenco dei prodotti, e la costante cinetica.  Segue l'elenco delle reazioni attualmente supportato, con qualche esempio
+E' da notare che:
+- i coefficienti stechiometrici sono sempre pari ad 1
+- una stessa specie può comparire più di una volta fra i reagenti (o fra i prodotti)
+- i nomi non hanno un particolare significato: molti esempi sono basati sulla chimica dei polimeri, ma non e' una regola
+- l'effetto di inserire una specie chimica sia come reagente che come prodotto è quello di renderla (in automatico) catalizzatore di tale reazione
+
+
+- Condensazione spontanea (2 reagenti, 1 prodotto)
+B	+	A	>	BA	;	1.2
+A	+	A	>	AA	;	1.2
+A	+	B	>	C	;	1.2
+
+
+- Scambio (2 reagenti, 2 prodotti)
+BB	+	AA	>	BA	+	AB	;	1.2
+A	+	B	>	C	+	D	;	1.2
+A	+	D	>	C	+	D	;	1.2
+
+
+- Rottura spontanea (1 reagente, 2 prodotti)
+BA	>	B	+	A	;	1.2
+A	>	B	+	ETRW	;	1.2
+
+- Condensazione catalizzata (3 reagenti, 2 prodotti)
+B	+	BAA	+	BABABA	>	BBAA	+	BABABA	;	2
+BAA	+	B	+	BABABA	>	BBAA	+	BABABA	;	2
+B	+	BAA	+	C	>	C	+	BBAA	;	2
+
+- Rottura catalizzata (2 reagenti, 3 prodotti)
+AAABA	+	BBBAA	>	A	+	AABA	+	BBBAA	;	2
+AAABA	+	E	>	A	+	AABA	+	E	;	2
+AAABA	+	E	>	E	+	AABA	+	A	;	2
+AAABA	+	D	>	A	+	AABA	+	D	;	2
+
+
+2) Le interazioni con l'esterno includono l'ingresso/uscita di specie chimiche
+-  Nel caso CSTR ciò vuol dire ingressi nel sistema costanti nel tempo di alcune specie (il "food"), ed uscita proporzionale alla concentrazione per tutte le specie.
+- Nel caso "protocellula" vuole dire scambio di materiali con l'esterno proporzionale alla differenza di concentrazione interno/esterno: le specie chimiche che possono passare la membrana sono il "food". Si suppone che all'esterno la concentrazione di tali specie sia costante
+
+
+- Scomparsa spontanea (1 reagente, nessun prodotto)
+(A esce dal sistema, con costante di reazione indicata come ultimo dato)
+A	>	;	0.05
+
+
+- Iniezione dall'esterno (nessun reagente, 1 prodotto)
+(A entra nel sistema, con apporto [quantità/tempo], il valore indicato come ultimo dato)
+	>	A	;	1e-17
+
+- Passaggio attraverso membrana	(BA passa tramite gradiente di concentrazione, il "10.5" è la concentrazione esterna - la costante di diffusione attraverso membrana è l'ultimo dato)
+10.5	>	BA	;	1.00E-02
+
+
+
+

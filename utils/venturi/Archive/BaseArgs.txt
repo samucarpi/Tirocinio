@@ -1,0 +1,10 @@
+../ContainersFoodsFiles/CFset.txt	# containers-foods file path
+../Out/					# output folder path
+Protocell				# system type
+RAF					# autocatalytic set type
+6					# max species name length
+126					# desired number of species in the intermediate CRS
+50					# percentage of cleavages on total cleavages and condensations
+64					# desired number of reactions in the intermediate CRS
+random					# strategy for adding reactions to the inert CRS 
+10					# number of RAFs generated
