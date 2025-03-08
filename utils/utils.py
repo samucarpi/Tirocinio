@@ -239,10 +239,6 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
                             f.write(f"{str(multiplicity)+"x":<2} {r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
 
 def writeRulesFile(parameters,reactionClasses):
-    if not reactionClasses:
-        print(error("NESSUNA CLASSE DI REAZIONE PRESENTE"))
-        print(error("PER GENERARE LE REAZIONI MODIFICARE I PARAMETRI"))
-        return
     path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputRulesFile'])
     with open(path, 'w') as f:
         f.write(f"{"CATALIZZATORE":<15} {"TIPO":<17} {"SITO ATTIVO":<13} {"POSIZIONE":<11} {"CLASSE":<10}\n")

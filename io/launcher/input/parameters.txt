@@ -4,14 +4,14 @@
 # PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
-10
+50
 
 - NOME DELLA SERIE -
-test4
+test2
 
 #"None" se non si vuole impostare, altrimenti un numero
 - SEED INIZIALE -
-647025033406814583
+None
 
 # PARAMETRI SULLA GENERAZIONE DI SPECIE
 
@@ -26,4 +26,4 @@ ON
 4
 
 - PROBABILITA DI SELEZIONE -
-0.20
+0.10

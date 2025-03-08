@@ -1,0 +1,34 @@
+PARAMETRI
+seed: 4265291991494478937
+monomers: [{'name': 'A', 'complementary': 'B'}, {'name': 'B', 'complementary': 'A'}]
+lowerLimitForCatalyst: 4
+initialCondensationCatalysts: 3
+initialCleavageCatalysts: 2
+probabilityOfCleavage: 0.5
+probabilityOfCatalyst: 0.2
+minActiveSiteLength: 4
+maxActiveSiteLength: 6
+maxCondensationLength: 6
+maxCleavageLength: OFF
+maxCatalystLength: OFF
+maxGenerationTime: 0.5
+outputFile: output
+outputRulesFile: outputRules.txt
+maxMembraneLength: 1
+
+DATI
+Numero di giri svolti completamente: 23
+Generazione interrotta al giro 24 durante lo sviluppo di nuove reazioni
+Ci sono ancora 7 classi di reazioni da analizzare: 
+R-ABBAB-R
+R-B AAA-R
+R-A AAA-R
+R-BAAAAB-R
+R-B BABB-R
+R-BA BBAA-R <--
+R-BAAA-R <--
+R-BABBAB-R <--
+R-ABBA-R <--
+R-BBBAAB-R <--
+R-ABAA-R <--
+R-BBAAA-R <--

@@ -1,38 +1,28 @@
-SEED UTILIZZATO: 3330045570250014904
+SEED UTILIZZATO: 4687473149850072578
 
 Cont           1.35e-16  0.0       
 A              1e-15     0.0       
 B              1e-15     0.0       
-AA             1e-15     0.0       
-BA             1e-15     0.0       
-BB             1e-15     0.0       
-BBA            1e-15     0.01      
-AABA           1e-15     0.01      
-AABBA          1e-15     0.01      
-BBAAA          1e-15     0.01      
-BBBABA         1e-15     0.01      
-BBAABB         1e-15     0.01      
-BABABA         1e-15     0.01      
-AAABBB         1e-15     0.01      
-BBAAAA         1e-15     0.01      
-AABBAA         1e-15     0.01      
-AAAAAAA        1e-15     0.01      
-AAABABA        1e-15     0.01      
-BABABABA       1e-15     0.01      
-BBBBAAAA       1e-15     0.01      
-AABABABA       1e-15     0.01      
-BBAABBABA      1e-15     0.01      
-AABBAABBA      1e-15     0.01      
-AABABABABA     1e-15     0.01      
-BBAAABABABA    1e-15     0.01      
+AA             1e-15     0.01      
+AB             1e-15     0.01      
+BA             1e-15     0.01      
+BB             1e-15     0.01      
+ABAB           1e-15     0.01      
+BBAA           1e-15     0.01      
+ABABA          1e-15     0.01      
+ABABAA         1e-15     0.01      
+ABABAB         1e-15     0.01      
+ABABABAB       1e-15     0.01      
+ABABABABABA    1e-15     0.01      
+ABABABABABAA   1e-15     0.01      
+ABABABABABAB   1e-15     0.01      
 
 10.0 > A ; 1.00E-18
 10.0 > B ; 1.00E-18
-10.0 > AA ; 1.00E-18
-10.0 > BA ; 1.00E-18
-10.0 > BB ; 1.00E-18
-1x AA + BABABA + BBBABA > AABABABA + BBBABA ; 0.1
-1x AA + BABABABA + BBBABA > AABABABABA + BBBABA ; 0.1
-1x BBAAA + BABABA + BBBABA > BBAAABABABA + BBBABA ; 0.1
-1x BBBBAAAA + AAABBB > BB + BBAAAA + AAABBB ; 0.1
-1x AABBAABBA + AABBAABBA > AABBAA + BBA + AABBAABBA ; 0.1
+1x ABAB + A + ABAB > ABABA + ABAB ; 0.1
+1x ABAB + AA + ABAB > ABABAA + ABAB ; 0.1
+1x ABAB + AB + ABAB > ABABAB + ABAB ; 0.1
+1x ABAB + ABAB + ABAB > ABABABAB + ABAB ; 0.1
+1x ABABAB + ABABA + ABAB > ABABABABABA + ABAB ; 0.1
+1x ABABAB + ABABAA + ABAB > ABABABABABAA + ABAB ; 0.1
+1x ABABAB + ABABAB + ABAB > ABABABABABAB + ABAB ; 0.1

@@ -1,0 +1,373 @@
+PARAMETRI
+seed: 7681423565931284906
+monomers: [{'name': 'A', 'complementary': 'B'}, {'name': 'B', 'complementary': 'A'}]
+lowerLimitForCatalyst: 4
+initialCondensationCatalysts: 3
+initialCleavageCatalysts: 2
+probabilityOfCleavage: 0.5
+probabilityOfCatalyst: 0.2
+minActiveSiteLength: 4
+maxActiveSiteLength: 6
+maxCondensationLength: 6
+maxCleavageLength: OFF
+maxCatalystLength: OFF
+maxGenerationTime: 0.5
+outputFile: output
+outputRulesFile: outputRules.txt
+maxMembraneLength: 1
+
+DATI
+Numero di giri svolti completamente: 31
+Generazione interrotta al giro 32 durante lo sviluppo di nuove reazioni
+Ci sono ancora 237 classi di reazioni da analizzare: 
+R-AABB-R
+R-BB BB-R
+R-ABAA-R
+R-AAAA-R
+R-AAAAB-R
+R-AAAA A-R
+R-BBBAA-R
+R-BAA AAB-R
+R-AAABB-R
+R-BAAAA-R
+R-BBB B-R
+R-B BBBBB-R
+R-BBBB B-R
+R-AAAAB-R
+R-B BBBA-R
+R-AAAAAA-R
+R-AAA AAA-R
+R-BAAAA-R
+R-BA AAA-R
+R-AAA AAA-R
+R-AAAAAA-R
+R-AAAA-R
+R-AAAAA-R
+R-A AAAA-R
+R-AAA AA-R
+R-BBAA-R
+R-A AABB-R
+R-BBAA-R
+R-BBBAAA-R
+R-AAAABB-R
+R-BAAAA-R
+R-BB BB-R
+R-AB BBBB-R
+R-AAABB B-R
+R-BBAA-R
+R-BBBA-R
+R-B BBB-R
+R-ABBBB B-R
+R-AAB B-R
+R-BBBBB-R
+R-AABBB B-R
+R-AA AB-R
+R-AA AAA-R
+R-BBAAA-R
+R-AAAAA-R
+R-B BAAA-R
+R-AB AA-R
+R-AABAA-R
+R-A BBBAA-R
+R-A ABB-R
+R-AAA BBB-R
+R-AAAA-R
+R-AAB B-R
+R-ABBBB-R
+R-AAAA-R
+R-AAAAA B-R
+R-ABBB-R
+R-AAA BBB-R
+R-ABB B-R
+R-BBBB-R
+R-BBA AA-R
+R-BBBBB-R
+R-BA AAAA-R
+R-AAAA BB-R
+R-AABAA-R
+R-AAAA-R
+R-AAAAB-R
+R-AAAA-R
+R-AAAA-R
+R-BB BBAA-R
+R-AAA A-R
+R-BBAAAB-R
+R-BB BAA-R
+R-AAAA B-R
+R-BAAB-R
+R-AA AAA-R
+R-BB AA-R
+R-A ABB-R
+R-BBBBBA-R
+R-BBBB BA-R
+R-BBBBB A-R
+R-AAAA-R
+R-A BAAA-R
+R-B BAAAB-R
+R-AAAAA-R
+R-A ABBB-R
+R-BBBBAA-R
+R-ABBBB-R
+R-B BBBB-R
+R-AAB B-R
+R-AABBB A-R
+R-ABBBA-R
+R-BBAA-R
+R-BBBA-R
+R-AAB BBA-R
+R-AAABBB-R
+R-AABB BA-R
+R-BAAAA-R
+R-A BAAAA-R
+R-ABAAAA-R
+R-AAA AAA-R
+R-A BBB-R
+R-AA AAB-R
+R-AABBB B-R
+R-BBBA-R
+R-BBBAAA-R
+R-ABBBB B-R
+R-ABBBB B-R
+R-BBBA-R
+R-AAA A-R
+R-AA BBB-R
+R-A AABBB-R
+R-AAAABB-R
+R-BBBB-R
+R-BBAA-R <--
+R-AABB-R <--
+R-BA ABB-R <--
+R-B BAABB-R <--
+R-BBBBB B-R <--
+R-ABB BB-R <--
+R-BAA BBB-R <--
+R-ABBB-R <--
+R-AAABB-R <--
+R-BAAAB-R <--
+R-AB AAA-R <--
+R-BBBBB-R <--
+R-ABBB-R <--
+R-B BBB-R <--
+R-AAABB-R <--
+R-BBBAAA-R <--
+R-AAAB-R <--
+R-BBBAAB-R <--
+R-AAAABB-R <--
+R-BAAA-R <--
+R-BBBB-R <--
+R-ABBBA-R <--
+R-BABBA-R <--
+R-BB BA-R <--
+R-ABBBB-R <--
+R-BBBA A-R <--
+R-BABB BB-R <--
+R-B BAAA-R <--
+R-BABBB-R <--
+R-BB AB-R <--
+R-BBB BBA-R <--
+R-BBBB AB-R <--
+R-ABBBB-R <--
+R-BBBAB B-R <--
+R-BBAB-R <--
+R-BB BB-R <--
+R-BBBBAB-R <--
+R-BBB ABB-R <--
+R-BBBB-R <--
+R-BBBBAB-R <--
+R-A BBB-R <--
+R-BBAB BB-R <--
+R-BBB AB-R <--
+R-BBA B-R <--
+R-BBBA B-R <--
+R-BBBBA-R <--
+R-B BBA-R <--
+R-BBBBA-R <--
+R-BBB B-R <--
+R-BBBBAB-R <--
+R-B AAA-R <--
+R-AABA-R <--
+R-AB AA-R <--
+R-AAB AA-R <--
+R-AABAA A-R <--
+R-ABAAB-R <--
+R-BBAA A-R <--
+R-AABBAA-R <--
+R-AAABAA-R <--
+R-AABAAA-R <--
+R-AABAA-R <--
+R-BAAAB A-R <--
+R-ABA ABA-R <--
+R-A AAB-R <--
+R-AABB-R <--
+R-AABB-R <--
+R-AABB-R <--
+R-BA AA-R <--
+R-ABAAAB-R <--
+R-BB BBA-R <--
+R-BB AA-R <--
+R-AAAAAA-R <--
+R-B AAA-R <--
+R-AABBA-R <--
+R-BAAA A-R <--
+R-A AAABB-R <--
+R-AAABB-R <--
+R-AABBAA-R <--
+R-A AAA-R <--
+R-ABB A-R <--
+R-A AABB-R <--
+R-AABBAA-R <--
+R-AABB-R <--
+R-A AAA-R <--
+R-B BBBBB-R <--
+R-AABBB-R <--
+R-AAAABB-R <--
+R-A AABBA-R <--
+R-ABAAA-R <--
+R-BBB AA-R <--
+R-AABA-R <--
+R-BBBB-R <--
+R-BBB B-R <--
+R-AAAA-R <--
+R-ABBBA-R <--
+R-ABB BA-R <--
+R-AABB B-R <--
+R-BBBAAA-R <--
+R-BBA ABA-R <--
+R-BBAA-R <--
+R-AAAAAA-R <--
+R-B BAAAA-R <--
+R-B BAABA-R <--
+R-BBBBA-R <--
+R-B BBBAA-R <--
+R-BBBBAA-R <--
+R-BBBBA-R <--
+R-BBBB B-R <--
+R-BBB A-R <--
+R-BBBBB-R <--
+R-BBBBA-R <--
+R-BBBA A-R <--
+R-AAABAA-R <--
+R-AAAABA-R <--
+R-AAB A-R <--
+R-AAAAA-R <--
+R-AAAB-R <--
+R-AAAA-R <--
+R-BAAAAA-R <--
+R-A BAA-R <--
+R-BBBAA-R <--
+R-ABAA-R <--
+R-AABAAA-R <--
+R-AAA BA-R <--
+R-AAB AAA-R <--
+R-AA BAA-R <--
+R-AAAB-R <--
+R-AABAA-R <--
+R-BB BBB-R <--
+R-AABAA-R <--
+R-AABAAA-R <--
+R-AAA A-R <--
+R-ABAAA-R <--
+R-BA AA-R <--
+R-AA ABBB-R <--
+R-B AAABB-R <--
+R-ABB BA-R <--
+R-ABAAAA-R <--
+R-BBAA A-R <--
+R-AAA A-R <--
+R-AB BBA-R <--
+R-AAABB-R <--
+R-BB AAA-R <--
+R-AABBB-R <--
+R-AA AA-R <--
+R-BB AA-R <--
+R-BBAA B-R <--
+R-BBAAAB-R <--
+R-BBB BAB-R <--
+R-BBBB A-R <--
+R-ABAA-R <--
+R-AA AABB-R <--
+R-BBBBAB-R <--
+R-AAAAA-R <--
+R-AAABB-R <--
+R-BAAB-R <--
+R-AABBBA-R <--
+R-B BAA-R <--
+R-BAABBB-R <--
+R-AAAAA-R <--
+R-ABBA-R <--
+R-AABBB-R <--
+R-ABA ABB-R <--
+R-AAA AB-R <--
+R-A ABB-R <--
+R-BAAAA-R <--
+R-A BBA-R <--
+R-AAB B-R <--
+R-AABBA-R <--
+R-AABBB A-R <--
+R-AAABBA-R <--
+R-AABAA-R <--
+R-A ABAA-R <--
+R-AA AAA-R <--
+R-AAB B-R <--
+R-BAABB-R <--
+R-B BBB-R <--
+R-AB AA-R <--
+R-BAABBA-R <--
+R-ABB BA-R <--
+R-BB AA-R <--
+R-BAAA-R <--
+R-BAAA A-R <--
+R-AAA B-R <--
+R-BAAA BB-R <--
+R-ABBB A-R <--
+R-A AABA-R <--
+R-AAA AB-R <--
+R-AABAAB-R <--
+R-ABBA-R <--
+R-BAABBB-R <--
+R-AAABAA-R <--
+R-BBBAA-R <--
+R-BAA BB-R <--
+R-AA BB-R <--
+R-AABBBA-R <--
+R-B BBAAA-R <--
+R-AB BBA-R <--
+R-BBAA-R <--
+R-BBBBAA-R <--
+R-B AAB-R <--
+R-A ABB-R <--
+R-BA AA-R <--
+R-BBBAA-R <--
+R-BAA AB-R <--
+R-BB AAA-R <--
+R-BBBA-R <--
+R-BBBBA-R <--
+R-BABB-R <--
+R-BBB BB-R <--
+R-AABB-R <--
+R-AAABAB-R <--
+R-AAAAB-R <--
+R-ABBB-R <--
+R-BBBA-R <--
+R-ABBBBB-R <--
+R-AABAB-R <--
+R-ABBB B-R <--
+R-ABBBB-R <--
+R-AABAB-R <--
+R-B BBBBB-R <--
+R-ABA B-R <--
+R-ABB BB-R <--
+R-BABBBB-R <--
+R-BBBBA-R <--
+R-BABB BB-R <--
+R-BBB B-R <--
+R-BBAB-R <--
+R-BAAB A-R <--
+R-A ABA-R <--
+R-BBAABA-R <--
+R-B BBBB-R <--
+R-AA ABBB-R <--
+R-B BBA-R <--
+R-AA ABA-R <--
+R-BAA ABA-R <--
+R-ABBBAA-R <--

@@ -1,2 +1,0 @@
-CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
-BABB            Condensazione     BABB          1           R-A+BAA-R 

@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-2017596910792276423
+504379803117383587
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -27,7 +27,7 @@ B, A
 0.5
 
 - PROBABILITA DI CATALIZZAZIONE -
-0.02
+0.2
 
 - MINIMA LUNGHEZZA DEL SITO ATTIVO -
 4
@@ -50,7 +50,7 @@ OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-3
+0.5
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 
@@ -61,4 +61,4 @@ output
 outputRules.txt
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
-2
+1

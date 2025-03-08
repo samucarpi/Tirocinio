@@ -1,78 +1,14 @@
-SEED UTILIZZATO: 9173884562097457717
+SEED UTILIZZATO: 1653933241767099838
 
 Cont           1.35e-16  0.0       
 A              1e-15     0.0       
 B              1e-15     0.0       
-AA             1e-15     0.0       
-BA             1e-15     0.0       
-BBA            1e-15     0.01      
-AABA           1e-15     0.01      
+AA             1e-15     0.01      
+AB             1e-15     0.01      
+BA             1e-15     0.01      
+BB             1e-15     0.01      
 ABBA           1e-15     0.01      
-BABA           1e-15     0.01      
-AABBA          1e-15     0.01      
-BBAAA          1e-15     0.01      
-BBABA          1e-15     0.01      
-ABBAA          1e-15     0.01      
-BBBABA         1e-15     0.01      
-BBAABB         1e-15     0.01      
-BABABA         1e-15     0.01      
-AAABBB         1e-15     0.01      
-AABABA         1e-15     0.01      
-AABBAA         1e-15     0.01      
-ABBABA         1e-15     0.01      
-AAAAAAA        1e-15     0.01      
-AAABABA        1e-15     0.01      
-AABBABA        1e-15     0.01      
-BBABABA        1e-15     0.01      
-BBAABBA        1e-15     0.01      
-BABABABA       1e-15     0.01      
-BBBBAAAA       1e-15     0.01      
-BBBABABA       1e-15     0.01      
-ABBABABA       1e-15     0.01      
-ABBAABBA       1e-15     0.01      
-BBAABBABA      1e-15     0.01      
-AABBAABBA      1e-15     0.01      
-AAABABABA      1e-15     0.01      
-BABABABABA     1e-15     0.01      
-AABABABABA     1e-15     0.01      
-AABBABABABA    1e-15     0.01      
-BBAABBABABA    1e-15     0.01      
-AABBAABBABA    1e-15     0.01      
-AABABABABABA   1e-15     0.01      
-BBBABABABABA   1e-15     0.01      
-BABABABABABA   1e-15     0.01      
 
 10.0 > A ; 1.00E-18
 10.0 > B ; 1.00E-18
-10.0 > AA ; 1.00E-18
-10.0 > BA ; 1.00E-18
-1x AABBAABBA + BBAABB > AABBA + ABBA + BBAABB ; 0.1
-1x BA + BA + BABABA > BABA + BABABA ; 0.1
-1x BA + BABABA + BABABA > BABABABA + BABABA ; 0.1
-1x BA + BABABABA + BABABA > BABABABABA + BABABA ; 0.1
-1x AABBA + BA + BABABA > AABBABA + BABABA ; 0.1
-1x AABBA + BABABA + BABABA > AABBABABABA + BABABA ; 0.1
-1x AABA + BA + BABABA > AABABA + BABABA ; 0.1
-1x AABA + BABABA + BABABA > AABABABABA + BABABA ; 0.1
-1x AABA + BABABABA + BABABA > AABABABABABA + BABABA ; 0.1
-1x BBBABA + BA + BABABA > BBBABABA + BABABA ; 0.1
-1x BBBABA + BABABA + BABABA > BBBABABABABA + BABABA ; 0.1
-1x BBAABBABA + BA + BABABA > BBAABBABABA + BABABA ; 0.1
-1x AAABABA + BA + BABABA > AAABABABA + BABABA ; 0.1
-1x BABABA + BA + BABABA > BABABABA + BABABA ; 0.1
-1x BABABA + BABABA + BABABA > BABABABABABA + BABABA ; 0.1
-1x BABABABA + BA + BABABA > BABABABABA + BABABA ; 0.1
-1x AABBAABBA + BA + BABABA > AABBAABBABA + BABABA ; 0.1
-1x AABBAABBA + BBAABBABA > AABBAA + BBA + BBAABBABA ; 0.1
-1x AABBAABBABA + BBAABB > AABBA + ABBABA + BBAABB ; 0.1
-1x AABBAA + BBAABB > AABBA + A + BBAABB ; 0.1
-1x ABBA + BABA + BABABA > ABBABABA + BABABA ; 0.1
-1x BABA + BABA + BABABA > BABABABA + BABABA ; 0.1
-1x AABBABA + BABA + BABABA > AABBABABABA + BABABA ; 0.1
-1x AABABA + BABA + BABABA > AABABABABA + BABABA ; 0.1
-1x BBBABABA + BABA + BABABA > BBBABABABABA + BABABA ; 0.1
-1x BBA + BABA + BABABA > BBABABA + BABABA ; 0.1
-1x ABBA + ABBA + AABBA > ABBAABBA + AABBA ; 0.1
-1x BBA + ABBA + AABBA > BBAABBA + AABBA ; 0.1
-1x AABBAABBABA + BBAABBABA > AABBAA + BBABA + BBAABBABA ; 0.1
-1x ABBAABBA + BBAABBABA > ABBAA + BBA + BBAABBABA ; 0.1
+NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI

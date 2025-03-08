@@ -81,6 +81,7 @@ class Launcher:
                 while os.path.exists(os.path.join(dir, serieName)):
                     count += 1
                     serieName = self.getLauncherParameter("serieName")+"_"+str(count)
+                self.setLauncherParameter("serieName", serieName)
                 newPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName)
                 os.makedirs(newPath, exist_ok=False)
                 print(colored("Creata una nuova serie: "+serieName,"yellow"))
@@ -148,7 +149,6 @@ class Launcher:
             os.makedirs(os.path.join(venturiPath, "In"))
         if "Out" not in os.listdir(venturiPath):
             os.makedirs(os.path.join(venturiPath, "Out"))
-        
 
         if self.getLauncherParameter("generateSpecies").upper()=="ON":
             sGenerator = speciesGenerator(self.debug)

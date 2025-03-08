@@ -26,14 +26,23 @@ class Analyst:
     
     def countReactions(self,lines):
         count = 0
-        len = lines.__len__()
+        trigger=False
+        flag=False
         for i,line in enumerate(lines):
-           if line.startswith("10.0"):
-                while True:
+            if not trigger:
+                if line.startswith("10.0"):
+                    trigger=True
+            else:
+                if not flag:
+                    if not line.startswith("10.0"):
+                        flag = True
+                        if "NESSUNA REAZIONE GENERATA" in line:
+                            continue
+                        else:
+                            count += 1
+                else:
                     count += 1
-                    if i+count == len:
-                        return count
-                    line=lines[i+count]
+        return count
 
     def countCatalysts(self,lines):
         count = 0
@@ -43,35 +52,37 @@ class Analyst:
     def getData(self):
         rows = []
         regexRAF = r"^Protocell\d+RAF.txt$"
-        files = ["output-allReactions.txt","output-uniqueReactions.txt","outputRules.txt"]
         if self.debug:
             print(colored("Analizzo la serie '"+str(self.getParameter("serieName"))+"'","yellow"))
         for lap in range(0, self.getParameter("launches")):
             if self.debug:
                 print(colored("Lancio "+str(lap+1),"cyan",attrs=['bold']))
             path=os.path.join("io", "launcher", "output", "series", str(self.getParameter("serieName")), str(lap+1), "output")
+            files=os.listdir(path)
             for file in files:
                 lines = readFile(os.path.join(path, file))
                 lines=[line.strip() for line in lines if line.strip()]
-                if file == "output-allReactions.txt":
+                if "allReactions.txt" in file:
                     allSpecies = self.countSpecies(lines)
                     allReactions = self.countReactions(lines)
                     if self.debug:
                         print(colored("Trovate "+str(allSpecies)+" specie e "+str(allReactions)+" reazioni","light_grey"))
-                if file == "output-uniqueReactions.txt":
+                if "output-uniqueReactions.txt" in file:
                     uniqueSpecies = self.countSpecies(lines)
                     uniqueReactions = self.countReactions(lines)
                     if self.debug:
                         print(colored("Trovate "+str(uniqueSpecies)+" specie uniche e "+str(uniqueReactions)+" reazioni uniche","light_grey"))
-                if file == "outputRules.txt":
+                if "outputRules.txt" in file:
                     catalysts = self.countCatalysts(lines)
                     if self.debug:
                         print(colored("Trovati "+str(catalysts)+" catalizzatori","light_grey"))
             interrupted=False
-            if "report.txt" in os.listdir(path):
+            if "report.txt" in files:
                 interrupted=True
-            RAFfile = [f for f in os.listdir(path) if re.match(regexRAF, f)]
+            RAFfile = [f for f in files if re.match(regexRAF, f)]
             if RAFfile:
+                if self.debug:
+                    print(colored("RAF individuato","light_grey"))
                 RAF=True
             else:
                 RAF=False
