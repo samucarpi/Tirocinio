@@ -1,0 +1,152 @@
+SEED UTILIZZATO: 5055140007432190993
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+AB             1e-15     0.0       
+BA             1e-15     0.0       
+BB             1e-15     0.0       
+AAA            1e-15     0.01      
+AAB            1e-15     0.01      
+ABB            1e-15     0.01      
+BBB            1e-15     0.01      
+BAB            1e-15     0.01      
+AAAA           1e-15     0.01      
+ABAB           1e-15     0.01      
+ABBA           1e-15     0.01      
+BABA           1e-15     0.01      
+BBAB           1e-15     0.01      
+BBBA           1e-15     0.01      
+BBBB           1e-15     0.01      
+ABBB           1e-15     0.01      
+AAAB           1e-15     0.01      
+ABBBA          1e-15     0.01      
+ABBBB          1e-15     0.01      
+BBBAB          1e-15     0.01      
+AAAAA          1e-15     0.01      
+AAAAB          1e-15     0.01      
+AAABB          1e-15     0.01      
+BBBABA         1e-15     0.01      
+BBBBAB         1e-15     0.01      
+BBBBBB         1e-15     0.01      
+BABBBB         1e-15     0.01      
+ABBBAB         1e-15     0.01      
+AAAAAA         1e-15     0.01      
+AAABAB         1e-15     0.01      
+AAABBA         1e-15     0.01      
+AAABBB         1e-15     0.01      
+AAAAAB         1e-15     0.01      
+AAAABB         1e-15     0.01      
+ABBBABA        1e-15     0.01      
+ABBBBAB        1e-15     0.01      
+BBBBBBA        1e-15     0.01      
+BBBBBBB        1e-15     0.01      
+ABBBBBB        1e-15     0.01      
+BABBBBA        1e-15     0.01      
+BABBBBB        1e-15     0.01      
+BBBBBAB        1e-15     0.01      
+AAABBBA        1e-15     0.01      
+AAABBBB        1e-15     0.01      
+AAAAAAA        1e-15     0.01      
+AAAABAB        1e-15     0.01      
+AAAABBA        1e-15     0.01      
+AAAABBB        1e-15     0.01      
+AAAAAAB        1e-15     0.01      
+AAAAABB        1e-15     0.01      
+BBBBBBBA       1e-15     0.01      
+BBBBBBBB       1e-15     0.01      
+ABBBBBBA       1e-15     0.01      
+ABBBBBBB       1e-15     0.01      
+ABBBBBAB       1e-15     0.01      
+AAAABBBA       1e-15     0.01      
+AAAABBBB       1e-15     0.01      
+AAAAAAAA       1e-15     0.01      
+AAAAABAB       1e-15     0.01      
+AAAAABBA       1e-15     0.01      
+AAAAABBB       1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > AB ; 1.00E-18
+10.0 > BA ; 1.00E-18
+10.0 > BB ; 1.00E-18
+1x BB + B + AAA > BBB + AAA ; 0.1
+1x BB + BA + AAA > BBBA + AAA ; 0.1
+1x BB + BB + AAA > BBBB + AAA ; 0.1
+1x BB + BABA + AAA > BBBABA + AAA ; 0.1
+1x BB + BBAB + AAA > BBBBAB + AAA ; 0.1
+1x ABB + B + AAA > ABBB + AAA ; 0.1
+1x ABB + BA + AAA > ABBBA + AAA ; 0.1
+1x ABB + BB + AAA > ABBBB + AAA ; 0.1
+1x ABB + BABA + AAA > ABBBABA + AAA ; 0.1
+1x ABB + BBAB + AAA > ABBBBAB + AAA ; 0.1
+1x ABAB + BABA > AB + AB + BABA ; 0.1
+1x BABA + BABA > BAB + A + BABA ; 0.1
+1x BBB + BBB + AAAA > BBBBBB + AAAA ; 0.1
+1x BBB + BBBA + AAAA > BBBBBBA + AAAA ; 0.1
+1x BBB + BBBB + AAAA > BBBBBBB + AAAA ; 0.1
+1x BBBB + BBB + AAAA > BBBBBBB + AAAA ; 0.1
+1x BBBB + BBBA + AAAA > BBBBBBBA + AAAA ; 0.1
+1x BBBB + BBBB + AAAA > BBBBBBBB + AAAA ; 0.1
+1x ABBB + BBB + AAAA > ABBBBBB + AAAA ; 0.1
+1x ABBB + BBBA + AAAA > ABBBBBBA + AAAA ; 0.1
+1x ABBB + BBBB + AAAA > ABBBBBBB + AAAA ; 0.1
+1x ABBBB + BBB + AAAA > ABBBBBBB + AAAA ; 0.1
+1x BAB + BBB + AAAA > BABBBB + AAAA ; 0.1
+1x BAB + BBBA + AAAA > BABBBBA + AAAA ; 0.1
+1x BAB + BBBB + AAAA > BABBBBB + AAAA ; 0.1
+1x BBB + BBB + AAA > BBBBBB + AAA ; 0.1
+1x BBB + BBBA + AAA > BBBBBBA + AAA ; 0.1
+1x BBB + BBBB + AAA > BBBBBBB + AAA ; 0.1
+1x BBB + BAB + AAA > BBBBAB + AAA ; 0.1
+1x BBBB + BBB + AAA > BBBBBBB + AAA ; 0.1
+1x BBBB + BBBA + AAA > BBBBBBBA + AAA ; 0.1
+1x BBBB + BBBB + AAA > BBBBBBBB + AAA ; 0.1
+1x BBBB + BAB + AAA > BBBBBAB + AAA ; 0.1
+1x ABBB + BBB + AAA > ABBBBBB + AAA ; 0.1
+1x ABBB + BBBA + AAA > ABBBBBBA + AAA ; 0.1
+1x ABBB + BBBB + AAA > ABBBBBBB + AAA ; 0.1
+1x ABBB + BAB + AAA > ABBBBAB + AAA ; 0.1
+1x ABBBB + BBB + AAA > ABBBBBBB + AAA ; 0.1
+1x ABBBB + BAB + AAA > ABBBBBAB + AAA ; 0.1
+1x BBBABA + BABA > BBBAB + A + BABA ; 0.1
+1x ABBBABA + BABA > ABBBAB + A + BABA ; 0.1
+1x AA + A + BBBBBBBA > AAA + BBBBBBBA ; 0.1
+1x AA + AA + BBBBBBBA > AAAA + BBBBBBBA ; 0.1
+1x AA + AB + BBBBBBBA > AAAB + BBBBBBBA ; 0.1
+1x AA + AAA + BBBBBBBA > AAAAA + BBBBBBBA ; 0.1
+1x AA + AAB + BBBBBBBA > AAAAB + BBBBBBBA ; 0.1
+1x AA + ABB + BBBBBBBA > AAABB + BBBBBBBA ; 0.1
+1x AA + AAAA + BBBBBBBA > AAAAAA + BBBBBBBA ; 0.1
+1x AA + ABAB + BBBBBBBA > AAABAB + BBBBBBBA ; 0.1
+1x AA + ABBA + BBBBBBBA > AAABBA + BBBBBBBA ; 0.1
+1x AA + ABBB + BBBBBBBA > AAABBB + BBBBBBBA ; 0.1
+1x AA + ABBBA + BBBBBBBA > AAABBBA + BBBBBBBA ; 0.1
+1x AA + ABBBB + BBBBBBBA > AAABBBB + BBBBBBBA ; 0.1
+1x AAA + A + BBBBBBBA > AAAA + BBBBBBBA ; 0.1
+1x AAA + AA + BBBBBBBA > AAAAA + BBBBBBBA ; 0.1
+1x AAA + AB + BBBBBBBA > AAAAB + BBBBBBBA ; 0.1
+1x AAA + AAA + BBBBBBBA > AAAAAA + BBBBBBBA ; 0.1
+1x AAA + AAB + BBBBBBBA > AAAAAB + BBBBBBBA ; 0.1
+1x AAA + ABB + BBBBBBBA > AAAABB + BBBBBBBA ; 0.1
+1x AAA + AAAA + BBBBBBBA > AAAAAAA + BBBBBBBA ; 0.1
+1x AAA + ABAB + BBBBBBBA > AAAABAB + BBBBBBBA ; 0.1
+1x AAA + ABBA + BBBBBBBA > AAAABBA + BBBBBBBA ; 0.1
+1x AAA + ABBB + BBBBBBBA > AAAABBB + BBBBBBBA ; 0.1
+1x AAA + ABBBA + BBBBBBBA > AAAABBBA + BBBBBBBA ; 0.1
+1x AAA + ABBBB + BBBBBBBA > AAAABBBB + BBBBBBBA ; 0.1
+1x AAAA + A + BBBBBBBA > AAAAA + BBBBBBBA ; 0.1
+1x AAAA + AA + BBBBBBBA > AAAAAA + BBBBBBBA ; 0.1
+1x AAAA + AB + BBBBBBBA > AAAAAB + BBBBBBBA ; 0.1
+1x AAAA + AAA + BBBBBBBA > AAAAAAA + BBBBBBBA ; 0.1
+1x AAAA + AAB + BBBBBBBA > AAAAAAB + BBBBBBBA ; 0.1
+1x AAAA + ABB + BBBBBBBA > AAAAABB + BBBBBBBA ; 0.1
+1x AAAA + AAAA + BBBBBBBA > AAAAAAAA + BBBBBBBA ; 0.1
+1x AAAA + ABAB + BBBBBBBA > AAAAABAB + BBBBBBBA ; 0.1
+1x AAAA + ABBA + BBBBBBBA > AAAAABBA + BBBBBBBA ; 0.1
+1x AAAA + ABBB + BBBBBBBA > AAAAABBB + BBBBBBBA ; 0.1
+1x AAABAB + BABA > AAAB + AB + BABA ; 0.1
+1x AAAABAB + BABA > AAAAB + AB + BABA ; 0.1
+1x AAAAABAB + BABA > AAAAAB + AB + BABA ; 0.1

@@ -43,10 +43,70 @@ class Analyst:
                 else:
                     count += 1
         return count
+    
+    def countFoodSpecies(self,lines):
+        count = 0
+        for line in lines:
+            if line.startswith("10.0"):
+                count += 1
+        return count
 
     def countCatalysts(self,lines):
         count = 0
-        count = lines.__len__()-1
+        catalysts = [line.split()[0] for line in lines if not lines.index(line) == 0]
+        catalysts = list(set(catalysts))
+        count=len(catalysts)
+        return count
+
+    def countRAFSpecies(self,lines):
+        count=0
+        for line in lines:
+            if len(line.strip()) == 0:
+                break
+            count += 1
+        count -= 1
+        return count
+
+    def countRAFReactions(self,lines):
+        count=0
+        flag=False
+        for line in lines:
+            if line.startswith("10.0"):
+                break
+            if flag:
+                count += 1
+            if len(line.strip()) == 0 and not flag:
+                flag=True
+        return count
+
+    def countRAFFood(self,lines):
+        count=0
+        flag=False
+        for line in lines:
+            if line.startswith("10.0") and not flag:
+                flag=True
+            if flag:
+                count += 1
+        count -= 1
+        return count
+    
+    def countRAFCatalysts(self,lines):
+        count=0
+        flag=False
+        catalysts=[]
+        for line in lines:
+            if line.startswith("10.0"):
+                break
+            if flag:
+                splitted = line.split('>')
+                reactants = cleanReaction(splitted[0])
+                products = cleanReaction(splitted[1])
+                for reactant in reactants:
+                    if reactant in products and reactant not in catalysts:
+                        catalysts.append(reactant)
+                        count += 1
+            if len(line.strip()) == 0 and not flag:
+                flag=True
         return count
     
     def getData(self):
@@ -67,9 +127,10 @@ class Analyst:
                     allReactions = self.countReactions(lines)
                     if self.debug:
                         print(colored("Trovate "+str(allSpecies)+" specie e "+str(allReactions)+" reazioni","light_grey"))
-                if "output-uniqueReactions.txt" in file:
+                if "uniqueReactions.txt" in file:
                     uniqueSpecies = self.countSpecies(lines)
                     uniqueReactions = self.countReactions(lines)
+                    foodSpecies = self.countFoodSpecies(lines)
                     if self.debug:
                         print(colored("Trovate "+str(uniqueSpecies)+" specie uniche e "+str(uniqueReactions)+" reazioni uniche","light_grey"))
                 if "outputRules.txt" in file:
@@ -80,7 +141,13 @@ class Analyst:
             if "report.txt" in files:
                 interrupted=True
             RAFfile = [f for f in files if re.match(regexRAF, f)]
+            RAFspecies, RAFreactions, RAFfood, RAFcatalysts = 0, 0, 0, 0
             if RAFfile:
+                lines = readFile(os.path.join(path, RAFfile[0]))
+                RAFspecies=self.countRAFSpecies(lines)
+                RAFreactions=self.countRAFReactions(lines)
+                RAFfood=self.countRAFFood(lines)
+                RAFcatalysts=self.countRAFCatalysts(lines)
                 if self.debug:
                     print(colored("RAF individuato","light_grey"))
                 RAF=True
@@ -90,8 +157,11 @@ class Analyst:
                 if interrupted:
                     print(colored("Lancio "+str(lap+1)+" interrotto a causa dello scadere del timer","yellow"))
                 print(colored("Lancio "+str(lap+1)+" analizzato","green",attrs=['bold']))
-            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, catalysts, RAF])
+            rows.append([lap+1, interrupted, allSpecies, allReactions, uniqueSpecies, uniqueReactions, foodSpecies, catalysts, RAF, RAFspecies, RAFreactions, RAFfood, RAFcatalysts])
         return rows
     
     def writeFile(self, rows):
-        writeAnalysOnExcel(rows, self.getParameter("serieName"))
+        try:
+            writeAnalysOnExcel(rows, self.getParameter("serieName"))
+        except PermissionError:
+            print(f"ERRORE! Il file è già aperto in Excel. Chiudilo e riprova.")

@@ -4,10 +4,10 @@
 # PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
-50
+5
 
 - NOME DELLA SERIE -
-test2
+test6
 
 #"None" se non si vuole impostare, altrimenti un numero
 - SEED INIZIALE -
@@ -15,7 +15,8 @@ None
 
 # PARAMETRI SULLA GENERAZIONE DI SPECIE
 
-#"ON" se si vogliono generare nuove specie per ogni lancio "OFF" altrimenti
+#
+"ON" se si vogliono generare nuove specie per ogni lancio "OFF" altrimenti
 - GENERAZIONE SPECIE -
 ON
 
@@ -26,4 +27,4 @@ ON
 4
 
 - PROBABILITA DI SELEZIONE -
-0.10
+0.4

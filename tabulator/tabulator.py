@@ -103,6 +103,9 @@ class Tabulator():
             printTabulatedCatalysts(self.getCatatlysts())
 
     def writeFile(self):
-        writeOnExcelFile(self.getCatatlysts(), self.getSpecies())
+        try:
+            writeOnExcelFile(self.getCatatlysts(), self.getSpecies())
+        except PermissionError:
+            print(f"ERRORE! Il file è già aperto in Excel. Chiudilo e riprova.")
 
     

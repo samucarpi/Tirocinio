@@ -1,0 +1,57 @@
+CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
+BAAA            Condensazione     AAA           2           R-BB+B-R  
+ABA             Condensazione     ABA           1           R-B+AB-R  
+BBBA            Cleavage          BBBA          3           R-AAA B-R 
+BABB            Cleavage          BAB           2           R-AB A-R  
+BBBAAA          Cleavage          BBAAA         4           R-AABB B-R
+BBBABB          Condensazione     BBBA          2           R-AA+AB-R 
+BBBBBA          Condensazione     BBBBA         2           R-AA+AAB-R
+AABBBB          Condensazione     ABBB          2           R-BA+AA-R 
+BABBBAAA        Condensazione     BAB           1           R-A+BA-R  
+AAABABAA        Condensazione     AABAB         3           R-BBA+BA-R
+AABBAB          Condensazione     BBAB          2           R-AA+BA-R 
+ABABABA         Condensazione     ABABA         2           R-BA+BAB-R
+BABBAB          Cleavage          BABB          1           R-A BAA-R 
+BBBBABA         Cleavage          BABA          1           R-A BAB-R 
+BBBBABAB        Condensazione     BBBBA         3           R-AAA+AB-R
+AAAABB          Cleavage          ABB           2           R-BA A-R  
+BAAAAAB         Cleavage          AAAA          1           R-B BBB-R 
+BAAAAABB        Condensazione     AAAA          3           R-BBB+B-R 
+BBBBBBA         Condensazione     BBBB          2           R-AA+AA-R 
+AAAAA           Condensazione     AAAAA         3           R-BBB+BB-R
+AAAABBB         Condensazione     AABBB         2           R-BB+AAA-R
+BBAAABBA        Cleavage          AAB           1           R-B BA-R  
+BBAAA           Condensazione     AAA           2           R-BB+B-R  
+BBAAAAA         Condensazione     BBAA          1           R-A+ABB-R 
+BBBAABA         Condensazione     BBAA          1           R-A+ABB-R 
+BBBBAA          Condensazione     BBBB          3           R-AAA+A-R 
+AABBBBAA        Cleavage          ABBBB         1           R-B AAAA-R
+BAAABBB         Condensazione     BBB           1           R-A+AA-R  
+ABABBB          Condensazione     ABB           1           R-B+AA-R  
+ABABABBB        Condensazione     ABAB          1           R-B+ABA-R 
+AAABBBB         Cleavage          ABBB          2           R-BA AA-R 
+ABBBBBB         Cleavage          BBB           2           R-AA A-R  
+ABBBAAAB        Condensazione     BBA           2           R-AA+B-R  
+ABBBBBBA        Cleavage          BBBBA         4           R-AAAA B-R
+ABBBBABB        Condensazione     BBB           1           R-A+AA-R  
+ABBBBAA         Condensazione     BAA           2           R-AB+B-R  
+ABBABBB         Cleavage          ABBB          1           R-B AAA-R 
+ABBABBBB        Condensazione     BABB          1           R-A+BAA-R 
+BBBAABBB        Cleavage          BAAB          1           R-A BBA-R 
+ABABAABB        Cleavage          ABA           2           R-BA B-R  
+BBAABB          Condensazione     BAABB         3           R-ABB+AA-R
+BBAABBB         Condensazione     AAB           1           R-B+BA-R  
+ABABBAA         Condensazione     BABBA         4           R-ABAA+B-R
+AAAABBA         Condensazione     AAA           2           R-BB+B-R  
+BAABAAAA        Cleavage          AABA          2           R-BB AB-R 
+BABAAABA        Condensazione     ABA           2           R-BA+B-R  
+ABBABAAA        Cleavage          BABA          2           R-AB AB-R 
+ABAABBBB        Cleavage          BBB           2           R-AA A-R  
+ABAABAA         Condensazione     ABA           2           R-BA+B-R  
+ABABAABA        Cleavage          ABA           1           R-B AB-R  
+ABBAAB          Condensazione     BAA           2           R-AB+B-R  
+ABBABBAA        Cleavage          BABB          3           R-ABA A-R 
+BBABBAAB        Condensazione     BBABB         4           R-AABA+A-R
+AABABABA        Condensazione     BABAB         2           R-AB+ABA-R
+ABBABBA         Condensazione     BBABB         4           R-AABA+A-R
+BABBABBA        Cleavage          ABBAB         4           R-BAAB A-R
