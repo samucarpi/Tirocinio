@@ -1,4 +1,5 @@
-from generator.objects.species import Species
+from generator.objects.species import Species as CSpecies
+from kauffmanGenerator.objects.catalyst import Species as KSpecies
 from tabulator.objects.rule import Rule
 from utils.utils import *
 
@@ -197,8 +198,11 @@ def getParameters(input_file, species, speciesGeneration=False):
     else:
         return error, parameters
 
-def newSpecies(species):
-    return Species(species, True)
+def newSpecies(species,kauffman=False):
+    if kauffman:
+        return KSpecies(species)
+    else:
+        return CSpecies(species, True)
 
 def getObjects(BASE_DIR):
     try:
@@ -239,11 +243,10 @@ def getRules(BASE_DIR):
         return []
 
 def getLauncherParameters(BASE_DIR):
-    input_file = os.path.join(BASE_DIR, "io/launcher/input/parameters.txt")
     parameters={}
     error=False
     errorMessages=[]
-    with open(input_file) as f:
+    with open(KAUFFMAN_GENERATOR_PARAMETERS_FILE) as f:
         lines = [line.strip() for line in f if line.strip()]
         for i, line in enumerate(lines):
             match(line):
@@ -300,4 +303,75 @@ def getLauncherParameters(BASE_DIR):
     else:
         return error, parameters
 
-    
+def getKauffmanGeneratorParameters(path):
+    parameters={}
+    error=False
+    errorMessages=[]
+    with open(path) as f:
+        lines = [line.strip() for line in f if line.strip()]
+        for i, line in enumerate(lines):
+            match(line):
+                case "- SEED -":
+                    if lines[i+1].isdigit():
+                        parameters['seed']=int(lines[i+1])
+                    elif lines[i+1]=="None":
+                        parameters['seed']=None
+                    else:
+                        error=True
+                        errorMessages.append("Seed non valido")
+                case "- MONOMERI -":
+                    data = lines[i+1].strip()
+                    monomers = [m.strip() for m in data.split(",")]
+                    if all(len(m) == 1 and m.isalpha() for m in monomers):
+                        parameters['monomers'] = monomers
+                    else:
+                        error=True
+                        errorMessages.append("Monomeri non validi")
+                case "- LIMITE INFERIORE PER ESSERE CATALIZZATORE -":
+                    result = checkIntData(lines[i+1], "- LIMITE INFERIORE PER ESSERE CATALIZZATORE -")
+                    if result[0]:
+                        parameters['lowerLimitForCatalyst']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- PROBABILITA DI ESSERE CLEAVAGE -":
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI ESSERE CLEAVAGE -")
+                    if result[0]:
+                        parameters['probabilityOfCleavage']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- TEMPO MASSIMO DI GENERAZIONE -":
+                    result = checkFloatData(lines[i+1], "- TEMPO MASSIMO DI GENERAZIONE -")
+                    if result[0]:
+                        parameters['maxGenerationTime']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- LUNGHEZZA MASSIMA DEL PRODOTTO -":
+                    result = checkIntData(lines[i+1], "- LUNGHEZZA MASSIMA DEL PRODOTTO -")
+                    if result[0]:
+                        parameters['maxProductLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- LIMITE DI REAZIONI -":
+                    result = checkIntData(lines[i+1], "- LIMITE DI REAZIONI -")
+                    if result[0]:
+                        parameters['maxReactionProduced']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
+                    result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -")
+                    if result[0]:
+                        parameters['maxMembraneLength']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- NOME DEL FILE DI OUTPUT -":
+                        parameters['outputFile']=lines[i+1]
+    if error:
+        return error, errorMessages
+    else:
+        return error, parameters

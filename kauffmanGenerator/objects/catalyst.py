@@ -2,8 +2,8 @@
 from .species import Species
 
 class Catalyst(Species):
-    def __init__(self, name, isInitial):
-        super().__init__(name, isInitial)
+    def __init__(self, name):
+        super().__init__(name)
         self.isCondensation = False
         self.isCleavage = False
 

@@ -1,5 +1,4 @@
 from utils.utils import *
-import itertools
 
 class Generator:
     def __init__(self, debug):
@@ -24,15 +23,9 @@ class Generator:
         self.setParameter('selectionProbability', selectionProbability)
         self.setParameter('monomers', monomers)
         
-    def monomerCombinations(self, monomers, outerRadius):
-        combinations = []
-        for i in range(1, outerRadius+1):
-            combinations.extend("".join(p) for p in itertools.product(monomers, repeat=i))
-        return combinations
-
     def generateSpecies(self):
         generatedSpecies = []
-        species = self.monomerCombinations(self.getParameter('monomers'), self.getParameter('outerRadius'))
+        species = monomerCombinations(self.getParameter('monomers'), self.getParameter('outerRadius'))
         for s in species:
             if len(s)<=self.getParameter('innerRadius'):
                 generatedSpecies.append(s)

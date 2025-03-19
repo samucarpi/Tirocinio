@@ -1,4 +1,4 @@
-import random,sys,os,shutil,re
+import random,sys,os,shutil,re,itertools
 from tabulate import tabulate
 from termcolor import colored
 import pandas as pd
@@ -10,6 +10,8 @@ from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
 GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","generator","input","parameters.txt")
 GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","generator","input","species.txt")
+KAUFFMAN_GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","parameters.txt")
+KAUFFMAN_GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","species.txt")
 
 # Utils functions
 def readFile(path):
@@ -38,6 +40,12 @@ def createDirectory(path):
 
 def runVenturi(venturiPath):
     os.system(f'cd "{venturiPath}/CRST_src" && python ./Driver.py cta > nul 2>&1')
+
+def monomerCombinations( monomers, outerRadius):
+    combinations = []
+    for i in range(1, outerRadius+1):
+        combinations.extend("".join(p) for p in itertools.product(monomers, repeat=i))
+    return combinations
 
 # Random functions
 def generateSeed(seed):
