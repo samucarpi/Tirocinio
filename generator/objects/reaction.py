@@ -4,6 +4,7 @@ class Reaction():
         self.reactants = []
         self.products = []
         self.reactionClass = reactionClass
+        self.catalyst = None
         self.multiplicity = 1
 
     def setReactants(self, reactants):
@@ -36,9 +37,21 @@ class Reaction():
     def getMultiplicity(self):
         return self.multiplicity
     
-    def printReaction(self):
-        if self.getReactionClass().getCatalyst().getIsCleavage():
-            return self.getReactants()[0]+" + "+self.getReactants()[1]+" --> "+self.getProducts()[0]+" + "+self.getProducts()[1]+" + "+self.getProducts()[2]
+    def setCatalyst(self, catalyst):
+        self.catalyst = catalyst
+    
+    def getCatalyst(self):
+        return self.catalyst
+    
+    def printReaction(self, kauffman=False):
+        if kauffman:
+            if self.getCatalyst().getIsCleavage():
+                return self.getReactants()[0].getName()+" + "+self.getCatalyst().getName()+" > "+self.getProducts()[0].getName()+" + "+self.getProducts()[1].getName()+" + "+self.getCatalyst().getName()
+            else:
+                return self.getReactants()[0].getName()+" + "+self.getReactants()[1].getName()+" + "+self.getCatalyst().getName()+" > "+self.getProducts()[0].getName()+" + "+self.getCatalyst().getName()
         else:
-            return self.getReactants()[0]+" + "+self.getReactants()[1]+" + "+self.getReactants()[2]+" --> "+self.getProducts()[0]+" + "+self.getProducts()[1]
+            if self.getReactionClass().getCatalyst().getIsCleavage():
+                return self.getReactants()[0]+" + "+self.getReactants()[1]+" > "+self.getProducts()[0]+" + "+self.getProducts()[1]+" + "+self.getProducts()[2]
+            else:
+                return self.getReactants()[0]+" + "+self.getReactants()[1]+" + "+self.getReactants()[2]+" > "+self.getProducts()[0]+" + "+self.getProducts()[1]
         

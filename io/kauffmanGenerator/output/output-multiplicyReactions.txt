@@ -22,13 +22,13 @@ BBB            1e-15     0.01
 10.0 > AB ; 1.00E-18
 10.0 > BA ; 1.00E-18
 10.0 > BB ; 1.00E-18
-AAA + BA > AA + A + BA ; 0.1
-A + BB + BBB > ABB + BBB ; 0.1
-AA + A + BB > AAA + BB ; 0.1
-B + A + AAA > BA + AAA ; 0.1
-B + A + BB > BA + BB ; 0.1
-BBA + BAA > B + BA + BAA ; 0.1
-BA + A + BA > BAA + BA ; 0.1
-ABA + BBA > AB + A + BBA ; 0.1
-BB + A + AB > BBA + AB ; 0.1
-BB + A + AAA > BBA + AAA ; 0.1
+1x AAA + BA > AA + A + BA ; 0.1
+1x A + BB + BBB > ABB + BBB ; 0.1
+1x AA + A + BB > AAA + BB ; 0.1
+1x B + A + AAA > BA + AAA ; 0.1
+1x B + A + BB > BA + BB ; 0.1
+1x BBA + BAA > B + BA + BAA ; 0.1
+1x BA + A + BA > BAA + BA ; 0.1
+1x ABA + BBA > AB + A + BBA ; 0.1
+1x BB + A + AB > BBA + AB ; 0.1
+1x BB + A + AAA > BBA + AAA ; 0.1

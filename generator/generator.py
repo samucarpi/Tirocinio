@@ -123,6 +123,8 @@ class Generator:
     # Species initialization
     def initializeSpecies(self):
         species = parseInputSpecies(GENERATOR_SPECIES_FILE)
+        for s in species:
+            s.setIsInitial(True)
         self.setSpecies(species)
 
     # Catalysts initialization
@@ -139,7 +141,8 @@ class Generator:
         catalystsNumber=initialCondensationCatalysts + initialCleavageCatalysts
         pickedSpecies=random.sample(filteredSpecies, min(catalystsNumber,len(filteredSpecies)))
         for s in pickedSpecies:
-            catalyst=Catalyst(s.getName(),True)
+            catalyst=Catalyst(s.getName())
+            catalyst.setIsInitial(True)
             if initialCleavageCatalysts>0 and (initialCondensationCatalysts<=0 or not calculateProbability(self.getParameter('probabilityOfCleavage'))):
                 catalyst.setIsCleavage(True)
                 initialCleavageCatalysts-=1
@@ -182,7 +185,6 @@ class Generator:
                         printReactionClasses([reactionClass],new=True)
                         print(colored("REGOLA DUPLICATA, RIGENERO","red",attrs=['bold']))
 
-    
     def checkDuplicatedReactionClass(self,reactionClasses,reactionClass):
         if not reactionClasses:
             return False
@@ -218,7 +220,7 @@ class Generator:
                         [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
                         if not duplicatedLocal and not duplicatedGlobal:
                             if self.debug:
-                                print(reagent1+" + "+reagent2+" + "+reactionClass.getCatalyst().getName()+" --> "+result+" + "+reactionClass.getCatalyst().getName())
+                                print(reaction.printReaction())
                             reactions.append(reaction)
                         else:
                             if rLocal:
@@ -251,7 +253,7 @@ class Generator:
                     [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
                     if not duplicatedLocal and not duplicatedGlobal:
                         if self.debug:
-                            print(s.getName()+" + "+reactionClass.getCatalyst().getName()+" --> "+newSpecies1+" + "+newSpecies2+" + "+reactionClass.getCatalyst().getName())
+                            print(reaction.printReaction())
                         reactions.append(reaction)
                     else:
                         if rLocal:
@@ -268,15 +270,13 @@ class Generator:
             for r in reactions:
                 if isinstance(r.getReactionClass(),CleavageReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and ((r.getProducts()[0]==reaction.getProducts()[0] and r.getProducts()[1]==reaction.getProducts()[1]) or (r.getProducts()[0]==reaction.getProducts()[1] and r.getProducts()[1]==reaction.getProducts()[0])):
                     if self.debug:
-                        str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]+" + "+reaction.getProducts()[2]
-                        print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
+                        print(colored(reaction.printReaction(),"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
                     return True, r
         elif type == CondensationReactionClass:
             for r in reactions:
                 if isinstance(r.getReactionClass(),CondensationReactionClass) and r.getReactants()[0]==(reaction.getReactants()[0]) and r.getReactants()[1]==(reaction.getReactants()[1]) and r.getReactants()[2]==(reaction.getReactants()[2]) and r.getProducts()[0]==reaction.getProducts()[0]:
                     if self.debug:
-                        str = reaction.getReactants()[0]+" + "+reaction.getReactants()[1]+" + "+reaction.getReactants()[2]+" --> "+reaction.getProducts()[0]+" + "+reaction.getProducts()[1]
-                        print(colored(str,"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
+                        print(colored(reaction.printReaction(),"red",attrs=['strike'])+" "+colored("DUPLICATA","red",attrs=['bold']))
                     return True, r
         return False, None
 
@@ -363,25 +363,28 @@ class Generator:
             lap+=1
                     
     def addNewSpecies(self,newSpecies,reaction,type):
+        species=None
         if type == CondensationReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
-                newSpecies.append(Species(reaction.getProducts()[0],False))
-                self.addSpecies(Species(reaction.getProducts()[0],False))
+                species = createSpeciesObject(reaction.getProducts()[0])
         elif type == CleavageReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
-                newSpecies.append(Species(reaction.getProducts()[0],False))
-                self.addSpecies(Species(reaction.getProducts()[0],False))
+                species = createSpeciesObject(reaction.getProducts()[0])
             if reaction.getProducts()[1] not in [s.getName() for s in self.getSpecies()]:
-                newSpecies.append(Species(reaction.getProducts()[1],False))
-                self.addSpecies(Species(reaction.getProducts()[1],False))
+                species = createSpeciesObject(reaction.getProducts()[1])
+        if species:
+            species.setIsInitial(False)
+            newSpecies.append(species)
+            self.addSpecies(species)
                 
     def addRandomCataylst(self,species):
-        if self.getParameter('maxCatalystLength')=='ON' and len(species.name)>self.getParameter('maxCondensationLength'):
+        if self.getParameter('maxCatalystLength')=='ON' and len(species.getName())>self.getParameter('maxCondensationLength'):
             return
-        if len(species.name)>=self.getParameter('lowerLimitForCatalyst') and len(species.name)>1:
+        if len(species.getName())>=self.getParameter('lowerLimitForCatalyst') and len(species.getName())>1:
             isCatalyst=calculateProbability(self.getParameter('probabilityOfCatalyst'))
             if isCatalyst:
-                catalyst=Catalyst(species.name,False)
+                catalyst=Catalyst(species.getName())
+                catalyst.setIsInitial(False)
                 if calculateProbability(self.getParameter('probabilityOfCleavage')):   
                     catalyst.setIsCleavage(True)
                 else:
@@ -421,9 +424,9 @@ class Generator:
         else:
             deleteReportFile()
         if self.debug:
-            print(colored("GENERAZIONE TERMINATA",'red',attrs=['bold']))
             printReactions(self.getReactions())
             printSpecies(self.getSpecies(),ended=True)
+            print(colored("GENERAZIONE (con complementarietà) TERMINATA",'red',attrs=['bold']))
         print(boldTitle("SEED UTILIZZATO: "+str(self.getSeed())))
 
     def output(self):

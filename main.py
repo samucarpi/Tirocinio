@@ -34,13 +34,10 @@ def main():
     if "generate" in args.commands:
         if args.kauffman:
             gMainK(debug)
-            print(colored("GENERAZIONE (Kauffman) TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
         elif args.catalysts:
             gMainC(debug)
-            print(colored("GENERAZIONE (Con regole di catalisi) TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
         else:
             gMainC(debug)
-            print(colored("GENERAZIONE (Con regole di catalisi) TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "tabulate" in args.commands:
         tMain(debug)
         print(colored("TABULAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))

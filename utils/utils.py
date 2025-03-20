@@ -79,6 +79,9 @@ def underlinedPrint(text):
 def boldTitle(text):
     return (colored(text,'blue',attrs=['bold','underline']))
 
+def greyText(text):
+    return (colored(text,'grey'))
+
 def boldGreenTitle(text):
     return (colored(text,'green',attrs=['bold','underline']))
 
@@ -86,35 +89,53 @@ def error(text):
     return (colored(text,'red',attrs=['bold']))
 
 # Debug print functions
-def printParameters(parameters):
+def printParameters(parameters,kauffman=False):
     print(boldTitle("\nPARAMETRI"))
     if not parameters:
         print(error("NESSUN PARAMETRO PRESENTE"))
         return
-    catalystsParam=["probabilityOfCatalyst","lowerLimitForCatalyst","initialCondensationCatalysts","initialCleavageCatalysts"]
-    printSelectedParameters("CATALIZZATORI",parameters, catalystsParam)
-    reactionsParam=["probabilityOfCleavage","minActiveSiteLength","maxActiveSiteLength","maxCondensationLength","maxCleavageLength","maxCatalystLength"]
-    printSelectedParameters("REAZIONI",parameters, reactionsParam)
+    if kauffman:
+        generatorParam=["lowerLimitForCatalyst","maxGenerationTime","maxMembraneLength","maxProductLength","maxReactionProduced","monomers","outputFile","probabilityOfCleavage","seed"]
+        printSelectedParameters(parameters, generatorParam, kauffman)
+    else:
+        generatorParam=["initialCleavageCatalysts","initialCondensationCatalysts","lowerLimitForCatalyst","maxActiveSiteLength","maxCatalystLength","maxCleavageLength","maxCondensationLength","maxGenerationTime","maxMembraneLength","minActiveSiteLength","monomers","outputFile","outputRulesFile","probabilityOfCatalyst","probabilityOfCleavage","seed"]
+        printSelectedParameters(parameters, generatorParam)
 
-def printSelectedParameters(title, parameters, selectedParameters):
-    print(colored(title,'light_green',attrs=['dark']))
+def printSelectedParameters(parameters, selectedParameters,kauffman=False):
     headers = ["PARAMETRO", "VALORE"]
     table=[]
     for p in selectedParameters:
-        table.append([p,parameters[p]])
+        if p == "seed" and parameters[p] == None:
+            table.append([p,"None"])
+        elif p == "monomers" and not kauffman:
+            str=""
+            for m in parameters[p]:
+                str += "Nome: "+m["name"]+" "+"Complementare: "+m["complementary"]+"\n"
+            table.append([p,str])
+        elif p == "monomers" and kauffman:
+            str=""
+            for m in parameters[p]:
+                str += "Nome: "+m+"\n"
+            table.append([p,str])
+        else:
+            table.append([p,parameters[p]])
     print(tabulate(table, underlinedHeader(headers), tablefmt="simple_grid"))
 
-def printSpecies(species,ended=False):
+def printSpecies(species,ended=False,kauffman=False):
     if not species:
         print(error("NESSUNA SPECIE PRESENTE"))
         return
-    headers = ["SPECIE", "INIZIALI"]
-    table = [[s.name, "Sì" if s.isInitial else "No"] for s in species]
     if not ended:
         print(boldTitle("SPECIE"))
     else:
         print(boldGreenTitle("SPECIE GENERATE"))
-    print(tabulate(table, underlinedHeader(headers), tablefmt="simple_grid"))
+    if kauffman:
+        for s in species:
+            print("• "+ s.getName())
+    else:
+        headers = ["SPECIE", "INIZIALI"]
+        table = [[s.name, "Sì" if s.isInitial else "No"] for s in species]
+        print(tabulate(table, underlinedHeader(headers), tablefmt="simple_grid"))
 
 def printReactionClasses(reactionClasses,new=False):
     if not reactionClasses:
@@ -133,17 +154,19 @@ def printReactionClasses(reactionClasses,new=False):
         print(boldTitle("NUOVE CLASSI GENERATE"))
     print(tabulate(table, underlinedHeader(headers), tablefmt="simple_grid"))
 
-def printReactions(reactions):
+def printReactions(reactions, kauffman=False):
     if not reactions:
         print(error("NESSUNA REAZIONE PRESENTE"))
         print(error("PER GENERARE LE REAZIONI MODIFICARE I PARAMETRI"))
         return
     print(boldGreenTitle("REAZIONI GENERATE"))
-    for r in reactions:
-        if r.getReactionClass().getCatalyst().getIsCondensation():
-            print(r.getReactants()[0]+" + "+r.getReactants()[1]+" + "+r.getReactants()[2]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1])
-        else:
-            print(r.getReactants()[0]+" + "+r.getReactants()[1]+" --> "+r.getProducts()[0]+" + "+r.getProducts()[1]+" + "+r.getProducts()[2])
+    if kauffman:
+        for r in reactions:
+            print(r.printReaction(kauffman=True))
+    else:
+        for r in reactions:
+            print(r.printReaction())
+    
 
 def orderCatalysts(catalysts):
         catalysts = sorted(catalysts, key=lambda x: x.getLength())
@@ -158,13 +181,21 @@ def printTabulatedSpecies(species):
             print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
 
 # Output print functions
-def deleteReportFile():
-    file=os.path.join(BASE_DIR, "io/Generator/output/report.txt")
+def deleteReportFile(kauffman=False):
+    if not kauffman:
+        function="generator"
+    else:
+        function="kauffmanGenerator"
+    file=os.path.join(BASE_DIR, "io/"+function+"/output/report.txt")
     if os.path.exists(file):
         os.remove(file)
 
-def writeReportFile(seed,parameters,species,data):
-    file=os.path.join(BASE_DIR, "io/Generator/output/report.txt")
+def writeReportFile(parameters,data,kauffman=False):
+    if not kauffman:
+        function="generator"
+    else:
+        function="kauffmanGenerator"
+    file=os.path.join(BASE_DIR, "io/"+function+"/output/report.txt")
     with open(file, 'w') as f:
         f.write("PARAMETRI\n")
         for key in parameters:
@@ -172,35 +203,43 @@ def writeReportFile(seed,parameters,species,data):
         f.write("\n")
         type=data["error"]
         f.write("DATI\n")
-        if type=="START":
-            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
-            f.write("Non sono stati interrotti i processi di sviluppo di nuove reazioni o specie\n")
-        if type=="REACTION":
-            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
-            f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante lo sviluppo di nuove reazioni\n")
-            remainingReactions = len(data["reactionClasses"])-len(data["processedReactionClasses"])
-            f.write("Ci sono ancora "+str(remainingReactions)+" classi di reazioni da analizzare: \n")
-            for rc in data["reactionClasses"]:
-                if rc in data["processedReactionClasses"]:
-                    f.write(rc.printReactionClass()+"\n")
-                else:
-                    f.write(rc.printReactionClass()+" <--\n")
-        if type=="SPECIES":
-            f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
-            f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante la ricerca di nuove specie\n")
-            remainingReactions = len(data["reactions"])-len(data["processedReactions"])
-            f.write("Ci sono ancora "+str(remainingReactions)+" reazioni da analizzare: \n")
-            for r in data["reactions"]:
-                if r in data["processedReactions"]:
-                    f.write(r.printReaction()+"\n")
-                else:
-                    f.write(r.printReaction()+" <--\n")
+        if kauffman:
+            f.write("Numero di reazioni generate correttamente: "+str(data["lap"])+"\n")
+            f.write("Numero di reazioni mancanti: "+str(parameters["maxReactionProduced"]-data["lap"])+"\n")
+        else:
+            if type=="START":
+                f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+                f.write("Non sono stati interrotti i processi di sviluppo di nuove reazioni o specie\n")
+            if type=="REACTION":
+                f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+                f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante lo sviluppo di nuove reazioni\n")
+                remainingReactions = len(data["reactionClasses"])-len(data["processedReactionClasses"])
+                f.write("Ci sono ancora "+str(remainingReactions)+" classi di reazioni da analizzare: \n")
+                for rc in data["reactionClasses"]:
+                    if rc in data["processedReactionClasses"]:
+                        f.write(rc.printReactionClass()+"\n")
+                    else:
+                        f.write(rc.printReactionClass()+" <--\n")
+            if type=="SPECIES":
+                f.write("Numero di giri svolti completamente: "+str(data["lap"])+"\n")
+                f.write("Generazione interrotta al giro "+str(data["lap"]+1)+" durante la ricerca di nuove specie\n")
+                remainingReactions = len(data["reactions"])-len(data["processedReactions"])
+                f.write("Ci sono ancora "+str(remainingReactions)+" reazioni da analizzare: \n")
+                for r in data["reactions"]:
+                    if r in data["processedReactions"]:
+                        f.write(r.printReaction()+"\n")
+                    else:
+                        f.write(r.printReaction()+" <--\n")
                 
 
-def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
-    allReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-allReactions.txt")
-    uniqueReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-uniqueReactions.txt")
-    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputFile']+"-multiplicyReactions.txt")
+def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffman=False):
+    if not kauffman:
+        function="generator"
+    else:
+        function="kauffmanGenerator"
+    allReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-allReactions.txt")
+    uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-uniqueReactions.txt")
+    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-multiplicyReactions.txt")
     for file in [allReactionsFile, uniqueReactionsFile, multiplicyReactionsFile]:
         with open(file, 'w') as f:
             f.write(f"SEED UTILIZZATO: {seed}\n\n")
@@ -221,30 +260,34 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions):
                 if not allReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
-                    for r in allReactions:
-                        if r.getReactionClass().getCatalyst().getIsCondensation():
-                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
-                        else:
-                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+                    if kauffman:
+                        for r in allReactions:
+                            f.write(f"{r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                    else:
+                        for r in allReactions:
+                            f.write(f"{r.printReaction()} ; 0.1"+ "\n") 
             if file == uniqueReactionsFile:
                 if not uniqueReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
-                    for r in uniqueReactions:
-                        if r.getReactionClass().getCatalyst().getIsCondensation():
-                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
-                        else:
-                            f.write(f"{r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+                    if kauffman:
+                        for r in uniqueReactions:
+                            f.write(f"{r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                    else:
+                        for r in uniqueReactions:
+                            f.write(f"{r.printReaction()} ; 0.1"+ "\n") 
             if file == multiplicyReactionsFile:
                 if not uniqueReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
-                    for r in uniqueReactions:
-                        multiplicity = r.getMultiplicity()
-                        if r.getReactionClass().getCatalyst().getIsCondensation():
-                            f.write(f"{str(multiplicity)+"x":<2} {r.getReactants()[0]} + {r.getReactants()[1]} + {r.getReactants()[2]} > {r.getProducts()[0]} + {r.getProducts()[1]} ; 0.1"+"\n")
-                        else:
-                            f.write(f"{str(multiplicity)+"x":<2} {r.getReactants()[0]} + {r.getReactants()[1]} > {r.getProducts()[0]} + {r.getProducts()[1]} + {r.getProducts()[2]} ; 0.1"+"\n")
+                    if kauffman:
+                        for r in uniqueReactions:
+                            multiplicity = r.getMultiplicity()
+                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                    else:
+                        for r in uniqueReactions:
+                            multiplicity = r.getMultiplicity()
+                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction()} ; 0.1"+ "\n") 
 
 def writeRulesFile(parameters,reactionClasses):
     path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputRulesFile'])
@@ -256,9 +299,14 @@ def writeRulesFile(parameters,reactionClasses):
             else:
                 f.write(f"{rc.getCatalyst().getName():<15} {'Cleavage':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0][:rc.getSplit()]+' '+rc.getReagents()[0][rc.getSplit():]+'-R':<10}\n")
 
-def duplicateFilesForTabulator(parameters):
-    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/Tabulator/input/chemistry.txt"))
-    shutil.copy(os.path.join(BASE_DIR,"io/Generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/Tabulator/input/chemistryRules.txt"))
+def duplicateFilesForTabulator(parameters,kauffman=False):
+    if not kauffman:
+        shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
+        shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
+    else:
+        if os.path.exists(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt")):
+            os.remove(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
+        shutil.copy(os.path.join(BASE_DIR,"io/kauffmanGenerator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
 
 def cleanReaction(reaction):
     formatted = re.sub(r'[^A-Za-z+]','',reaction)

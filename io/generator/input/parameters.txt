@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-3321128897345352359
+3723796274120913573
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo

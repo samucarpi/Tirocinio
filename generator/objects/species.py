@@ -1,8 +1,8 @@
 
 class Species:
-    def __init__(self,name,isInitial):
+    def __init__(self,name):
         self.name=name
-        self.isInitial=isInitial
+        self.isInitial=False
 
     def __len__(self):
         return len(self.name)

@@ -1,15 +1,12 @@
-from generator.objects.species import Species as CSpecies
-from kauffmanGenerator.objects.catalyst import Species as KSpecies
+from generator.objects.species import Species
 from tabulator.objects.rule import Rule
 from utils.utils import *
 
 def parseInputSpecies(inputFile):
     speciesObj=[]
-
     data=getFileData(inputFile)
     for species in data:
-        speciesObj.append(newSpecies(species))
-
+        speciesObj.append(createSpeciesObject(species))
     return speciesObj
 
 def getFileData(inputFile):
@@ -198,11 +195,8 @@ def getParameters(input_file, species, speciesGeneration=False):
     else:
         return error, parameters
 
-def newSpecies(species,kauffman=False):
-    if kauffman:
-        return KSpecies(species)
-    else:
-        return CSpecies(species, True)
+def createSpeciesObject(species):
+    return Species(species)
 
 def getObjects(BASE_DIR):
     try:
