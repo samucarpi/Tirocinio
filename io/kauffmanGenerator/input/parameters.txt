@@ -2,6 +2,7 @@
 - SEED -
 123
 
+# Lista di monomeri separati da ","
 - MONOMERI -
 A, B
 
@@ -11,6 +12,7 @@ A, B
 - PROBABILITA DI ESSERE CLEAVAGE -
 0.5
 
+# In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
 2
 
@@ -27,4 +29,3 @@ A, B
 
 - NOME DEL FILE DI OUTPUT -
 output
-
