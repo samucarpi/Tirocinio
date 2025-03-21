@@ -1,9 +1,10 @@
 from utils.utils import *
 
 class Analyst:
-    def __init__(self,parameters,debug):
+    def __init__(self,parameters,debug,isKaufmannGenerator):
         self.debug=debug
         self.parameters=parameters
+        self.isKaufmannGenerator = isKaufmannGenerator
 
     def getParameters(self):
         return self.parameters
@@ -13,6 +14,9 @@ class Analyst:
     
     def setParameters(self,parameters):
         self.parameters=parameters
+
+    def getisKaufmannGenerator(self):
+        return self.isKaufmannGenerator
 
     def countSpecies(self,lines):
         count = 0
@@ -109,6 +113,39 @@ class Analyst:
                 flag=True
         return count
     
+    def countCatalystsChemistry(self,lines):
+        count = 0
+        catalysts=[]
+        trigger=False
+        flag=False
+        for i,line in enumerate(lines):
+            if not trigger:
+                if line.startswith("10.0"):
+                    trigger=True
+            else:
+                if not flag:
+                    if not line.startswith("10.0"):
+                        flag = True
+                        if "NESSUNA REAZIONE GENERATA" in line:
+                            continue
+                        else:
+                            splitted = line.split('>')
+                            reactants = cleanReaction(splitted[0])
+                            products = cleanReaction(splitted[1])
+                            for reactant in reactants:
+                                if reactant in products and reactant not in catalysts:
+                                    catalysts.append(reactant)
+                                    count += 1
+                else:
+                    splitted = line.split('>')
+                    reactants = cleanReaction(splitted[0])
+                    products = cleanReaction(splitted[1])
+                    for reactant in reactants:
+                        if reactant in products and reactant not in catalysts:
+                            catalysts.append(reactant)
+                            count += 1
+        return count
+    
     def getData(self):
         rows = []
         regexRAF = r"^Protocell\d+RAF.txt$"
@@ -133,7 +170,9 @@ class Analyst:
                     foodSpecies = self.countFoodSpecies(lines)
                     if self.debug:
                         print(colored("Trovate "+str(uniqueSpecies)+" specie uniche e "+str(uniqueReactions)+" reazioni uniche","light_grey"))
-                if "outputRules.txt" in file:
+                    if self.getisKaufmannGenerator():
+                        catalysts=self.countCatalystsChemistry(lines)
+                if "outputRules.txt" in file and not self.getisKaufmannGenerator():
                     catalysts = self.countCatalysts(lines)
                     if self.debug:
                         print(colored("Trovati "+str(catalysts)+" catalizzatori","light_grey"))

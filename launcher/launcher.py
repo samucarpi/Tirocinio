@@ -4,11 +4,12 @@ from utils.loader import Loader
 from species_generator.generator import Generator as speciesGenerator
 
 class Launcher:
-    def __init__(self, debug):
+    def __init__(self, debug, isKaufmannGenerator=False):
         self.launcherParameters = None
         self.generatorParametersFile = None
         self.generatorParametersDictionary = None
         self.debug = debug
+        self.isKaufmannGenerator = isKaufmannGenerator
 
     def getGeneratorParametersFile(self):
         return self.generatorParametersFile
@@ -19,13 +20,19 @@ class Launcher:
     def getGeneratorParameterDictionary(self, parameter):
         return self.generatorParametersDictionary[parameter]
     
+    def getIsKaufmannGenerator(self):
+        return self.isKaufmannGenerator
+    
     def setGeneratorParametersDictionary(self):
-        species = parseInputSpecies(GENERATOR_SPECIES_FILE)
-        if self.getLauncherParameter("generateSpecies").upper()=="ON":
-            speciesGeneration = True
+        if not self.getIsKaufmannGenerator():
+            species = parseInputSpecies(GENERATOR_SPECIES_FILE)
+            if self.getLauncherParameter("generateSpecies").upper()=="ON":
+                speciesGeneration = True
+            else:
+                speciesGeneration = False
+            error,parameters = getParameters(GENERATOR_PARAMETERS_FILE, species, speciesGeneration)
         else:
-            speciesGeneration = False
-        error,parameters = getParameters(GENERATOR_PARAMETERS_FILE, species, speciesGeneration)
+            error,parameters = getKauffmanGeneratorParameters(KAUFFMAN_GENERATOR_PARAMETERS_FILE)
         if error:
             for message in parameters:
                 print(colored(message,"red",attrs=['bold']))
@@ -46,14 +53,17 @@ class Launcher:
         return self.launcherParameters[parameter]
 
     def initializeParameters(self):
-        launcherError,launcherParameters = getLauncherParameters(BASE_DIR)
+        launcherError,launcherParameters = getLauncherParameters()
         if launcherError :
             for message in launcherParameters:
                 print(colored(message,"red",attrs=['bold']))
             exit()
         else:
             self.setLauncherParameters(launcherParameters)
-            generatorParameters = readFile(GENERATOR_PARAMETERS_FILE)
+            if self.getIsKaufmannGenerator():
+                generatorParameters = readFile(KAUFFMAN_GENERATOR_PARAMETERS_FILE)
+            else:
+                generatorParameters = readFile(GENERATOR_PARAMETERS_FILE)
             self.setGeneratorParametersFile(generatorParameters)
             self.setGeneratorParametersDictionary()
 
@@ -75,7 +85,7 @@ class Launcher:
             while choice not in ["Y","N","y","n"]:
                 print(colored("Scelta non valida. Inserire Y o N","red"))
                 choice = input("Y/N: ")
-            if choice == "N":
+            if choice.upper() == "N":
                 dir = os.path.join(BASE_DIR, "io", "launcher", "output", "series")
                 count = 0
                 while os.path.exists(os.path.join(dir, serieName)):
@@ -85,7 +95,7 @@ class Launcher:
                 newPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName)
                 os.makedirs(newPath, exist_ok=False)
                 print(colored("Creata una nuova serie: "+serieName,"yellow"))
-            elif choice == "Y":
+            elif choice.upper() == "Y":
                 shutil.rmtree(path)
                 os.makedirs(path, exist_ok=True)
                 print(colored("Serie '"+serieName+"' sovrascritta","yellow"))
@@ -95,12 +105,20 @@ class Launcher:
         return serieName
 
     def writeNewSeed(self,seed):
-        f = open(GENERATOR_PARAMETERS_FILE,"w")
-        for i in range(len(self.getGeneratorParametersFile())):
-            if i==7:
+        if self.getIsKaufmannGenerator():
+            file = KAUFFMAN_GENERATOR_PARAMETERS_FILE
+        else:
+            file = GENERATOR_PARAMETERS_FILE
+        f = open(file,"w")
+        switch=False
+        for e in self.getGeneratorParametersFile():
+            if switch:
                 f.write(str(seed)+"\n")
-            else:
-                f.write(self.getGeneratorParametersFile()[i])
+                switch = False
+                continue
+            if e == "- SEED -\n":
+                switch = True
+            f.write(e)
         f.close()
 
     def writeNewSpecies(self, species):
@@ -139,7 +157,13 @@ class Launcher:
         launches = self.getLauncherParameter("launches")
         serieName = self.getLauncherParameter("serieName")
         originalSeed = self.getGeneratorParameterDictionary("seed")
-        originalSpecies = [s.name for s in parseInputSpecies(GENERATOR_SPECIES_FILE)]
+        if not self.getIsKaufmannGenerator():
+            originalSpecies = [s.name for s in parseInputSpecies(GENERATOR_SPECIES_FILE)]
+            option = "-c"
+            dir = "generator"
+        else:
+            option = "-k"
+            dir = "kauffmanGenerator"
         serieName = self.createSerie(serieName)
         loader=Loader()
         generatorLoader=Loader()
@@ -150,7 +174,7 @@ class Launcher:
         if "Out" not in os.listdir(venturiPath):
             os.makedirs(os.path.join(venturiPath, "Out"))
 
-        if self.getLauncherParameter("generateSpecies").upper()=="ON":
+        if self.getLauncherParameter("generateSpecies").upper()=="ON" and not self.getIsKaufmannGenerator():
             sGenerator = speciesGenerator(self.debug)
             sGenerator.initialization(self.getLauncherParameter("innerRadius"),self.getLauncherParameter("outerRadius"),self.getLauncherParameter("selectionProbability"),[monomers["name"] for monomers in self.getGeneratorParameterDictionary("monomers")])
         
@@ -159,7 +183,7 @@ class Launcher:
 
         try:
             for i in range(launches):
-                if self.getLauncherParameter("generateSpecies").upper()=="ON":
+                if self.getLauncherParameter("generateSpecies").upper()=="ON" and not self.getIsKaufmannGenerator():
                     species = sGenerator.generateSpecies()
                     self.writeNewSpecies(species)
                 if not self.getLauncherParameter("seed") or i>0:
@@ -170,7 +194,7 @@ class Launcher:
                 self.writeNewSeed(self.getLauncherParameter("seed"))
                 if self.debug:
                     generatorLoader.start("Generazione in corso")
-                os.system("python main.py generate > nul 2>&1")
+                os.system("python main.py "+option+" generate > nul 2>&1")
                 if self.debug:
                     generatorLoader.stop()
                     print(colored("Generazione completata","green"))
@@ -180,10 +204,10 @@ class Launcher:
                 createDirectory(inputPath)
                 outputPath = os.path.join(lapPath, "output")
                 createDirectory(outputPath)
-                inputGeneratorPath = os.path.join(BASE_DIR, "io", "generator", "input", "*.*")
+                inputGeneratorPath = os.path.join(BASE_DIR, "io", dir, "input", "*.*")
                 copyInputDir = "copy "+inputGeneratorPath+" "+inputPath+" > nul 2>&1"
                 os.system(copyInputDir)
-                outputGeneratorPath = os.path.join(BASE_DIR, "io", "generator", "output", "*.*")
+                outputGeneratorPath = os.path.join(BASE_DIR, "io", dir, "output", "*.*")
                 copyOutputDir = "copy "+outputGeneratorPath+" "+outputPath+" > nul 2>&1"
                 os.system(copyOutputDir)
                 if self.debug:
@@ -192,15 +216,14 @@ class Launcher:
         except KeyboardInterrupt:
             print(colored("Lanci interrotti","red",attrs=['bold']))
             self.writeNewSeed(originalSeed)
-            self.writeNewSpecies(originalSpecies)
+            if not self.getIsKaufmannGenerator():
+                self.writeNewSpecies(originalSpecies)
             if not self.debug:
                 loader.stop()
-            venturiOutputPath = os.path.join(BASE_DIR, "utils", "venturi", "Out")
-            if not venturiOutputPath:
-                os.makedirs(venturiOutputPath)
             exit()
         finally:
             self.writeNewSeed(originalSeed)
-            self.writeNewSpecies(originalSpecies)
+            if not self.getIsKaufmannGenerator():
+                self.writeNewSpecies(originalSpecies)
             if not self.debug:
                 loader.stop()

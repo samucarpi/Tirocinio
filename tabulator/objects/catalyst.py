@@ -95,7 +95,7 @@ class Catalyst:
             dx = cleanReaction(splitted[1])
             sxCount = sum(1 for reagent in sx if reagent==self.getName())
             dxCount = sum(1 for reagent in dx if reagent==self.getName())
-            if sxCount-dxCount == 1:
+            if sxCount-dxCount > 0:
                 catalystAsReagent += 1
         self.catalyzerAsReagent = catalystAsReagent
 

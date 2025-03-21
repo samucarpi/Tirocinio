@@ -10,6 +10,7 @@ from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
 GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","generator","input","parameters.txt")
 GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","generator","input","species.txt")
+LAUNCHER_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","launcher","input","parameters.txt")
 KAUFFMAN_GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","parameters.txt")
 KAUFFMAN_GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","species.txt")
 
@@ -364,10 +365,10 @@ def writeOnExcelFile(catalysts,species):
     speciesDf = setTable(pd, speciesRows, speciesColumns)
 
     catalyzerAsSpeciesRows=[]
-    for s in species:
-        for c in catalysts:
+    for c in catalysts:
+        for s in species:
             if c.getName() == s.getName():
-                catalyzerAsSpeciesRows.append([s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(),s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(),s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar()])
+                catalyzerAsSpeciesRows.append([s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(),s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(),s.getCleavageCatalyzers(), s.getCatalyzers(), c.getCatalyzerAsReagent()])
     catalyzersAsSpeciesDf = setTable(pd, catalyzerAsSpeciesRows, speciesColumns)
 
     path = os.path.join(BASE_DIR, "io/Tabulator/output/output.xlsx")

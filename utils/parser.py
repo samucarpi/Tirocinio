@@ -236,11 +236,11 @@ def getRules(BASE_DIR):
     except:
         return []
 
-def getLauncherParameters(BASE_DIR):
+def getLauncherParameters():
     parameters={}
     error=False
     errorMessages=[]
-    with open(KAUFFMAN_GENERATOR_PARAMETERS_FILE) as f:
+    with open(LAUNCHER_PARAMETERS_FILE) as f:
         lines = [line.strip() for line in f if line.strip()]
         for i, line in enumerate(lines):
             match(line):

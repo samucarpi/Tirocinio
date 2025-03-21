@@ -1,0 +1,34 @@
+Cont	1.35e-16	0.0
+A	1e-15	0.0
+B	1e-15	0.0
+AA	1e-15	0.0
+AB	1e-15	0.0
+BA	1e-15	0.0
+BB	1e-15	0.0
+AAA	1e-15	0.01
+ABB	1e-15	0.01
+BAA	1e-15	0.01
+BAB	1e-15	0.01
+BBB	1e-15	0.01
+
+B	+	AA	+	AB	>	BAA	+	AB	;	0.1
+AA	+	A	+	BAB	>	AAA	+	BAB	;	0.1
+B	+	AB	+	AB	>	BAB	+	AB	;	0.1
+A	+	BB	+	AA	>	ABB	+	AA	;	0.1
+BA	+	B	+	BA	>	BAB	+	BA	;	0.1
+BA	+	B	+	AAA	>	BAB	+	AAA	;	0.1
+BAB	+	BAA	>	BA	+	B	+	BAA	;	0.1
+BBB	+	AAA	>	B	+	BB	+	AAA	;	0.1
+A	+	BB	+	AB	>	ABB	+	AB	;	0.1
+BAA	+	AA	>	B	+	AA	+	AA	;	0.1
+BB	+	B	+	ABB	>	BBB	+	ABB	;	0.1
+BA	+	AA	>	B	+	A	+	AA	;	0.1
+BA	+	BAB	>	B	+	A	+	BAB	;	0.1
+AB	+	B	+	ABB	>	ABB	+	ABB	;	0.1
+10.0	>	A	;	1e-18
+10.0	>	B	;	1e-18
+10.0	>	AA	;	1e-18
+10.0	>	AB	;	1e-18
+10.0	>	BA	;	1e-18
+10.0	>	BB	;	1e-18
+

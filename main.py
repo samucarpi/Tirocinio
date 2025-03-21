@@ -42,7 +42,12 @@ def main():
         tMain(debug)
         print(colored("TABULAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "launch" in args.commands:
-        lMain(debug)
+        if args.kauffman:
+            lMain(debug, True)
+        elif args.catalysts:
+            lMain(debug)
+        else:
+            lMain(debug)
         print(colored("LANCI TERMINATI CON SUCCESSO", "green", attrs=["bold"]))
     if not args.commands:
         parser.print_help()
