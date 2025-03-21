@@ -1,0 +1,66 @@
+CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
+ABBB            Cleavage          ABBB          2           R-BA AA-R 
+BAAA            Condensazione     BAA           2           R-AB+B-R  
+AABB            Cleavage          AABB          1           R-B BAA-R 
+BAAB            Condensazione     AAB           2           R-BB+A-R  
+BAABBBAA        Condensazione     ABB           2           R-BA+A-R  
+BBABBB          Cleavage          BBA           1           R-A AB-R  
+ABBAABA         Condensazione     AABA          3           R-BBA+B-R 
+AABBABBB        Cleavage          ABB           1           R-B AA-R  
+ABBBA           Cleavage          ABBBA         2           R-BA AAB-R
+ABBBAAA         Cleavage          AAA           1           R-B BB-R  
+ABBBABB         Cleavage          ABBBA         3           R-BAA AB-R
+ABBBAABB        Cleavage          BBA           1           R-A AB-R  
+BABAA           Cleavage          BABAA         1           R-A BABB-R
+BBAABBAA        Cleavage          BBAA          2           R-AA BB-R 
+BBAABBBA        Condensazione     BAA           1           R-A+BB-R  
+ABBABBA         Cleavage          BBABB         2           R-AA BAA-R
+BBABABBA        Cleavage          BABB          1           R-A BAA-R 
+ABAABBB         Cleavage          ABAA          3           R-BAB B-R 
+BABBABB         Condensazione     ABB           1           R-B+AA-R  
+BABBABBB        Cleavage          BBAB          2           R-AA BA-R 
+AABABB          Condensazione     ABA           2           R-BA+B-R  
+BAAABBA         Condensazione     AABBA         3           R-BBA+AB-R
+BBAABABB        Cleavage          ABAB          3           R-BAB A-R 
+AABBBA          Cleavage          ABBB          1           R-B AAA-R 
+ABBAAAA         Cleavage          AAA           1           R-B BB-R  
+ABAABBAB        Cleavage          ABAA          2           R-BA BB-R 
+BABBBAAB        Cleavage          AAB           2           R-BB A-R  
+BBABAABA        Cleavage          ABAAB         1           R-B ABBA-R
+BBABBAAB        Cleavage          BAAB          2           R-AB BA-R 
+BBABBBAA        Cleavage          BBBA          2           R-AA AB-R 
+BABAB           Cleavage          ABA           2           R-BA B-R  
+AABABABA        Condensazione     BAB           1           R-A+BA-R  
+ABBBABA         Cleavage          BBABA         3           R-AAB AB-R
+BAAABAB         Condensazione     AAA           1           R-B+BB-R  
+BAAABABA        Condensazione     BABA          1           R-A+BAB-R 
+ABABABAA        Cleavage          ABABA         3           R-BAB AB-R
+ABAAABAB        Condensazione     AAABA         4           R-BBBA+B-R
+AAABAB          Condensazione     AAABA         1           R-B+BBAB-R
+BBBABA          Cleavage          ABA           1           R-B AB-R  
+ABABBAAB        Cleavage          BBAAB         4           R-AABB A-R
+ABAAAABA        Condensazione     BAAA          3           R-ABB+B-R 
+BBBABBAA        Cleavage          ABB           1           R-B AA-R  
+BBBABBA         Condensazione     BABBA         3           R-ABA+AB-R
+BBBBAA          Cleavage          BBBB          1           R-A AAA-R 
+ABBBBA          Cleavage          ABBB          2           R-BA AA-R 
+BBBBAABA        Condensazione     BAABA         3           R-ABB+AB-R
+ABBBBABB        Cleavage          ABB           2           R-BA A-R  
+ABBBBABA        Condensazione     BBBBA         2           R-AA+AAB-R
+ABBBBBAA        Condensazione     BAA           1           R-A+BB-R  
+AAABBBA         Condensazione     ABBB          3           R-BAA+A-R 
+AABBBBB         Condensazione     BBB           1           R-A+AA-R  
+AABBBBBA        Condensazione     BBBBA         3           R-AAA+AB-R
+BABBBBAB        Cleavage          ABBB          2           R-BA AA-R 
+AAABBBBB        Condensazione     BBBB          3           R-AAA+A-R 
+BAAABBBA        Condensazione     AAABB         2           R-BB+BAA-R
+AABABBBB        Condensazione     BAB           2           R-AB+A-R  
+BBBBBBBB        Condensazione     BBBB          3           R-AAA+A-R 
+BABABBBA        Cleavage          ABAB          2           R-BA BA-R 
+AAAAABAA        Cleavage          AAB           1           R-B BA-R  
+AAAAAB          Condensazione     AAAAA         4           R-BBBB+B-R
+BAAAAABA        Cleavage          AAA           2           R-BB B-R  
+ABAAAAAB        Cleavage          ABAA          3           R-BAB B-R 
+AAAAAABA        Condensazione     AAAAA         2           R-BB+BBB-R
+BAAAAAA         Cleavage          BAAAA         3           R-ABB BB-R
+AAAAAAAB        Cleavage          AAA           2           R-BB B-R  

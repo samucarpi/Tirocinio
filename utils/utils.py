@@ -368,7 +368,7 @@ def writeOnExcelFile(catalysts,species):
     for c in catalysts:
         for s in species:
             if c.getName() == s.getName():
-                catalyzerAsSpeciesRows.append([s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(),s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(),s.getCleavageCatalyzers(), s.getCatalyzers(), c.getCatalyzerAsReagent()])
+                catalyzerAsSpeciesRows.append([s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(),s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(),s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar()])
     catalyzersAsSpeciesDf = setTable(pd, catalyzerAsSpeciesRows, speciesColumns)
 
     path = os.path.join(BASE_DIR, "io/Tabulator/output/output.xlsx")

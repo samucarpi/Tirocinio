@@ -37,11 +37,11 @@ class Tabulator():
     def getReactions(self):
         return self.reactions
     
-    def setCatatlysts(self, catalysts):
-        self.catalysts = catalysts
-    
     def getCatatlysts(self):
         return self.catalysts
+    
+    def sortCatalysts(self):
+        self.catalysts=orderCatalysts(self.getCatatlysts())
     
     def addCatalyst(self, catalyst):
         self.catalysts.append(catalyst)
@@ -98,7 +98,7 @@ class Tabulator():
                 catalyst.setCatalyzerAsReagent(self.getReactions())
                 catalyst.setCatalyzedSpecies(self.getReactions())
                 self.addCatalyst(catalyst)
-        orderCatalysts(self.getCatatlysts())
+        self.sortCatalysts()
         if self.debug:
             printTabulatedCatalysts(self.getCatatlysts())
 

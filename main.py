@@ -38,17 +38,21 @@ def main():
             gMainC(debug)
         else:
             gMainC(debug)
+        if not debug:
+            print(colored("GENERAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "tabulate" in args.commands:
         tMain(debug)
-        print(colored("TABULAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
+        if not debug:
+            print(colored("TABULAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "launch" in args.commands:
         if args.kauffman:
             lMain(debug, True)
         elif args.catalysts:
-            lMain(debug)
+            lMain(debug, False)
         else:
-            lMain(debug)
-        print(colored("LANCI TERMINATI CON SUCCESSO", "green", attrs=["bold"]))
+            lMain(debug, False)
+        if not debug:
+            print(colored("LANCI TERMINATI CON SUCCESSO", "green", attrs=["bold"]))
     if not args.commands:
         parser.print_help()
 

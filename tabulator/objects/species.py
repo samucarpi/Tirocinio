@@ -32,13 +32,25 @@ class Species:
             splitted = r.split('>')
             reactants = cleanReaction(splitted[0])
             products = cleanReaction(splitted[1])
+            alreadyCounted = False
             for product in products:
-                if product == self.getName() and product not in reactants:
-                    totalProducts += 1
-                    if len(reactants) == 3:
-                        condensationProducts += 1
+                if product == self.getName():
+                    if product in reactants:
+                        sxCount = sum(1 for reagent in reactants if reagent==self.getName())
+                        dxCount = sum(1 for product in products if product==self.getName())
+                        if sxCount-dxCount < 0 and not alreadyCounted:
+                            alreadyCounted = True
+                            totalProducts += 1
+                            if len(reactants) == 3:
+                                condensationProducts += 1
+                            else:
+                                cleavageProducts += 1
                     else:
-                        cleavageProducts += 1
+                        totalProducts += 1
+                        if len(reactants) == 3:
+                            condensationProducts += 1
+                        else:
+                            cleavageProducts += 1
         self.totalProducts = totalProducts
         self.setCondensationProducts(condensationProducts)
         self.setCleavageProducts(cleavageProducts)
@@ -101,9 +113,18 @@ class Species:
         for r in reactions:
             splitted = r.split('>')
             reactants = cleanReaction(splitted[0])
+            products = cleanReaction(splitted[1])
+            alreadyCounted = False
             for reactant in reactants:
                 if reactant == self.getName():
-                    speciesAsReactar += 1
+                    if reactant in products:
+                        sxCount = sum(1 for reagent in reactants if reagent==self.getName())
+                        dxCount = sum(1 for product in products if product==self.getName())
+                        if sxCount-dxCount > 0 and not alreadyCounted:
+                            speciesAsReactar += 1
+                            alreadyCounted = True
+                    else:
+                        speciesAsReactar += 1
         self.speciesAsReactar = speciesAsReactar
 
     def getSpeciesAsReactar(self):

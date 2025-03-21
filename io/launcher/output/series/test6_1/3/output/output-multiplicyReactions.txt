@@ -1,0 +1,44 @@
+SEED UTILIZZATO: 8768357274486098418
+
+Cont           1.35e-16  0.0       
+A              1e-15     0.0       
+B              1e-15     0.0       
+AA             1e-15     0.0       
+AB             1e-15     0.0       
+BA             1e-15     0.0       
+BB             1e-15     0.0       
+AAA            1e-15     0.01      
+AAB            1e-15     0.01      
+ABA            1e-15     0.01      
+ABB            1e-15     0.01      
+BAA            1e-15     0.01      
+BAB            1e-15     0.01      
+BBA            1e-15     0.01      
+BBB            1e-15     0.01      
+
+10.0 > A ; 1.00E-18
+10.0 > B ; 1.00E-18
+10.0 > AA ; 1.00E-18
+10.0 > AB ; 1.00E-18
+10.0 > BA ; 1.00E-18
+10.0 > BB ; 1.00E-18
+1x BAA + ABB > B + AA + ABB ; 0.1
+1x BB + A + BBB > BBA + BBB ; 0.1
+1x BBB + AAA > B + BB + AAA ; 0.1
+1x BB + B + AAA > BBB + AAA ; 0.1
+1x BAB + BBA > B + AB + BBA ; 0.1
+1x AA + AAB > A + A + AAB ; 0.1
+1x BB + AA > B + B + AA ; 0.1
+1x AAA + AB > A + AA + AB ; 0.1
+1x BB + B + BBB > BBB + BBB ; 0.1
+1x BA + A + BB > BAA + BB ; 0.1
+1x ABA + AAB > AB + A + AAB ; 0.1
+1x A + AA + BBA > AAA + BBA ; 0.1
+1x AB + B + AAA > ABB + AAA ; 0.1
+1x AAB + BAA > A + AB + BAA ; 0.1
+1x AAA + BAB > A + AA + BAB ; 0.1
+1x A + AA + ABB > AAA + ABB ; 0.1
+1x AB + B + BB > ABB + BB ; 0.1
+1x ABB + BA > A + BB + BA ; 0.1
+1x BB + BAB > B + B + BAB ; 0.1
+1x B + B + BB > BB + BB ; 0.1
