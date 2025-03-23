@@ -169,9 +169,9 @@ def printReactions(reactions, kauffman=False):
             print(r.printReaction())
     
 
-def orderCatalysts(catalysts):
-        catalysts = sorted(catalysts, key=lambda x: x.getLength())
-        return catalysts
+def orderSpecies(species):
+        species = sorted(species, key=lambda x: x.getLength())
+        return species
 
 def printTabulatedCatalysts(catalysts):
     for c in catalysts:

@@ -13,6 +13,7 @@ class Generator:
         self.seed = None
         self.parameters = {}
         self.species = []
+        self.processedSpecies = []
         self.reactions = []
         self.notFilteredReactions = []
         self.catalyzer = []
@@ -52,6 +53,16 @@ class Generator:
     def getNotFilteredReactions(self):
         return self.notFilteredReactions
     
+    def addProcessedSpecies(self, species):
+        if species not in self.getProcessedSpecies():
+            self.processedSpecies.append(species)
+
+    def getProcessedSpecies(self):
+        return self.processedSpecies
+    
+    def sortSpecies(self):
+        self.processedSpecies=orderSpecies(self.getProcessedSpecies())
+    
     def initializeSpecies(self):
         file = open(KAUFFMAN_GENERATOR_SPECIES_FILE, 'w')
         species = monomerCombinations(self.getParameter("monomers"), self.getParameter("maxProductLength"))
@@ -87,6 +98,7 @@ class Generator:
             catalyst.setIsCleavage(True)
         else:
             catalyst.setIsCondensation(True)
+        self.addProcessedSpecies(pickedSpecies)
         return catalyst
     
     def cleave(self, species, catalyst):
@@ -96,6 +108,7 @@ class Generator:
         while len(reagent.getName()) < 2:
             reagent = random.choice(species)
         reaction.addReactant(reagent)
+        self.addProcessedSpecies(reagent)
         split = random.randint(1,len(reagent.getName())-1)
         product1Name = reagent.getName()[:split]
         product2Name = reagent.getName()[split:]
@@ -103,6 +116,8 @@ class Generator:
         product2 = [s for s in species if s.getName() == product2Name]
         reaction.addProduct(product1[0])
         reaction.addProduct(product2[0])
+        self.addProcessedSpecies(product1[0])
+        self.addProcessedSpecies(product2[0])
         return reaction
     
     def condense(self, species, catalyst):
@@ -116,9 +131,12 @@ class Generator:
             reagent2 = random.choice(species)
         reaction.addReactant(reagent1)
         reaction.addReactant(reagent2)
+        self.addProcessedSpecies(reagent1)
+        self.addProcessedSpecies(reagent2)
         productName = reagent1.getName()+reagent2.getName()
         product = [s for s in species if s.getName() == productName]
         reaction.addProduct(product[0])
+        self.addProcessedSpecies(product[0])
         return reaction
     
     def checkDuplicatedReaction(self,reactions,reaction,catalyst):
@@ -176,6 +194,7 @@ class Generator:
         else:
             print(boldTitle("DUPLICAZIONI:"))
         data, duplicatedFound=self.generate(species, reactionsLimit)
+        self.sortSpecies()
         if not self.debug:
             loader.stop()
         else:
@@ -192,5 +211,5 @@ class Generator:
         print(boldTitle("SEED UTILIZZATO: "+str(self.getSeed())))
 
     def output(self):
-        writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getNotFilteredReactions(),self.getReactions(),kauffman=True)
+        writeOutputFile(self.getSeed(),self.getParameters(),self.getProcessedSpecies(),self.getNotFilteredReactions(),self.getReactions(),kauffman=True)
         duplicateFilesForTabulator(self.getParameters(),kauffman=True)

@@ -1,4 +1,4 @@
-from utils.utils import BASE_DIR, writeOnExcelFile, cleanReaction, orderCatalysts, printTabulatedCatalysts, printTabulatedSpecies
+from utils.utils import BASE_DIR, writeOnExcelFile, cleanReaction, orderSpecies, printTabulatedCatalysts, printTabulatedSpecies
 from utils.parser import getRules, getObjects
 from tabulator.objects.catalyst import Catalyst
 from tabulator.objects.species import Species
@@ -41,7 +41,7 @@ class Tabulator():
         return self.catalysts
     
     def sortCatalysts(self):
-        self.catalysts=orderCatalysts(self.getCatatlysts())
+        self.catalysts=orderSpecies(self.getCatatlysts())
     
     def addCatalyst(self, catalyst):
         self.catalysts.append(catalyst)

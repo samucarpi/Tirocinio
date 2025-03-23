@@ -6,6 +6,9 @@ class Species:
 
     def __len__(self):
         return len(self.name)
+    
+    def getLength(self):
+        return len(self.name)
 
     def setName(self,name):
         self.name=name    
