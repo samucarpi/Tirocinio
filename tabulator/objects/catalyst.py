@@ -1,5 +1,7 @@
 from utils.utils import *
 
+from collections import Counter
+
 class Catalyst:
 
     def __init__(self, name):
@@ -61,8 +63,10 @@ class Catalyst:
             splitted = r.split('>')
             sx = cleanReaction(splitted[0])
             dx = cleanReaction(splitted[1])
+            alreadyCounted = False
             for reagent in sx:
-                if reagent in dx and reagent == self.getName():
+                if reagent in dx and reagent == self.getName() and not alreadyCounted:
+                    alreadyCounted = True
                     totalReactions += 1
                     if len(sx) == 3:
                         condensationReactions += 1
@@ -114,11 +118,13 @@ class Catalyst:
             splitted = r.split('>')
             sx = cleanReaction(splitted[0])
             dx = cleanReaction(splitted[1])
-            for reagent in sx:
-                if reagent in dx and reagent == self.getName():
-                    for s in dx:
-                        if s != self.getName():
-                            species.append(s)
+            if self.getName() in sx and self.getName() in dx:
+                count_sx = Counter(sx)
+                count_dx = Counter(dx)
+                for specie in count_dx:
+                    delta = count_dx[specie]-count_sx.get(specie, 0)
+                    if delta > 0:
+                        species.append(specie)
         species = list(set(species))
         self.setNumberOfCatalyzedSpecies(len(species))
         self.catalyzedSpecies = species

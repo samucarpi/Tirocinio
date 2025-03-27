@@ -5,27 +5,27 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-123
+12323456765
 
 # Lista di monomeri separati da ","
 - MONOMERI -
 A, B
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
-2
+3
 
 - PROBABILITA DI ESSERE CLEAVAGE -
 0.5
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-2
+10
 
 - LUNGHEZZA MASSIMA DEL PRODOTTO -
-3
+10
 
 - LIMITE DI REAZIONI -
-100
+38190
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
 2
