@@ -420,7 +420,7 @@ class Generator:
             loader.stop()
         if data:
             print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
-            writeReportFile(self.getSeed(),self.getParameters(),self.getSpecies(),data)
+            writeReportFile(self.getParameters(),data)
         else:
             deleteReportFile()
         if self.debug:

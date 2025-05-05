@@ -194,7 +194,7 @@ class Launcher:
                 self.writeNewSeed(self.getLauncherParameter("seed"))
                 if self.debug:
                     generatorLoader.start("Generazione in corso")
-                os.system("python main.py "+option+" generate > nul 2>&1")
+                os.system("python main.py "+option+" generate")
                 if self.debug:
                     generatorLoader.stop()
                     print(colored("Generazione completata","green"))

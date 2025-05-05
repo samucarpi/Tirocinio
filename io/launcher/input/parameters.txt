@@ -4,10 +4,10 @@
 # PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
-10
+4
 
 - NOME DELLA SERIE -
-test6
+test_bug
 
 #"None" se non si vuole impostare, altrimenti un numero
 - SEED INIZIALE -
@@ -21,10 +21,10 @@ None
 ON
 
 - RAGGIO INTERNO -
-2
+3
 
 - RAGGIO ESTERNO -
-4
+5
 
 - PROBABILITA DI SELEZIONE -
 0.4
