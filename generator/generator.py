@@ -419,7 +419,8 @@ class Generator:
         if not self.debug:
             loader.stop()
         if data:
-            print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
+            if self.debug:
+                print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
             writeReportFile(self.getParameters(),data)
         else:
             deleteReportFile()

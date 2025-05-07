@@ -13,10 +13,14 @@ test_bug
 - SEED INIZIALE -
 None
 
+#"ON" se si vogliono cercare i RAF all'interno delle varie chimiche generate, "OFF" altrimenti
+- RICERCA RAF -
+OFF
+
 # PARAMETRI SULLA GENERAZIONE DI SPECIE
 
 #
-"ON" se si vogliono generare nuove specie per ogni lancio "OFF" altrimenti
+"ON" se si vogliono generare nuove specie per ogni lancio, "OFF" altrimenti
 - GENERAZIONE SPECIE -
 ON
 

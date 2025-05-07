@@ -212,7 +212,11 @@ class Launcher:
                 os.system(copyOutputDir)
                 if self.debug:
                     print(colored("Copia dei file input/output completata","yellow"))
-                self.searchRAF(serieName, i+1, loader)
+                if self.getLauncherParameter("rafSearch").upper()=="ON":
+                    self.searchRAF(serieName, i+1, loader)
+                else:
+                    if self.debug:
+                        print(colored("Ricerca di RAF disabilitata","yellow"))
         except KeyboardInterrupt:
             print(colored("Lanci interrotti","red",attrs=['bold']))
             self.writeNewSeed(originalSeed)

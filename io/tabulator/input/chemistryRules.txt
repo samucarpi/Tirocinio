@@ -1,318 +1,282 @@
 CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
-BBBCC           Cleavage          BBCC          3           R-CCA A-R 
-BAAC            Cleavage          BAAC          1           R-C BBA-R 
-CACBA           Condensazione     ACBA          2           R-BA+CB-R 
-BACAB           Condensazione     ACAB          1           R-B+ABC-R 
-AABACBA         Condensazione     ACBA          1           R-B+ACB-R 
-CABACBCC        Cleavage          ABAC          2           R-BC BA-R 
-CCBACBA         Cleavage          BACB          3           R-CBA C-R 
-AABBACB         Cleavage          BACB          3           R-CBA C-R 
-ABBBACBB        Cleavage          ACBB          2           R-BA CC-R 
-ACABACBB        Condensazione     CABA          3           R-ABC+B-R 
-ABBABCCC        Condensazione     ABCC          2           R-BC+AA-R 
-BABABCCC        Cleavage          BABC          1           R-C BCA-R 
-BBBABCAB        Cleavage          BBAB          1           R-C CBC-R 
-CABABCC         Cleavage          BABC          2           R-CB CA-R 
-BACBCB          Condensazione     CBCB          2           R-AC+AC-R 
-CCBACBAB        Condensazione     CBAC          3           R-ACB+A-R 
-CACCBACB        Cleavage          CCBA          1           R-A ACB-R 
-ABCBCB          Cleavage          BCBC          1           R-C ACA-R 
-ABCBAACA        Condensazione     AACA          1           R-B+BAB-R 
-BCAAAA          Condensazione     AAAA          3           R-BBB+B-R 
-BCAACAA         Cleavage          CAAC          1           R-A BBA-R 
-ABCAAAB         Cleavage          BCAA          2           R-CA BB-R 
-CBCAA           Cleavage          BCAA          1           R-C ABB-R 
-CBCAACA         Condensazione     CBCA          3           R-ACA+B-R 
-BABCAAC         Condensazione     ABCA          3           R-BCA+B-R 
-BABCAACA        Cleavage          BABC          3           R-CBC A-R 
-AABBCAA         Cleavage          BCAA          1           R-C ABB-R 
-ABCBCAAC        Cleavage          BCAA          3           R-CAB B-R 
-CABC            Cleavage          CABC          1           R-A BCA-R 
-BACACACB        Cleavage          BACA          1           R-C BAB-R 
-CACACC          Condensazione     CACC          1           R-A+BAA-R 
-CAAACAC         Condensazione     CAAA          3           R-ABB+B-R 
-CAAACACB        Condensazione     AACA          2           R-BB+AB-R 
-CAAACACC        Condensazione     AACA          1           R-B+BAB-R 
-CCCACAC         Cleavage          CCAC          1           R-A ABA-R 
-ABACBABA        Cleavage          CBAB          3           R-ACB C-R 
-BBABABC         Condensazione     BBAB          2           R-CC+BC-R 
-CBBABAA         Condensazione     CBBA          3           R-ACC+B-R 
-AABBABCC        Cleavage          ABCC          1           R-B CAA-R 
-CBBBABC         Cleavage          BBBA          2           R-CC CB-R 
-CBBBABAA        Condensazione     BBAB          3           R-CCB+C-R 
-ACABBABC        Condensazione     ACAB          3           R-BAB+C-R 
-CCBBBAB         Cleavage          CCBB          3           R-AAC C-R 
-AABCBBAB        Cleavage          BCBB          1           R-C ACC-R 
-BBBABBAB        Condensazione     BBAB          1           R-C+CBC-R 
-CACBBBAB        Condensazione     CBBB          2           R-AC+CC-R 
-BBBBCACA        Cleavage          BBCA          2           R-CC AB-R 
-BBBBCCAA        Cleavage          BBCC          3           R-CCA A-R 
-BBBBCCA         Cleavage          BBBC          3           R-CCC A-R 
-ABBBBC          Cleavage          ABBB          2           R-BC CC-R 
-CBBBBBAC        Condensazione     BBBB          3           R-CCC+C-R 
-ACABAB          Cleavage          CABA          1           R-A BCB-R 
-ACABBCCA        Condensazione     CABB          3           R-ABC+C-R 
-AACABBA         Condensazione     ABBA          1           R-B+CCB-R 
-AACABBC         Cleavage          AACA          2           R-BB AB-R 
-AACABCB         Condensazione     ABCB          3           R-BCA+C-R 
-AACABCAA        Cleavage          ACAB          2           R-BA BC-R 
-CACABCCB        Condensazione     CACA          2           R-AB+AB-R 
-CBCABB          Cleavage          CABB          2           R-AB CC-R 
-CBCABCBC        Condensazione     ABCB          2           R-BC+AC-R 
-BBBCABC         Condensazione     BBBC          2           R-CC+CA-R 
-CABCABBA        Condensazione     ABCA          1           R-B+CAB-R 
-CCBCABCB        Cleavage          CABC          3           R-ABC A-R 
-BCBAA           Cleavage          CBAA          1           R-A CBB-R 
-BCBAACC         Condensazione     AACC          2           R-BB+AA-R 
-BCBCABC         Condensazione     CBCA          3           R-ACA+B-R 
-CABCAABC        Cleavage          AABC          2           R-BB CA-R 
-CAABAACA        Condensazione     CAAB          2           R-AB+BC-R 
-CAAABAA         Condensazione     AAAB          3           R-BBB+C-R 
-CACBABAA        Condensazione     ABAA          1           R-B+CBB-R 
-ABBBCAA         Condensazione     BBBC          2           R-CC+CA-R 
-ABBBCBCC        Condensazione     ABBB          2           R-BC+CC-R 
-ABABBBBB        Cleavage          ABAB          2           R-BC BC-R 
-ABABBBBC        Cleavage          BBBC          3           R-CCC A-R 
-CAABBBA         Cleavage          ABBB          2           R-BC CC-R 
-ABBABAAA        Cleavage          BABA          2           R-CB CB-R 
-ABBABACC        Condensazione     ABBA          3           R-BCC+B-R 
-CCBBABB         Cleavage          CBBA          1           R-A CCB-R 
-ABCBBABA        Cleavage          ABCB          1           R-B CAC-R 
-AABBABCB        Cleavage          ABCB          3           R-BCA C-R 
-CCBCBCAA        Condensazione     BCAA          2           R-CA+BB-R 
-ACCBCAB         Condensazione     ACCB          2           R-BA+AC-R 
-CCCBCAA         Cleavage          CBCA          2           R-AC AB-R 
-CCCBCACB        Cleavage          CCCB          3           R-AAA C-R 
-CCCBCCCC        Cleavage          BCCC          3           R-CAA A-R 
-CACCBC          Cleavage          CACC          1           R-A BAA-R 
-CBCCBCAC        Cleavage          BCCB          2           R-CA AC-R 
-ACACCBCA        Cleavage          ACCB          2           R-BA AC-R 
-BBCCCBC         Condensazione     BCCC          2           R-CA+AA-R 
-BBCCCBCC        Condensazione     CCBC          2           R-AA+CA-R 
-ACCBABAA        Condensazione     BABA          3           R-CBC+B-R 
-ACCBBCAA        Cleavage          BBCA          2           R-CC AB-R 
-ABACCBB         Condensazione     ABAC          1           R-B+CBA-R 
-BAACCBAC        Condensazione     CCBA          2           R-AA+CB-R 
-BACBACCB        Condensazione     ACCB          2           R-BA+AC-R 
-CCBCCCA         Condensazione     CBCC          3           R-ACA+A-R 
-AACCBCA         Cleavage          CBCA          2           R-AC AB-R 
-ACCCBCAC        Condensazione     CCBC          2           R-AA+CA-R 
-ACCCBCCB        Condensazione     CCCB          3           R-AAA+C-R 
-BABCABAB        Condensazione     ABAB          3           R-BCB+C-R 
-BABCACAC        Cleavage          ABCA          2           R-BC AB-R 
-BABCCCAB        Condensazione     CCCA          2           R-AA+AB-R 
-BACBABCA        Condensazione     ACBA          2           R-BA+CB-R 
-BACCBCBB        Condensazione     ACCB          1           R-B+AAC-R 
-BBCCBCA         Condensazione     CBCA          2           R-AC+AB-R 
-BBCCBCAB        Condensazione     CCBC          3           R-AAC+A-R 
-CBCCBCBB        Condensazione     CCBC          1           R-A+ACA-R 
-AAACCBCC        Condensazione     CCBC          2           R-AA+CA-R 
-CCACCCBC        Condensazione     CCCB          1           R-A+AAC-R 
-BACCCCBB        Condensazione     BACC          1           R-C+BAA-R 
-CCACCCBB        Cleavage          ACCC          3           R-BAA A-R 
-CCCC            Condensazione     CCCC          3           R-AAA+A-R 
-CCCCAAB         Cleavage          CCCC          3           R-AAA A-R 
-CCCCCAAC        Cleavage          CCCA          1           R-A AAB-R 
-BBCCCC          Condensazione     BBCC          2           R-CC+AA-R 
-BBCCCCCB        Condensazione     CCCC          1           R-A+AAA-R 
-BCCCCCA         Cleavage          CCCC          3           R-AAA A-R 
-BBABCCCC        Cleavage          BABC          1           R-C BCA-R 
-ABCCAAA         Condensazione     BCCA          1           R-C+AAB-R 
-ABCCCAC         Cleavage          CCAC          1           R-A ABA-R 
-ABCCACAC        Cleavage          CACA          1           R-A BAB-R 
-ABCCACCA        Condensazione     CCAC          3           R-AAB+A-R 
-ABCCBABC        Cleavage          ABCC          1           R-B CAA-R 
-ABABCCAA        Condensazione     ABAB          1           R-B+CBC-R 
-BBABCCCA        Cleavage          ABCC          2           R-BC AA-R 
-CBABCCAC        Cleavage          CBAB          1           R-A CBC-R 
-AABCCBA         Cleavage          BCCB          2           R-CA AC-R 
-AABCCACA        Cleavage          CCAC          3           R-AAB A-R 
-ABBCCBAC        Condensazione     BCCB          2           R-CA+AC-R 
-CCBBCCB         Condensazione     CBBC          1           R-A+CCA-R 
-CCCABCCB        Condensazione     ABCC          3           R-BCA+A-R 
-BCACCAC         Cleavage          BCAC          3           R-CAB A-R 
-CBCACCBB        Condensazione     CBCA          2           R-AC+AB-R 
-CCBCACAA        Condensazione     CBCA          3           R-ACA+B-R 
-ABABAC          Cleavage          BABA          3           R-CBC B-R 
-ABABABB         Condensazione     BABB          1           R-C+BCC-R 
-BABABAC         Condensazione     ABAC          2           R-BC+BA-R 
-BABABCB         Condensazione     BABA          2           R-CB+CB-R 
-AAABABA         Condensazione     AAAB          3           R-BBB+C-R 
-CAABABB         Cleavage          ABAB          2           R-BC BC-R 
-CBCACAAC        Cleavage          CBCA          3           R-ACA B-R 
-BCBABCAC        Cleavage          ABCA          3           R-BCA B-R 
-CCCABAC         Cleavage          CCCA          1           R-A AAB-R 
-CCCACBA         Condensazione     ACBA          3           R-BAC+B-R 
-ACCCABAC        Cleavage          CABA          2           R-AB CB-R 
-ACCCABCA        Condensazione     ACCC          1           R-B+AAA-R 
-ACCCACCA        Condensazione     ACCA          2           R-BA+AB-R 
-BCCCABAC        Condensazione     BCCC          1           R-C+AAA-R 
-ABCCCAAA        Cleavage          ABCC          2           R-BC AA-R 
-CBCCCABA        Cleavage          CABA          1           R-A BCB-R 
-CBBCAB          Condensazione     BCAB          3           R-CAB+C-R 
-CBBCABC         Condensazione     CABC          3           R-ABC+A-R 
-ACACACBA        Cleavage          ACBA          3           R-BAC B-R 
-ACAA            Cleavage          ACAA          1           R-B ABB-R 
-ABBAAC          Condensazione     ABBA          1           R-B+CCB-R 
-AACACCC         Cleavage          AACA          1           R-B BAB-R 
-CACBABA         Cleavage          CACB          3           R-ABA C-R 
-BBAACA          Condensazione     BBAA          3           R-CCB+B-R 
-ABBAACAA        Cleavage          BBAA          2           R-CC BB-R 
-CBCBBAA         Cleavage          CBBA          3           R-ACC B-R 
-ABCBBAAA        Cleavage          BAAA          3           R-CBB B-R 
-ACBABBAA        Cleavage          ACBA          1           R-B ACB-R 
-ACABBAAB        Condensazione     BAAB          2           R-CB+BC-R 
-BCABBBAA        Condensazione     BBAA          3           R-CCB+B-R 
-ACABBCAA        Condensazione     ABBC          1           R-B+CCA-R 
-CACABBAB        Cleavage          CABB          1           R-A BCC-R 
-ACACABBB        Condensazione     CACA          3           R-ABA+B-R 
-BACACABB        Cleavage          BACA          2           R-CB AB-R 
-BCBBAABB        Condensazione     BAAB          1           R-C+BBC-R 
-CCABC           Condensazione     CCAB          1           R-A+ABC-R 
-ABBCBAB         Cleavage          BCBA          3           R-CAC B-R 
-AABBCBC         Cleavage          BCBC          3           R-CAC A-R 
-AABBCCAC        Cleavage          ABBC          1           R-B CCA-R 
-AABBCCA         Condensazione     BBCC          1           R-C+CAA-R 
-AABBCBBC        Cleavage          BCBB          1           R-C ACC-R 
-BABBCAAC        Cleavage          BABB          2           R-CB CC-R 
-ACABBCBB        Cleavage          BCBB          3           R-CAC C-R 
-ACAABBCC        Condensazione     AABB          3           R-BBC+C-R 
-ACCABBCA        Condensazione     BBCA          1           R-C+CAB-R 
-BCAABBCA        Cleavage          ABBC          3           R-BCC A-R 
-CABABBCB        Condensazione     CABA          1           R-A+BCB-R 
-CBCABBCC        Condensazione     CABB          2           R-AB+CC-R 
-BABBABBC        Cleavage          BBAB          1           R-C CBC-R 
-BBBCBACB        Condensazione     CBAC          3           R-ACB+A-R 
-BBBCAACA        Condensazione     BBCA          1           R-C+CAB-R 
-BBBBCAB         Condensazione     BBBB          1           R-C+CCC-R 
-BBCBB           Cleavage          BBCB          1           R-C CAC-R 
-BBCBBBAB        Cleavage          CBBB          1           R-A CCC-R 
-AACBCBBA        Condensazione     AACB          3           R-BBA+C-R 
-BBCBCBBA        Condensazione     BCBC          1           R-C+ACA-R 
-CCCACABC        Cleavage          CABC          2           R-AB CA-R 
-CCCABCBA        Cleavage          ABCB          3           R-BCA C-R 
-CCCAACBC        Cleavage          CAAC          2           R-AB BA-R 
-ACCCACB         Cleavage          CCAC          3           R-AAB A-R 
-BCCCABB         Condensazione     CABB          2           R-AB+CC-R 
-ABCCCABB        Condensazione     CCCA          1           R-A+AAB-R 
-AACBCCCA        Condensazione     CBCC          2           R-AC+AA-R 
-ACBCCCBB        Cleavage          ACBC          3           R-BAC A-R 
-BCCBAA          Cleavage          CCBA          2           R-AA CB-R 
-BCCBBBCA        Condensazione     BBBC          2           R-CC+CA-R 
-BCCBBCBC        Cleavage          CBBC          2           R-AC CA-R 
-ABCCBAB         Cleavage          CBAB          3           R-ACB C-R 
-ABCCBBBA        Cleavage          ABCC          3           R-BCA A-R 
-BBBCCBBB        Condensazione     BBCC          2           R-CC+AA-R 
-CABBACBB        Cleavage          BBAC          2           R-CC BA-R 
-CCABBAAC        Cleavage          CCAB          3           R-AAB C-R 
-CCABBBCC        Condensazione     BBBC          1           R-C+CCA-R 
-BBCCABBA        Condensazione     BCCA          2           R-CA+AB-R 
-ABAACBAB        Condensazione     ACBA          3           R-BAC+B-R 
-BCBAACBC        Condensazione     ACBC          1           R-B+ACA-R 
-AACCBAAC        Condensazione     BAAC          1           R-C+BBA-R 
-CAAACCB         Condensazione     AACC          2           R-BB+AA-R 
-ACAAAAA         Condensazione     AAAA          3           R-BBB+B-R 
-ACAAABB         Condensazione     CAAA          2           R-AB+BB-R 
-CCAAABCB        Condensazione     CAAA          2           R-AB+BB-R 
-CBCAAABB        Condensazione     AABB          3           R-BBC+C-R 
-CBCCAAAB        Cleavage          CBCC          1           R-A CAA-R 
-CCACAAA         Cleavage          CAAA          1           R-A BBB-R 
-CAAACAAA        Condensazione     ACAA          2           R-BA+BB-R 
-AAACAACA        Cleavage          AACA          2           R-BB AB-R 
-CAACACBB        Condensazione     ACBB          2           R-BA+CC-R 
-BCAACAAB        Cleavage          CAAB          2           R-AB BC-R 
-CAAACAAC        Cleavage          ACAA          2           R-BA BB-R 
-CBCBBCCA        Condensazione     CBCB          2           R-AC+AC-R 
-CBCBCAAB        Condensazione     CAAB          3           R-ABB+C-R 
-CBCBCBCC        Condensazione     BCBC          1           R-C+ACA-R 
-CBCBACBA        Cleavage          CBAC          2           R-AC BA-R 
-CBCBBCAA        Condensazione     BCAA          3           R-CAB+B-R 
-CBCBCBCA        Condensazione     CBCA          1           R-A+CAB-R 
-AACBCBA         Condensazione     CBCB          3           R-ACA+C-R 
-ABCBCBBC        Condensazione     CBCB          3           R-ACA+C-R 
-BBCBCBBB        Cleavage          CBCB          1           R-A CAC-R 
-BBCBACBC        Cleavage          ACBC          2           R-BA CA-R 
-CABCBAC         Condensazione     CABC          3           R-ABC+A-R 
-AACBCABC        Condensazione     BCAB          1           R-C+ABC-R 
-AACBAA          Cleavage          CBAA          2           R-AC BB-R 
-AAACBCAC        Condensazione     CBCA          1           R-A+CAB-R 
-BCCAACBA        Cleavage          CAAC          1           R-A BBA-R 
-CAAAACBB        Cleavage          AAAA          3           R-BBB B-R 
-ACAACABC        Cleavage          ACAB          3           R-BAB C-R 
-CACAACA         Cleavage          CACA          1           R-A BAB-R 
-BAACAACB        Cleavage          AACB          3           R-BBA C-R 
-ACACAABB        Condensazione     ACAA          3           R-BAB+B-R 
-ACACAACA        Cleavage          CACA          1           R-A BAB-R 
-AAAAC           Condensazione     AAAA          1           R-B+BBB-R 
-AAAACCAC        Condensazione     CCAC          3           R-AAB+A-R 
-ABCAAACC        Condensazione     ABCA          2           R-BC+AB-R 
-BCBCACAC        Condensazione     BCBC          1           R-C+ACA-R 
-BCBCCAAC        Condensazione     BCBC          1           R-C+ACA-R 
-CABCBCAC        Condensazione     BCBC          1           R-C+ACA-R 
-ACACBCBC        Cleavage          CACB          3           R-ABA C-R 
-CAABCBCC        Cleavage          CBCC          3           R-ACA A-R 
-BBCBCABC        Cleavage          CBCA          2           R-AC AB-R 
-AAABACBA        Cleavage          ABAC          1           R-B CBA-R 
-AAABBBAB        Condensazione     ABBB          2           R-BC+CC-R 
-AAABCA          Condensazione     AAAB          2           R-BB+BC-R 
-AAAABCA         Cleavage          AAAA          1           R-B BBB-R 
-AAAAABBB        Cleavage          AAAB          3           R-BBB C-R 
-CAAAABBB        Cleavage          ABBB          1           R-B CCC-R 
-CAAAAABA        Condensazione     AABA          2           R-BB+CB-R 
-CAAAAABC        Cleavage          AAAA          2           R-BB BB-R 
-CBAAABBC        Cleavage          AABB          3           R-BBC C-R 
-BBACBBA         Cleavage          ACBB          2           R-BA CC-R 
-BABACBB         Condensazione     ABAC          2           R-BC+BA-R 
-CCBAACCB        Cleavage          ACCB          2           R-BA AC-R 
-BCCACABA        Condensazione     ACAB          1           R-B+ABC-R 
-BAAACAAB        Cleavage          BAAA          1           R-C BBB-R 
-AAAAACB         Cleavage          AAAA          2           R-BB BB-R 
-BBAAACAA        Cleavage          AAAC          1           R-B BBA-R 
-BBCCCBAA        Condensazione     BCCC          2           R-CA+AA-R 
-ACCAAB          Condensazione     CAAB          3           R-ABB+C-R 
-ABCCAABC        Condensazione     AABC          2           R-BB+CA-R 
-ABACCAA         Cleavage          ACCA          2           R-BA AB-R 
-BBACCAAA        Cleavage          CCAA          3           R-AAB B-R 
-BBAAAAA         Condensazione     AAAA          2           R-BB+BB-R 
-BCCBAAAA        Cleavage          CCBA          1           R-A ACB-R 
-BBACAABB        Condensazione     AABB          1           R-B+BCC-R 
-BABACAAB        Cleavage          BABA          3           R-CBC B-R 
-AABACACC        Cleavage          AABA          1           R-B BCB-R 
-AABAABB         Condensazione     AABA          2           R-BB+CB-R 
-AAABABBA        Condensazione     BABB          2           R-CB+CC-R 
-CABCAAC         Condensazione     CAAC          2           R-AB+BA-R 
-AACCA           Condensazione     ACCA          1           R-B+AAB-R 
-AACCACC         Condensazione     CACC          1           R-A+BAA-R 
-ACACCACA        Condensazione     ACAC          2           R-BA+BA-R 
-CBACCA          Cleavage          CBAC          1           R-A CBA-R 
-CCACCA          Cleavage          CACC          3           R-ABA A-R 
-BBBBACCA        Cleavage          ACCA          3           R-BAA B-R 
-BCBACCAC        Condensazione     ACCA          3           R-BAA+B-R 
-AACBCCAA        Condensazione     BCCA          2           R-CA+AB-R 
-BCCACBCC        Condensazione     CBCC          2           R-AC+AA-R 
-BCBABACB        Cleavage          ABAC          2           R-BC BA-R 
-BCBABCA         Cleavage          BABC          3           R-CBC A-R 
-CABACBBB        Condensazione     ABAC          1           R-B+CBA-R 
-BABACBBB        Condensazione     ACBB          1           R-B+ACC-R 
-CCBAAA          Condensazione     BAAA          3           R-CBB+B-R 
-CABBAAAA        Condensazione     ABBA          3           R-BCC+B-R 
-BAABACBA        Cleavage          BAAB          3           R-CBB C-R 
-BAABCBAB        Cleavage          BAAB          2           R-CB BC-R 
-BAABCBCB        Cleavage          BAAB          1           R-C BBC-R 
-ABAABAC         Condensazione     ABAA          3           R-BCB+B-R 
-ABAABBC         Cleavage          ABBC          2           R-BC CA-R 
-ABAABCB         Cleavage          AABC          3           R-BBC A-R 
-CBAABBB         Cleavage          BAAB          3           R-CBB C-R 
-CBAABBBB        Cleavage          BBBB          2           R-CC CC-R 
-BBBBAABB        Cleavage          BBAA          1           R-C CBB-R 
-BACBAABB        Cleavage          BAAB          2           R-CB BC-R 
-BCBAABCA        Condensazione     CBAA          3           R-ACB+B-R 
-ACBAABCA        Cleavage          ABCA          3           R-BCA B-R 
-AABCBAAB        Condensazione     CBAA          2           R-AC+BB-R 
-BABAABC         Cleavage          ABAA          2           R-BC BB-R 
-CBBAABB         Condensazione     AABB          1           R-B+BCC-R 
-BCBACAAA        Condensazione     BCBA          2           R-CA+CB-R 
-CCBACAAA        Condensazione     CBAC          3           R-ACB+A-R 
-ABCABCCC        Condensazione     BCAB          1           R-C+ABC-R 
-ABABCABC        Condensazione     BABC          1           R-C+BCA-R 
-CBABCAA         Cleavage          BCAA          1           R-C ABB-R 
+ABBCC           Cleavage          ABBC          2           R-BC CA-R 
+AABBB           Condensazione     AABB          2           R-BB+CC-R 
+ABBA            Cleavage          ABBA          2           R-BC CB-R 
+BBAAC           Condensazione     BAAC          2           R-CB+BA-R 
+BBCCBAA         Condensazione     BBCC          1           R-C+CAA-R 
+BABBCCA         Cleavage          BBCC          3           R-CCA A-R 
+AABBBCCC        Cleavage          AABB          1           R-B BCC-R 
+ACCBBCC         Cleavage          BBCC          1           R-C CAA-R 
+CBBAAAB         Cleavage          BAAA          1           R-C BBB-R 
+CCBBAAB         Condensazione     BAAB          3           R-CBB+C-R 
+ABCCBBAB        Cleavage          CBBA          3           R-ACC B-R 
+BACCAAAB        Condensazione     AAAB          3           R-BBB+C-R 
+BBCCAAAB        Cleavage          CCAA          3           R-AAB B-R 
+CCBCCAA         Condensazione     BCCA          2           R-CA+AB-R 
+ABBACCAA        Cleavage          BACC          1           R-C BAA-R 
+CCCACCAA        Condensazione     CCCA          3           R-AAA+B-R 
+ACCBBCB         Condensazione     ACCB          1           R-B+AAC-R 
+ACCBBCAA        Cleavage          CBBC          2           R-AC CA-R 
+ACCBBCAC        Cleavage          CBBC          2           R-AC CA-R 
+BCCCBB          Condensazione     CCCB          3           R-AAA+C-R 
+BBBCA           Cleavage          BBCA          1           R-C CAB-R 
+BBBCABAC        Condensazione     CABA          2           R-AB+CB-R 
+BBBCACBB        Condensazione     ACBB          2           R-BA+CC-R 
+BBBCBCAC        Cleavage          BCAC          1           R-C ABA-R 
+ACBBBCA         Cleavage          ACBB          1           R-B ACC-R 
+CAABC           Condensazione     AABC          1           R-B+BCA-R 
+BCAABBBC        Cleavage          CAAB          1           R-A BBC-R 
+ABCAAB          Cleavage          BCAA          1           R-C ABB-R 
+BACAABBA        Condensazione     BACA          1           R-C+BAB-R 
+CCCCAABB        Condensazione     CCAA          1           R-A+ABB-R 
+AAABABBA        Cleavage          ABAB          1           R-B CBC-R 
+ABAAABB         Cleavage          ABAA          1           R-B CBB-R 
+BAAAABAB        Cleavage          BAAA          2           R-CB BB-R 
+BAAAABCB        Condensazione     BAAA          1           R-C+BBB-R 
+BAAC            Cleavage          BAAC          2           R-CB BA-R 
+BAACBBA         Cleavage          AACB          3           R-BBA C-R 
+BBAACBBA        Condensazione     CBBA          3           R-ACC+B-R 
+CACCCA          Cleavage          ACCC          3           R-BAA A-R 
+AABACCA         Cleavage          BACC          1           R-C BAA-R 
+AAACCBAA        Condensazione     ACCB          2           R-BA+AC-R 
+ABAAACBA        Condensazione     AAAC          1           R-B+BBA-R 
+ACBBCBAB        Cleavage          CBBC          3           R-ACC A-R 
+ABCBBCA         Condensazione     BBCA          2           R-CC+AB-R 
+BABCBBA         Cleavage          BABC          3           R-CBC A-R 
+BABCBCA         Condensazione     BABC          2           R-CB+CA-R 
+CABCBBCA        Cleavage          BCBB          1           R-C ACC-R 
+BAABCB          Condensazione     AABC          1           R-B+BCA-R 
+BAABCBA         Cleavage          BCBA          2           R-CA CB-R 
+BBABCBCA        Cleavage          BCBC          3           R-CAC A-R 
+ABAABCBB        Cleavage          ABAA          1           R-B CBB-R 
+CBBABCB         Condensazione     CBBA          3           R-ACC+B-R 
+ACBBABCB        Condensazione     ABCB          3           R-BCA+C-R 
+CBABCBBA        Condensazione     BABC          3           R-CBC+A-R 
+BACCCBC         Condensazione     CCBC          1           R-A+ACA-R 
+ABACCCAC        Cleavage          ABAC          2           R-BC BA-R 
+ABACCCB         Condensazione     ACCC          1           R-B+AAA-R 
+CBACCAB         Cleavage          CBAC          3           R-ACB A-R 
+CBACCCCA        Cleavage          CBAC          3           R-ACB A-R 
+ABBACC          Condensazione     ABBA          3           R-BCC+B-R 
+ABBACCCB        Condensazione     BBAC          3           R-CCB+A-R 
+ACBACCCC        Cleavage          ACBA          2           R-BA CB-R 
+ABABACCB        Cleavage          ABAC          2           R-BC BA-R 
+BCBBACCB        Cleavage          CBBA          1           R-A CCB-R 
+ACBBCABB        Condensazione     BBCA          1           R-C+CAB-R 
+BABBCA          Condensazione     ABBC          1           R-B+CCA-R 
+BBBBCACA        Condensazione     BBBC          2           R-CC+CA-R 
+BCBBCA          Cleavage          BBCA          3           R-CCA B-R 
+CABBCAAB        Cleavage          ABBC          1           R-B CCA-R 
+CBBBCA          Condensazione     CBBB          3           R-ACC+C-R 
+CBBBCAA         Condensazione     BBBC          1           R-C+CCA-R 
+BABBBCAA        Cleavage          ABBB          3           R-BCC C-R 
+BBABBCAA        Condensazione     BBAB          3           R-CCB+C-R 
+BCACBBCA        Condensazione     BCAC          2           R-CA+BA-R 
+CACCBABB        Cleavage          ACCB          2           R-BA AC-R 
+ABAABBC         Condensazione     ABBC          3           R-BCC+A-R 
+CBCBAABB        Cleavage          BAAB          3           R-CBB C-R 
+BBAAABBA        Cleavage          AAAB          1           R-B BBC-R 
+CBBBCCC         Condensazione     BBBC          3           R-CCC+A-R 
+CBBBCCAB        Condensazione     CCAB          3           R-AAB+C-R 
+AAACBBB         Cleavage          AAAC          2           R-BB BA-R 
+ABCCBBBA        Cleavage          ABCC          1           R-B CAA-R 
+ABACCBBB        Cleavage          CBBB          3           R-ACC C-R 
+CBACCBBB        Condensazione     CBAC          2           R-AC+BA-R 
+CBBACBBB        Cleavage          ACBB          1           R-B ACC-R 
+CBCCBBB         Cleavage          CBCC          1           R-A CAA-R 
+CACCBCAA        Cleavage          CACC          3           R-ABA A-R 
+CBACCBAC        Cleavage          CCBA          2           R-AA CB-R 
+CAABAA          Cleavage          ABAA          1           R-B CBB-R 
+ACAC            Condensazione     ACAC          2           R-BA+BA-R 
+BABA            Cleavage          BABA          3           R-CBC B-R 
+CAAABA          Cleavage          AABA          3           R-BBC B-R 
+CAABAAC         Condensazione     CAAB          1           R-A+BBC-R 
+BAACCBB         Cleavage          BAAC          2           R-CB BA-R 
+AACBAACC        Cleavage          AACB          2           R-BB AC-R 
+ACABAAC         Cleavage          ACAB          1           R-B ABC-R 
+ACABAACB        Cleavage          AACB          1           R-B BAC-R 
+CBBCBAAC        Condensazione     BCBA          2           R-CA+CB-R 
+ABBBBA          Cleavage          ABBB          3           R-BCC C-R 
+ABBBBACB        Condensazione     BBBB          1           R-C+CCC-R 
+BBBBBAA         Cleavage          BBBB          1           R-C CCC-R 
+CCBBBAA         Condensazione     BBBA          3           R-CCC+B-R 
+AABBBBAA        Condensazione     BBAA          1           R-C+CBB-R 
+ACBBBBBA        Condensazione     ACBB          1           R-B+ACC-R 
+ACCCBBBA        Condensazione     BBBA          2           R-CC+CB-R 
+AACA            Cleavage          AACA          2           R-BB AB-R 
+AACCB           Cleavage          ACCB          3           R-BAA C-R 
+AAACABA         Cleavage          ACAB          3           R-BAB C-R 
+BBAAAB          Cleavage          AAAB          2           R-BB BC-R 
+CCABB           Condensazione     CABB          1           R-A+BCC-R 
+CCABBAAC        Condensazione     BBAA          1           R-C+CBB-R 
+ACCABC          Condensazione     ACCA          1           R-B+AAB-R 
+BCCABAA         Condensazione     CCAB          3           R-AAB+C-R 
+ABCCABBA        Condensazione     BCCA          1           R-C+AAB-R 
+CACCAB          Cleavage          ACCA          3           R-BAA B-R 
+CACCABB         Condensazione     CCAB          2           R-AA+BC-R 
+CACCABCC        Condensazione     ABCC          1           R-B+CAA-R 
+CCCCABAC        Cleavage          CABA          1           R-A BCB-R 
+CABCCAB         Condensazione     BCCA          2           R-CA+AB-R 
+CABCCABC        Condensazione     ABCC          3           R-BCA+A-R 
+CAABCCAB        Cleavage          ABCC          3           R-BCA A-R 
+BCACBCAB        Condensazione     BCAB          3           R-CAB+C-R 
+CCACBCAA        Condensazione     BCAA          3           R-CAB+B-R 
+CACBCACA        Condensazione     BCAC          1           R-C+ABA-R 
+ACCBCAC         Cleavage          CBCA          1           R-A CAB-R 
+BCACBACC        Cleavage          ACBA          1           R-B ACB-R 
+BCACCACB        Condensazione     CACB          2           R-AB+AC-R 
+ABCACBB         Cleavage          CACB          3           R-ABA C-R 
+ABCACCB         Condensazione     ACCB          2           R-BA+AC-R 
+ACBCACAB        Cleavage          BCAC          2           R-CA BA-R 
+CBBCACAB        Condensazione     BBCA          1           R-C+CAB-R 
+CBCACBBA        Cleavage          ACBB          1           R-B ACC-R 
+BBCACCA         Cleavage          BCAC          3           R-CAB A-R 
+BBCACACB        Cleavage          BCAC          3           R-CAB A-R 
+CBCABBAC        Cleavage          BCAB          2           R-CA BC-R 
+CBCAAACC        Cleavage          AAAC          2           R-BB BA-R 
+CCCBCAAA        Condensazione     CBCA          1           R-A+CAB-R 
+AACAAB          Condensazione     CAAB          2           R-AB+BC-R 
+AAACAAB         Condensazione     AACA          3           R-BBA+B-R 
+AAACAABA        Condensazione     AAAC          2           R-BB+BA-R 
+BBCAACAA        Cleavage          AACA          2           R-BB AB-R 
+BAAACCAB        Cleavage          CCAB          2           R-AA BC-R 
+BBAAABAB        Cleavage          BBAA          3           R-CCB B-R 
+BBAAABBB        Cleavage          AAAB          1           R-B BBC-R 
+BBAAAAAB        Condensazione     BAAA          3           R-CBB+B-R 
+BBAAACAC        Cleavage          ACAC          2           R-BA BA-R 
+CBAAABAB        Cleavage          ABAB          2           R-BC BC-R 
+CBAAABAC        Condensazione     BAAA          3           R-CBB+B-R 
+CBAAACAB        Cleavage          ACAB          1           R-B ABC-R 
+AABAAABC        Condensazione     BAAA          1           R-C+BBB-R 
+ACBAAABA        Cleavage          BAAA          2           R-CB BB-R 
+BABAAAC         Condensazione     BAAA          2           R-CB+BB-R 
+CBBAAABC        Condensazione     AAAB          3           R-BBB+C-R 
+BABBAAA         Cleavage          BBAA          2           R-CC BB-R 
+BABBAAAB        Condensazione     AAAB          1           R-B+BBC-R 
+AAAABAAA        Condensazione     BAAA          1           R-C+BBB-R 
+CACBAAA         Cleavage          CBAA          1           R-A CBB-R 
+BCABAAAC        Condensazione     ABAA          1           R-B+CBB-R 
+ABCCBBCB        Cleavage          BCCB          2           R-CA AC-R 
+ACBCCBBC        Condensazione     CBCC          2           R-AC+AA-R 
+CBCCBACC        Cleavage          CBAC          1           R-A CBA-R 
+CBCCBBAA        Cleavage          CCBB          2           R-AA CC-R 
+CCBAC           Condensazione     CCBA          1           R-A+ACB-R 
+CCBACA          Cleavage          BACA          1           R-C BAB-R 
+CCBABBAC        Condensazione     CCBA          3           R-AAC+B-R 
+BCCBABA         Cleavage          BABA          2           R-CB CB-R 
+ABCCBACB        Condensazione     CCBA          1           R-A+ACB-R 
+BCCCBABC        Condensazione     BCCC          1           R-C+AAA-R 
+BCCCBACA        Condensazione     CCBA          2           R-AA+CB-R 
+CCCBA           Condensazione     CCBA          3           R-AAC+B-R 
+CCCBACBA        Cleavage          CCCB          2           R-AA AC-R 
+CCCBACBB        Cleavage          ACBB          1           R-B ACC-R 
+ACCCAB          Condensazione     CCAB          3           R-AAB+C-R 
+BBCBCCAB        Condensazione     BCCA          2           R-CA+AB-R 
+BABCCAAB        Cleavage          BABC          2           R-CB CA-R 
+CABCCAAB        Cleavage          CABC          1           R-A BCA-R 
+BBABCCAC        Condensazione     ABCC          1           R-B+CAA-R 
+AABABCCA        Condensazione     BABC          2           R-CB+CA-R 
+ACBABCCA        Condensazione     ABCC          2           R-BC+AA-R 
+CCCCBCCA        Condensazione     CCBC          2           R-AA+CA-R 
+CBBCBCCA        Condensazione     BBCB          3           R-CCA+C-R 
+CAABCCAC        Cleavage          CCAC          1           R-A ABA-R 
+ACCCACBC        Condensazione     CCAC          3           R-AAB+A-R 
+BACCCACA        Cleavage          ACCC          2           R-BA AA-R 
+CCBCCCAC        Condensazione     CCAC          2           R-AA+BA-R 
+CBBCCCAA        Condensazione     CBBC          1           R-A+CCA-R 
+CBBACCCA        Condensazione     ACCC          3           R-BAA+A-R 
+CBCCCAAB        Cleavage          BCCC          3           R-CAA A-R 
+BCCCCCAC        Condensazione     CCCC          2           R-AA+AA-R 
+BCCCCCCA        Condensazione     CCCC          3           R-AAA+A-R 
+ACCCCCBB        Cleavage          CCCB          2           R-AA AC-R 
+ACCCCBBA        Condensazione     CCCB          2           R-AA+AC-R 
+CACCCBB         Condensazione     CCBB          3           R-AAC+C-R 
+CACCCCAB        Condensazione     CACC          1           R-A+BAA-R 
+AAACACCC        Cleavage          ACAC          2           R-BA BA-R 
+CCCACBBA        Cleavage          CBBA          1           R-A CCB-R 
+BBBACCCA        Condensazione     BACC          1           R-C+BAA-R 
+CBBBCCCA        Condensazione     BCCC          3           R-CAA+A-R 
+CCCBCCCA        Cleavage          CCBC          2           R-AA CA-R 
+CCBCCCCB        Condensazione     CCCB          1           R-A+AAC-R 
+BCCBCBBC        Condensazione     BCBB          1           R-C+ACC-R 
+ACCCBCCC        Condensazione     BCCC          1           R-C+AAA-R 
+CCCBCBCA        Cleavage          BCBC          3           R-CAC A-R 
+CABAAB          Cleavage          BAAB          1           R-C BBC-R 
+ABCABAA         Condensazione     CABA          1           R-A+BCB-R 
+BACABABB        Cleavage          BACA          1           R-C BAB-R 
+CBCABACA        Cleavage          CBCA          2           R-AC AB-R 
+AACCABAB        Condensazione     AACC          3           R-BBA+A-R 
+BBCABA          Condensazione     BBCA          3           R-CCA+B-R 
+BBCABAAC        Cleavage          ABAA          2           R-BC BB-R 
+AAACABAB        Condensazione     AACA          2           R-BB+AB-R 
+BCCACA          Condensazione     BCCA          1           R-C+AAB-R 
+CABCCAAA        Condensazione     CAAA          1           R-A+BBB-R 
+BCCCAAA         Condensazione     CAAA          2           R-AB+BB-R 
+AABCCC          Cleavage          AABC          1           R-B BCA-R 
+BAABCCCA        Condensazione     ABCC          1           R-B+CAA-R 
+AAABCCC         Condensazione     AABC          2           R-BB+CA-R 
+ABCAABCB        Cleavage          BCAA          2           R-CA BB-R 
+BACBAA          Condensazione     CBAA          1           R-A+CBB-R 
+CACBACC         Condensazione     BACC          1           R-C+BAA-R 
+BBACBACC        Condensazione     CBAC          3           R-ACB+A-R 
+AABACBAC        Cleavage          ACBA          2           R-BA CB-R 
+BBBACBAC        Cleavage          CBAC          1           R-A CBA-R 
+ABACBAA         Cleavage          BACB          2           R-CB AC-R 
+ABACBACA        Condensazione     ABAC          3           R-BCB+A-R 
+BBBAAB          Cleavage          BAAB          2           R-CB BC-R 
+CAAA            Cleavage          CAAA          2           R-AB BB-R 
+BCAAA           Cleavage          CAAA          3           R-ABB B-R 
+CCAAA           Condensazione     CCAA          1           R-A+ABB-R 
+ABBBCB          Cleavage          BBBC          1           R-C CCA-R 
+CCBAAAA         Condensazione     BAAA          2           R-CB+BB-R 
+BBACBB          Condensazione     BACB          3           R-CBA+C-R 
+BCBBCBA         Cleavage          BCBA          3           R-CAC B-R 
+CABACCB         Condensazione     BACC          3           R-CBA+A-R 
+CBCBCBBB        Cleavage          CBCB          3           R-ACA C-R 
+BABABCBC        Cleavage          ABCB          1           R-B CAC-R 
+BBABABBC        Cleavage          ABBC          1           R-B CCA-R 
+ACBABAB         Condensazione     BABA          2           R-CB+CB-R 
+BCBABAB         Cleavage          ABAB          3           R-BCB C-R 
+ABABABAB        Cleavage          ABAB          2           R-BC BC-R 
+ACCBABAB        Cleavage          BABA          2           R-CB CB-R 
+CBBBABAC        Condensazione     BBBA          2           R-CC+CB-R 
+CBCBABAA        Condensazione     CBAB          3           R-ACB+C-R 
+BAABBABA        Condensazione     AABB          3           R-BBC+C-R 
+CBCBBABA        Condensazione     BBAB          3           R-CCB+C-R 
+CABBCBC         Cleavage          CABB          1           R-A BCC-R 
+ACABBCCB        Cleavage          BBCC          1           R-C CAA-R 
+ACABBCAB        Cleavage          ACAB          2           R-BA BC-R 
+BBABBCC         Cleavage          BABB          1           R-C BCC-R 
+ABBABBCB        Condensazione     BBAB          1           R-C+CBC-R 
+CBCABBCB        Condensazione     CABB          3           R-ABC+C-R 
+AABACCBA        Cleavage          BACC          3           R-CBA A-R 
+BCACBACB        Cleavage          CACB          3           R-ABA C-R 
+BCABCC          Condensazione     BCAB          3           R-CAB+C-R 
+CACBBACA        Cleavage          CBBA          2           R-AC CB-R 
+CACBBACC        Condensazione     ACBB          1           R-B+ACC-R 
+ACACB           Cleavage          CACB          3           R-ABA C-R 
+ACCACBBC        Condensazione     CCAC          3           R-AAB+A-R 
+CCCACBCB        Cleavage          CACB          1           R-A BAC-R 
+ACCCCBB         Cleavage          CCCB          3           R-AAA C-R 
+BCCCCBBC        Cleavage          CCCC          3           R-AAA A-R 
+AACCCCAA        Condensazione     AACC          1           R-B+BAA-R 
+BBCCCCBB        Cleavage          CCCC          2           R-AA AA-R 
+CACCCCBB        Condensazione     CCBB          1           R-A+ACC-R 
+CBCCCCBC        Cleavage          CCCB          2           R-AA AC-R 
+BCBCCCCB        Cleavage          BCBC          3           R-CAC A-R 
+CAACCCC         Condensazione     CAAC          3           R-ABB+A-R 
+CCCBBAC         Condensazione     CCBB          1           R-A+ACC-R 
+CCCBAABA        Condensazione     CBAA          3           R-ACB+B-R 
+BACCCCBA        Cleavage          CCBA          3           R-AAC B-R 
+CBBBCCCB        Condensazione     CCCB          2           R-AA+AC-R 
+ABBACCBB        Condensazione     BBAC          1           R-C+CBA-R 
+ABBBCCBB        Condensazione     BCCB          2           R-CA+AC-R 
+CABCCCBB        Cleavage          BCCC          1           R-C AAA-R 
+BCBCCBB         Condensazione     BCBC          3           R-CAC+A-R 
+AABACCB         Cleavage          AABA          2           R-BB CB-R 
+AABBACCA        Condensazione     ACCA          2           R-BA+AB-R 
+CAAABACC        Condensazione     BACC          1           R-C+BAA-R 
+ABCBACCA        Cleavage          CBAC          2           R-AC BA-R 
+BAACBC          Condensazione     ACBC          1           R-B+ACA-R 
+ABABBBA         Cleavage          ABAB          1           R-B CBC-R 
+AACAACAB        Condensazione     ACAA          1           R-B+ABB-R 

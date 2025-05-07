@@ -261,6 +261,13 @@ def getLauncherParameters():
                     else:
                         error=True
                         errorMessages.append("Numero del seed non valido")
+                case "- RICERCA RAF -":
+                    result = checkOnOffData(lines[i+1], "- RICERCA RAF -")
+                    if result[0]:
+                        parameters['rafSearch']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- GENERAZIONE SPECIE -":
                     result = checkOnOffData(lines[i+1], "- GENERAZIONE SPECIE -")
                     if result[0]:

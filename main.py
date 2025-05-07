@@ -38,8 +38,6 @@ def main():
             gMainC(debug)
         else:
             gMainC(debug)
-        if not debug:
-            print(colored("GENERAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if "tabulate" in args.commands:
         tMain(debug)
         if not debug:
