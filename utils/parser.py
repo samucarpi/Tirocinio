@@ -370,6 +370,13 @@ def getKauffmanGeneratorParameters(path):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- AUTOCATALISI -":
+                    result = checkOnOffData(lines[i+1], "- AUTOCATILISI -")
+                    if result[0]:
+                        parameters['autocatalysis']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
                         parameters['outputFile']=lines[i+1]
     if error:

@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-12323456765
+None
 
 # Lista di monomeri separati da ","
 - MONOMERI -
@@ -15,20 +15,23 @@ A, B
 3
 
 - PROBABILITA DI ESSERE CLEAVAGE -
-0.5
+0.9
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-10
+200
 
 - LUNGHEZZA MASSIMA DEL PRODOTTO -
 10
 
 - LIMITE DI REAZIONI -
-100
+10000
 
 - MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
 2
+
+- AUTOCATALISI -
+OFF
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 

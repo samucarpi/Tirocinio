@@ -166,12 +166,21 @@ class Generator:
         start = time.time()
         timeMax = float(self.getParameter('maxGenerationTime'))*60
         data = None
+        autocatalysis = []
         while reactionsCount < reactionsLimit and time.time()-start < timeMax:
             catalyst = self.createCatalyst(species)
-            if catalyst.getIsCleavage():
-                reaction=self.cleave(species, catalyst)
-            else:
-                reaction=self.condense(species, catalyst)
+            while True:
+                if catalyst.getIsCleavage():
+                    reaction=self.cleave(species, catalyst)
+                    if (reaction.getProducts()[0].getName() == reaction.getCatalyst().getName() or reaction.getProducts()[1].getName() == reaction.getCatalyst().getName()) and self.getParameter("autocatalysis")=="OFF":
+                        autocatalysis.append(reaction)
+                        continue
+                else:
+                    reaction=self.condense(species, catalyst)
+                    if (reaction.getProducts()[0].getName() == reaction.getCatalyst().getName()) and self.getParameter("autocatalysis")=="OFF":
+                        autocatalysis.append(reaction)
+                        continue
+                break
             self.addNotFilteredReactions(reaction)
             duplicated, r = self.checkDuplicatedReaction(self.getReactions(),reaction,catalyst)
             if not duplicated:
@@ -183,7 +192,7 @@ class Generator:
             reactionsCount+=1
         if reactionsCount != reactionsLimit:
             data={'error':'START','lap':reactionsCount}
-        return data, duplicatedFound
+        return data, duplicatedFound, autocatalysis
             
     def reaction(self):
         species=self.getSpecies()
@@ -193,20 +202,25 @@ class Generator:
             loader.start(string="Generazione in corso")
         else:
             print(boldTitle("DUPLICAZIONI:"))
-        data, duplicatedFound=self.generate(species, reactionsLimit)
+        data, duplicatedFound, autocatalysis=self.generate(species, reactionsLimit)
         self.sortSpecies()
         if not self.debug:
             loader.stop()
+            pass
         else:
             if not duplicatedFound:
                 print(colored("NESSUNA DUPLICAZIONE TROVATA",attrs=['bold']))
+            if autocatalysis:
+                print(boldTitle("AUTOCATALISI TROVATE:"))
+                for r in autocatalysis:
+                    print(r.printReaction(kauffman=True))
         if data:
             print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
             writeReportFile(self.getParameters(),data,kauffman=True)
         else:
             deleteReportFile(kauffman=True)
         if self.debug:
-            printReactions(self.getReactions(),kauffman=True)
+            #printReactions(self.getReactions(),kauffman=True)
             print(colored("GENERAZIONE (Kauffman) TERMINATA",'red',attrs=['bold']))
         print(boldTitle("SEED UTILIZZATO: "+str(self.getSeed())))
 

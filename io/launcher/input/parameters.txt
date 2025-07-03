@@ -4,10 +4,10 @@
 # PARAMETRI DEI LANCI
 
 - NUMERO DI LANCI -
-4
+10
 
 - NOME DELLA SERIE -
-test_bug
+Test
 
 #"None" se non si vuole impostare, altrimenti un numero
 - SEED INIZIALE -
