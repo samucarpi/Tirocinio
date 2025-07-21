@@ -10,9 +10,16 @@ from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
 GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","generator","input","parameters.txt")
 GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","generator","input","species.txt")
+GENERATOR_FOOD_FILE = os.path.join(BASE_DIR,"io","generator","input","food.txt")
 LAUNCHER_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","launcher","input","parameters.txt")
 KAUFFMAN_GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","parameters.txt")
 KAUFFMAN_GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","species.txt")
+MUTATOR_CHEMISTRY_FILE = os.path.join(BASE_DIR, "io","mutator","input","chemistry.txt")
+MUTATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","mutator","input","parameters.txt")
+MUTATOR_RULES_FILE = os.path.join(BASE_DIR, "io","mutator","input","rules.txt")
+MUTATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","mutator","input","species.txt")
+MUTATOR_OUTPUT_FILE = os.path.join(BASE_DIR, "io","mutator","output","uniqueReactions.txt")
+MUTATOR_DIFFERENCE_FILE = os.path.join(BASE_DIR, "io","mutator","output","difference.txt")
 
 # Utils functions
 def readFile(path):
@@ -99,7 +106,7 @@ def printParameters(parameters,kauffman=False):
         generatorParam=["lowerLimitForCatalyst","maxGenerationTime","maxMembraneLength","maxProductLength","maxReactionProduced","monomers","outputFile","probabilityOfCleavage","seed"]
         printSelectedParameters(parameters, generatorParam, kauffman)
     else:
-        generatorParam=["initialCleavageCatalysts","initialCondensationCatalysts","lowerLimitForCatalyst","maxActiveSiteLength","maxCatalystLength","maxCleavageLength","maxCondensationLength","maxGenerationTime","maxMembraneLength","minActiveSiteLength","monomers","outputFile","outputRulesFile","probabilityOfCatalyst","probabilityOfCleavage","seed"]
+        generatorParam=["initialCleavageCatalysts","initialCondensationCatalysts","lowerLimitForCatalyst","maxActiveSiteLength","maxCatalystLength","maxCleavageLength","maxCondensationLength","maxGenerationTime","minActiveSiteLength","monomers","outputFile","outputRulesFile","probabilityOfCatalyst","probabilityOfCleavage","seed"]
         printSelectedParameters(parameters, generatorParam)
 
 def printSelectedParameters(parameters, selectedParameters,kauffman=False):
@@ -182,20 +189,26 @@ def printTabulatedSpecies(species):
             print(s.getName(), s.getLength(), s.getTotalProducts(), s.getCondensationProducts(), s.getCleavageProducts(), s.getTotalCatalyzers(), s.getCondensationCatalyzers(), s.getCleavageCatalyzers(), s.getCatalyzers(), s.getSpeciesAsReactar())
 
 # Output print functions
-def deleteReportFile(kauffman=False):
-    if not kauffman:
-        function="generator"
+def deleteReportFile(kauffman=False,mutator=False):
+    if mutator:
+        function="mutator"
     else:
-        function="kauffmanGenerator"
+        if not kauffman:
+            function="generator"
+        else:
+            function="kauffmanGenerator"
     file=os.path.join(BASE_DIR, "io/"+function+"/output/report.txt")
     if os.path.exists(file):
         os.remove(file)
 
-def writeReportFile(parameters,data,kauffman=False):
-    if not kauffman:
-        function="generator"
+def writeReportFile(parameters,data,kauffman=False,mutator=False):
+    if mutator:
+        function="mutator"
     else:
-        function="kauffmanGenerator"
+        if not kauffman:
+            function="generator"
+        else:
+            function="kauffmanGenerator"
     file=os.path.join(BASE_DIR, "io/"+function+"/output/report.txt")
     with open(file, 'w') as f:
         f.write("PARAMETRI\n")
@@ -233,14 +246,19 @@ def writeReportFile(parameters,data,kauffman=False):
                         f.write(r.printReaction()+" <--\n")
                 
 
-def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffman=False):
-    if not kauffman:
-        function="generator"
+def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffman=False,mutator=False):
+    if mutator:
+        function="mutator"
+        name = ""
     else:
-        function="kauffmanGenerator"
-    allReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-allReactions.txt")
-    uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-uniqueReactions.txt")
-    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+parameters['outputFile']+"-multiplicyReactions.txt")
+        name = parameters['outputFile']+"-"
+        if not kauffman:
+            function="generator"
+        else:
+            function="kauffmanGenerator"
+    allReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"allReactions.txt")
+    uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"uniqueReactions.txt")
+    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"multiplicyReactions.txt")
     for file in [allReactionsFile, uniqueReactionsFile, multiplicyReactionsFile]:
         with open(file, 'w') as f:
             f.write(f"SEED UTILIZZATO: {seed}\n\n")
@@ -248,7 +266,7 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
             sortedSpecies=sorted(species,key=len)
             crossMembraneSpecies=[]
             for s in sortedSpecies:
-                if len(s.getName())>parameters['maxMembraneLength']:
+                if not s.getIsFood():
                     val="0.01"
                 else:
                     val="0.0"
@@ -290,8 +308,11 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
                             multiplicity = r.getMultiplicity()
                             f.write(f"{str(multiplicity)+"x":<2} {r.printReaction()} ; 0.1"+ "\n") 
 
-def writeRulesFile(parameters,reactionClasses):
-    path = os.path.join(BASE_DIR, "io/Generator/output/"+parameters['outputRulesFile'])
+def writeRulesFile(parameters,reactionClasses,mutator=False):
+    if mutator:
+        path = os.path.join(BASE_DIR, "io/mutator/output/rules.txt")
+    else:
+        path = os.path.join(BASE_DIR, "io/generator/output/"+parameters['outputRulesFile'])
     with open(path, 'w') as f:
         f.write(f"{"CATALIZZATORE":<15} {"TIPO":<17} {"SITO ATTIVO":<13} {"POSIZIONE":<11} {"CLASSE":<10}\n")
         for rc in reactionClasses:
@@ -300,14 +321,18 @@ def writeRulesFile(parameters,reactionClasses):
             else:
                 f.write(f"{rc.getCatalyst().getName():<15} {'Cleavage':<17} {rc.getCatalyst().getName()[rc.getStart():rc.getEnd()]:<13} {rc.getSplit():<11} {'R-'+rc.getReagents()[0][:rc.getSplit()]+' '+rc.getReagents()[0][rc.getSplit():]+'-R':<10}\n")
 
-def duplicateFilesForTabulator(parameters,kauffman=False):
-    if not kauffman:
-        shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
-        shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
+def duplicateFilesForTabulator(parameters,kauffman=False,mutator=False):
+    if mutator:
+        shutil.copy(os.path.join(BASE_DIR,"io/mutator/output/uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
+        shutil.copy(os.path.join(BASE_DIR,"io/mutator/output/rules.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
     else:
-        if os.path.exists(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt")):
-            os.remove(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
-        shutil.copy(os.path.join(BASE_DIR,"io/kauffmanGenerator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
+        if not kauffman:
+            shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
+            shutil.copy(os.path.join(BASE_DIR,"io/generator/output/"+parameters['outputRulesFile']),os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
+        else:
+            if os.path.exists(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt")):
+                os.remove(os.path.join(BASE_DIR,"io/tabulator/input/chemistryRules.txt"))
+            shutil.copy(os.path.join(BASE_DIR,"io/kauffmanGenerator/output/"+parameters['outputFile']+"-uniqueReactions.txt"),os.path.join(BASE_DIR,"io/tabulator/input/chemistry.txt"))
 
 def cleanReaction(reaction):
     formatted = re.sub(r'[^A-Za-z+]','',reaction)

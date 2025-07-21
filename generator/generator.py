@@ -111,8 +111,11 @@ class Generator:
         self.notFilteredReactions.append(notFilteredReactions)
     
     # Parameters initialization
-    def initializeParameters(self):
-        error,parameters = getParameters(GENERATOR_PARAMETERS_FILE, self.getSpecies())
+    def initializeParameters(self,mutator=False):
+        if mutator:
+            error,parameters = getParameters(MUTATOR_PARAMETERS_FILE, self.getSpecies())
+        else:
+            error,parameters = getParameters(GENERATOR_PARAMETERS_FILE, self.getSpecies())
         if error:
             for message in parameters:
                 print(colored(message,"red",attrs=['bold']))
@@ -127,6 +130,22 @@ class Generator:
             s.setIsInitial(True)
         self.setSpecies(species)
 
+    def setFood(self): 
+        food = getFileData(GENERATOR_FOOD_FILE)
+        check = True
+        if food:
+            species = [s.getName() for s in self.getSpecies()]
+            for f in food:
+                if f not in species:
+                    check = False
+                    break
+        if not check:
+            print(colored("IL CIBO NON È UN SOTTOINSIEME DELLE SPECIE PRESENTI!","red",attrs=['bold']))
+            exit()
+        for s in self.getSpecies():
+            if s.getName() in food:
+                s.setIsFood(True)
+
     # Catalysts initialization
     def setInitialCatalyst(self):
         catalysts = []
@@ -136,7 +155,7 @@ class Generator:
             self.setCatalysts(catalysts)
             return
         filteredSpecies=[
-            s for s in self.getSpecies() if((self.getParameter('maxCatalystLength') != 'ON' or len(s.name)<=self.getParameter('maxCondensationLength')) and len(s.name)>=self.getParameter('lowerLimitForCatalyst') and len(s.name)>1)
+            s for s in self.getSpecies() if((self.getParameter('maxCatalystLength') != 'ON' or len(s.getName())<=self.getParameter('maxCondensationLength')) and len(s.getName())>=self.getParameter('lowerLimitForCatalyst') and len(s.getName())>1 and s.getName() and not s.getIsFood())
         ]
         catalystsNumber=initialCondensationCatalysts + initialCleavageCatalysts
         pickedSpecies=random.sample(filteredSpecies, min(catalystsNumber,len(filteredSpecies)))
@@ -280,8 +299,8 @@ class Generator:
                     return True, r
         return False, None
 
-    def generation(self, species, reactions, reactionClasses, isRecursive=False, generateOnOldSpecies=False):
-        queue = deque([(species,reactions,reactionClasses,isRecursive,generateOnOldSpecies)])
+    def generation(self, species, reactions, reactionClasses, isRecursive=False, generateOnOldSpecies=False,mutator=False):
+        queue = deque([(species,reactions,reactionClasses,isRecursive,generateOnOldSpecies,mutator)])
         processedSpecies = set()
         timeMax = float(self.getParameter('maxGenerationTime'))*60
         start = time.time()
@@ -291,7 +310,7 @@ class Generator:
                 data={'error':'START','lap':lap}
                 return data
             #get the first element of the queue
-            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentGenerateOnOldSpecies = queue.popleft()
+            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentGenerateOnOldSpecies,mutator = queue.popleft()
             #if the generation is for new species, remove the species already processed
             if not currentGenerateOnOldSpecies:
                 currentSpecies = [s for s in currentSpecies if s.getName() not in processedSpecies]
@@ -302,7 +321,11 @@ class Generator:
                     if currentGenerateOnOldSpecies:
                         print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
                     else:
-                        print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                        if mutator:
+                            print(colored("CONTINUA A GENERARE DALLE SPECIE INTRODOTTE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                            mutator = False
+                        else:
+                            print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
                 else:
                     print(colored("GENERAZIONE DI NUOVE SPECIE",'yellow',attrs=['bold']))
             #for each species, apply the reaction classes
@@ -352,8 +375,8 @@ class Generator:
                     # if new reaction classes are generated, add the new reaction classes to the list of reaction classes and generate new reactions
                     # first with the old species and then with the new species
                     if areNewReactionClassesGenerated:
-                        queue.append((oldSpecies,currentReactions,newReactionClasses,True,True))
-                    queue.append((newSpecies,currentReactions,self.getReactionClasses(),True,False))
+                        queue.append((oldSpecies,currentReactions,newReactionClasses,True,True,mutator))
+                    queue.append((newSpecies,currentReactions,self.getReactionClasses(),True,False,mutator))
                 else:
                     if self.debug:
                         print(colored("NESSUNA SPECIE GENERATA",'red',attrs=['bold']))
@@ -380,7 +403,7 @@ class Generator:
     def addRandomCataylst(self,species):
         if self.getParameter('maxCatalystLength')=='ON' and len(species.getName())>self.getParameter('maxCondensationLength'):
             return
-        if len(species.getName())>=self.getParameter('lowerLimitForCatalyst') and len(species.getName())>1:
+        if len(species.getName())>=self.getParameter('lowerLimitForCatalyst') and len(species.getName())>1 and not species.getIsFood():
             isCatalyst=calculateProbability(self.getParameter('probabilityOfCatalyst'))
             if isCatalyst:
                 catalyst=Catalyst(species.getName())
@@ -399,6 +422,7 @@ class Generator:
         self.initializeSpecies()
         self.initializeParameters()
         self.setSeed(self.getParameter('seed'))
+        self.setFood()
         if self.debug:
             printParameters(self.getParameters())
             printSpecies(self.getSpecies())
@@ -430,7 +454,7 @@ class Generator:
             print(colored("GENERAZIONE (con complementarietà) TERMINATA",'red',attrs=['bold']))
         print(boldTitle("SEED UTILIZZATO: "+str(self.getSeed())))
 
-    def output(self):
-        writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getNotFilteredReactions(),self.getReactions())
-        writeRulesFile(self.getParameters(),self.getReactionClasses())
-        duplicateFilesForTabulator(self.getParameters())
+    def output(self,mutator=False):
+        writeOutputFile(self.getSeed(),self.getParameters(),self.getSpecies(),self.getNotFilteredReactions(),self.getReactions(),mutator=mutator)
+        writeRulesFile(self.getParameters(),self.getReactionClasses(),mutator=mutator)
+        duplicateFilesForTabulator(self.getParameters(),mutator=mutator)

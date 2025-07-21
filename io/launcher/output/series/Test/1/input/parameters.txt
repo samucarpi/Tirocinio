@@ -5,32 +5,57 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-1281781865218628650
+6691434432742817725
 
-# Lista di monomeri separati da ","
-- MONOMERI -
+# 1° colonna monomero
+# 2° colonna complementare corrispettivo
+# colonne separate da una ","
+- MONOMERI E COMPLEMENTARI -
 A, B
+B, A
 
 - LIMITE INFERIORE PER ESSERE CATALIZZATORE -
-3
+4
+
+- CATALIZZATORI PER CONDENSAZIONI INIZIALI -
+2
+
+- CATALIZZATORI PER CLEAVAGE INIZIALI -
+2
 
 - PROBABILITA DI ESSERE CLEAVAGE -
-0.9
+0.5
+
+- PROBABILITA DI CATALIZZAZIONE -
+0.05
+
+- MINIMA LUNGHEZZA DEL SITO ATTIVO -
+4
+
+- MASSIMA LUNGHEZZA DEL SITO ATTIVO -
+4
+
+- MASSIMA LUNGHEZZA PER CONDENSAZIONI -
+4
+
+# OFF: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" possono essere reagenti di un cleavage.
+# ON: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" non possono essere reagenti di un cleavage.
+- LUNGHEZZA MASSIMA PER CLEAVAGE -
+OFF
+
+# OFF: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" possono essere catalizzatori.
+# ON: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" non possono essere catalizzatori.
+- LUNGHEZZA MASSIMA PER CATALIZZATORE -
+OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-200
-
-- LUNGHEZZA MASSIMA DEL PRODOTTO -
-10
-
-- LIMITE DI REAZIONI -
-10
-
-- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -
-2
+1
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 
 - NOME DEL FILE DI OUTPUT -
 output
+
+- NOME DEL FILE DI OUTPUT DELLE REGOLE -
+outputRules.txt

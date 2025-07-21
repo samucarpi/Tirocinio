@@ -169,13 +169,6 @@ def getParameters(input_file, species, speciesGeneration=False):
                     else:
                         error=True
                         errorMessages.append(result[1])
-                case "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -":
-                    result = checkIntData(lines[i+1], "- MASSIMA LUNGHEZZA PER IL PASSAGGIO DELLA MEMBRANA -")
-                    if result[0]:
-                        parameters['maxMembraneLength']=int(lines[i+1])
-                    else:
-                        error=True
-                        errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
                         parameters['outputFile']=lines[i+1]
                 case "- NOME DEL FILE DI OUTPUT DELLE REGOLE -":

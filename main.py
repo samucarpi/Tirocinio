@@ -4,13 +4,14 @@ from generator.main import main as gMainC
 from kauffmanGenerator.main import main as gMainK
 from tabulator.main import main as tMain
 from launcher.main import main as lMain
+from mutator.main import main as mMain
 
 def main():
     parser = argparse.ArgumentParser(description="Esegui il generatore e/o il tabulatore.")
     parser.add_argument(
         "commands",
         nargs="*",
-        choices=["generate", "tabulate", "launch"],
+        choices=["generate", "tabulate", "launch", "mutate"],
         help="Specifica i comandi da eseguire: 'generate', 'tabulate', o entrambi."
     )
     parser.add_argument(
@@ -51,6 +52,10 @@ def main():
             lMain(debug, False)
         if not debug:
             print(colored("LANCI TERMINATI CON SUCCESSO", "green", attrs=["bold"]))
+    if "mutate" in args.commands:
+        mMain(debug)
+        if not debug:
+            print(colored("MUTAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if not args.commands:
         parser.print_help()
 

@@ -3,6 +3,7 @@ class Species:
     def __init__(self,name):
         self.name=name
         self.isInitial=False
+        self.isFood=False
 
     def __len__(self):
         return len(self.name)
@@ -21,3 +22,9 @@ class Species:
 
     def getIsInitial(self):
         return self.isInitial
+    
+    def setIsFood(self,isFood):
+        self.isFood=isFood
+    
+    def getIsFood(self):
+        return self.isFood
