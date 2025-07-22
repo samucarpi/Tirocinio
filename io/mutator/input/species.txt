@@ -7,5 +7,4 @@
 SPECIE              TIPO
 BBBAAABB            C
 BBBBBBBB            C
-AABABA              B
-AAAAA               F
+AABBBA              B

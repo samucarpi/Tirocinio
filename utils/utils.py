@@ -250,16 +250,21 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
     if mutator:
         function="mutator"
         name = ""
+        uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"uniqueReactions.txt")
+        allReactionsFile = None
+        multiplicyReactionsFile = None
+        files = [uniqueReactionsFile]
     else:
         name = parameters['outputFile']+"-"
         if not kauffman:
             function="generator"
         else:
             function="kauffmanGenerator"
-    allReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"allReactions.txt")
-    uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"uniqueReactions.txt")
-    multiplicyReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"multiplicyReactions.txt")
-    for file in [allReactionsFile, uniqueReactionsFile, multiplicyReactionsFile]:
+        uniqueReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"uniqueReactions.txt")
+        allReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"allReactions.txt")
+        multiplicyReactionsFile = os.path.join(BASE_DIR, "io/"+function+"/output/"+name+"multiplicyReactions.txt")
+        files = [allReactionsFile, uniqueReactionsFile, multiplicyReactionsFile]
+    for file in files:
         with open(file, 'w') as f:
             f.write(f"SEED UTILIZZATO: {seed}\n\n")
             f.write((f"{"Cont":<15}{'1.35e-16':<10}{"0.0":<10}\n"))
@@ -275,7 +280,7 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
             f.write("\n")
             for s in crossMembraneSpecies:
                 f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
-            if file == allReactionsFile:   
+            if file == allReactionsFile and allReactionsFile is not None:   
                 if not allReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
@@ -295,7 +300,7 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
                     else:
                         for r in uniqueReactions:
                             f.write(f"{r.printReaction()} ; 0.1"+ "\n") 
-            if file == multiplicyReactionsFile:
+            if file == multiplicyReactionsFile and multiplicyReactionsFile is not None:
                 if not uniqueReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:

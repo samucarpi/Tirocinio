@@ -32,7 +32,9 @@ class Mutator():
                 line = lines[lines.index(line) + 1]
                 while not line.startswith("10.0"):
                     name = line.split()[0]
-                    self.addSpecies(createSpeciesObject(name))
+                    species = createSpeciesObject(name)
+                    species.setIsInitial(True)
+                    self.addSpecies(species)
                     line = lines[lines.index(line) + 1]
     
     def getSpecies(self):
@@ -143,7 +145,7 @@ class Mutator():
         g = Generator(self.getDebug())
         g.setSpecies(self.getSpecies())
         g.initializeParameters(mutator=True)
-        g.setSeed(g.getParameter('seed'))
+        g.setSeed(None)
         g.setReactionClasses(self.getReactionClasses())
         g.setReactions(self.getReactions())
         g.setMinActiveSiteLength(g.getParameter('minActiveSiteLength'))
@@ -226,25 +228,29 @@ class Mutator():
         g = self.getGenerator()
         newSpecies = getFileData(MUTATOR_SPECIES_FILE)
         newReactionClass = self.setNewSpecies(newSpecies,g)
+        data = None
         if newReactionClass:
-            if self.getNewReactionClasses():
-                for rc in self.getNewReactionClasses():
-                    g.addReactionClass(rc)
-                if self.getDebug():
-                    printReactionClasses([rc],new=True)
+            for rc in self.getNewReactionClasses():
+                g.addReactionClass(rc)
+            if self.getDebug():
+                printReactionClasses(self.getNewReactionClasses(),new=True)
             data = g.generation(g.getSpecies(), g.getReactions(), self.getNewReactionClasses(),isRecursive=True,generateOnOldSpecies=True)
             if not data:
                 deleteReportFile(mutator=True)
                 for s in self.getNewSpecies():
                     g.addSpecies(s)
                 data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False,mutator=True)
-            if data:
-                if self.debug:
-                    print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
-                writeReportFile(g.getParameters(),data)
-            else:
-                deleteReportFile(mutator=True)
-        if self.debug:
+        else:
+            for s in self.getNewSpecies():
+                g.addSpecies(s)
+            data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False,mutator=True)
+        if data:
+            if self.getDebug():
+                print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))
+            writeReportFile(g.getParameters(),data)
+        else:
+            deleteReportFile(mutator=True)
+        if self.getDebug():
             printReactions(g.getReactions())
             printSpecies(g.getSpecies(),ended=True)
         print(boldTitle("SEED UTILIZZATO: "+str(g.getSeed())))

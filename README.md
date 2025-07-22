@@ -25,9 +25,17 @@ python ./main.py tabulate
  python ./main.py launch
 ```
 
-### 4. Debug
+### 5. Mutazioni
+
+ Dati i file di input `parameters.txt`, `chemistry.txt` e `rules.txt` relativi ad una chimica precedentemente generata, è possibile continuare la generazione inserendo nuove specie chimiche indicandole nel file `species.txt` dove, per ogni specie, si avrà un relativo tipo.
+ ```bash
+ python ./main.py mutate
+```
+
+### 6. Debug
  È possibile visualizzare l'output di generazione, tabulazione e lancio via terminale a runtime
 ```bash
  python ./main.py -d generate tabulate
  python ./main.py -d launch
+ python ./main.py -d mutate
 ```

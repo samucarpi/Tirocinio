@@ -139,8 +139,11 @@ class Generator:
                 if f not in species:
                     check = False
                     break
+        else:
+            print(colored("ATTENZIONE! PER AVVIARE LA GENERAZIONE È NECESSARIO SPECIFICARE ALMENO UNA SPECIE FOOD","red",attrs=['bold']))
+            exit()
         if not check:
-            print(colored("IL CIBO NON È UN SOTTOINSIEME DELLE SPECIE PRESENTI!","red",attrs=['bold']))
+            print(colored("ATTENZIONE! IL CIBO NON È UN SOTTOINSIEME DELLE SPECIE PRESENTI","red",attrs=['bold']))
             exit()
         for s in self.getSpecies():
             if s.getName() in food:
