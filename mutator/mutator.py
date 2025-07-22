@@ -211,12 +211,20 @@ class Mutator():
                     check = False
                     for species in self.getSpecies():
                         if species.getName() == name:
+                            for rc in self.getReactionClasses():
+                                if rc.getCatalyst().getName() == name:
+                                    print(colored("ATTENZIONE! LA SPECIE "+name+" È UN CATALIZZATORE, NON PUÒ FAR PARTE DELL'INSIEME FOOD","red",attrs=['bold']))
+                                    exit()
                             species.setIsFood(True)
                             check = True
                     for species in self.getNewSpecies():
                         if species.getName() == name:
-                            species.setIsFood(True)
-                            check = True
+                            if type(species) is Catalyst:
+                                print(colored("ATTENZIONE! LA SPECIE "+name+" È UN CATALIZZATORE, NON PUÒ FAR PARTE DELL'INSIEME FOOD","red",attrs=['bold']))
+                                exit()
+                            else:
+                                species.setIsFood(True)
+                                check = True
                     if not check:
                         print(colored("ATTENZIONE! LA SPECIE "+name+" NON FA PARTE DELLE SPECIE GIÀ PRESENTI","red",attrs=['bold']))
                         exit()
