@@ -170,7 +170,7 @@ class Mutator():
         for line in lines:
             line = line.split()
             name = line[0]
-            if name in [s.getName() for s in g.getSpecies()]:
+            if name in [s.getName() for s in g.getSpecies()] and line[1] != "F":
                 print(colored("ATTENZIONE! La specie "+name+" è già presente nella lista delle specie.","red",attrs=['bold']))
                 exit()
             match(line[1]):
@@ -208,9 +208,18 @@ class Mutator():
                             break
                     newReactionClass = True
                 case "F":
-                    species = Species(name)
-                    species.setIsFood(True)
-                    self.addNewSpecies(species)
+                    check = False
+                    for species in self.getSpecies():
+                        if species.getName() == name:
+                            species.setIsFood(True)
+                            check = True
+                    for species in self.getNewSpecies():
+                        if species.getName() == name:
+                            species.setIsFood(True)
+                            check = True
+                    if not check:
+                        print(colored("ATTENZIONE! LA SPECIE "+name+" NON FA PARTE DELLE SPECIE GIÀ PRESENTI","red",attrs=['bold']))
+                        exit()
         return newReactionClass
 
     def initialization(self):
@@ -229,6 +238,9 @@ class Mutator():
         newSpecies = getFileData(MUTATOR_SPECIES_FILE)
         newReactionClass = self.setNewSpecies(newSpecies,g)
         data = None
+        if not self.getDebug():
+            loader=Loader()
+            loader.start(string="Mutazione in corso")
         if newReactionClass:
             for rc in self.getNewReactionClasses():
                 g.addReactionClass(rc)
@@ -244,6 +256,8 @@ class Mutator():
             for s in self.getNewSpecies():
                 g.addSpecies(s)
             data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False,mutator=True)
+        if not self.getDebug():
+            loader.stop()
         if data:
             if self.getDebug():
                 print(colored("TEMPO SCADUTO, GENERAZIONE INTERROTTA IN ANTICIPO","red",attrs=['bold']))

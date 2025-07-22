@@ -1,11 +1,14 @@
 - SEED UTILIZZATO: 278753003822007929
-+ SEED UTILIZZATO: 5563655444492815301
++ SEED UTILIZZATO: 5574990702573296234
   
   Cont           1.35e-16  0.0       
   A              1e-15     0.01      
   B              1e-15     0.01      
   AA             1e-15     0.01      
-  AB             1e-15     0.01      
+- AB             1e-15     0.01      
+?                             ^
++ AB             1e-15     0.0       
+?                             ^
   BA             1e-15     0.01      
   BB             1e-15     0.01      
   BBB            1e-15     0.01      
@@ -26,6 +29,7 @@
 + BBBAAABB       1e-15     0.01      
 + BBBBBBBB       1e-15     0.01      
   
++ 10.0 > AB ; 1.00E-18
   10.0 > BBBB ; 1.00E-18
   BABA + B + BABA > BABAB + BABA ; 0.1
   BABA + BA + BABA > BABABA + BABA ; 0.1
