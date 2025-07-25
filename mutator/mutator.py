@@ -145,7 +145,7 @@ class Mutator():
         g = Generator(self.getDebug())
         g.setSpecies(self.getSpecies())
         g.initializeParameters(mutator=True)
-        g.setSeed(None)
+        g.setSeed(6276065144489895151)
         g.setReactionClasses(self.getReactionClasses())
         g.setReactions(self.getReactions())
         g.setMinActiveSiteLength(g.getParameter('minActiveSiteLength'))
@@ -254,16 +254,17 @@ class Mutator():
                 g.addReactionClass(rc)
             if self.getDebug():
                 printReactionClasses(self.getNewReactionClasses(),new=True)
-            data = g.generation(g.getSpecies(), g.getReactions(), self.getNewReactionClasses(),isRecursive=True,generateOnOldSpecies=True)
+            oldSpecies = g.getSpecies()[:]
+            for s in self.getNewSpecies():
+                g.addSpecies(s)
+            data = g.generation(oldSpecies, g.getReactions(), self.getNewReactionClasses(),isRecursive=True,newReactionClasses=True)
             if not data:
                 deleteReportFile(mutator=True)
-                for s in self.getNewSpecies():
-                    g.addSpecies(s)
-                data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False,mutator=True)
+                data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
         else:
             for s in self.getNewSpecies():
                 g.addSpecies(s)
-            data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,generateOnOldSpecies=False,mutator=True)
+            data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
         if not self.getDebug():
             loader.stop()
         if data:

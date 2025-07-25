@@ -302,8 +302,8 @@ class Generator:
                     return True, r
         return False, None
 
-    def generation(self, species, reactions, reactionClasses, isRecursive=False, generateOnOldSpecies=False,mutator=False):
-        queue = deque([(species,reactions,reactionClasses,isRecursive,generateOnOldSpecies,mutator)])
+    def generation(self, species, reactions, reactionClasses, isRecursive=False, newReactionClasses=False,mutator=False):
+        queue = deque([(species,reactions,reactionClasses,isRecursive,newReactionClasses,mutator)])
         processedSpecies = set()
         timeMax = float(self.getParameter('maxGenerationTime'))*60
         start = time.time()
@@ -313,15 +313,10 @@ class Generator:
                 data={'error':'START','lap':lap}
                 return data
             #get the first element of the queue
-            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentGenerateOnOldSpecies,mutator = queue.popleft()
-            #if the generation is for new species, remove the species already processed
-            if not currentGenerateOnOldSpecies:
-                currentSpecies = [s for s in currentSpecies if s.getName() not in processedSpecies]
-            #update the set of processed species
-            processedSpecies.update(s.getName() for s in currentSpecies)
+            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentNewReactionClasses,mutator = queue.popleft()
             if self.debug:
                 if currentIsRecursive:
-                    if currentGenerateOnOldSpecies:
+                    if currentNewReactionClasses:
                         print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
                     else:
                         if mutator:
@@ -379,7 +374,7 @@ class Generator:
                     # first with the old species and then with the new species
                     if areNewReactionClassesGenerated:
                         queue.append((oldSpecies,currentReactions,newReactionClasses,True,True,mutator))
-                    queue.append((newSpecies,currentReactions,self.getReactionClasses(),True,False,mutator))
+                    queue.append((self.getSpecies(),currentReactions,self.getReactionClasses(),True,False,mutator))
                 else:
                     if self.debug:
                         print(colored("NESSUNA SPECIE GENERATA",'red',attrs=['bold']))

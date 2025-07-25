@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-None
+278753003822007929
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -18,10 +18,10 @@ B, A
 4
 
 - CATALIZZATORI PER CONDENSAZIONI INIZIALI -
-1
+2
 
 - CATALIZZATORI PER CLEAVAGE INIZIALI -
-1
+2
 
 - PROBABILITA DI ESSERE CLEAVAGE -
 0.5
