@@ -4,9 +4,5 @@
 # NOME TIPO
 # IL TIPO PUO' ESSERE DI TIPO: FOOD (F), CATALIZZATORE (C), BASE (B)
 
-SPECIE              TIPO
-BBBAAABB            C
-BBBBBBBB            C
-AABBBA              B
-ABABABAB            B
-ABABABAB            F
+SPECIE          TIPO
+ABA              B

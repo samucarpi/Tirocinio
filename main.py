@@ -30,8 +30,14 @@ def main():
         action="store_true",
         help="Esegui il generatore con regole di catalisi"
     )
+    parser.add_argument(
+        "-s", "--seed",
+        type=int,
+        help="Numero per fissare il seed di randomizzazione"
+    )
     args = parser.parse_args()
     debug = args.debug
+    seed = args.seed
     if "generate" in args.commands:
         if args.kauffman:
             gMainK(debug)
@@ -53,7 +59,7 @@ def main():
         if not debug:
             print(colored("LANCI TERMINATI CON SUCCESSO", "green", attrs=["bold"]))
     if "mutate" in args.commands:
-        mMain(debug)
+        mMain(debug, seed)
         if not debug:
             print(colored("MUTAZIONE TERMINATA CON SUCCESSO", "green", attrs=["bold"]))
     if not args.commands:

@@ -1,3 +1,6 @@
 CATALIZZATORE   TIPO              SITO ATTIVO   POSIZIONE   CLASSE    
 AABB            Cleavage          AABB          2           R-BB AA-R 
-BABA            Condensazione     BABA          3           R-ABA+B-R
+BABA            Condensazione     BABA          3           R-ABA+B-R 
+BBBAAABB        Condensazione     AABB          3           R-BBA+A-R 
+BBBBBBBB        Condensazione     BBBB          3           R-AAA+A-R 
+AAAAAAB         Cleavage          AAAA          2           R-BB BB-R 

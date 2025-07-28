@@ -5,7 +5,7 @@ from utils.loader import Loader
 import difflib
 
 class Mutator():
-    def __init__(self, debug):
+    def __init__(self, debug,seed):
         self.debug = debug
         self.species = []
         self.reactionClasses = []
@@ -13,6 +13,7 @@ class Mutator():
         self.newSpecies = []
         self.newReactionClasses = []
         self.generator = None
+        self.seed = seed
 
     def getDebug(self):
         return self.debug
@@ -145,7 +146,10 @@ class Mutator():
         g = Generator(self.getDebug())
         g.setSpecies(self.getSpecies())
         g.initializeParameters(mutator=True)
-        g.setSeed(6276065144489895151)
+        if self.seed:
+            g.setSeed(self.seed)
+        else:
+            g.setSeed(None)
         g.setReactionClasses(self.getReactionClasses())
         g.setReactions(self.getReactions())
         g.setMinActiveSiteLength(g.getParameter('minActiveSiteLength'))
@@ -260,11 +264,11 @@ class Mutator():
             data = g.generation(oldSpecies, g.getReactions(), self.getNewReactionClasses(),isRecursive=True,newReactionClasses=True)
             if not data:
                 deleteReportFile(mutator=True)
-                data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
+                data = g.generation(g.getSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
         else:
             for s in self.getNewSpecies():
                 g.addSpecies(s)
-            data = g.generation(self.getNewSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
+            data = g.generation(g.getSpecies(), g.getReactions(), g.getReactionClasses(),isRecursive=True,newReactionClasses=False,mutator=True)
         if not self.getDebug():
             loader.stop()
         if data:

@@ -320,7 +320,7 @@ class Generator:
                         print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
                     else:
                         if mutator:
-                            print(colored("CONTINUA A GENERARE DALLE SPECIE INTRODOTTE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                            print(colored("CONTINUA A GENERARE DALLE SPECIE INTRODOTTE "+str(list(s.getName() for s in currentSpecies)),'yellow',attrs=['bold']))
                             mutator = False
                         else:
                             print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
