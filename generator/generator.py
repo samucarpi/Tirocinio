@@ -232,23 +232,27 @@ class Generator:
                 reagent1=s.getName()
                 for s2 in species:
                     if s2.getName()[0:reagent2Length]==reactionClass.getReagents()[1] and (len(s2.getName())+len(reagent1)) <= (self.getParameter('maxCondensationLength')*2):
-                        reagent2=s2.getName()
-                        result=reagent1+reagent2
-                        reaction=Reaction(reactionClass)
-                        reaction.setReactants([s.getName(),s2.getName(),reactionClass.getCatalyst().getName()])
-                        reaction.setProducts([result,reactionClass.getCatalyst().getName()])
-                        notFilteredReactions.append(reaction)
-                        [duplicatedLocal,rLocal]=self.checkDuplicatedReaction(reactions,reaction,type(reactionClass))
-                        [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
-                        if not duplicatedLocal and not duplicatedGlobal:
-                            if self.debug:
-                                print(reaction.printReaction())
-                            reactions.append(reaction)
+                        if calculateProbability(self.getParameter('probabilityOfReaction')):
+                            reagent2=s2.getName()
+                            result=reagent1+reagent2
+                            reaction=Reaction(reactionClass)
+                            reaction.setReactants([s.getName(),s2.getName(),reactionClass.getCatalyst().getName()])
+                            reaction.setProducts([result,reactionClass.getCatalyst().getName()])
+                            notFilteredReactions.append(reaction)
+                            [duplicatedLocal,rLocal]=self.checkDuplicatedReaction(reactions,reaction,type(reactionClass))
+                            [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
+                            if not duplicatedLocal and not duplicatedGlobal:
+                                if self.debug:
+                                    print(reaction.printReaction())
+                                reactions.append(reaction)
+                            else:
+                                if rLocal:
+                                    rLocal.setMultiplicity(rLocal.getMultiplicity()+1)
+                                if rGlobal:
+                                    rGlobal.setMultiplicity(rGlobal.getMultiplicity()+1)
                         else:
-                            if rLocal:
-                                rLocal.setMultiplicity(rLocal.getMultiplicity()+1)
-                            if rGlobal:
-                                rGlobal.setMultiplicity(rGlobal.getMultiplicity()+1)
+                            if self.debug:
+                                print(colored(f"REAZIONE SCARTATA: {s.getName()} + {s2.getName()} + {reactionClass.getCatalyst().getName()} > {s.getName()+s2.getName()} + {reactionClass.getCatalyst().getName()}","red",attrs=['bold']))
         self.getNotFilteredReactions().extend(notFilteredReactions)
         return reactions
 
@@ -265,23 +269,26 @@ class Generator:
                 continue
             for i in range(0,len(s.getName())-1):
                 if s.getName()[i:leftSplitLength+i]==leftSplit and s.getName()[leftSplitLength+i:leftSplitLength+rightSplitLength+i]==rightSplit:
-                    newSpecies1=s.getName()[0:i+reactionClass.getSplit()]
-                    newSpecies2=s.getName()[i+reactionClass.getSplit():]
-                    reaction=Reaction(reactionClass)
-                    reaction.setReactants([s.getName(),reactionClass.getCatalyst().getName()])
-                    reaction.setProducts([newSpecies1,newSpecies2,reactionClass.getCatalyst().getName()])
-                    notFilteredReactions.append(reaction)
-                    [duplicatedLocal,rLocal]=self.checkDuplicatedReaction(reactions,reaction,type(reactionClass))
-                    [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
-                    if not duplicatedLocal and not duplicatedGlobal:
-                        if self.debug:
-                            print(reaction.printReaction())
-                        reactions.append(reaction)
+                    if calculateProbability(self.getParameter('probabilityOfReaction')):
+                        newSpecies1=s.getName()[0:i+reactionClass.getSplit()]
+                        newSpecies2=s.getName()[i+reactionClass.getSplit():]
+                        reaction=Reaction(reactionClass)
+                        reaction.setReactants([s.getName(),reactionClass.getCatalyst().getName()])
+                        reaction.setProducts([newSpecies1,newSpecies2,reactionClass.getCatalyst().getName()])
+                        notFilteredReactions.append(reaction)
+                        [duplicatedLocal,rLocal]=self.checkDuplicatedReaction(reactions,reaction,type(reactionClass))
+                        [duplicatedGlobal,rGlobal]=self.checkDuplicatedReaction(self.getReactions(),reaction,type(reactionClass))
+                        if not duplicatedLocal and not duplicatedGlobal:
+                            if self.debug:
+                                print(reaction.printReaction())
+                            reactions.append(reaction)
+                        else:
+                            if rLocal:
+                                rLocal.setMultiplicity(rLocal.getMultiplicity()+1)
+                            if rGlobal:
+                                rGlobal.setMultiplicity(rGlobal.getMultiplicity()+1)
                     else:
-                        if rLocal:
-                            rLocal.setMultiplicity(rLocal.getMultiplicity()+1)
-                        if rGlobal:
-                            rGlobal.setMultiplicity(rGlobal.getMultiplicity()+1)
+                        print(colored(f"REAZIONE SCARTATA: {s.getName()} + {reactionClass.getCatalyst().getName()} > {s.getName()[0:i+reactionClass.getSplit()]} + {s.getName()[i+reactionClass.getSplit():]}","red",attrs=['bold']))
         self.getNotFilteredReactions().extend(notFilteredReactions)
         return reactions
 
@@ -304,7 +311,6 @@ class Generator:
 
     def generation(self, species, reactions, reactionClasses, isRecursive=False, newReactionClasses=False,mutator=False):
         queue = deque([(species,reactions,reactionClasses,isRecursive,newReactionClasses,mutator)])
-        processedSpecies = set()
         timeMax = float(self.getParameter('maxGenerationTime'))*60
         start = time.time()
         lap=0
@@ -437,7 +443,7 @@ class Generator:
             loader=Loader()
             loader.start(string="Generazione in corso")
         reactions=[]
-        data=self.generation(species,reactions,reactionClasses,isRecursive=False,generateOnOldSpecies=False)
+        data=self.generation(species,reactions,reactionClasses,isRecursive=False,newReactionClasses=False)
         if not self.debug:
             loader.stop()
         if data:

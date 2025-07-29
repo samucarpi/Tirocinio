@@ -124,6 +124,13 @@ def getParameters(input_file, species, speciesGeneration=False):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- PROBABILITA DI REAZIONE -":
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI REAZIONE -")
+                    if result[0]:
+                        parameters['probabilityOfReaction']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
                 case "- MINIMA LUNGHEZZA DEL SITO ATTIVO -":
                     result = checkIntData(lines[i+1], "- MINIMA LUNGHEZZA DEL SITO ATTIVO -")
                     if result[0]:
