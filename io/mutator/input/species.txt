@@ -6,3 +6,4 @@
 
 SPECIE          TIPO
 ABA              B
+ABBBA		     C

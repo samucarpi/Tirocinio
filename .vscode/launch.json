@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: main.py con argomenti",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": [
+                "-d", "mutate",
+                "-s", "5218770263200446522"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

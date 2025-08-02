@@ -22,6 +22,7 @@ class Generator:
         self.reactionClasses = []
         self.reactions = []
         self.notFilteredReactions = []
+        self.mutator = False
     
     # Getters and setters
     def setSeed(self, seed):
@@ -109,6 +110,12 @@ class Generator:
     
     def addNotFilteredReactions(self, notFilteredReactions):
         self.notFilteredReactions.append(notFilteredReactions)
+
+    def getMutator(self):
+        return self.mutator
+    
+    def setMutator(self, mutator):
+        self.mutator = mutator
     
     # Parameters initialization
     def initializeParameters(self,mutator=False):
@@ -221,18 +228,26 @@ class Generator:
         return False
 
     # Generation of new species and reactions
-    def handleCondensation(self,reactionClass,species):
+    def handleCondensation(self,reactionClass,species, newSpecies=None):
         if self.debug:
             print(colored(f"CLASSE DI REAZIONE R-{reactionClass.getReagents()[0]} + {reactionClass.getReagents()[1]}-R",'light_cyan',attrs=['bold']))
         reagent1Length=len(reactionClass.getReagents()[0])
         reagent2Length=len(reactionClass.getReagents()[1])
         reactions,notFilteredReactions=[],[]
         for s in species:
+            isFirstReagentNew=False
+            isSecondReagentNew=False
             if s.getName()[-reagent1Length:]==reactionClass.getReagents()[0] and len(s.getName())<=(self.getParameter('maxCondensationLength')*2):
+                if s in newSpecies:
+                    isFirstReagentNew = True
                 reagent1=s.getName()
                 for s2 in species:
                     if s2.getName()[0:reagent2Length]==reactionClass.getReagents()[1] and (len(s2.getName())+len(reagent1)) <= (self.getParameter('maxCondensationLength')*2):
                         if calculateProbability(self.getParameter('probabilityOfReaction')):
+                            if s2 in newSpecies:
+                                isSecondReagentNew = True
+                            if (not (isFirstReagentNew or isSecondReagentNew)) and self.getMutator():
+                                continue
                             reagent2=s2.getName()
                             result=reagent1+reagent2
                             reaction=Reaction(reactionClass)
@@ -256,7 +271,7 @@ class Generator:
         self.getNotFilteredReactions().extend(notFilteredReactions)
         return reactions
 
-    def handleCleavage(self, reactionClass, species):
+    def handleCleavage(self, reactionClass, species, newSpecies=None):
         if self.debug:
             print(colored(f"CLASSE DI REAZIONE R-{reactionClass.getReagents()[0][:reactionClass.getSplit()]} {reactionClass.getReagents()[0][reactionClass.getSplit():]}-R ",'light_cyan',attrs=['bold']))
         leftSplit=reactionClass.getReagents()[0][:reactionClass.getSplit()]
@@ -264,6 +279,8 @@ class Generator:
         leftSplitLength=len(leftSplit)
         rightSplitLength=len(rightSplit)
         reactions,notFilteredReactions=[],[]
+        if self.getMutator():
+            species = newSpecies
         for s in species:
             if self.getParameter('maxCleavageLength') == 'ON' and len(s.getName())>self.getParameter('maxCondensationLength'):
                 continue
@@ -309,27 +326,34 @@ class Generator:
                     return True, r
         return False, None
 
-    def generation(self, species, reactions, reactionClasses, isRecursive=False, newReactionClasses=False,mutator=False):
-        queue = deque([(species,reactions,reactionClasses,isRecursive,newReactionClasses,mutator)])
+    def generation(self, species, reactions, reactionClasses, isRecursive=False, newReactionClasses=False):
+        firstLap = True
+        queue = deque([(species,reactions,reactionClasses,isRecursive,newReactionClasses)])
         timeMax = float(self.getParameter('maxGenerationTime'))*60
         start = time.time()
         lap=0
+        processedSpecies = []
         while queue:
             if(time.time()-start)>=timeMax:
                 data={'error':'START','lap':lap}
                 return data
             #get the first element of the queue
-            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentNewReactionClasses,mutator = queue.popleft()
+            currentSpecies,currentReactions,currentReactionClasses,currentIsRecursive,currentNewReactionClasses = queue.popleft()
+            if not currentNewReactionClasses:
+                filteredSpecies = [s for s in self.getSpecies() if not s.getIsInitial() and s not in processedSpecies]
+                processedSpecies.extend(currentSpecies[:])
+            else:
+                filteredSpecies = currentSpecies[:]
             if self.debug:
                 if currentIsRecursive:
                     if currentNewReactionClasses:
-                        print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                        print(colored("APPLICA LE NUOVE CLASSI DI REAZIONE ALLE SPECIE VECCHIE "+str(list(map(lambda s: s.getName(),filteredSpecies))),'yellow',attrs=['bold']))
                     else:
-                        if mutator:
-                            print(colored("CONTINUA A GENERARE DALLE SPECIE INTRODOTTE "+str(list(s.getName() for s in currentSpecies)),'yellow',attrs=['bold']))
-                            mutator = False
-                        else:
-                            print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),currentSpecies))),'yellow',attrs=['bold']))
+                        if self.getMutator() and firstLap:
+                            print(colored("CONTINUA A GENERARE DALLE SPECIE INTRODOTTE "+str(list(s.getName() for s in filteredSpecies)),'yellow',attrs=['bold']))
+                            firstLap = False
+                        else :
+                            print(colored("CONTINUA A GENERARE DA SPECIE PRECEDENTEMENTE GENERATE "+str(list(map(lambda s: s.getName(),filteredSpecies))),'yellow',attrs=['bold']))
                 else:
                     print(colored("GENERAZIONE DI NUOVE SPECIE",'yellow',attrs=['bold']))
             #for each species, apply the reaction classes
@@ -340,10 +364,10 @@ class Generator:
                     data={'error':'REACTION','lap':lap,'reactionClasses':currentReactionClasses,'processedReactionClasses':processedReactionClasses}
                     return data
                 if isinstance(r,CondensationReactionClass):
-                    reactions=self.handleCondensation(r,currentSpecies)
+                    reactions=self.handleCondensation(r,currentSpecies,filteredSpecies)
                     newReactions+=reactions
                 else:
-                    reactions=self.handleCleavage(r,currentSpecies)
+                    reactions=self.handleCleavage(r,currentSpecies,filteredSpecies)
                     newReactions+=reactions
                 processedReactionClasses.append(r)
             if newReactions:
@@ -379,8 +403,8 @@ class Generator:
                     # if new reaction classes are generated, add the new reaction classes to the list of reaction classes and generate new reactions
                     # first with the old species and then with the new species
                     if areNewReactionClassesGenerated:
-                        queue.append((oldSpecies,currentReactions,newReactionClasses,True,True,mutator))
-                    queue.append((self.getSpecies(),currentReactions,self.getReactionClasses(),True,False,mutator))
+                        queue.append((oldSpecies,currentReactions,newReactionClasses,True,True))
+                    queue.append((self.getSpecies(),currentReactions,self.getReactionClasses(),True,False))
                 else:
                     if self.debug:
                         print(colored("NESSUNA SPECIE GENERATA",'red',attrs=['bold']))

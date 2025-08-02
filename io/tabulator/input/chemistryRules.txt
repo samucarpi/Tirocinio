@@ -3,3 +3,5 @@ AABB            Condensazione     AABB          2           R-BB+AA-R
 BABA            Cleavage          BABA          2           R-AB AB-R 
 AABBB           Condensazione     AABB          1           R-B+BAA-R 
 BBBA            Cleavage          BBBA          2           R-AA AB-R 
+ABBBA           Condensazione     ABBB          3           R-BAA+A-R 
+BBBAAA          Cleavage          BBBA          2           R-AA AB-R 
