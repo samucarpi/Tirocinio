@@ -5,7 +5,7 @@
 
 # "None" se non si vuole impostare, altrimenti un numero
 - SEED -
-None
+1461244130054203426
 
 # 1° colonna monomero
 # 2° colonna complementare corrispettivo
@@ -27,7 +27,7 @@ B, A
 0.5
 
 - PROBABILITA DI CATALIZZAZIONE -
-0.05
+0.01
 
 - PROBABILITA DI REAZIONE -
 1
@@ -36,10 +36,10 @@ B, A
 4
 
 - MASSIMA LUNGHEZZA DEL SITO ATTIVO -
-4
+5
 
 - MASSIMA LUNGHEZZA PER CONDENSAZIONI -
-4
+5
 
 # OFF: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" possono essere reagenti di un cleavage.
 # ON: le specie chimiche più lunghe di "MASSIMA LUNGHEZZA PER CONDENSAZIONI" non possono essere reagenti di un cleavage.
@@ -53,7 +53,7 @@ OFF
 
 # In minuti
 - TEMPO MASSIMO DI GENERAZIONE -
-1000
+120
 
 ## -- PARAMETRI SULL'OUTPUT -- ##
 
@@ -62,3 +62,9 @@ output
 
 - NOME DEL FILE DI OUTPUT DELLE REGOLE -
 outputRules.txt
+
+- CONCENTRAZIONE INTERNA -
+1e-18
+
+- COEFFICIENTE DI REAZIONE -
+0.01

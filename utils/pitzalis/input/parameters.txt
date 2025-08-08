@@ -1,0 +1,16 @@
+1.0e-8		delta
+1063		ro
+1               Da           
+2.70E-16	div
+1		n_generazioni
+600000.	t_end
+0.1		max_step
+0.9		toll_min
+1.1		toll_max
+10		n_flussi
+1 	gen_exp
+2000       genExp_timing
+1e-26   thresholdToll soglia per il controllo di tolleranza
+0.0     thresholdZero  soglia al di sotto della quale le sostanze sono pari a zero
+1e-28   thresholdEffects soglia al di sotto della quale le sostanze non hanno effetti: 1e-27 <-> conc. 1e-10
+

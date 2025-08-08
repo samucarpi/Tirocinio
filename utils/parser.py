@@ -185,6 +185,20 @@ def getParameters(input_file, species, speciesGeneration=False):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- CONCENTRAZIONE INTERNA -":
+                    result = checkFloatData(lines[i+1], "- CONCENTRAZIONE INTERNA -")
+                    if result[0]:
+                        parameters['internalConcentration']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- COEFFICIENTE DI REAZIONE -":
+                    result = checkFloatData(lines[i+1], "- COEFFICIENTE DI REAZIONE -")
+                    if result[0]:
+                        parameters['reactionCoefficient']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
 
     if parameters['lowerLimitForCatalyst'] < parameters['minActiveSiteLength']:
         error=True
@@ -379,6 +393,40 @@ def getKauffmanGeneratorParameters(path):
                         errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
                         parameters['outputFile']=lines[i+1]
+    if error:
+        return error, errorMessages
+    else:
+        return error, parameters
+    
+def getEvolverParameters(path):
+    parameters={}
+    error=False
+    errorMessages=[]
+    with open(path) as f:
+        lines = [line.strip() for line in f if line.strip()]
+        for i, line in enumerate(lines):
+            match(line):
+                case "- NUMERO DI CATALIZZATORI DI MEMBRANA -":
+                    result = checkIntData(lines[i+1], "- NUMERO DI CATALIZZATORI DI MEMBRANA -")
+                    if result[0]:
+                        parameters['numberOfMembraneCatalysts']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- NUMERO DI EVOLUZIONI -":
+                    result = checkIntData(lines[i+1], "- NUMERO DI EVOLUZIONI -")
+                    if result[0]:
+                        parameters['numberOfEvolutions']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- TOLLERANZA TEMPO (%) -":
+                    result = checkFloatData(lines[i+1], "- TOLLERANZA TEMPO (%) -")
+                    if result[0]:
+                        parameters['timeTolerance']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
     if error:
         return error, errorMessages
     else:

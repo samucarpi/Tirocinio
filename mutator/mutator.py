@@ -125,12 +125,12 @@ class Mutator():
         flag=False
         for line in lines:
             if not trigger:
-                if line.startswith("10.0"):
+                if NUMERIC_START.match(line):
                     trigger=True
                 continue
             else:
                 if not flag:
-                    if not line.startswith("10.0"):
+                    if not NUMERIC_START.match(line):
                         flag = True
                         if "NESSUNA REAZIONE GENERATA" in line:
                             continue

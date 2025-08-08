@@ -14,12 +14,31 @@ GENERATOR_FOOD_FILE = os.path.join(BASE_DIR,"io","generator","input","food.txt")
 LAUNCHER_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","launcher","input","parameters.txt")
 KAUFFMAN_GENERATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","parameters.txt")
 KAUFFMAN_GENERATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","kauffmanGenerator","input","species.txt")
-MUTATOR_CHEMISTRY_FILE = os.path.join(BASE_DIR, "io","mutator","input","chemistry.txt")
-MUTATOR_PARAMETERS_FILE = os.path.join(BASE_DIR, "io","mutator","input","parameters.txt")
-MUTATOR_RULES_FILE = os.path.join(BASE_DIR, "io","mutator","input","rules.txt")
-MUTATOR_SPECIES_FILE = os.path.join(BASE_DIR, "io","mutator","input","species.txt")
-MUTATOR_OUTPUT_FILE = os.path.join(BASE_DIR, "io","mutator","output","uniqueReactions.txt")
-MUTATOR_DIFFERENCE_FILE = os.path.join(BASE_DIR, "io","mutator","output","difference.txt")
+MUTATOR_INPUT = os.path.join(BASE_DIR, "io","mutator","input")
+MUTATOR_OUTPUT = os.path.join(BASE_DIR, "io","mutator","output")
+MUTATOR_CHEMISTRY_FILE = os.path.join(MUTATOR_INPUT, "chemistry.txt")
+MUTATOR_PARAMETERS_FILE = os.path.join(MUTATOR_INPUT, "parameters.txt")
+MUTATOR_RULES_FILE = os.path.join(MUTATOR_INPUT, "rules.txt")
+MUTATOR_SPECIES_FILE = os.path.join(MUTATOR_INPUT, "species.txt")
+MUTATOR_OUTPUT_FILE = os.path.join(MUTATOR_OUTPUT, "uniqueReactions.txt")
+MUTATOR_DIFFERENCE_FILE = os.path.join(MUTATOR_OUTPUT, "difference.txt")
+EVOLVER_INPUT = os.path.join(BASE_DIR, "io","evolver","input")
+EVOLVER_OUTPUT = os.path.join(BASE_DIR, "io","evolver","output")
+EVOLVER_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT, "parameters.txt")
+EVOLVER_CHEMISTRY_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","parameters.txt")
+EVOLVER_CHEMISTRY_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","chemistry.txt")
+EVOLVER_CHEMISTRY_RULES_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","rules.txt")
+EVOLVER_RAF_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","RAF.txt")
+VENTURI = os.path.join(BASE_DIR,"utils","venturi")
+PITZALIS = os.path.join(BASE_DIR,"utils","pitzalis")
+PITZALIS_CONTAINERS_RULES = os.path.join(PITZALIS,"src","Utils","sp_cat_membrana.txt")
+PITZALIS_CONTAINERS_SPECIES_INPUT = os.path.join(PITZALIS,"src","Utils","chimica_in.txt")
+PITZALIS_CONTAINERS_SPECIES_OUTPUT = os.path.join(PITZALIS,"src","Utils","chimica.txt")
+PITZALIS_INPUT = os.path.join(PITZALIS,"input","chimica.txt")
+PITZALIS_OUTPUT = os.path.join(PITZALIS,"out")
+PITZALIS_TIME = os.path.join(PITZALIS, "src", "tempo.txt")
+PITZALIS_QUANTITIES = os.path.join(PITZALIS, "src", "quantita.txt")
+NUMERIC_START = re.compile(r'^\s*(\d+(\.\d*)?|\.\d+)')
 
 # Utils functions
 def readFile(path):
@@ -54,6 +73,81 @@ def monomerCombinations( monomers, outerRadius):
     for i in range(1, outerRadius+1):
         combinations.extend("".join(p) for p in itertools.product(monomers, repeat=i))
     return combinations
+
+def formatRAFFile(path):
+    with open(path, "r") as f:
+        lines = f.readlines()
+    lines = [l for l in lines if l.strip()]
+    species, food, reactions = [], [], []
+    for line in lines:
+        if "+" not in line and not NUMERIC_START.match(line):
+            line = line.split()
+            line = str(f"{line[0]:<15}{line[1]:<30}{line[2]:<10}\n")
+            species.append(line)
+        elif "+" in line and not NUMERIC_START.match(line):
+            if "FC" in line:
+                line = line.split()
+                line = str(f"{line[0]} {line[1]} {line[2]} {line[3]} {line[4]} {line[5]} {line[6]} {line[7]} {line[8]}\n")
+            else:
+                line = line.split()
+                line = str(f"{line[0]} {line[1]} {line[2]} {line[3]} {line[4]} {line[5]} {line[6]} {line[7]} {line[8]} {line[9]} {line[10]}\n")
+            reactions.append(line)
+        elif NUMERIC_START.match(line):
+            line = line.split()
+            line = str(f"{line[0]} {line[1]} {line[2]} {line[3]} {line[4]}\n")
+            food.append(line)
+    with open(path, "w") as f:
+        species.append("\n")
+        f.writelines(species + food + reactions)
+
+def getSpeciesNamesFromFile(path):
+    species = []
+    with open(path, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if "+" not in line and not NUMERIC_START.match(line) and line.strip():
+            line = line.split()
+            species.append(line[0])
+    return species
+
+def getFoodsNamesFromFile(path):
+    foods = []
+    with open(path, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if NUMERIC_START.match(line):
+            line = line.split()
+            foods.append(line[2])
+    return foods
+
+def runPitzalisContainers(PITZALIS):
+    os.system(f'cd "{PITZALIS}/src/Utils" && python ./t_Carpi_Pitzalis.py > nul 2>&1')
+
+def runPitzalisSimulator(PITZALIS):
+    os.system(f'cd "{PITZALIS}/src" && python ./main.py -v')
+
+def getSpeciesConcentrations(path):
+    concentrationsDictionary = {}
+    data = []
+    with open(path, "r") as f:
+        lines = f.readlines()
+    lines = [l for l in lines if l.strip()]
+    for line in lines:
+        line = line.split()
+        data.append(line)
+    species = data[0]
+    quantity = data[1]
+    for i in range(len(species)):
+        concentration = float(quantity[i])
+        if "Cont" in species[i]:
+            concentration *= 0.5
+        else:
+            concentration *= 0.353553
+        concentrationsDictionary[species[i]] = concentration
+    return concentrationsDictionary
+
+def runMutator():
+    os.system(f'python ./main.py -d mutate')
 
 # Random functions
 def generateSeed(seed):
@@ -276,30 +370,30 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
                 else:
                     val="0.0"
                     crossMembraneSpecies.append(s)
-                f.write(f"{s.getName():<15}{'1e-15':<10}{val:<10}\n")
+                f.write(f"{s.getName():<15}{parameters['internalConcentration']:<10}{val:<10}\n")
             f.write("\n")
             for s in crossMembraneSpecies:
-                f.write(f"{10.0} > {s.getName()} ; 1.00E-18\n")
+                f.write(f"{10.0} > {s.getName()} ; {parameters['internalConcentration']}\n")
             if file == allReactionsFile and allReactionsFile is not None:   
                 if not allReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
                     if kauffman:
                         for r in allReactions:
-                            f.write(f"{r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                            f.write(f"{r.printReaction(kauffman=True)} ; {parameters['reactionCoefficient']}"+ "\n") 
                     else:
                         for r in allReactions:
-                            f.write(f"{r.printReaction()} ; 0.1"+ "\n") 
+                            f.write(f"{r.printReaction()} ; {parameters['reactionCoefficient']}"+ "\n") 
             if file == uniqueReactionsFile:
                 if not uniqueReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
                 else:
                     if kauffman:
                         for r in uniqueReactions:
-                            f.write(f"{r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                            f.write(f"{r.printReaction(kauffman=True)} ; {parameters['reactionCoefficient']}"+ "\n") 
                     else:
                         for r in uniqueReactions:
-                            f.write(f"{r.printReaction()} ; 0.1"+ "\n") 
+                            f.write(f"{r.printReaction()} ; {parameters['reactionCoefficient']}"+ "\n") 
             if file == multiplicyReactionsFile and multiplicyReactionsFile is not None:
                 if not uniqueReactions:
                     f.write("NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI\n")
@@ -307,11 +401,11 @@ def writeOutputFile(seed,parameters,species,allReactions,uniqueReactions,kauffma
                     if kauffman:
                         for r in uniqueReactions:
                             multiplicity = r.getMultiplicity()
-                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction(kauffman=True)} ; 0.1"+ "\n") 
+                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction(kauffman=True)} ; {parameters['reactionCoefficient']}"+ "\n") 
                     else:
                         for r in uniqueReactions:
                             multiplicity = r.getMultiplicity()
-                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction()} ; 0.1"+ "\n") 
+                            f.write(f"{str(multiplicity)+"x":<2} {r.printReaction()} ; {parameters['reactionCoefficient']}"+ "\n") 
 
 def writeRulesFile(parameters,reactionClasses,mutator=False):
     if mutator:
