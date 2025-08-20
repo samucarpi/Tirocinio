@@ -217,6 +217,7 @@ class Evolver:
             i += 1
             countSpecies.append(getSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
             countNotNullSpecies.append(getNotNullSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
-        directory = "data "+datetime.now().strftime("%d.%m")
-        writeEvolverAnalysis(i, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory)
+            directory = "data "+datetime.now().strftime("%d.%m")
+            writeCSVEvolverAnalysis(i, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory)
+        writeExcelEvolverAnalysis(i, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus)
 

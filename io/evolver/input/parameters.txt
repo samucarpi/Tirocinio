@@ -5,7 +5,7 @@
 5
 
 - NUMERO DI EVOLUZIONI -
-10
+3
 
 - TOLLERANZA TEMPO (%) -
 5

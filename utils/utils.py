@@ -575,7 +575,7 @@ def writeAnalysOnExcel(data, serieName):
     resizeCells(ws, ["Analysis"], columns, columns)
     wb.save(path)
 
-def writeEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory):
+def writeExcelEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus):
     columns = ['Generation', 'Number of species', 'Number of non-zero species', 'Time', 'Accepted']
     rows = []
     for i in range(generations):
@@ -583,11 +583,11 @@ def writeEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRec
             status = "Yes"
         else:
             status = "No"
-        rows.append([i, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
+        rows.append([i+1, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
 
     analystDf = setTable(pd, rows, columns)
 
-    path = os.path.join(BASE_DIR, "io", "evolver", "output", directory, "analysis.xlsx")
+    path = os.path.join(BASE_DIR, "io", "evolver", "output", "analysis.xlsx")
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
         analystDf.to_excel(writer, index=False, startrow=2, startcol=1, sheet_name="Sheet1")
 
@@ -601,3 +601,17 @@ def writeEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRec
     setTableStyle(ws, 3, columns, analystDf, border, white, lightGray)
     resizeCells(ws, ["Evolver Analysis"], columns, columns)
     wb.save(path)
+
+def writeCSVEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory):
+    columns = ['Generation', 'Number of species', 'Number of non-zero species', 'Time', 'Accepted']
+    rows = []
+    for i in range(generations):
+        if acceptedStatus[i]:
+            status = "Yes"
+        else:
+            status = "No"
+        rows.append([i+1, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
+
+    analystDf = setTable(pd, rows, columns)
+    path = os.path.join(BASE_DIR, "io", "evolver", "output", directory, "analysis.csv")
+    analystDf.to_csv(path, index=False)
