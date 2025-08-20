@@ -2,7 +2,7 @@
 1063		ro
 1               Da           
 2.70E-16	div
-1		n_generazioni
+3		n_generazioni
 600000.	t_end
 0.1		max_step
 0.9		toll_min

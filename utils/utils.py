@@ -1,4 +1,5 @@
 import random,sys,os,shutil,re,itertools
+from datetime import datetime
 from tabulate import tabulate
 from termcolor import colored
 import pandas as pd
@@ -21,14 +22,15 @@ MUTATOR_PARAMETERS_FILE = os.path.join(MUTATOR_INPUT, "parameters.txt")
 MUTATOR_RULES_FILE = os.path.join(MUTATOR_INPUT, "rules.txt")
 MUTATOR_SPECIES_FILE = os.path.join(MUTATOR_INPUT, "species.txt")
 MUTATOR_OUTPUT_FILE = os.path.join(MUTATOR_OUTPUT, "uniqueReactions.txt")
+MUTATOR_OUTPUT_RULES_FILE = os.path.join(MUTATOR_OUTPUT, "rules.txt")
 MUTATOR_DIFFERENCE_FILE = os.path.join(MUTATOR_OUTPUT, "difference.txt")
 EVOLVER_INPUT = os.path.join(BASE_DIR, "io","evolver","input")
 EVOLVER_OUTPUT = os.path.join(BASE_DIR, "io","evolver","output")
 EVOLVER_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT, "parameters.txt")
 EVOLVER_CHEMISTRY_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","parameters.txt")
-EVOLVER_CHEMISTRY_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","chemistry.txt")
 EVOLVER_CHEMISTRY_RULES_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","rules.txt")
-EVOLVER_RAF_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","RAF.txt")
+EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","chemistryNoContainer.txt")
+EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","chemistryContainer.txt")
 VENTURI = os.path.join(BASE_DIR,"utils","venturi")
 PITZALIS = os.path.join(BASE_DIR,"utils","pitzalis")
 PITZALIS_CONTAINERS_RULES = os.path.join(PITZALIS,"src","Utils","sp_cat_membrana.txt")
@@ -53,7 +55,7 @@ def getRandomValue():
 def copyFile(source,destination):
     shutil.copy(source,destination)
 
-def formatFileForVenturi (path):
+def formatFileForVenturi (path, chemistry=False):
     with open(path, "r") as f:
         lines = f.readlines()
     formattedFile = [l for l in lines if l.strip() != "NESSUNA REAZIONE GENERATA, SI CONSIGLIA DI MODIFICARE I PARAMETRI"]
@@ -74,12 +76,14 @@ def monomerCombinations( monomers, outerRadius):
         combinations.extend("".join(p) for p in itertools.product(monomers, repeat=i))
     return combinations
 
-def formatRAFFile(path):
+def formatFile(path):
     with open(path, "r") as f:
         lines = f.readlines()
     lines = [l for l in lines if l.strip()]
     species, food, reactions = [], [], []
     for line in lines:
+        if "SEED" in line:
+            continue
         if "+" not in line and not NUMERIC_START.match(line):
             line = line.split()
             line = str(f"{line[0]:<15}{line[1]:<30}{line[2]:<10}\n")
@@ -109,6 +113,26 @@ def getSpeciesNamesFromFile(path):
             line = line.split()
             species.append(line[0])
     return species
+
+def getSpeciesCountFromFile(path):
+    count = 0
+    with open(path, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if "+" not in line and not NUMERIC_START.match(line) and line.strip():
+            count += 1
+    return count
+
+def getNotNullSpeciesCountFromFile(path):
+    count = 0
+    with open(path, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if "+" not in line and not NUMERIC_START.match(line) and line.strip():
+            line = line.split()
+            if float(line[1]) > 0:
+                count += 1
+    return count
 
 def getFoodsNamesFromFile(path):
     foods = []
@@ -549,4 +573,31 @@ def writeAnalysOnExcel(data, serieName):
     border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
     setTableStyle(ws, 3, columns, analystDf, border, white, lightGray)
     resizeCells(ws, ["Analysis"], columns, columns)
+    wb.save(path)
+
+def writeEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory):
+    columns = ['Generation', 'Number of species', 'Number of non-zero species', 'Time', 'Accepted']
+    rows = []
+    for i in range(generations):
+        if acceptedStatus[i]:
+            status = "Yes"
+        else:
+            status = "No"
+        rows.append([i, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
+
+    analystDf = setTable(pd, rows, columns)
+
+    path = os.path.join(BASE_DIR, "io", "evolver", "output", directory, "analysis.xlsx")
+    with pd.ExcelWriter(path, engine="openpyxl") as writer:
+        analystDf.to_excel(writer, index=False, startrow=2, startcol=1, sheet_name="Sheet1")
+
+    wb = load_workbook(path)
+    ws = wb.active
+    setTitle(ws, "Evolver Analysis", startRow=2, startCol=2, endCol=len(columns)+1)
+
+    white = PatternFill(start_color="ffffff", end_color="ffffff", fill_type="solid")
+    lightGray = PatternFill(start_color="f0f0f0", end_color="f0f0f0", fill_type="solid")
+    border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
+    setTableStyle(ws, 3, columns, analystDf, border, white, lightGray)
+    resizeCells(ws, ["Evolver Analysis"], columns, columns)
     wb.save(path)

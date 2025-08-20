@@ -1,165 +1,229 @@
-SEED UTILIZZATO: 1461244130054203426
-
-Cont           1.35e-16  0.0       
-A              1e-18     0.0       
-B              1e-18     0.0       
-AA             1e-18     0.0       
-AB             1e-18     0.0       
-BA             1e-18     0.0       
-BB             1e-18     0.0       
-ABA            1e-18     0.0       
-ABB            1e-18     0.0       
-BAA            1e-18     0.0       
-BBA            1e-18     0.0       
-BBB            1e-18     0.0       
-AAAA           1e-18     0.01      
-ABAB           1e-18     0.01      
-BAAA           1e-18     0.01      
-BABB           1e-18     0.01      
-BBAA           1e-18     0.01      
-BBBA           1e-18     0.01      
-BBBB           1e-18     0.01      
-AAAAA          1e-18     0.01      
-AABAB          1e-18     0.01      
-ABAAA          1e-18     0.01      
-ABABB          1e-18     0.01      
-ABBAA          1e-18     0.01      
-ABBBA          1e-18     0.01      
-ABBBB          1e-18     0.01      
-BAAAA          1e-18     0.01      
-BABAB          1e-18     0.01      
-BBAAA          1e-18     0.01      
-BBABB          1e-18     0.01      
-BBBAA          1e-18     0.01      
-BBBBA          1e-18     0.01      
-BBBBB          1e-18     0.01      
-BBBBAA         1e-18     0.01      
-BBBBBA         1e-18     0.01      
-BBBBBB         1e-18     0.01      
-ABBBBA         1e-18     0.01      
-ABBBBB         1e-18     0.01      
-BABBBB         1e-18     0.01      
-AAAAAA         1e-18     0.01      
-BAAAAA         1e-18     0.01      
-BBAAAA         1e-18     0.01      
-BBBBAAA        1e-18     0.01      
-BBBBABB        1e-18     0.01      
-BBBBBAA        1e-18     0.01      
-BBBBBBA        1e-18     0.01      
-BBBBBBB        1e-18     0.01      
-ABBBBAA        1e-18     0.01      
-ABBBBBA        1e-18     0.01      
-ABBBBBB        1e-18     0.01      
-BABBBBA        1e-18     0.01      
-BABBBBB        1e-18     0.01      
-ABABBBB        1e-18     0.01      
-BBABBBB        1e-18     0.01      
-AAAAAAA        1e-18     0.01      
-AAAABAB        1e-18     0.01      
-BAAAAAA        1e-18     0.01      
-ABAAAAA        1e-18     0.01      
-ABBAAAA        1e-18     0.01      
-BBAAAAA        1e-18     0.01      
-BBBAAAA        1e-18     0.01      
-ABBBBAAA       1e-18     0.01      
-ABBBBABB       1e-18     0.01      
-ABBBBBAA       1e-18     0.01      
-ABBBBBBA       1e-18     0.01      
-ABBBBBBB       1e-18     0.01      
-BBBBBAAA       1e-18     0.01      
-BBBBBABB       1e-18     0.01      
-BBBBBBAA       1e-18     0.01      
-BBBBBBBA       1e-18     0.01      
-BBBBBBBB       1e-18     0.01      
-BABBBBAA       1e-18     0.01      
-BABBBBBA       1e-18     0.01      
-BABBBBBB       1e-18     0.01      
-ABABBBBA       1e-18     0.01      
-ABABBBBB       1e-18     0.01      
-BBABBBBA       1e-18     0.01      
-BBABBBBB       1e-18     0.01      
-BAAAAAAA       1e-18     0.01      
-BAAAABAB       1e-18     0.01      
-AAAAAAAA       1e-18     0.01      
-BBAAAAAA       1e-18     0.01      
-BBBBAAAA       1e-18     0.01      
-BABBBBAAA      1e-18     0.01      
-BABBBBABB      1e-18     0.01      
-BABBBBBAA      1e-18     0.01      
-BABBBBBBA      1e-18     0.01      
-BABBBBBBB      1e-18     0.01      
-BBBBBBAAA      1e-18     0.01      
-BBBBBBABB      1e-18     0.01      
-BBBBBBBAA      1e-18     0.01      
-BBBBBBBBA      1e-18     0.01      
-BBBBBBBBB      1e-18     0.01      
-ABABBBBAA      1e-18     0.01      
-ABABBBBBA      1e-18     0.01      
-ABABBBBBB      1e-18     0.01      
-ABBBBBBAA      1e-18     0.01      
-ABBBBBBBA      1e-18     0.01      
-ABBBBBBBB      1e-18     0.01      
-BBABBBBAA      1e-18     0.01      
-BBABBBBBA      1e-18     0.01      
-BBABBBBBB      1e-18     0.01      
-AAAAAAAAA      1e-18     0.01      
-AAAAAABAB      1e-18     0.01      
-BAAAAAAAA      1e-18     0.01      
-BAAAAABAB      1e-18     0.01      
-BBAAAAAAA      1e-18     0.01      
-BBAAAABAB      1e-18     0.01      
-ABAAAAAAA      1e-18     0.01      
-ABBAAAAAA      1e-18     0.01      
-BBBAAAAAA      1e-18     0.01      
-BBBBABBBB      1e-18     0.01      
-BBBBAAAAA      1e-18     0.01      
-BBBBBAAAA      1e-18     0.01      
-ABBBBAAAA      1e-18     0.01      
-ABABBBBAAA     1e-18     0.01      
-ABABBBBABB     1e-18     0.01      
-ABABBBBBAA     1e-18     0.01      
-ABABBBBBBA     1e-18     0.01      
-ABABBBBBBB     1e-18     0.01      
-ABBBBBBAAA     1e-18     0.01      
-ABBBBBBABB     1e-18     0.01      
-ABBBBBBBAA     1e-18     0.01      
-ABBBBBBBBA     1e-18     0.01      
-ABBBBBBBBB     1e-18     0.01      
-BBABBBBAAA     1e-18     0.01      
-BBABBBBABB     1e-18     0.01      
-BBABBBBBAA     1e-18     0.01      
-BBABBBBBBA     1e-18     0.01      
-BBABBBBBBB     1e-18     0.01      
-BBBBBBBAAA     1e-18     0.01      
-BBBBBBBABB     1e-18     0.01      
-BBBBBBBBAA     1e-18     0.01      
-BBBBBBBBBA     1e-18     0.01      
-BBBBBBBBBB     1e-18     0.01      
-AAAAAAAAAA     1e-18     0.01      
-AAAAAAABAB     1e-18     0.01      
-ABAAAAAAAA     1e-18     0.01      
-ABAAAAABAB     1e-18     0.01      
-ABBAAAAAAA     1e-18     0.01      
-ABBAAAABAB     1e-18     0.01      
-BAAAAAAAAA     1e-18     0.01      
-BAAAAAABAB     1e-18     0.01      
-BBAAAAAAAA     1e-18     0.01      
-BBAAAAABAB     1e-18     0.01      
-BBBAAAAAAA     1e-18     0.01      
-BBBAAAABAB     1e-18     0.01      
-BBBBABBBBA     1e-18     0.01      
-BBBBABBBBB     1e-18     0.01      
-BBBBAAAAAA     1e-18     0.01      
-ABBBBABBBB     1e-18     0.01      
-ABBBBAAAAA     1e-18     0.01      
-ABBBBBAAAA     1e-18     0.01      
-BBBBBABBBB     1e-18     0.01      
-BBBBBAAAAA     1e-18     0.01      
-BBBBBBAAAA     1e-18     0.01      
-BABBBBBBAA     1e-18     0.01      
-BABBBBBBBA     1e-18     0.01      
-BABBBBBBBB     1e-18     0.01      
-BABBBBAAAA     1e-18     0.01      
+Cont           1.3500111022989117e-16        0.0       
+A              2.686482105953272e-17         0.0       
+B              2.686482105953272e-17         0.0       
+AA             2.1786585044409807e-19        0.0       
+AB             2.686482105953272e-17         0.0       
+BA             2.686482105953272e-17         0.0       
+BB             1.8535166780796055e-17        0.0       
+ABA            2.686482105953272e-17         0.0       
+ABB            2.205125719946964e-17         0.0       
+BAA            1.474292640731322e-17         0.0       
+BBA            2.205125719946964e-17         0.0       
+BBB            1.871932066063052e-17         0.0       
+AAA            0.0                           0.01      
+AAAA           1.861814980618931e-21         0.01      
+ABAB           0.0                           0.01      
+BAAA           0.0                           0.01      
+BABB           0.0                           0.01      
+BBAA           0.0                           0.01      
+BBBA           0.0                           0.01      
+BBBB           1.3379246063001903e-18        0.01      
+ABBA           0.0                           0.01      
+ABBB           0.0                           0.01      
+AAAAA          0.0                           0.01      
+AABAB          0.0                           0.01      
+ABAAA          0.0                           0.01      
+ABABB          0.0                           0.01      
+ABBAA          0.0                           0.01      
+ABBBA          0.0                           0.01      
+ABBBB          2.2702044654469353e-18        0.01      
+BAAAA          1.0206669622004149e-17        0.01      
+BABAB          0.0                           0.01      
+BBAAA          0.0                           0.01      
+BBABB          0.0                           0.01      
+BBBAA          0.0                           0.01      
+BBBBA          2.270204465446936e-18         0.01      
+BBBBB          2.7952006327820634e-18        0.01      
+ABBAB          0.0                           0.01      
+BBBBAA         0.0                           0.01      
+BBBBBA         2.3632594162059082e-18        0.01      
+BBBBBB         1.6869121518739562e-18        0.01      
+ABBBBA         4.3492563965017906e-18        0.01      
+ABBBBB         2.363259416205909e-18         0.01      
+BABBBB         0.0                           0.01      
+AAAAAA         5.305806348613883e-23         0.01      
+BAAAAA         0.0                           0.01      
+BBAAAA         0.0                           0.01      
+AAABBA         0.0                           0.01      
+BABBAB         0.0                           0.01      
+BBBABB         0.0                           0.01      
+AABBAB         0.0                           0.01      
+ABBBAB         0.0                           0.01      
+BBAABA         0.0                           0.01      
+BBBBAAA        0.0                           0.01      
+BBBBABB        0.0                           0.01      
+BBBBBAA        0.0                           0.01      
+BBBBBBA        4.21590110080188e-19          0.01      
+BBBBBBB        6.662543305096346e-19         0.01      
+ABBBBAA        0.0                           0.01      
+ABBBBBA        0.0                           0.01      
+ABBBBBB        4.2159011008018794e-19        0.01      
+BABBBBA        0.0                           0.01      
+BABBBBB        0.0                           0.01      
+ABABBBB        0.0                           0.01      
+BBABBBB        0.0                           0.01      
+AAAAAAA        0.0                           0.01      
+AAAABAB        0.0                           0.01      
+BAAAAAA        7.225999660613553e-18         0.01      
+ABAAAAA        0.0                           0.01      
+ABBAAAA        0.0                           0.01      
+BBAAAAA        0.0                           0.01      
+BBBAAAA        0.0                           0.01      
+ABBAAAB        0.0                           0.01      
+BABAAAB        0.0                           0.01      
+ABBABBA        0.0                           0.01      
+ABBABBB        0.0                           0.01      
+ABBBBAAA       0.0                           0.01      
+ABBBBABB       0.0                           0.01      
+ABBBBBAA       0.0                           0.01      
+ABBBBBBA       9.162154995194729e-19         0.01      
+ABBBBBBB       1.1509556224736793e-18        0.01      
+BBBBBAAA       0.0                           0.01      
+BBBBBABB       0.0                           0.01      
+BBBBBBAA       0.0                           0.01      
+BBBBBBBA       1.1509556224736804e-18        0.01      
+BBBBBBBB       1.1428881278537659e-18        0.01      
+BABBBBAA       0.0                           0.01      
+BABBBBBA       0.0                           0.01      
+BABBBBBB       0.0                           0.01      
+ABABBBBA       0.0                           0.01      
+ABABBBBB       0.0                           0.01      
+BBABBBBA       0.0                           0.01      
+BBABBBBB       0.0                           0.01      
+BAAAAAAA       0.0                           0.01      
+BAAAABAB       0.0                           0.01      
+AAAAAAAA       5.120294066028177e-23         0.01      
+BBAAAAAA       0.0                           0.01      
+BBBBAAAA       0.0                           0.01      
+AAAAABBA       0.0                           0.01      
+ABBAAABB       0.0                           0.01      
+BBBABBBB       0.0                           0.01      
+ABBAABAA       0.0                           0.01      
+ABBBBAAB       0.0                           0.01      
+AAAABBAB       0.0                           0.01      
+ABAAAAAA       0.0                           0.01      
+ABBAAAAA       0.0                           0.01      
+BBBAAAAA       0.0                           0.01      
+AAAAABAB       0.0                           0.01      
+BBBBAABA       0.0                           0.01      
+AABBABBB       0.0                           0.01      
+BABBBBAAA      0.0                           0.01      
+BABBBBABB      0.0                           0.01      
+BABBBBBAA      0.0                           0.01      
+BABBBBBBA      0.0                           0.01      
+BABBBBBBB      0.0                           0.01      
+BBBBBBAAA      0.0                           0.01      
+BBBBBBABB      0.0                           0.01      
+BBBBBBBAA      0.0                           0.01      
+BBBBBBBBA      8.417610282299536e-19         0.01      
+BBBBBBBBB      8.67627878214052e-19          0.01      
+ABABBBBAA      0.0                           0.01      
+ABABBBBBA      0.0                           0.01      
+ABABBBBBB      0.0                           0.01      
+ABBBBBBAA      0.0                           0.01      
+ABBBBBBBA      9.542526201216932e-19         0.01      
+ABBBBBBBB      8.417610282297442e-19         0.01      
+BBABBBBAA      0.0                           0.01      
+BBABBBBBA      0.0                           0.01      
+BBABBBBBB      0.0                           0.01      
+AAAAAAAAA      0.0                           0.01      
+AAAAAABAB      0.0                           0.01      
+BAAAAAAAA      1.7027366906930235e-17        0.01      
+BAAAAABAB      0.0                           0.01      
+BBAAAAAAA      0.0                           0.01      
+BBAAAABAB      0.0                           0.01      
+ABAAAAAAA      0.0                           0.01      
+ABBAAAAAA      0.0                           0.01      
+BBBAAAAAA      0.0                           0.01      
+BBBBABBBB      0.0                           0.01      
+BBBBAAAAA      0.0                           0.01      
+BBBBBAAAA      0.0                           0.01      
+ABBBBAAAA      0.0                           0.01      
+BAAAAABBA      0.0                           0.01      
+ABBBBBABB      0.0                           0.01      
+BBBABBBBA      0.0                           0.01      
+BBBABBBBB      0.0                           0.01      
+BBBBAABBA      0.0                           0.01      
+BABBBAABA      0.0                           0.01      
+AABBAABAA      0.0                           0.01      
+ABBBBBAAA      0.0                           0.01      
+BAAAABBAB      0.0                           0.01      
+AAAAAABBA      0.0                           0.01      
+AAAAABBAB      0.0                           0.01      
+ABBBABABA      0.0                           0.01      
+AAABBABBA      0.0                           0.01      
+ABBBBAABA      0.0                           0.01      
+BBBBBAABA      0.0                           0.01      
+ABBABBBBB      0.0                           0.01      
+ABABBBBAAA     0.0                           0.01      
+ABABBBBABB     0.0                           0.01      
+ABABBBBBAA     0.0                           0.01      
+ABABBBBBBA     0.0                           0.01      
+ABABBBBBBB     0.0                           0.01      
+ABBBBBBAAA     0.0                           0.01      
+ABBBBBBABB     0.0                           0.01      
+ABBBBBBBAA     0.0                           0.01      
+ABBBBBBBBA     2.1947347813814236e-19        0.01      
+ABBBBBBBBB     4.911122305608223e-19         0.01      
+BBABBBBAAA     0.0                           0.01      
+BBABBBBABB     0.0                           0.01      
+BBABBBBBAA     0.0                           0.01      
+BBABBBBBBA     0.0                           0.01      
+BBABBBBBBB     0.0                           0.01      
+BBBBBBBAAA     0.0                           0.01      
+BBBBBBBABB     0.0                           0.01      
+BBBBBBBBAA     0.0                           0.01      
+BBBBBBBBBA     4.911122305611477e-19         0.01      
+BBBBBBBBBB     7.297439407490538e-19         0.01      
+AAAAAAAAAA     2.9400433199932653e-22        0.01      
+AAAAAAABAB     0.0                           0.01      
+ABAAAAAAAA     0.0                           0.01      
+ABAAAAABAB     0.0                           0.01      
+ABBAAAAAAA     0.0                           0.01      
+ABBAAAABAB     0.0                           0.01      
+BAAAAAAAAA     0.0                           0.01      
+BAAAAAABAB     0.0                           0.01      
+BBAAAAAAAA     0.0                           0.01      
+BBAAAAABAB     0.0                           0.01      
+BBBAAAAAAA     0.0                           0.01      
+BBBAAAABAB     0.0                           0.01      
+BBBBABBBBA     0.0                           0.01      
+BBBBABBBBB     0.0                           0.01      
+BBBBAAAAAA     0.0                           0.01      
+ABBBBABBBB     0.0                           0.01      
+ABBBBAAAAA     0.0                           0.01      
+ABBBBBAAAA     0.0                           0.01      
+BBBBBABBBB     0.0                           0.01      
+BBBBBAAAAA     0.0                           0.01      
+BBBBBBAAAA     0.0                           0.01      
+BABBBBBBAA     0.0                           0.01      
+BABBBBBBBA     0.0                           0.01      
+BABBBBBBBB     0.0                           0.01      
+BABBBBAAAA     0.0                           0.01      
+AABAAABAAA     0.0                           0.01      
+AAAAAAABBA     0.0                           0.01      
+BAAAAAABBA     0.0                           0.01      
+BBAAAAABBA     0.0                           0.01      
+ABBAAABBBB     0.0                           0.01      
+ABBBBAAABB     0.0                           0.01      
+BABBBBBABB     0.0                           0.01      
+BBBABBBBAA     0.0                           0.01      
+BBBABBBBBA     0.0                           0.01      
+BBBABBBBBB     0.0                           0.01      
+ABBAABAAAA     0.0                           0.01      
+ABBBBAABBB     0.0                           0.01      
+AAAAAABBAB     0.0                           0.01      
+BAAAAABBAB     0.0                           0.01      
+BBAAAABBAB     0.0                           0.01      
+BBAABAABBA     0.0                           0.01      
+BABBBBAABA     0.0                           0.01      
+BBBBBBAABA     0.0                           0.01      
+ABBBBBAABA     0.0                           0.01      
+BABBBBBAAB     0.0                           0.01      
+AABBABBBBB     0.0                           0.01      
+AAAABBABBB     0.0                           0.01      
+ABBABBBBBA     0.0                           0.01      
+ABBABBBBBB     0.0                           0.01      
 
 10.0 > A ; 1e-18
 10.0 > B ; 1e-18
@@ -447,3 +511,125 @@ BBAAAAA + AA + ABBBB > BBAAAAAAA + ABBBB ; 0.01
 BBBAAAA + AA + ABBBB > BBBAAAAAA + ABBBB ; 0.01
 BB + BBBBAAAA + AAAA > BBBBBBAAAA + AAAA ; 0.01
 BBBBAAAA + AA + ABBBB > BBBBAAAAAA + ABBBB ; 0.01
+AA + AAABBA + ABBBB > AAAAABBA + ABBBB ; 0.01
+BAA + AAABBA + ABBBB > BAAAAABBA + ABBBB ; 0.01
+AAAA + AAABBA + ABBBB > AAAAAAABBA + ABBBB ; 0.01
+BAAA + AAABBA + ABBBB > BAAAAAABBA + ABBBB ; 0.01
+BBAA + AAABBA + ABBBB > BBAAAAABBA + ABBBB ; 0.01
+AAABBA + BBAAA > AA + ABBA + BBAAA ; 0.01
+AA + AAAAABBA + ABBBB > AAAAAAABBA + ABBBB ; 0.01
+AAAAABBA + BBAAA > AAAA + ABBA + BBAAA ; 0.01
+BAAAAABBA + BBAAA > BAAAA + ABBA + BBAAA ; 0.01
+AAAAAAABBA + BBAAA > AAAAAA + ABBA + BBAAA ; 0.01
+BAAAAAABBA + BBAAA > BAAAAA + ABBA + BBAAA ; 0.01
+BBAAAAABBA + BBAAA > BBAAAA + ABBA + BBAAA ; 0.01
+ABBAAABB + BB + AAAA > ABBAAABBBB + AAAA ; 0.01
+ABBAAABB + BBAAA > ABBAA + ABB + BBAAA ; 0.01
+ABBAAABBBB + BBAAA > ABBAA + ABBBB + BBAAA ; 0.01
+ABBAAABBBB + BBABBBBAAA > ABBAAAB + BBB + BBABBBBAAA ; 0.01
+ABBBBAAABB + BBAAA > ABBBBAA + ABB + BBAAA ; 0.01
+BB + BBBABB + AAAA > BBBBBABB + AAAA ; 0.01
+ABB + BBBABB + AAAA > ABBBBBABB + AAAA ; 0.01
+BBB + BBBABB + AAAA > BBBBBBABB + AAAA ; 0.01
+BABB + BBBABB + AAAA > BABBBBBABB + AAAA ; 0.01
+BBBB + BBBABB + AAAA > BBBBBBBABB + AAAA ; 0.01
+BBBABB + BB + AAAA > BBBABBBB + AAAA ; 0.01
+BBBABB + BBA + AAAA > BBBABBBBA + AAAA ; 0.01
+BBBABB + BBB + AAAA > BBBABBBBB + AAAA ; 0.01
+BBBABB + BBAA + AAAA > BBBABBBBAA + AAAA ; 0.01
+BBBABB + BBBA + AAAA > BBBABBBBBA + AAAA ; 0.01
+BBBABB + BBBB + AAAA > BBBABBBBBB + AAAA ; 0.01
+BB + BBBABBBB + AAAA > BBBBBABBBB + AAAA ; 0.01
+BBBABBBB + BB + AAAA > BBBABBBBBB + AAAA ; 0.01
+BBBBAABBA + BBAAA > BBBBA + ABBA + BBAAA ; 0.01
+AABBAABAA + BBAAA > A + ABBAABAA + BBAAA ; 0.01
+ABBAABAA + AA + ABBBB > ABBAABAAAA + ABBBB ; 0.01
+ABBBBAABBB + BBAAA > ABBBBA + ABBB + BBAAA ; 0.01
+ABBBBAABBB + BBABBBBAAA > ABBBBAAB + BB + BBABBBBAAA ; 0.01
+ABBB + BB + AAAA > ABBBBB + AAAA ; 0.01
+ABBB + BBA + AAAA > ABBBBBA + AAAA ; 0.01
+ABBB + BBB + AAAA > ABBBBBB + AAAA ; 0.01
+ABBB + BBAA + AAAA > ABBBBBAA + AAAA ; 0.01
+ABBB + BBBA + AAAA > ABBBBBBA + AAAA ; 0.01
+ABBB + BBBB + AAAA > ABBBBBBB + AAAA ; 0.01
+ABBB + BBAAA + AAAA > ABBBBBAAA + AAAA ; 0.01
+ABBB + BBABB + AAAA > ABBBBBABB + AAAA ; 0.01
+ABBB + BBBAA + AAAA > ABBBBBBAA + AAAA ; 0.01
+ABBB + BBBBA + AAAA > ABBBBBBBA + AAAA ; 0.01
+ABBB + BBBBB + AAAA > ABBBBBBBB + AAAA ; 0.01
+ABBB + BBBBAA + AAAA > ABBBBBBBAA + AAAA ; 0.01
+ABBB + BBBBBA + AAAA > ABBBBBBBBA + AAAA ; 0.01
+ABBB + BBBBBB + AAAA > ABBBBBBBBB + AAAA ; 0.01
+ABBB + BBAAAA + AAAA > ABBBBBAAAA + AAAA ; 0.01
+ABBB + BBBABB + AAAA > ABBBBBBABB + AAAA ; 0.01
+AA + AABBAB + ABBBB > AAAABBAB + ABBBB ; 0.01
+BAA + AABBAB + ABBBB > BAAAABBAB + ABBBB ; 0.01
+AAAA + AABBAB + ABBBB > AAAAAABBAB + ABBBB ; 0.01
+BAAA + AABBAB + ABBBB > BAAAAABBAB + ABBBB ; 0.01
+BBAA + AABBAB + ABBBB > BBAAAABBAB + ABBBB ; 0.01
+AABBAB + BBAAA > A + ABBAB + BBAAA ; 0.01
+AA + AAAABBAB + ABBBB > AAAAAABBAB + ABBBB ; 0.01
+AAAABBAB + BBAAA > AAA + ABBAB + BBAAA ; 0.01
+BAAAABBAB + BBAAA > BAAA + ABBAB + BBAAA ; 0.01
+AAAAAABBAB + BBAAA > AAAAA + ABBAB + BBAAA ; 0.01
+BAAAAABBAB + BBAAA > BAAAA + ABBAB + BBAAA ; 0.01
+BBAAAABBAB + BBAAA > BBAAA + ABBAB + BBAAA ; 0.01
+AA + AAA + ABBBB > AAAAA + ABBBB ; 0.01
+BAA + AAA + ABBBB > BAAAAA + ABBBB ; 0.01
+AAAA + AAA + ABBBB > AAAAAAA + ABBBB ; 0.01
+BAAA + AAA + ABBBB > BAAAAAA + ABBBB ; 0.01
+BBAA + AAA + ABBBB > BBAAAAA + ABBBB ; 0.01
+AAAAA + AAA + ABBBB > AAAAAAAA + ABBBB ; 0.01
+ABAAA + AAA + ABBBB > ABAAAAAA + ABBBB ; 0.01
+ABBAA + AAA + ABBBB > ABBAAAAA + ABBBB ; 0.01
+BAAAA + AAA + ABBBB > BAAAAAAA + ABBBB ; 0.01
+BBAAA + AAA + ABBBB > BBAAAAAA + ABBBB ; 0.01
+BBBAA + AAA + ABBBB > BBBAAAAA + ABBBB ; 0.01
+BBBBAA + AAA + ABBBB > BBBBAAAAA + ABBBB ; 0.01
+AAAAAA + AAA + ABBBB > AAAAAAAAA + ABBBB ; 0.01
+BAAAAA + AAA + ABBBB > BAAAAAAAA + ABBBB ; 0.01
+BBAAAA + AAA + ABBBB > BBAAAAAAA + ABBBB ; 0.01
+BBBBAAA + AAA + ABBBB > BBBBAAAAAA + ABBBB ; 0.01
+BBBBBAA + AAA + ABBBB > BBBBBAAAAA + ABBBB ; 0.01
+ABBBBAA + AAA + ABBBB > ABBBBAAAAA + ABBBB ; 0.01
+AAAAAAA + AAA + ABBBB > AAAAAAAAAA + ABBBB ; 0.01
+BAAAAAA + AAA + ABBBB > BAAAAAAAAA + ABBBB ; 0.01
+ABAAAAA + AAA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+ABBAAAA + AAA + ABBBB > ABBAAAAAAA + ABBBB ; 0.01
+BBAAAAA + AAA + ABBBB > BBAAAAAAAA + ABBBB ; 0.01
+BBBAAAA + AAA + ABBBB > BBBAAAAAAA + ABBBB ; 0.01
+AAA + AA + ABBBB > AAAAA + ABBBB ; 0.01
+AAA + AAAA + ABBBB > AAAAAAA + ABBBB ; 0.01
+AAA + AAAAA + ABBBB > AAAAAAAA + ABBBB ; 0.01
+AAA + AABAB + ABBBB > AAAAABAB + ABBBB ; 0.01
+AAA + AAAAAA + ABBBB > AAAAAAAAA + ABBBB ; 0.01
+AAA + AAABBA + ABBBB > AAAAAABBA + ABBBB ; 0.01
+AAA + AAAAAAA + ABBBB > AAAAAAAAAA + ABBBB ; 0.01
+AAA + AAAABAB + ABBBB > AAAAAAABAB + ABBBB ; 0.01
+AAA + AABBAB + ABBBB > AAAAABBAB + ABBBB ; 0.01
+AAA + AAA + ABBBB > AAAAAA + ABBBB ; 0.01
+BB + BBBAAAAA + AAAA > BBBBBAAAAA + AAAA ; 0.01
+AA + AAAAABAB + ABBBB > AAAAAAABAB + ABBBB ; 0.01
+ABAAAAAA + AA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+ABBAAAAA + AA + ABBBB > ABBAAAAAAA + ABBBB ; 0.01
+BBBAAAAA + AA + ABBBB > BBBAAAAAAA + ABBBB ; 0.01
+AAAAAABBA + BBAAA > AAAAA + ABBA + BBAAA ; 0.01
+AAAAABBAB + BBAAA > AAAA + ABBAB + BBAAA ; 0.01
+ABBBABABA + BABAB > ABBBAB + ABA + BABAB ; 0.01
+AAABBABBA + BBAAA > AA + ABBABBA + BBAAA ; 0.01
+BBAABAABBA + BBAAA > BBAABA + ABBA + BBAAA ; 0.01
+BB + BBAABA + AAAA > BBBBAABA + AAAA ; 0.01
+ABB + BBAABA + AAAA > ABBBBAABA + AAAA ; 0.01
+BBB + BBAABA + AAAA > BBBBBAABA + AAAA ; 0.01
+BABB + BBAABA + AAAA > BABBBBAABA + AAAA ; 0.01
+BBBB + BBAABA + AAAA > BBBBBBAABA + AAAA ; 0.01
+ABBB + BBAABA + AAAA > ABBBBBAABA + AAAA ; 0.01
+BB + BBBBAABA + AAAA > BBBBBBAABA + AAAA ; 0.01
+AABBABBB + BB + AAAA > AABBABBBBB + AAAA ; 0.01
+AA + AABBABBB + ABBBB > AAAABBABBB + ABBBB ; 0.01
+AABBABBB + BBAAA > A + ABBABBB + BBAAA ; 0.01
+ABBABBB + BB + AAAA > ABBABBBBB + AAAA ; 0.01
+ABBABBB + BBA + AAAA > ABBABBBBBA + AAAA ; 0.01
+ABBABBB + BBB + AAAA > ABBABBBBBB + AAAA ; 0.01
+AABBABBBBB + BBAAA > A + ABBABBBBB + BBAAA ; 0.01
+AAAABBABBB + BBAAA > AAA + ABBABBB + BBAAA ; 0.01

@@ -57,11 +57,8 @@ class Mutator():
         for line in lines:
             line = line.split()
             if line[1] == "Cleavage":
-                for species in self.getSpecies():
-                    if species.getName() == line[0]:
-                        catalyst = Catalyst(species.getName())
-                        catalyst.setIsCleavage(True)
-                        break
+                catalyst = Catalyst(line[0])
+                catalyst.setIsCleavage(True)
                 reagent1 = line[4].replace("R-", "")
                 reagent2 = line[5].replace("-R", "")
                 reagent = reagent1 + reagent2
@@ -75,11 +72,8 @@ class Mutator():
                 reactionClass.setReagents([reagent])
                 reactionClass.setSplit(int(line[3]))
             elif line[1] == "Condensazione":
-                for species in self.getSpecies():
-                    if species.getName() == line[0]:
-                        catalyst = Catalyst(species.getName())
-                        catalyst.setIsCondensation(True)
-                        break
+                catalyst = Catalyst(line[0])
+                catalyst.setIsCondensation(True)
                 reagents = line[4].split("+")
                 reagent1 = reagents[0].replace("R-", "")
                 reagent2 = reagents[1].replace("-R", "")

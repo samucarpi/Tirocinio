@@ -412,22 +412,26 @@ class Generator:
                 if self.debug:
                     print(colored("NESSUNA REAZIONE GENERATA",'red',attrs=['bold']))
             lap+=1
+
+    def manageNewSpecies(self,species,newSpecies):
+        species.setIsInitial(False)
+        newSpecies.append(species)
+        self.addSpecies(species)
                     
     def addNewSpecies(self,newSpecies,reaction,type):
         species=None
         if type == CondensationReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
                 species = createSpeciesObject(reaction.getProducts()[0])
+                self.manageNewSpecies(species, newSpecies)
         elif type == CleavageReactionClass:
             if reaction.getProducts()[0] not in [s.getName() for s in self.getSpecies()]:
                 species = createSpeciesObject(reaction.getProducts()[0])
+                self.manageNewSpecies(species, newSpecies)
             if reaction.getProducts()[1] not in [s.getName() for s in self.getSpecies()]:
                 species = createSpeciesObject(reaction.getProducts()[1])
-        if species:
-            species.setIsInitial(False)
-            newSpecies.append(species)
-            self.addSpecies(species)
-                
+                self.manageNewSpecies(species, newSpecies)
+
     def addRandomCataylst(self,species):
         if self.getParameter('maxCatalystLength')=='ON' and len(species.getName())>self.getParameter('maxCondensationLength'):
             return
