@@ -123,6 +123,15 @@ def getSpeciesCountFromFile(path):
             count += 1
     return count
 
+def getReactionsCountFromFile(path):
+    count = 0
+    with open(path, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        if ">" in line and not NUMERIC_START.match(line) and line.strip():
+            count += 1
+    return count
+
 def getNotNullSpeciesCountFromFile(path):
     count = 0
     with open(path, "r") as f:
@@ -575,15 +584,15 @@ def writeAnalysOnExcel(data, serieName):
     resizeCells(ws, ["Analysis"], columns, columns)
     wb.save(path)
 
-def writeExcelEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus):
-    columns = ['Generation', 'Number of species', 'Number of non-zero species', 'Time', 'Accepted']
+def writeExcelEvolverAnalysis(generations, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus):
+    columns = ['Generation', 'Number of reactions', 'Number of species', 'Number of non-zero species', 'Introduced Species', 'Time', 'Accepted']
     rows = []
     for i in range(generations):
         if acceptedStatus[i]:
             status = "Yes"
         else:
             status = "No"
-        rows.append([i+1, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
+        rows.append([i+1, countReactions[i], countSpecies[i], countNotNullSpecies[i], introducedSpecies[i], timeRecords[i], status])
 
     analystDf = setTable(pd, rows, columns)
 
@@ -602,15 +611,15 @@ def writeExcelEvolverAnalysis(generations, countSpecies, countNotNullSpecies, ti
     resizeCells(ws, ["Evolver Analysis"], columns, columns)
     wb.save(path)
 
-def writeCSVEvolverAnalysis(generations, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory):
-    columns = ['Generation', 'Number of species', 'Number of non-zero species', 'Time', 'Accepted']
+def writeCSVEvolverAnalysis(generations, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus, directory):
+    columns = ['Generation', 'Number of reactions', 'Number of species', 'Number of non-zero species', 'Introduced Species', 'Time', 'Accepted']
     rows = []
     for i in range(generations):
         if acceptedStatus[i]:
             status = "Yes"
         else:
             status = "No"
-        rows.append([i+1, countSpecies[i], countNotNullSpecies[i], timeRecords[i], status])
+        rows.append([i+1, countReactions[i], countSpecies[i], countNotNullSpecies[i], introducedSpecies[i], timeRecords[i], status])
 
     analystDf = setTable(pd, rows, columns)
     path = os.path.join(BASE_DIR, "io", "evolver", "output", directory, "analysis.csv")

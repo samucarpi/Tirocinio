@@ -11,6 +11,7 @@ class Evolver:
         self.previousTime = 600000
         self.concentrations = {}
         self.containerCatalysts = []
+        self.currentIntroducedSpecies = None
 
     def getDebug(self):
         return self.debug
@@ -69,6 +70,12 @@ class Evolver:
 
     def getContainerCatalysts(self):
         return self.containerCatalysts
+
+    def getCurrentIntroducedSpecies(self):
+        return self.currentIntroducedSpecies
+
+    def setCurrentIntroducedSpecies(self, species):
+        self.currentIntroducedSpecies = species
 
     def copyChemistryFiles(self):
         copyFile(GENERATOR_PARAMETERS_FILE, EVOLVER_CHEMISTRY_PARAMETERS_FILE)
@@ -151,8 +158,9 @@ class Evolver:
         max_length = max(len(s) for s in species)
         monomers = [m["name"] for m in self.getChemistryParameter("monomers")]
         allCombinations = monomerCombinations(monomers, max_length)
-        filteredCombinations = [s for s in allCombinations if not s.startswith("Cont") or s not in species]
+        filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
         pickedSpecies=random.sample(filteredCombinations, 1)
+        self.setCurrentIntroducedSpecies(pickedSpecies[0])
         with open(speciesFile, "w") as f:
             string = f"# FILE DI INSERIMENTO DELLE SPECIE CHIMICHE MUTANTI\n\n# FORMATTAZIONE\n# NOME TIPO\n# IL TIPO PUO' ESSERE DI TIPO: FOOD (F), CATALIZZATORE (C), BASE (B)\n"
             f.writelines(string+"\n")
@@ -166,7 +174,10 @@ class Evolver:
             for line in lines:
                 if not NUMERIC_START.match(line) and not "+" in line and line.strip() and not line.startswith("#") and not line.startswith("SEED"):
                     line = line.split()
-                    line[1] = str(self.getSingleConcentration(line[0]))
+                    if line[0] == self.getCurrentIntroducedSpecies():
+                        line[1] = str(self.getParameter("concentrationIntroducedSpecies"))
+                    else:
+                        line[1] = str(self.getSingleConcentration(line[0]))
                     f.write(" ".join(line) + "\n")
                 else:
                     f.write(line)
@@ -202,7 +213,7 @@ class Evolver:
     
     def evolve(self):
         i = 0
-        countSpecies, countNotNullSpecies, timeRecords, acceptedStatus = [], [], [], []
+        countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus = [], [], [], [], [], []
         while i<self.getParameter("numberOfEvolutions"):
             self.addContainerSpecies(firstLap=(i==0))
             time = self.pitzalisSimulator()
@@ -215,9 +226,11 @@ class Evolver:
                 acceptedStatus.append(False)
             self.mutateParent()
             i += 1
+            countReactions.append(getReactionsCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
             countSpecies.append(getSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
             countNotNullSpecies.append(getNotNullSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
+            introducedSpecies.append(self.getCurrentIntroducedSpecies())
             directory = "data "+datetime.now().strftime("%d.%m")
-            writeCSVEvolverAnalysis(i, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus, directory)
-        writeExcelEvolverAnalysis(i, countSpecies, countNotNullSpecies, timeRecords, acceptedStatus)
+            writeCSVEvolverAnalysis(i, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus, directory)
+        writeExcelEvolverAnalysis(i, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus)
 

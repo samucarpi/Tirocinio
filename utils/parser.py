@@ -427,6 +427,13 @@ def getEvolverParameters(path):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- CONCENTRAZIONE DELLE SPECIE INTRODOTTE -":
+                    result = checkFloatData(lines[i+1], "- CONCENTRAZIONE DELLE SPECIE INTRODOTTE -")
+                    if result[0]:
+                        parameters['concentrationIntroducedSpecies']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
     if error:
         return error, errorMessages
     else:

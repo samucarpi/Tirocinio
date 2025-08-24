@@ -1,0 +1,4 @@
+Generation,Number of reactions,Number of species,Number of non-zero species,Introduced Species,Time,Accepted
+1,277,163,157,BAABBAABAA,5029.174966027661,Yes
+2,278,165,157,BAABAAAA,7969.874966038359,No
+3,279,168,135,BABAABBAB,8515.574966040343,No

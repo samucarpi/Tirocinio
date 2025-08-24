@@ -1,4 +1,4 @@
-SEED UTILIZZATO: 5897808816314182358
+SEED UTILIZZATO: 3335593521688461518
 
 Cont           1.35e-16  0.0       
 A              1e-18     0.0       
@@ -19,6 +19,7 @@ BABB           1e-18     0.01
 BBAA           1e-18     0.01      
 BBBA           1e-18     0.01      
 BBBB           1e-18     0.01      
+BABA           1e-18     0.01      
 AAAAA          1e-18     0.01      
 AABAB          1e-18     0.01      
 ABAAA          1e-18     0.01      
@@ -33,7 +34,7 @@ BBABB          1e-18     0.01
 BBBAA          1e-18     0.01      
 BBBBA          1e-18     0.01      
 BBBBB          1e-18     0.01      
-ABAAB          1e-18     0.01      
+ABBAB          1e-18     0.01      
 BBBBAA         1e-18     0.01      
 BBBBBA         1e-18     0.01      
 BBBBBB         1e-18     0.01      
@@ -62,7 +63,6 @@ ABAAAAA        1e-18     0.01
 ABBAAAA        1e-18     0.01      
 BBAAAAA        1e-18     0.01      
 BBBAAAA        1e-18     0.01      
-ABABBAA        1e-18     0.01      
 ABBBBAAA       1e-18     0.01      
 ABBBBABB       1e-18     0.01      
 ABBBBBAA       1e-18     0.01      
@@ -85,6 +85,8 @@ BAAAABAB       1e-18     0.01
 AAAAAAAA       1e-18     0.01      
 BBAAAAAA       1e-18     0.01      
 BBBBAAAA       1e-18     0.01      
+ABBAABAA       1e-18     0.01      
+BAABAAAA       1e-18     0.01      
 BABBBBAAA      1e-18     0.01      
 BABBBBABB      1e-18     0.01      
 BABBBBBAA      1e-18     0.01      
@@ -117,8 +119,7 @@ BBBBABBBB      1e-18     0.01
 BBBBAAAAA      1e-18     0.01      
 BBBBBAAAA      1e-18     0.01      
 ABBBBAAAA      1e-18     0.01      
-ABABABBAA      1e-18     0.01      
-ABABBAAAA      1e-18     0.01      
+BABAABBAB      1e-18     0.01      
 ABABBBBAAA     1e-18     0.01      
 ABABBBBABB     1e-18     0.01      
 ABABBBBBAA     1e-18     0.01      
@@ -164,8 +165,9 @@ BABBBBBBAA     1e-18     0.01
 BABBBBBBBA     1e-18     0.01      
 BABBBBBBBB     1e-18     0.01      
 BABBBBAAAA     1e-18     0.01      
-ABAABABAAB     1e-18     0.01      
-ABBBABAABA     1e-18     0.01      
+BAABBAABAA     1e-18     0.01      
+ABBAABAAAA     1e-18     0.01      
+BAABAAAAAA     1e-18     0.01      
 
 10.0 > A ; 1e-18
 10.0 > B ; 1e-18
@@ -453,6 +455,7 @@ BBAAAAA + AA + ABBBB > BBAAAAAAA + ABBBB ; 0.01
 BBBAAAA + AA + ABBBB > BBBAAAAAA + ABBBB ; 0.01
 BB + BBBBAAAA + AAAA > BBBBBBAAAA + AAAA ; 0.01
 BBBBAAAA + AA + ABBBB > BBBBAAAAAA + ABBBB ; 0.01
-ABAABABAAB + BABAB > ABAAB + ABAAB + BABAB ; 0.01
-ABABABBAA + BABAB > AB + ABABBAA + BABAB ; 0.01
-ABABBAA + AA + ABBBB > ABABBAAAA + ABBBB ; 0.01
+BAABBAABAA + BBAAA > BA + ABBAABAA + BBAAA ; 0.01
+ABBAABAA + AA + ABBBB > ABBAABAAAA + ABBBB ; 0.01
+BAABAAAA + AA + ABBBB > BAABAAAAAA + ABBBB ; 0.01
+BABAABBAB + BBAAA > BABA + ABBAB + BBAAA ; 0.01
