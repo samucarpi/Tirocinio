@@ -1,171 +1,192 @@
-Cont           1.3500036046460723e-16        0.0       
-A              2.7827291574048395e-17        0.0       
-B              2.7827291574048395e-17        0.0       
-AA             2.0010723750589358e-19        0.0       
-AB             2.7827291574048395e-17        0.0       
-BA             2.7827291574048426e-17        0.0       
-BB             1.992097583217064e-17         0.0       
-ABA            2.7827291574048395e-17        0.0       
-ABB            2.3326183943731753e-17        0.0       
-BAA            1.5399843887997067e-17        0.0       
-BBA            2.332618394706236e-17         0.0       
-BBB            2.009354133949911e-17         0.0       
-AAAA           1.498423878469132e-21         0.01      
+Cont           1.3500099841440012e-16        0.0       
+A              2.789111858693023e-17         0.0       
+B              2.789111858693023e-17         0.0       
+AA             1.9895357767660992e-19        0.0       
+AB             2.789111858693023e-17         0.0       
+BA             2.789111858693023e-17         0.0       
+BB             2.0019649763486193e-17        0.0       
+ABA            2.789111858693023e-17         0.0       
+ABB            2.341519033720006e-17         0.0       
+BAA            1.5446701497730667e-17        0.0       
+BBA            2.3415258089455105e-17        0.0       
+BBB            2.019121970380397e-17         0.0       
+AAAA           1.4762520396638254e-21        0.01      
 ABAB           8.631588751692979e-23         0.01      
 BAAA           0.0                           0.01      
-BABB           2.1035025691405974e-27        0.01      
+BABB           2.4862363271976763e-27        0.01      
 BBAA           0.0                           0.01      
-BBBA           2.731564732521722e-27         0.01      
-BBBB           1.4186186948181164e-18        0.01      
-BABA           0.0                           0.01      
+BBBA           3.2296906112482695e-27        0.01      
+BBBB           1.4247402040953953e-18        0.01      
+ABAA           5.115071715277107e-23         0.01      
 AAAAA          0.0                           0.01      
 AABAB          0.0                           0.01      
 ABAAA          0.0                           0.01      
-ABABB          5.7247299954980235e-27        0.01      
+ABABB          6.673330267272136e-27         0.01      
 ABBAA          0.0                           0.01      
-ABBBA          8.631588751692979e-23         0.01      
-ABBBB          2.3454206497339803e-18        0.01      
-BAAAA          1.0827848633051412e-17        0.01      
+ABBBA          8.63180792967518e-23          0.01      
+ABBBB          2.3502249152649393e-18        0.01      
+BAAAA          1.0873072293628274e-17        0.01      
 BABAB          8.631588751692979e-23         0.01      
 BBAAA          0.0                           0.01      
 BBABB          0.0                           0.01      
-BBBAA          0.0                           0.01      
-BBBBA          2.345420675060534e-18         0.01      
-BBBBB          2.9554252388737225e-18        0.01      
-ABBAB          0.0                           0.01      
+BBBAA          3.917426641248887e-23         0.01      
+BBBBA          2.350267828250846e-18         0.01      
+BBBBB          2.967516576368067e-18         0.01      
+BBBAB          4.832458716560852e-22         0.01      
+ABAAB          1.6163435249977005e-21        0.01      
 BBBBAA         0.0                           0.01      
-BBBBBA         2.4350298248025446e-18        0.01      
-BBBBBB         1.7756103108354373e-18        0.01      
-ABBBBA         4.361757006454144e-18         0.01      
-ABBBBB         2.4350297721762616e-18        0.01      
-BABBBB         2.740492931684206e-26         0.01      
-AAAAAA         3.772166514587225e-23         0.01      
+BBBBBA         2.4394236657170415e-18        0.01      
+BBBBBB         1.78237515554287e-18          0.01      
+ABBBBA         4.349630858061296e-18         0.01      
+ABBBBB         2.439401724477697e-18         0.01      
+BABBBB         3.132064036132574e-26         0.01      
+AAAAAA         3.684646330225864e-23         0.01      
 BAAAAA         0.0                           0.01      
 BBAAAA         0.0                           0.01      
+ABAAAA         7.849891145701736e-23         0.01      
+BBAAAB         0.0                           0.01      
 BBBBAAA        0.0                           0.01      
-BBBBABB        0.0                           0.01      
-BBBBBAA        0.0                           0.01      
-BBBBBBA        4.266775231818285e-19         0.01      
-BBBBBBB        6.925947370550559e-19         0.01      
+BBBBABB        3.5355169091021953e-29        0.01      
+BBBBBAA        2.9604989112569377e-24        0.01      
+BBBBBBA        4.2682439861296737e-19        0.01      
+BBBBBBB        6.948282244480721e-19         0.01      
 ABBBBAA        0.0                           0.01      
-ABBBBBA        1.0668843609285626e-22        0.01      
-ABBBBBB        4.266774493763839e-19         0.01      
-BABBBBA        1.0433444999589427e-22        0.01      
-BABBBBB        3.6738809324146703e-26        0.01      
-ABABBBB        4.543713627135662e-26         0.01      
-BBABBBB        0.0                           0.01      
+ABBBBBA        1.0674393445423587e-22        0.01      
+ABBBBBB        4.268143175895902e-19         0.01      
+BABBBBA        1.0438600721877622e-22        0.01      
+BABBBBB        4.184826896168472e-26         0.01      
+ABABBBB        5.161540797285299e-26         0.01      
+BBABBBB        3.5355169091021953e-29        0.01      
 AAAAAAA        0.0                           0.01      
 AAAABAB        0.0                           0.01      
-BAAAAAA        7.771439496080754e-18         0.01      
+BAAAAAA        7.812664244326826e-18         0.01      
 ABAAAAA        0.0                           0.01      
 ABBAAAA        0.0                           0.01      
 BBAAAAA        0.0                           0.01      
-BBBAAAA        0.0                           0.01      
+BBBAAAA        4.6389360818886446e-23        0.01      
+ABBBAAB        1.050890574239082e-21         0.01      
+BBBBBAB        1.550586809894482e-22         0.01      
+BAAAABA        0.0                           0.01      
 ABBBBAAA       0.0                           0.01      
-ABBBBABB       9.182700150142483e-24         0.01      
-ABBBBBAA       0.0                           0.01      
-ABBBBBBA       9.009129687521768e-19         0.01      
-ABBBBBBB       1.1520297796750316e-18        0.01      
+ABBBBABB       9.549270332465268e-24         0.01      
+ABBBBBAA       4.595043121481971e-24         0.01      
+ABBBBBBA       8.955316981402196e-19         0.01      
+ABBBBBBB       1.1502706889691863e-18        0.01      
 BBBBBAAA       0.0                           0.01      
-BBBBBABB       8.518709591577417e-25         0.01      
-BBBBBBAA       0.0                           0.01      
-BBBBBBBA       1.152033699620345e-18         0.01      
-BBBBBBBB       1.167370144979803e-18         0.01      
+BBBBBABB       9.210414576066904e-25         0.01      
+BBBBBBAA       3.587419563149042e-24         0.01      
+BBBBBBBA       1.1502957436478473e-18        0.01      
+BBBBBBBB       1.1695552148881393e-18        0.01      
 BABBBBAA       0.0                           0.01      
-BABBBBBA       8.982573700716294e-23         0.01      
-BABBBBBB       1.121603470011016e-23         0.01      
-ABABBBBA       1.1062049597968199e-22        0.01      
-ABABBBBB       1.0138410556305031e-23        0.01      
-BBABBBBA       9.25378174711325e-24          0.01      
-BBABBBBB       8.518709591577417e-25         0.01      
-BAAAAAAA       3.5354926825016977e-29        0.01      
-BAAAABAB       1.1250499641171362e-22        0.01      
-AAAAAAAA       3.6432437512543553e-23        0.01      
+BABBBBBA       8.981401132599e-23            0.01      
+BABBBBBB       1.1653545590056252e-23        0.01      
+ABABBBBA       1.1067413286962383e-22        0.01      
+ABABBBBB       1.0540058706156828e-23        0.01      
+BBABBBBA       9.622654481728108e-24         0.01      
+BBABBBBB       9.210414576066904e-25         0.01      
+BAAAAAAA       3.535446238159709e-29         0.01      
+BAAAABAB       1.1258554056139816e-22        0.01      
+AAAAAAAA       3.553937119658445e-23         0.01      
 BBAAAAAA       0.0                           0.01      
 BBBBAAAA       0.0                           0.01      
-ABBAABAA       0.0                           0.01      
-BAABAAAA       2.143242017619962e-23         0.01      
-BABBBBAAA      8.962196063729865e-23         0.01      
-BABBBBABB      8.910706939615392e-23         0.01      
-BABBBBBAA      8.962196063729865e-23         0.01      
-BABBBBBBA      1.286838818356166e-22         0.01      
-BABBBBBBB      1.4036950462716142e-22        0.01      
-BBBBBBAAA      1.0444192331830053e-22        0.01      
-BBBBBBABB      1.0019968296059188e-22        0.01      
-BBBBBBBAA      1.2482367028350276e-22        0.01      
-BBBBBBBBA      8.364697695111352e-19         0.01      
-BBBBBBBBB      8.72643199868747e-19          0.01      
-ABABBBBAA      8.958761262500576e-23         0.01      
-ABABBBBBA      9.031146858180867e-23         0.01      
-ABABBBBBB      1.1479617583581467e-22        0.01      
-ABBBBBBAA      1.121733307994949e-22         0.01      
-ABBBBBBBA      9.367868667060085e-19         0.01      
-ABBBBBBBB      8.36442873984214e-19          0.01      
-BBABBBBAA      8.889170727649092e-23         0.01      
-BBABBBBBA      8.932833828283431e-23         0.01      
-BBABBBBBB      1.0019968296059188e-22        0.01      
-AAAAAAAAA      1.2988304023496491e-22        0.01      
-AAAAAABAB      1.109376123436603e-22         0.01      
-BAAAAAAAA      1.9089009475832335e-17        0.01      
-BAAAAABAB      9.28545685765349e-23          0.01      
-BBAAAAAAA      1.32995228668684e-22          0.01      
-BBAAAABAB      9.060162489303961e-23         0.01      
-ABAAAAAAA      2.4630734526565466e-22        0.01      
-ABBAAAAAA      2.4630734526565466e-22        0.01      
-BBBAAAAAA      1.2928370413610915e-22        0.01      
-BBBBABBBB      1.095129505984195e-22         0.01      
-BBBBAAAAA      1.3762454253419186e-22        0.01      
-BBBBBAAAA      1.5794827249630213e-22        0.01      
-ABBBBAAAA      2.0730282222399615e-22        0.01      
-BABAABBAB      1e-18                         0.01      
-ABABBBBAAA     9.004973131752203e-23         0.01      
-ABABBBBABB     8.942992540028594e-23         0.01      
-ABABBBBBAA     9.004973131752203e-23         0.01      
-ABABBBBBBA     1.3696063859424563e-22        0.01      
-ABABBBBBBB     2.137952981283508e-22         0.01      
-ABBBBBBAAA     1.169658826540041e-22         0.01      
-ABBBBBBABB     1.0939980731481534e-22        0.01      
-ABBBBBBBAA     1.234836624149166e-22         0.01      
-ABBBBBBBBA     2.1237733041060277e-19        0.01      
-ABBBBBBBBB     4.816114868292692e-19         0.01      
-BBABBBBAAA     8.91908141611952e-23          0.01      
-BBABBBBABB     8.878541485744697e-23         0.01      
-BBABBBBBAA     8.91908141611952e-23          0.01      
-BBABBBBBBA     1.1093626173661845e-22        0.01      
-BBABBBBBBB     1.4989625800257252e-22        0.01      
-BBBBBBBAAA     1.358804508963845e-22         0.01      
-BBBBBBBABB     1.4989625800257252e-22        0.01      
-BBBBBBBBAA     1.482967191286831e-22         0.01      
-BBBBBBBBBA     4.816492177453134e-19         0.01      
-BBBBBBBBBB     7.231599359445849e-19         0.01      
-AAAAAAAAAA     4.6765644981949365e-22        0.01      
-AAAAAAABAB     9.020013736890123e-23         0.01      
-ABAAAAAAAA     9.204590985421523e-23         0.01      
-ABAAAAABAB     9.322615785261652e-23         0.01      
-ABBAAAAAAA     9.204590985421523e-23         0.01      
-ABBAAAABAB     9.322615785261652e-23         0.01      
-BAAAAAAAAA     4.2249774722664837e-22        0.01      
-BAAAAAABAB     1.697080082476152e-22         0.01      
-BBAAAAAAAA     1.9080036026312858e-22        0.01      
-BBAAAAABAB     9.126569330382687e-23         0.01      
-BBBAAAAAAA     9.055175764952059e-23         0.01      
-BBBAAAABAB     9.126569330382687e-23         0.01      
-BBBBABBBBA     1.946881246118165e-22         0.01      
-BBBBABBBBB     1.4695145189318056e-22        0.01      
-BBBBAAAAAA     2.1915970331981695e-22        0.01      
-ABBBBABBBB     1.927313626862486e-22         0.01      
-ABBBBAAAAA     2.157201385355329e-22         0.01      
-ABBBBBAAAA     2.157201385355329e-22         0.01      
-BBBBBABBBB     1.4695145189318056e-22        0.01      
-BBBBBAAAAA     1.7677346708643956e-22        0.01      
-BBBBBBAAAA     2.263960906345013e-22         0.01      
-BABBBBBBAA     9.415949900759003e-23         0.01      
-BABBBBBBBA     1.4098015312941334e-22        0.01      
-BABBBBBBBB     2.234279925570739e-22         0.01      
-BABBBBAAAA     1.7963969699881978e-22        0.01      
-BAABBAABAA     1.953109076644896e-21         0.01      
-ABBAABAAAA     2.97251132344204e-27          0.01      
-BAABAAAAAA     4.4172594931666414e-20        0.01      
+BBBAAAAA       1.676267467094248e-28         0.01      
+ABBBBBAB       3.608404344045658e-22         0.01      
+BBBBBBAB       2.4518582420890655e-22        0.01      
+ABAAAAAA       1.169530481766341e-22         0.01      
+BBBBAAAB       0.0                           0.01      
+BABBBBAAA      8.961276856213382e-23         0.01      
+BABBBBABB      8.910044276107803e-23         0.01      
+BABBBBBAA      8.961276898653344e-23         0.01      
+BABBBBBBA      1.2876955203465493e-22        0.01      
+BABBBBBBB      1.4031831857053539e-22        0.01      
+BBBBBBAAA      1.0464132857041992e-22        0.01      
+BBBBBBABB      1.002131723076524e-22         0.01      
+BBBBBBBAA      1.3578535438833883e-22        0.01      
+BBBBBBBBA      8.334797205823424e-19         0.01      
+BBBBBBBBB      8.72678582484944e-19          0.01      
+ABABBBBAA      8.957912142668418e-23         0.01      
+ABABBBBBA      9.029510261276278e-23         0.01      
+ABABBBBBB      1.147515504531044e-22         0.01      
+ABBBBBBAA      1.1242749932500354e-22        0.01      
+ABBBBBBBA      9.306707338465563e-19         0.01      
+ABBBBBBBB      8.334399756771048e-19         0.01      
+BBABBBBAA      8.888704951195674e-23         0.01      
+BBABBBBBA      8.932015486598634e-23         0.01      
+BBABBBBBB      1.002131723076524e-22         0.01      
+AAAAAAAAA      1.3062062483479195e-22        0.01      
+AAAAAABAB      1.1148424684823214e-22        0.01      
+BAAAAAAAA      1.9362035835729485e-17        0.01      
+BAAAAABAB      9.280988674009898e-23         0.01      
+BBAAAAAAA      1.3204822021547278e-22        0.01      
+BBAAAABAB      9.058151803192132e-23         0.01      
+ABAAAAAAA      2.4639424356245436e-22        0.01      
+ABBAAAAAA      2.4639424356245436e-22        0.01      
+BBBAAAAAA      1.1492678693473913e-21        0.01      
+BBBBABBBB      1.0954333657402744e-22        0.01      
+BBBBAAAAA      1.3716385412353145e-22        0.01      
+BBBBBAAAA      2.912089898557963e-22         0.01      
+ABBBBAAAA      2.07646503316209e-22          0.01      
+BBBABABAA      4.262873433371219e-20         0.01      
+BABBBBBAB      3.4701370512362826e-32        0.01      
+BBBBBBBAB      6.974806917489488e-23         0.01      
+ABAAAABAB      0.0                           0.01      
+BBAAABBBB      1e-18                         0.01      
+ABBBBAAAB      0.0                           0.01      
+BBBBBAAAB      0.0                           0.01      
+ABABBBBAAA     9.003710108890414e-23         0.01      
+ABABBBBABB     8.942085860249871e-23         0.01      
+ABABBBBBAA     9.003710213166964e-23         0.01      
+ABABBBBBBA     1.370408979298136e-22         0.01      
+ABABBBBBBB     2.1335643350605126e-22        0.01      
+ABBBBBBAAA     1.1730407213486294e-22        0.01      
+ABBBBBBABB     1.0939443527723192e-22        0.01      
+ABBBBBBBAA     1.3937011744381705e-22        0.01      
+ABBBBBBBBA     2.103762468831205e-19         0.01      
+ABBBBBBBBB     4.781610654317962e-19         0.01      
+BBABBBBAAA     8.918408714927782e-23         0.01      
+BBABBBBABB     8.878066945188453e-23         0.01      
+BBABBBBBAA     8.918408714927782e-23         0.01      
+BBABBBBBBA     1.1091677929412182e-22        0.01      
+BBABBBBBBB     1.4986261165399708e-22        0.01      
+BBBBBBBAAA     1.3689582730307124e-22        0.01      
+BBBBBBBABB     1.4986261165399708e-22        0.01      
+BBBBBBBBAA     1.718602577219188e-22         0.01      
+BBBBBBBBBA     4.782091892333448e-19         0.01      
+BBBBBBBBBB     7.216640859190254e-19         0.01      
+AAAAAAAAAA     4.587754741483065e-22         0.01      
+AAAAAAABAB     9.019146225288234e-23         0.01      
+ABAAAAAAAA     1.4107006207501733e-21        0.01      
+ABAAAAABAB     9.317489571484583e-23         0.01      
+ABBAAAAAAA     9.201027940798857e-23         0.01      
+ABBAAAABAB     9.317489571484583e-23         0.01      
+BAAAAAAAAA     4.2201375105636812e-22        0.01      
+BAAAAAABAB     1.693135265843786e-22         0.01      
+BBAAAAAAAA     1.891855846297465e-22         0.01      
+BBAAAAABAB     9.123733885287145e-23         0.01      
+BBBAAAAAAA     1.8806000249790802e-21        0.01      
+BBBAAAABAB     9.123733885287145e-23         0.01      
+BBBBABBBBA     1.9431516894835322e-22        0.01      
+BBBBABBBBB     1.4692068261103135e-22        0.01      
+BBBBAAAAAA     2.1866417300684157e-22        0.01      
+ABBBBABBBB     1.9237831815192017e-22        0.01      
+ABBBBAAAAA     2.1617465944106448e-22        0.01      
+ABBBBBAAAA     3.8940024380900674e-22        0.01      
+BBBBBABBBB     1.4692068261103135e-22        0.01      
+BBBBBAAAAA     3.3928011749073907e-22        0.01      
+BBBBBBAAAA     3.703615543578462e-22         0.01      
+BABBBBBBAA     9.413284833921546e-23         0.01      
+BABBBBBBBA     1.4103551665394263e-22        0.01      
+BABBBBBBBB     2.229248857788097e-22         0.01      
+BABBBBAAAA     1.7961786678481667e-22        0.01      
+ABBBAABBBB     9.022192875566398e-22         0.01      
+ABAABBBBAA     4.2577683826846747e-20        0.01      
+ABABBBBBAB     9.092802818215635e-32         0.01      
+ABBBBBBBAB     9.304932743648038e-23         0.01      
+BBABBBBBAB     0.0                           0.01      
+BBBBBBBBAB     1.581648072579731e-22         0.01      
+BAAAABAABB     1e-18                         0.01      
+BABBBBAAAB     0.0                           0.01      
+BBBBBBAAAB     0.0                           0.01      
 
 10.0 > A ; 1e-18
 10.0 > B ; 1e-18
@@ -453,7 +474,40 @@ BBAAAAA + AA + ABBBB > BBAAAAAAA + ABBBB ; 0.01
 BBBAAAA + AA + ABBBB > BBBAAAAAA + ABBBB ; 0.01
 BB + BBBBAAAA + AAAA > BBBBBBAAAA + AAAA ; 0.01
 BBBBAAAA + AA + ABBBB > BBBBAAAAAA + ABBBB ; 0.01
-BAABBAABAA + BBAAA > BA + ABBAABAA + BBAAA ; 0.01
-ABBAABAA + AA + ABBBB > ABBAABAAAA + ABBBB ; 0.01
-BAABAAAA + AA + ABBBB > BAABAAAAAA + ABBBB ; 0.01
-BABAABBAB + BBAAA > BABA + ABBAB + BBAAA ; 0.01
+BB + BBBAAAAA + AAAA > BBBBBAAAAA + AAAA ; 0.01
+BBBAAAAA + AA + ABBBB > BBBAAAAAAA + ABBBB ; 0.01
+ABBBAABBBB + BBAAA > ABBBA + ABBBB + BBAAA ; 0.01
+ABBBAABBBB + BBABBBBAAA > ABBBAAB + BBB + BBABBBBAAA ; 0.01
+ABAABBBBAA + BBAAA > ABA + ABBBBAA + BBAAA ; 0.01
+BBBABABAA + BABAB > BBBAB + ABAA + BABAB ; 0.01
+ABAABBBBAA + BBABBBBAAA > ABAAB + BBBAA + BBABBBBAAA ; 0.01
+BB + BBBAB + AAAA > BBBBBAB + AAAA ; 0.01
+ABB + BBBAB + AAAA > ABBBBBAB + AAAA ; 0.01
+BBB + BBBAB + AAAA > BBBBBBAB + AAAA ; 0.01
+BABB + BBBAB + AAAA > BABBBBBAB + AAAA ; 0.01
+BBBB + BBBAB + AAAA > BBBBBBBAB + AAAA ; 0.01
+ABABB + BBBAB + AAAA > ABABBBBBAB + AAAA ; 0.01
+ABBBB + BBBAB + AAAA > ABBBBBBBAB + AAAA ; 0.01
+BBABB + BBBAB + AAAA > BBABBBBBAB + AAAA ; 0.01
+BBBBB + BBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
+ABAA + AA + ABBBB > ABAAAA + ABBBB ; 0.01
+ABAA + AAAA + ABBBB > ABAAAAAA + ABBBB ; 0.01
+ABAA + AAAAA + ABBBB > ABAAAAAAA + ABBBB ; 0.01
+ABAA + AABAB + ABBBB > ABAAAABAB + ABBBB ; 0.01
+ABAA + AAAAAA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+BB + BBBBBAB + AAAA > BBBBBBBAB + AAAA ; 0.01
+BB + BBBBBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
+ABB + BBBBBAB + AAAA > ABBBBBBBAB + AAAA ; 0.01
+BBB + BBBBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
+ABAAAA + AA + ABBBB > ABAAAAAA + ABBBB ; 0.01
+ABAAAA + AAAA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+ABAAAAAA + AA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+BAAAABAABB + BBAAA > BAAAABA + ABB + BBAAA ; 0.01
+BBAAABBBB + BBAAA > BBAA + ABBBB + BBAAA ; 0.01
+BBAAABBBB + BBABBBBAAA > BBAAAB + BBB + BBABBBBAAA ; 0.01
+BB + BBAAAB + AAAA > BBBBAAAB + AAAA ; 0.01
+ABB + BBAAAB + AAAA > ABBBBAAAB + AAAA ; 0.01
+BBB + BBAAAB + AAAA > BBBBBAAAB + AAAA ; 0.01
+BABB + BBAAAB + AAAA > BABBBBAAAB + AAAA ; 0.01
+BBBB + BBAAAB + AAAA > BBBBBBAAAB + AAAA ; 0.01
+BB + BBBBAAAB + AAAA > BBBBBBAAAB + AAAA ; 0.01

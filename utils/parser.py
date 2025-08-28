@@ -434,6 +434,34 @@ def getEvolverParameters(path):
                     else:
                         error=True
                         errorMessages.append(result[1])
+                case "- NUMERO DI SPECIE INTRODOTTE -":
+                    result = checkIntData(lines[i+1], "- NUMERO DI SPECIE INTRODOTTE -")
+                    if result[0]:
+                        parameters['numberOfIntroducedSpecies']=int(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- TIPO DELLE SPECIE INTRODOTTE -":
+                    i=i+1
+                    items=[]
+                    while lines[i]!="- NUMERO DI SPECIE INTRODOTTE -":
+                        items.append(lines[i].split())
+                        i=i+1
+                    probabilities = {}
+                    for item in items:
+                        probabilities[item[0]] = float(item[1])
+                    if sum(probabilities.values()) != 1.0:
+                        error=True
+                        errorMessages.append(f"ATTENZIONE! LA SOMMA DELLE PROBABILITÀ DI \"- TIPO DELLE SPECIE INTRODOTTE -\" DEVE ESSERE UGUALE A 1.0")
+                    else:
+                        parameters['probabilityOfTypes']=probabilities
+                case "- PROBABILITA DI CATALIZZAZIONE -":
+                    result = checkFloatData(lines[i+1], "- PROBABILITA DI CATALIZZAZIONE -")
+                    if result[0]:
+                        parameters['probabilityOfCatalyst']=float(lines[i+1])
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
     if error:
         return error, errorMessages
     else:

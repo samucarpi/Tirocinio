@@ -11,7 +11,7 @@ class Evolver:
         self.previousTime = 600000
         self.concentrations = {}
         self.containerCatalysts = []
-        self.currentIntroducedSpecies = None
+        self.currentIntroducedSpecies = []
 
     def getDebug(self):
         return self.debug
@@ -76,6 +76,12 @@ class Evolver:
 
     def setCurrentIntroducedSpecies(self, species):
         self.currentIntroducedSpecies = species
+    
+    def addCurrentIntroducedSpecies(self, species):
+        self.currentIntroducedSpecies.append(species)
+
+    def clearCurrentIntroducedSpecies(self):
+        self.currentIntroducedSpecies.clear()
 
     def copyChemistryFiles(self):
         copyFile(GENERATOR_PARAMETERS_FILE, EVOLVER_CHEMISTRY_PARAMETERS_FILE)
@@ -154,18 +160,48 @@ class Evolver:
         return time
 
     def writeMutatorSpeciesFile(self, speciesFile):
+        self.clearCurrentIntroducedSpecies()
         species = getSpeciesNamesFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
         max_length = max(len(s) for s in species)
         monomers = [m["name"] for m in self.getChemistryParameter("monomers")]
         allCombinations = monomerCombinations(monomers, max_length)
-        filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
-        pickedSpecies=random.sample(filteredCombinations, 1)
-        self.setCurrentIntroducedSpecies(pickedSpecies[0])
+        probabilityOfTypes = self.getParameter("probabilityOfTypes")
+        pickedType = random.choices(list(probabilityOfTypes.keys()), list(probabilityOfTypes.values()), k=1)[0]
+        if pickedType == "B":
+            filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
+            pickedSpecies=random.sample(filteredCombinations, self.getParameter("numberOfIntroducedSpecies"))
+            for s in pickedSpecies:
+                self.addCurrentIntroducedSpecies({"name": s, "type": "B"})
+        elif pickedType == "C":
+            filteredCombinations = []
+            for s in allCombinations:
+                if s.startswith("Cont") or s in species:
+                    continue
+                if self.getChemistryParameter('maxCatalystLength')=='ON' and len(s)>self.getChemistryParameter('maxCondensationLength'):
+                    continue
+                if len(s)<self.getChemistryParameter('lowerLimitForCatalyst'):
+                    continue
+                if len(s)<=1:
+                    continue
+                filteredCombinations.append(s)
+            pickedSpecies=random.sample(filteredCombinations, 1)
+            self.setCurrentIntroducedSpecies({"name": pickedSpecies[0], "type": "C"})
+        elif pickedType == "F":
+            catalysts = getCatalystsNamesFromFile(EVOLVER_CHEMISTRY_RULES_FILE)
+            filteredCombinations = [s for s in species if (not s.startswith("Cont") and s not in catalysts)]
+            pickedSpecies=random.sample(filteredCombinations, 1)
+            self.setCurrentIntroducedSpecies({"name": pickedSpecies[0], "type": "F"})
+        maxLengthIntroduced = max(len(s) for s in pickedSpecies)+5
         with open(speciesFile, "w") as f:
             string = f"# FILE DI INSERIMENTO DELLE SPECIE CHIMICHE MUTANTI\n\n# FORMATTAZIONE\n# NOME TIPO\n# IL TIPO PUO' ESSERE DI TIPO: FOOD (F), CATALIZZATORE (C), BASE (B)\n"
             f.writelines(string+"\n")
-            f.write(f"{'SPECIE':<{len(pickedSpecies[0])+5}}{'TIPO':<{5}}\n")
-            f.write(f"{pickedSpecies[0]:<{len(pickedSpecies[0])+5}}{'B':<{5}}\n")
+            f.write(f"{'SPECIE':<{maxLengthIntroduced}}{'TIPO':<{5}}\n")
+            if isinstance(self.getCurrentIntroducedSpecies(), list):
+                type=self.getCurrentIntroducedSpecies()[0]['type']
+            else:
+                type=self.getCurrentIntroducedSpecies()['type']
+            for s in pickedSpecies:
+                f.write(f"{s:<{maxLengthIntroduced}}{type:<{5}}\n")
 
     def updateConcentrationsMutatedChemistry(self, mutatedChemistryFile):
         with open(mutatedChemistryFile, "r") as f:
@@ -174,7 +210,11 @@ class Evolver:
             for line in lines:
                 if not NUMERIC_START.match(line) and not "+" in line and line.strip() and not line.startswith("#") and not line.startswith("SEED"):
                     line = line.split()
-                    if line[0] == self.getCurrentIntroducedSpecies():
+                    if isinstance(self.getCurrentIntroducedSpecies(), list):
+                        introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
+                    else:
+                        introducedSpecies = [self.getCurrentIntroducedSpecies()['name']]
+                    if line[0] in introducedSpecies:
                         line[1] = str(self.getParameter("concentrationIntroducedSpecies"))
                     else:
                         line[1] = str(self.getSingleConcentration(line[0]))
@@ -210,10 +250,12 @@ class Evolver:
         else:
             print(colored("LA CHIMICA NON CONTIENE RAF","red",attrs=['bold']))
             exit(0)
-    
+
     def evolve(self):
         i = 0
-        countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus = [], [], [], [], [], []
+        countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus = [], [], [], [], [], [], []
+        introducedSpeciesName.append("None")
+        introducedSpeciesType.append("None")
         while i<self.getParameter("numberOfEvolutions"):
             self.addContainerSpecies(firstLap=(i==0))
             time = self.pitzalisSimulator()
@@ -224,13 +266,29 @@ class Evolver:
                 acceptedStatus.append(True)
             else:
                 acceptedStatus.append(False)
+            species, notNullSpecies = countSpeciesFromPitzalis(getSpeciesConcentrations(PITZALIS_QUANTITIES))
+            countNotNullSpecies.append(notNullSpecies)
+            countSpecies.append(species)
+            countReactions.append(getReactionsCountFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE))
             self.mutateParent()
+            if isinstance(self.getCurrentIntroducedSpecies(), list):
+                type=self.getCurrentIntroducedSpecies()[0]['type']
+                introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
+            else:
+                type=self.getCurrentIntroducedSpecies()['type']
+                introducedSpecies = [self.getCurrentIntroducedSpecies()['name']]
+            introducedSpeciesName.append(introducedSpecies)
+            introducedSpeciesType.append(type)
             i += 1
-            countReactions.append(getReactionsCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
-            countSpecies.append(getSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
-            countNotNullSpecies.append(getNotNullSpeciesCountFromFile(EVOLVER_CHEMISTRY_WITH_CONTAINER_FILE))
-            introducedSpecies.append(self.getCurrentIntroducedSpecies())
             directory = "data "+datetime.now().strftime("%d.%m")
-            writeCSVEvolverAnalysis(i, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus, directory)
-        writeExcelEvolverAnalysis(i, countReactions, countSpecies, countNotNullSpecies, introducedSpecies, timeRecords, acceptedStatus)
+            writeCSVEvolverAnalysis(i, countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus, directory)
+        countReactions.append(getReactionsCountFromFile(MUTATOR_OUTPUT_FILE))
+        countSpecies.append(getSpeciesCountFromFile(MUTATOR_OUTPUT_FILE))
+        countNotNullSpecies.append("None")
+        timeRecords.append("None")
+        acceptedStatus.append("None")
+        directory = "data "+datetime.now().strftime("%d.%m")
+        writeCSVEvolverAnalysis(i+1, countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus, directory)
+        writeExcelEvolverAnalysis(i+1, countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus)
+        introducedSpeciesType.append(type)
 
