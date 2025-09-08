@@ -626,6 +626,8 @@ def writeCSVEvolverAnalysis(generations, countReactions, countSpecies, countNotN
     for i in range(generations):
         if acceptedStatus[i]:
             status = "Yes"
+        elif acceptedStatus[i] is None:
+            status = "None"
         else:
             status = "No"
         rows.append([i+1, countReactions[i], countSpecies[i], countNotNullSpecies[i], introducedSpeciesName[i], introducedSpeciesType[i], timeRecords[i], status])

@@ -1,5 +1,0 @@
-Generation,Number of reactions,Number of species,Number of non-zero species,Introduced species name,Introduced species type,Time,Accepted
-1,275,159,155,None,None,6102.874966031567,Yes
-2,279,162,155,"['BBBAAAAA', 'ABBBAABBBB']",B,8291.474966039528,No
-3,303,179,154,"['BBBABABAA', 'ABAABBBBAA']",B,8579.474966040576,No
-4,312,188,None,"['BAAAABAABB', 'BBAAABBBB']",B,None,Yes

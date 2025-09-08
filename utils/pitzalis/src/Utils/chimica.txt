@@ -1,188 +1,170 @@
-Cont           1.350008459576328e-16         0.0       
-A              2.760596905821288e-17         0.0       
-B              2.760596905821288e-17         0.0       
-AA             2.0470068977303973e-19        0.0       
-AB             2.760596905821288e-17         0.0       
-BA             2.760596905821288e-17         0.0       
-BB             1.951670200019564e-17         0.0       
-ABA            2.760596905821288e-17         0.0       
-ABB            2.2970722668389903e-17        0.0       
-BAA            1.5214783186362187e-17        0.0       
-BBA            2.29707232206655e-17          0.0       
-BBB            1.9696210945681806e-17        0.0       
-FC0            2.76059483896841e-17          0.0       
-FC1            2.7605929305798265e-17        0.0       
-FC2            2.7001859279369134e-17        0.0       
-FC3            3.49725459889124e-18          0.0       
-FC4            2.760583151850028e-17         0.0       
-AAAA           1.5893967708677005e-21        0.0       
+Cont           1.3500098152322784e-16        0.0       
+A              2.7188683713533278e-17        0.0       
+B              2.7188683713533278e-17        0.0       
+AA             2.127892317676667e-19         0.0       
+AB             2.7188683713533278e-17        0.0       
+BA             2.7188683713533278e-17        0.0       
+BB             1.8872386428761487e-17        0.0       
+ABA            2.7188683713533278e-17        0.0       
+ABB            2.2383790982302293e-17        0.0       
+BAA            1.4915358618848132e-17        0.0       
+BBA            2.2383791529941145e-17        0.0       
+BBB            1.9058167864028606e-17        0.0       
+ABBBBBAA       1e-18                         0.0       
+FC0            2.9782870023461567e-18        0.0       
+FC1            2.7188651248117754e-17        0.0       
+FC2            2.596237204447936e-17         0.0       
+FC3            2.7178008659663892e-17        0.0       
+FC4            2.718852701954608e-17         0.0       
+AAAA           1.755138267403584e-21         0.0       
 ABAB           1.953112053575481e-21         0.0       
-BAAA           1.5922446727092906e-27        0.0       
-BABB           3.801894903845661e-25         0.0       
+BAAA           2.1503263652608362e-27        0.0       
+BABB           3.450723764905409e-25         0.0       
 BBAA           0.0                           0.0       
-BBBA           4.938052290635873e-25         0.0       
-BBBB           1.3894245268688902e-18        0.0       
-ABAA           0.0                           0.0       
+BBBA           4.481448753687276e-25         0.0       
+BBBB           1.34928367954584e-18          0.0       
 AAAAA          0.0                           0.0       
 AABAB          0.0                           0.0       
-ABAAA          1.9057799594912865e-27        0.0       
-ABABB          9.131382536646435e-25         0.0       
-ABBAA          1.9057799594912865e-27        0.0       
-ABBBA          1.9531616480558513e-21        0.0       
-ABBBB          2.3284161121576044e-18        0.0       
-BAAAA          1.0646145704753195e-17        0.0       
+ABAAA          2.5737216889108756e-27        0.0       
+ABABB          8.357163369852105e-25         0.0       
+ABBAA          2.5737216889108756e-27        0.0       
+ABBBA          1.953112053575481e-21         0.0       
+ABBBB          2.294870226982709e-18         0.0       
+BAAAA          1.0360917482984927e-17        0.0       
 BABAB          1.953112053575481e-21         0.0       
 BBAAA          0.0                           0.0       
-BBABB          5.060822063730205e-28         0.0       
+BBABB          4.238683500678099e-28         0.0       
 BBBAA          0.0                           0.0       
-BBBBA          2.3284203809580693e-18        0.0       
-BBBBB          2.898933771833216e-18         0.0       
-BBBAB          0.0                           0.0       
-ABAAB          0.0                           0.0       
-BBBBAA         3.535454546331248e-29         0.0       
-BBBBBA         2.4227776203368674e-18        0.0       
-BBBBBB         1.743903508915889e-18         0.0       
-ABBBBA         4.504952378257757e-18         0.0       
-ABBBBB         2.42277004671502e-18          0.0       
-BABBBB         3.555949507269555e-24         0.0       
-AAAAAA         4.140030691683007e-23         0.0       
-BAAAAA         2.3622593436706714e-26        0.0       
-BBAAAA         3.535477373601964e-29         0.0       
-ABAAAA         0.0                           0.0       
-BBBBAAA        3.5354281790919195e-29        0.0       
-BBBBABB        7.043264245013268e-27         0.0       
-BBBBBAA        3.5354553578019616e-29        0.0       
-BBBBBBA        4.280006790817521e-19         0.0       
-BBBBBBB        6.804702085558739e-19         0.0       
-ABBBBAA        3.848324427793875e-27         0.0       
-ABBBBBA        2.415215255805293e-21         0.0       
-ABBBBBB        4.2799234510157424e-19        0.0       
-BABBBBA        2.361891713858378e-21         0.0       
-BABBBBB        4.628355405158227e-24         0.0       
-ABABBBB        5.491964641411182e-24         0.0       
-BBABBBB        7.043264245013268e-27         0.0       
+BBBBA          2.2948741263428894e-18        0.0       
+BBBBB          2.819300347972529e-18         0.0       
+BBBBAA         3.535489801329269e-29         0.0       
+BBBBBA         2.391580191893357e-18         0.0       
+BBBBBB         1.6993577597889241e-18        0.0       
+ABBBBA         4.5487292038459304e-18        0.0       
+ABBBBB         2.3915732337481188e-18        0.0       
+BABBBB         3.2942540789148517e-24        0.0       
+AAAAAA         4.8391654988456973e-23        0.0       
+BAAAAA         3.125287078393564e-26         0.0       
+BBAAAA         3.535441154101211e-29         0.0       
+BBBBAAA        3.535433799505611e-29         0.0       
+BBBBABB        6.053424981359883e-27         0.0       
+BBBBBAA        3.5354596152633953e-29        0.0       
+BBBBBBA        4.2683242328499965e-19        0.0       
+BBBBBBB        6.660300546116605e-19         0.0       
+ABBBBAA        5.224602320062856e-27         0.0       
+ABBBBBA        2.415168426412136e-21         0.0       
+ABBBBBB        4.268246968795992e-19         0.0       
+BABBBBA        2.361856485172199e-21         0.0       
+BABBBBB        4.2947889323487936e-24        0.0       
+ABABBBB        5.105118417161153e-24         0.0       
+BBABBBB        6.053424981359881e-27         0.0       
 AAAAAAA        0.0                           0.0       
 AAAABAB        0.0                           0.0       
-BAAAAAA        7.597506310791272e-18         0.0       
-ABAAAAA        3.1011148208880687e-26        0.0       
-ABBAAAA        3.1011148208880687e-26        0.0       
-BBAAAAA        3.5354895533979955e-29        0.0       
-BBBAAAA        3.5354895533979955e-29        0.0       
-ABBBAAB        2.3004020801843376e-20        0.0       
-BBBBBAB        0.0                           0.0       
-ABBBBAAA       4.072468441962896e-27         0.0       
-ABBBBABB       3.5942343660008193e-22        0.0       
-ABBBBBAA       4.072468441962896e-27         0.0       
-ABBBBBBA       9.557523794706326e-19         0.0       
-ABBBBBBB       1.1759269246563069e-18        0.0       
-BBBBBAAA       6.521156728055206e-28         0.0       
-BBBBBABB       5.766540359360138e-23         0.0       
-BBBBBBAA       8.397581708594138e-28         0.0       
-BBBBBBBA       1.1760847115927042e-18        0.0       
-BBBBBBBB       1.1595090522207801e-18        0.0       
-BABBBBAA       3.399178240634194e-27         0.0       
-BABBBBBA       2.032265822052168e-21         0.0       
-BABBBBBB       4.3752220562358125e-22        0.0       
-ABABBBBA       2.504023647434597e-21         0.0       
-ABABBBBB       3.964524580626422e-22         0.0       
-BBABBBBA       3.6218553117513463e-22        0.0       
-BBABBBBB       5.766540359360138e-23         0.0       
-BAAAAAAA       1.8756240242033081e-25        0.0       
-BAAAABAB       2.5475284174729573e-21        0.0       
-AAAAAAAA       4.072694401860612e-23         0.0       
-BBAAAAAA       1.2682431604357477e-27        0.0       
-BBBBAAAA       1.2632687714987703e-27        0.0       
-BBBAAAAA       1.366375327912808e-23         0.0       
-ABBBBBAB       0.0                           0.0       
-BBBBBBAB       0.0                           0.0       
-ABAAAAAA       0.0                           0.0       
-BABBBBAAA      2.027712203024556e-21         0.0       
-BABBBBABB      2.0161195550638487e-21        0.0       
-BABBBBBAA      2.027712203024556e-21         0.0       
-BABBBBBBA      2.912659722359859e-21         0.0       
-BABBBBBBB      3.1729502623642342e-21        0.0       
-BBBBBBAAA      2.3677708242639993e-21        0.0       
-BBBBBBABB      2.2675717646241794e-21        0.0       
-BBBBBBBAA      2.833341903749976e-21         0.0       
-BBBBBBBBA      8.736606686431695e-19         0.0       
-BBBBBBBBB      8.83523908145694e-19          0.0       
-ABABBBBAA      2.026950852736614e-21         0.0       
-ABABBBBBA      2.0431517112910613e-21        0.0       
-ABABBBBBB      2.5951013124381313e-21        0.0       
-ABBBBBBAA      2.5439523406620253e-21        0.0       
-ABBBBBBBA      1.0029546137302093e-18        0.0       
-ABBBBBBBB      8.730423079476312e-19         0.0       
-BBABBBBAA      2.0112910010282004e-21        0.0       
-BBABBBBBA      2.0210910889582167e-21        0.0       
-BBABBBBBB      2.2675717646241794e-21        0.0       
-AAAAAAAAA      2.9556171424450097e-21        0.0       
-AAAAAABAB      2.522608902797405e-21         0.0       
-BAAAAAAAA      1.7750797348152633e-17        0.0       
-BAAAAABAB      2.1000549689940803e-21        0.0       
-BBAAAAAAA      2.987920045489244e-21         0.0       
-BBAAAABAB      2.0496325738944694e-21        0.0       
-ABAAAAAAA      5.57525128381228e-21          0.0       
-ABBAAAAAA      5.57525128381228e-21          0.0       
-BBBAAAAAA      2.904256084994051e-21         0.0       
-BBBBABBBB      2.4786889999391836e-21        0.0       
-BBBBAAAAA      3.1036740107780697e-21        0.0       
-BBBBBAAAA      3.565268748039322e-21         0.0       
-ABBBBAAAA      4.698516025481613e-21         0.0       
-BBBABABAA      1e-18                         0.0       
-BABBBBBAB      0.0                           0.0       
-BBBBBBBAB      0.0                           0.0       
-ABAAAABAB      0.0                           0.0       
-ABABBBBAAA     2.0373137838760152e-21        0.0       
-ABABBBBABB     2.023369761949719e-21         0.0       
-ABABBBBBAA     2.0373137838760152e-21        0.0       
-ABABBBBBBA     3.0991848256127205e-21        0.0       
-ABABBBBBBB     4.6680774027258724e-21        0.0       
-ABBBBBBAAA     2.6542969528657374e-21        0.0       
-ABBBBBBABB     2.475320535865028e-21         0.0       
-ABBBBBBBAA     2.803281417211659e-21         0.0       
-ABBBBBBBBA     2.348910379944129e-19         0.0       
-ABBBBBBBBB     5.200054014434084e-19         0.0       
-BBABBBBAAA     2.0180122177880185e-21        0.0       
-BBABBBBABB     2.0088838870708032e-21        0.0       
-BBABBBBBAA     2.0180122177880185e-21        0.0       
-BBABBBBBBA     2.5097673628961496e-21        0.0       
-BBABBBBBBB     3.372601744504855e-21         0.0       
-BBBBBBBAAA     3.097609199095849e-21         0.0       
-BBBBBBBABB     3.372601744504855e-21         0.0       
-BBBBBBBBAA     3.3838615079243805e-21        0.0       
-BBBBBBBBBA     5.208089240136698e-19         0.0       
-BBBBBBBBBB     7.478454126106642e-19         0.0       
-AAAAAAAAAA     5.697052004702417e-21         0.0       
-AAAAAAABAB     2.0408065898778144e-21        0.0       
-ABAAAAAAAA     2.0819618604899723e-21        0.0       
-ABAAAAABAB     2.1083142066471886e-21        0.0       
-ABBAAAAAAA     2.0819618604899723e-21        0.0       
-ABBAAAABAB     2.1083142066471886e-21        0.0       
-BAAAAAAAAA     9.548901199051618e-21         0.0       
-BAAAAAABAB     3.831140466932719e-21         0.0       
-BBAAAAAAAA     4.280794210444691e-21         0.0       
-BBAAAAABAB     2.0644721542687337e-21        0.0       
-BBBAAAAAAA     4.2540505834337124e-20        0.0       
-BBBAAAABAB     2.0644721542687337e-21        0.0       
-BBBBABBBBA     4.2524147097994864e-21        0.0       
-BBBBABBBBB     3.3060332763211916e-21        0.0       
-BBBBAAAAAA     4.947820660061423e-21         0.0       
-ABBBBABBBB     4.20969022925974e-21          0.0       
-ABBBBAAAAA     4.891486585759019e-21         0.0       
-ABBBBBAAAA     4.891486585759019e-21         0.0       
-BBBBBABBBB     3.3060332763211916e-21        0.0       
-BBBBBAAAAA     7.676153837220334e-21         0.0       
-BBBBBBAAAA     5.133653633176007e-21         0.0       
-BABBBBBBAA     2.1299902719838697e-21        0.0       
-BABBBBBBBA     3.1898738142258397e-21        0.0       
-BABBBBBBBB     4.868228483169826e-21         0.0       
-BABBBBAAAA     4.0642987068697176e-21        0.0       
-ABBBAABBBB     2.1189956955521057e-20        0.0       
-ABAABBBBAA     1e-18                         0.0       
-ABABBBBBAB     0.0                           0.0       
-ABBBBBBBAB     0.0                           0.0       
-BBABBBBBAB     0.0                           0.0       
-BBBBBBBBAB     0.0                           0.0       
+BAAAAAA        7.342085769666445e-18         0.0       
+ABAAAAA        4.1237164985691605e-26        0.0       
+ABBAAAA        4.1237164985691605e-26        0.0       
+BBAAAAA        3.5355067617600366e-29        0.0       
+BBBAAAA        3.5355067617600366e-29        0.0       
+ABBBBAAA       5.5288554683064236e-27        0.0       
+ABBBBABB       3.5187912492753716e-22        0.0       
+ABBBBBBA       9.80395425223929e-19          0.0       
+ABBBBBBB       1.1840453743744347e-18        0.0       
+BBBBBAAA       8.668264684324765e-28         0.0       
+BBBBBABB       5.527037755353893e-23         0.0       
+BBBBBBAA       1.1165642071550483e-27        0.0       
+BBBBBBBA       1.1841991948531315e-18        0.0       
+BBBBBBBB       1.1471287428758475e-18        0.0       
+BABBBBAA       4.6148702666679106e-27        0.0       
+BABBBBBA       2.03227057823445e-21          0.0       
+BABBBBBB       4.2846015698078705e-22        0.0       
+ABABBBBA       2.503968919366038e-21         0.0       
+ABABBBBB       3.881646032324593e-22         0.0       
+BBABBBBA       3.545839183324238e-22         0.0       
+BBABBBBB       5.527037755353893e-23         0.0       
+BAAAAAAA       2.44162013820654e-25          0.0       
+BAAAABAB       2.5475506260862773e-21        0.0       
+AAAAAAAA       4.8054181679856104e-23        0.0       
+BBAAAAAA       1.6823716381207034e-27        0.0       
+BBBBAAAA       1.6803218840564525e-27        0.0       
+BABBBBAAA      2.0277147754409874e-21        0.0       
+BABBBBABB      2.0161209546177563e-21        0.0       
+BABBBBBAA      2.0277147754409874e-21        0.0       
+BABBBBBBA      2.9125752913239116e-21        0.0       
+BABBBBBBB      3.173346624206632e-21         0.0       
+BBBBBBAAA      2.367315221021458e-21         0.0       
+BBBBBBABB      2.2675633029716547e-21        0.0       
+BBBBBBBAA      2.83246430875629e-21          0.0       
+BBBBBBBBA      8.86969676784206e-19          0.0       
+BBBBBBBBB      8.849060194497163e-19         0.0       
+ABABBBBAA      2.0269532418479053e-21        0.0       
+ABABBBBBA      2.0431587778825206e-21        0.0       
+ABABBBBBB      2.5953835820648137e-21        0.0       
+ABBBBBBAA      2.54340151319561e-21          0.0       
+ABBBBBBBA      1.0302239633747339e-18        0.0       
+ABBBBBBBB      8.863525153457888e-19         0.0       
+BBABBBBAA      2.011291589573558e-21         0.0       
+BBABBBBBA      2.0210928945338396e-21        0.0       
+BBABBBBBB      2.2675633029716547e-21        0.0       
+AAAAAAAAA      2.95505841754927e-21          0.0       
+AAAAAABAB      2.522106600550127e-21         0.0       
+BAAAAAAAA      1.6645212201797077e-17        0.0       
+BAAAAABAB      2.1000645293640663e-21        0.0       
+BBAAAAAAA      2.9902407255040352e-21        0.0       
+BBAAAABAB      2.049634779337454e-21         0.0       
+ABAAAAAAA      5.575223506332756e-21         0.0       
+ABBAAAAAA      5.575223506332756e-21         0.0       
+BBBAAAAAA      2.9065757773503973e-21        0.0       
+BBBBABBBB      2.4786721171916646e-21        0.0       
+BBBBAAAAA      3.1047652848741065e-21        0.0       
+BBBBBAAAA      3.566259094569404e-21         0.0       
+ABBBBAAAA      4.6978194576932025e-21        0.0       
+BBBABBAAB      4.4194027351843385e-20        0.0       
+ABABBBBAAA     2.0373175801421498e-21        0.0       
+ABABBBBABB     2.0233718758173302e-21        0.0       
+ABABBBBBAA     2.0373175801421498e-21        0.0       
+ABABBBBBBA     3.099121823569243e-21         0.0       
+ABABBBBBBB     4.6766458240794225e-21        0.0       
+ABBBBBBAAA     2.6534963664671357e-21        0.0       
+ABBBBBBABB     2.475316868360071e-21         0.0       
+ABBBBBBBAA     2.802316965070419e-21         0.0       
+ABBBBBBBBA     2.446307111364674e-19         0.0       
+ABBBBBBBBB     5.356949430781266e-19         0.0       
+BBABBBBAAA     2.0180132027022267e-21        0.0       
+BBABBBBABB     2.0088843132934413e-21        0.0       
+BBABBBBBAA     2.0180132027022267e-21        0.0       
+BBABBBBBBA     2.509774182951784e-21         0.0       
+BBABBBBBBB     3.3738057638747913e-21        0.0       
+BBBBBBBAAA     3.094613121651392e-21         0.0       
+BBBBBBBABB     3.3738057638747913e-21        0.0       
+BBBBBBBBAA     3.3801215529499275e-21        0.0       
+BBBBBBBBBA     5.365001656177709e-19         0.0       
+BBBBBBBBBB     7.585300239767032e-19         0.0       
+AAAAAAAAAA     5.75400185599579e-21          0.0       
+AAAAAAABAB     2.0408063851895146e-21        0.0       
+ABAAAAAAAA     2.0819676764629784e-21        0.0       
+ABAAAAABAB     2.108325274194931e-21         0.0       
+ABBAAAAAAA     2.0819676764629784e-21        0.0       
+ABBAAAABAB     2.108325274194931e-21         0.0       
+BAAAAAAAAA     9.54942122188861e-21          0.0       
+BAAAAAABAB     3.831579986498315e-21         0.0       
+BBAAAAAAAA     4.285471394831638e-21         0.0       
+BBAAAAABAB     2.06447559319274e-21          0.0       
+BBBAAAAAAA     2.0485148275122728e-21        0.0       
+BBBAAAABAB     2.06447559319274e-21          0.0       
+BBBBABBBBA     4.260022981368484e-21         0.0       
+BBBBABBBBB     3.307236205860797e-21         0.0       
+BBBBAAAAAA     4.949089428454303e-21         0.0       
+ABBBBABBBB     4.217228022045682e-21         0.0       
+ABBBBAAAAA     4.8904314750974295e-21        0.0       
+ABBBBBAAAA     4.8904314750974295e-21        0.0       
+BBBBBABBBB     3.307236205860797e-21         0.0       
+BBBBBAAAAA     3.9896651876426666e-21        0.0       
+BBBBBBAAAA     5.132245875019159e-21         0.0       
+BABBBBBBAA     2.12999869159311e-21          0.0       
+BABBBBBBBA     3.1897989609315836e-21        0.0       
+BABBBBBBBB     4.877692396363359e-21         0.0       
+BABBBBAAAA     4.064304436638106e-21         0.0       
+AAAAAAAABB     4.4193966633915186e-20        0.0       
 
 10.0 > A ; 1e-18
 10.0 > B ; 1e-18
@@ -195,16 +177,17 @@ BBBBBBBBAB     0.0                           0.0
 10.0 > BAA ; 1e-18
 10.0 > BBA ; 1e-18
 10.0 > BBB ; 1e-18
+10.0 > ABBBBBAA ; 1e-18
 10 > FC0 ; 1e-18
 10 > FC1 ; 1e-18
 10 > FC2 ; 1e-18
 10 > FC3 ; 1e-18
 10 > FC4 ; 1e-18
-FC0 + BBBBBBAA > Cont + BBBBBBAA ; 0.01
-FC1 + ABBBBAA > Cont + ABBBBAA ; 0.01
-FC2 + BBBBBBABB > Cont + BBBBBBABB ; 0.01
-FC3 + ABBBBBBA > Cont + ABBBBBBA ; 0.01
-FC4 + ABAAAAA > Cont + ABAAAAA ; 0.01
+FC0 + BBBBBBBB > Cont + BBBBBBBB ; 0.01
+FC1 + BBBBBBAA > Cont + BBBBBBAA ; 0.01
+FC2 + ABBBBAAAAA > Cont + ABBBBAAAAA ; 0.01
+FC3 + AAAAAAAA > Cont + AAAAAAAA ; 0.01
+FC4 + BAAAAA > Cont + BAAAAA ; 0.01
 BB + BB + AAAA > BBBB + AAAA ; 0.01
 BB + BBA + AAAA > BBBBA + AAAA ; 0.01
 BB + BBB + AAAA > BBBBB + AAAA ; 0.01
@@ -480,31 +463,4 @@ BBAAAAA + AA + ABBBB > BBAAAAAAA + ABBBB ; 0.01
 BBBAAAA + AA + ABBBB > BBBAAAAAA + ABBBB ; 0.01
 BB + BBBBAAAA + AAAA > BBBBBBAAAA + AAAA ; 0.01
 BBBBAAAA + AA + ABBBB > BBBBAAAAAA + ABBBB ; 0.01
-BB + BBBAAAAA + AAAA > BBBBBAAAAA + AAAA ; 0.01
-BBBAAAAA + AA + ABBBB > BBBAAAAAAA + ABBBB ; 0.01
-ABBBAABBBB + BBAAA > ABBBA + ABBBB + BBAAA ; 0.01
-ABBBAABBBB + BBABBBBAAA > ABBBAAB + BBB + BBABBBBAAA ; 0.01
-ABAABBBBAA + BBAAA > ABA + ABBBBAA + BBAAA ; 0.01
-BBBABABAA + BABAB > BBBAB + ABAA + BABAB ; 0.01
-ABAABBBBAA + BBABBBBAAA > ABAAB + BBBAA + BBABBBBAAA ; 0.01
-BB + BBBAB + AAAA > BBBBBAB + AAAA ; 0.01
-ABB + BBBAB + AAAA > ABBBBBAB + AAAA ; 0.01
-BBB + BBBAB + AAAA > BBBBBBAB + AAAA ; 0.01
-BABB + BBBAB + AAAA > BABBBBBAB + AAAA ; 0.01
-BBBB + BBBAB + AAAA > BBBBBBBAB + AAAA ; 0.01
-ABABB + BBBAB + AAAA > ABABBBBBAB + AAAA ; 0.01
-ABBBB + BBBAB + AAAA > ABBBBBBBAB + AAAA ; 0.01
-BBABB + BBBAB + AAAA > BBABBBBBAB + AAAA ; 0.01
-BBBBB + BBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
-ABAA + AA + ABBBB > ABAAAA + ABBBB ; 0.01
-ABAA + AAAA + ABBBB > ABAAAAAA + ABBBB ; 0.01
-ABAA + AAAAA + ABBBB > ABAAAAAAA + ABBBB ; 0.01
-ABAA + AABAB + ABBBB > ABAAAABAB + ABBBB ; 0.01
-ABAA + AAAAAA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
-BB + BBBBBAB + AAAA > BBBBBBBAB + AAAA ; 0.01
-BB + BBBBBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
-ABB + BBBBBAB + AAAA > ABBBBBBBAB + AAAA ; 0.01
-BBB + BBBBBAB + AAAA > BBBBBBBBAB + AAAA ; 0.01
-ABAAAA + AA + ABBBB > ABAAAAAA + ABBBB ; 0.01
-ABAAAA + AAAA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
-ABAAAAAA + AA + ABBBB > ABAAAAAAAA + ABBBB ; 0.01
+AAAAAAAABB + BBAAA > AAAAAAA + ABB + BBAAA ; 0.01

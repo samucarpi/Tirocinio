@@ -1,6 +1,6 @@
-NomeFC       QFC          ConcExtFC     MdiffFC     NomeCatFC      Alfa      
-FC0          2.76059483896841e-17 10            1.00e-18    BBBBBBAA       1.00e-02  
-FC1          2.7605929305798265e-17 10            1.00e-18    ABBBBAA        1.00e-02  
-FC2          2.7001859279369134e-17 10            1.00e-18    BBBBBBABB      1.00e-02  
-FC3          3.49725459889124e-18 10            1.00e-18    ABBBBBBA       1.00e-02  
-FC4          2.760583151850028e-17 10            1.00e-18    ABAAAAA        1.00e-02  
+NomeFC       QFC          ConcExtFC     MdiffFC     NomeCatFC       Alfa      
+FC0          2.9782870023461567e-18 10            1.00e-18    BBBBBBBB        1.00e-02  
+FC1          2.7188651248117754e-17 10            1.00e-18    BBBBBBAA        1.00e-02  
+FC2          2.596237204447936e-17 10            1.00e-18    ABBBBAAAAA      1.00e-02  
+FC3          2.7178008659663892e-17 10            1.00e-18    AAAAAAAA        1.00e-02  
+FC4          2.718852701954608e-17 10            1.00e-18    BAAAAA          1.00e-02  

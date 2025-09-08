@@ -185,35 +185,29 @@ class Evolver:
                     continue
                 filteredCombinations.append(s)
             pickedSpecies=random.sample(filteredCombinations, 1)
-            self.setCurrentIntroducedSpecies({"name": pickedSpecies[0], "type": "C"})
+            self.setCurrentIntroducedSpecies([{"name": pickedSpecies[0], "type": "C"}])
         elif pickedType == "F":
             catalysts = getCatalystsNamesFromFile(EVOLVER_CHEMISTRY_RULES_FILE)
             filteredCombinations = [s for s in species if (not s.startswith("Cont") and s not in catalysts)]
             pickedSpecies=random.sample(filteredCombinations, 1)
-            self.setCurrentIntroducedSpecies({"name": pickedSpecies[0], "type": "F"})
+            self.setCurrentIntroducedSpecies([{"name": pickedSpecies[0], "type": "F"}])
         maxLengthIntroduced = max(len(s) for s in pickedSpecies)+5
         with open(speciesFile, "w") as f:
             string = f"# FILE DI INSERIMENTO DELLE SPECIE CHIMICHE MUTANTI\n\n# FORMATTAZIONE\n# NOME TIPO\n# IL TIPO PUO' ESSERE DI TIPO: FOOD (F), CATALIZZATORE (C), BASE (B)\n"
             f.writelines(string+"\n")
             f.write(f"{'SPECIE':<{maxLengthIntroduced}}{'TIPO':<{5}}\n")
-            if isinstance(self.getCurrentIntroducedSpecies(), list):
-                type=self.getCurrentIntroducedSpecies()[0]['type']
-            else:
-                type=self.getCurrentIntroducedSpecies()['type']
+            type=self.getCurrentIntroducedSpecies()[0]['type']
             for s in pickedSpecies:
                 f.write(f"{s:<{maxLengthIntroduced}}{type:<{5}}\n")
 
     def updateConcentrationsMutatedChemistry(self, mutatedChemistryFile):
+        introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
         with open(mutatedChemistryFile, "r") as f:
             lines = f.readlines()
         with open(mutatedChemistryFile, "w") as f:
             for line in lines:
                 if not NUMERIC_START.match(line) and not "+" in line and line.strip() and not line.startswith("#") and not line.startswith("SEED"):
                     line = line.split()
-                    if isinstance(self.getCurrentIntroducedSpecies(), list):
-                        introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
-                    else:
-                        introducedSpecies = [self.getCurrentIntroducedSpecies()['name']]
                     if line[0] in introducedSpecies:
                         line[1] = str(self.getParameter("concentrationIntroducedSpecies"))
                     else:
@@ -271,12 +265,8 @@ class Evolver:
             countSpecies.append(species)
             countReactions.append(getReactionsCountFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE))
             self.mutateParent()
-            if isinstance(self.getCurrentIntroducedSpecies(), list):
-                type=self.getCurrentIntroducedSpecies()[0]['type']
-                introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
-            else:
-                type=self.getCurrentIntroducedSpecies()['type']
-                introducedSpecies = [self.getCurrentIntroducedSpecies()['name']]
+            type=self.getCurrentIntroducedSpecies()[0]['type']
+            introducedSpecies = [d['name'] for d in self.getCurrentIntroducedSpecies()]
             introducedSpeciesName.append(introducedSpecies)
             introducedSpeciesType.append(type)
             i += 1
@@ -286,7 +276,7 @@ class Evolver:
         countSpecies.append(getSpeciesCountFromFile(MUTATOR_OUTPUT_FILE))
         countNotNullSpecies.append("None")
         timeRecords.append("None")
-        acceptedStatus.append("None")
+        acceptedStatus.append(None)
         directory = "data "+datetime.now().strftime("%d.%m")
         writeCSVEvolverAnalysis(i+1, countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus, directory)
         writeExcelEvolverAnalysis(i+1, countReactions, countSpecies, countNotNullSpecies, introducedSpeciesName, introducedSpeciesType, timeRecords, acceptedStatus)
