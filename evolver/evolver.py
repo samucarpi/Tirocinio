@@ -109,6 +109,9 @@ class Evolver:
             loader.stop()
         venturiOutputPath = os.path.join(VENTURI, "Out")
         if os.listdir(venturiOutputPath):
+            venturiOutputFilePath = os.path.join(venturiOutputPath, os.listdir(venturiOutputPath)[0])
+            copyFile(venturiOutputFilePath, EVOLVER_RAF_FILE)
+            formatFile(EVOLVER_RAF_FILE)
             if self.getDebug():
                 print(colored("RAF individuato","green",attrs=['underline']))
             shutil.rmtree(venturiOutputPath)
@@ -119,13 +122,25 @@ class Evolver:
                 print(colored("RAF non individuato","red",attrs=['underline']))
             return False
         
+    def getRAFSpecies(self):
+        species = getSpeciesNamesFromFile(EVOLVER_RAF_FILE)
+        food = getFoodsNamesFromFile(EVOLVER_RAF_FILE)
+        filteredSpecies = [s for s in species if s not in food]
+        return filteredSpecies
+
     def pickContainerCatalysts(self):
-        species = getSpeciesNamesFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
-        food = getFoodsNamesFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
-        filteredSpecies = [s for s in species if s not in food or s.startswith("Cont")]
-        pickedSpecies=random.sample(filteredSpecies, self.getParameter("numberOfMembraneCatalysts"))
-        return pickedSpecies
-    
+        containerCatalysts = []
+        pickedSpecies = random.sample(self.getRAFSpecies(), self.getParameter("numberOfMembraneCatalystsInRaf"))
+        containerCatalysts.extend(pickedSpecies)
+        numberLeft = self.getParameter("numberOfMembraneCatalysts") - self.getParameter("numberOfMembraneCatalystsInRaf")
+        if numberLeft > 0:
+            species = getSpeciesNamesFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
+            food = getFoodsNamesFromFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
+            filteredSpecies = [s for s in species if s not in food and not s.startswith("Cont") and s not in containerCatalysts]
+            pickedSpecies=random.sample(filteredSpecies, numberLeft)
+            containerCatalysts.extend(pickedSpecies)
+        return containerCatalysts
+
     def writeContainerSpeciesFile(self, initialize=False):
         concExtFC = "10"
         mdiffFC = "1.00e-18"
@@ -169,6 +184,9 @@ class Evolver:
         pickedType = random.choices(list(probabilityOfTypes.keys()), list(probabilityOfTypes.values()), k=1)[0]
         if pickedType == "B":
             filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
+            if filteredCombinations == []:
+                print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
+                exit(0)
             pickedSpecies=random.sample(filteredCombinations, self.getParameter("numberOfIntroducedSpecies"))
             for s in pickedSpecies:
                 self.addCurrentIntroducedSpecies({"name": s, "type": "B"})
@@ -184,11 +202,17 @@ class Evolver:
                 if len(s)<=1:
                     continue
                 filteredCombinations.append(s)
+            if filteredCombinations == []:
+                print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
+                exit(0)
             pickedSpecies=random.sample(filteredCombinations, 1)
             self.setCurrentIntroducedSpecies([{"name": pickedSpecies[0], "type": "C"}])
         elif pickedType == "F":
             catalysts = getCatalystsNamesFromFile(EVOLVER_CHEMISTRY_RULES_FILE)
             filteredCombinations = [s for s in species if (not s.startswith("Cont") and s not in catalysts)]
+            if filteredCombinations == []:
+                print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
+                exit(0)
             pickedSpecies=random.sample(filteredCombinations, 1)
             self.setCurrentIntroducedSpecies([{"name": pickedSpecies[0], "type": "F"}])
         maxLengthIntroduced = max(len(s) for s in pickedSpecies)+5

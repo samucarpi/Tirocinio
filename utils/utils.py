@@ -27,6 +27,7 @@ MUTATOR_DIFFERENCE_FILE = os.path.join(MUTATOR_OUTPUT, "difference.txt")
 EVOLVER_INPUT = os.path.join(BASE_DIR, "io","evolver","input")
 EVOLVER_OUTPUT = os.path.join(BASE_DIR, "io","evolver","output")
 EVOLVER_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT, "parameters.txt")
+EVOLVER_RAF_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","RAF.txt")
 EVOLVER_CHEMISTRY_PARAMETERS_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","parameters.txt")
 EVOLVER_CHEMISTRY_RULES_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","rules.txt")
 EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE = os.path.join(EVOLVER_INPUT,"chemistry_info","chemistryNoContainer.txt")
@@ -104,12 +105,14 @@ def formatFile(path):
         species.append("\n")
         f.writelines(species + food + reactions)
 
-def getSpeciesNamesFromFile(path):
+def getSpeciesNamesFromFile(path, notFood=False):
     species = []
     with open(path, "r") as f:
         lines = f.readlines()
     for line in lines:
         if "+" not in line and not NUMERIC_START.match(line) and line.strip():
+            if notFood and "0.01" not in line:
+                continue
             line = line.split()
             species.append(line[0])
     return species
@@ -634,4 +637,5 @@ def writeCSVEvolverAnalysis(generations, countReactions, countSpecies, countNotN
 
     analystDf = setTable(pd, rows, columns)
     path = os.path.join(BASE_DIR, "io", "evolver", "output", directory, "analysis.csv")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     analystDf.to_csv(path, index=False)

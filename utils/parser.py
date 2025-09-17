@@ -410,6 +410,22 @@ def getEvolverParameters(path):
                     result = checkIntData(lines[i+1], "- NUMERO DI CATALIZZATORI DI MEMBRANA -")
                     if result[0]:
                         parameters['numberOfMembraneCatalysts']=int(lines[i+1])
+                        if parameters['numberOfMembraneCatalysts'] == 0:
+                            error=True
+                            errorMessages.append("- NUMERO DI CATALIZZATORI DI MEMBRANA - deve essere maggiore di 0")
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- NUMERO DI CATALIZZATORI DI MEMBRANA NEL RAF -":
+                    result = checkIntData(lines[i+1], "- NUMERO DI CATALIZZATORI DI MEMBRANA NEL RAF -")
+                    if result[0]:
+                        parameters['numberOfMembraneCatalystsInRaf']=int(lines[i+1])
+                        if parameters['numberOfMembraneCatalystsInRaf']>parameters['numberOfMembraneCatalysts']:
+                            error=True
+                            errorMessages.append("- NUMERO DI CATALIZZATORI DI MEMBRANA NEL RAF - deve essere minore o uguale di - NUMERO DI CATALIZZATORI DI MEMBRANA -")
+                        if parameters['numberOfMembraneCatalystsInRaf'] == 0:
+                            error=True
+                            errorMessages.append("- NUMERO DI CATALIZZATORI DI MEMBRANA NEL RAF - deve essere maggiore di 0")
                     else:
                         error=True
                         errorMessages.append(result[1])
