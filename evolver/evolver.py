@@ -182,12 +182,14 @@ class Evolver:
         allCombinations = monomerCombinations(monomers, max_length)
         probabilityOfTypes = self.getParameter("probabilityOfTypes")
         pickedType = random.choices(list(probabilityOfTypes.keys()), list(probabilityOfTypes.values()), k=1)[0]
+        pickedSpecies = []  # Inizializza la variabile
         if pickedType == "B":
             filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
-            if filteredCombinations == []:
+            if len(filteredCombinations) == 0:
                 print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
                 exit(0)
-            pickedSpecies=random.sample(filteredCombinations, self.getParameter("numberOfIntroducedSpecies"))
+            numberOfSpeciesToPick = min(len(filteredCombinations), self.getParameter("numberOfIntroducedSpecies"))
+            pickedSpecies=random.sample(filteredCombinations, numberOfSpeciesToPick)
             for s in pickedSpecies:
                 self.addCurrentIntroducedSpecies({"name": s, "type": "B"})
         elif pickedType == "C":
@@ -202,7 +204,8 @@ class Evolver:
                 if len(s)<=1:
                     continue
                 filteredCombinations.append(s)
-            if filteredCombinations == []:
+            print(filteredCombinations)
+            if len(filteredCombinations) == 0:
                 print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
                 exit(0)
             pickedSpecies=random.sample(filteredCombinations, 1)
@@ -210,7 +213,8 @@ class Evolver:
         elif pickedType == "F":
             catalysts = getCatalystsNamesFromFile(EVOLVER_CHEMISTRY_RULES_FILE)
             filteredCombinations = [s for s in species if (not s.startswith("Cont") and s not in catalysts)]
-            if filteredCombinations == []:
+            print(filteredCombinations)
+            if len(filteredCombinations) == 0:
                 print(colored("ERRORE DI SATURAZIONE! Sono già state introdotte tutte le possibili specie","red",attrs=['bold']))
                 exit(0)
             pickedSpecies=random.sample(filteredCombinations, 1)
@@ -258,16 +262,16 @@ class Evolver:
         os.makedirs(os.path.join(EVOLVER_INPUT, "chemistry_info"), exist_ok=True)
         self.copyChemistryFiles()
         raf = self.checkRAF(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
-        if raf:
-            self.setParameters(EVOLVER_PARAMETERS_FILE)
-            formatFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
-            catalysts = self.pickContainerCatalysts()
-            self.setContainerCatalysts(catalysts)
-            shutil.rmtree(PITZALIS_OUTPUT)
-            os.makedirs(PITZALIS_OUTPUT)
-        else:
-            print(colored("LA CHIMICA NON CONTIENE RAF","red",attrs=['bold']))
-            exit(0)
+        #if raf:
+        self.setParameters(EVOLVER_PARAMETERS_FILE)
+        formatFile(EVOLVER_CHEMISTRY_WITHOUT_CONTAINER_FILE)
+        catalysts = self.pickContainerCatalysts()
+        self.setContainerCatalysts(catalysts)
+        shutil.rmtree(PITZALIS_OUTPUT)
+        os.makedirs(PITZALIS_OUTPUT)
+        #else:
+           # print(colored("LA CHIMICA NON CONTIENE RAF","red",attrs=['bold']))
+            #exit(0)
 
     def evolve(self):
         i = 0

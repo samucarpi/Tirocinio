@@ -1,0 +1,34 @@
+# PARAMETRI 
+# NON MODIFICARE I TITOLI E LA FORMATTAZIONE GENERALE ( - TITOLO - \n VALORE)
+
+# PARAMETRI DEI LANCI
+
+- NUMERO DI LANCI -
+100
+
+- NOME DELLA SERIE -
+TestN6cb
+
+#"None" se non si vuole impostare, altrimenti un numero
+- SEED INIZIALE -
+None
+
+#"ON" se si vogliono cercare i RAF all'interno delle varie chimiche generate, "OFF" altrimenti
+- RICERCA RAF -
+OFF
+
+# PARAMETRI SULLA GENERAZIONE DI SPECIE
+
+#
+"ON" se si vogliono generare nuove specie per ogni lancio, "OFF" altrimenti
+- GENERAZIONE SPECIE -
+ON
+
+- RAGGIO INTERNO -
+3
+
+- RAGGIO ESTERNO -
+11
+
+- PROBABILITA DI SELEZIONE -
+0.1

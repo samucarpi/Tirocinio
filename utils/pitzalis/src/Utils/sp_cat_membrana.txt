@@ -1,6 +1,6 @@
 NomeFC       QFC          ConcExtFC     MdiffFC     NomeCatFC       Alfa      
-FC0          1.00e-18     10            1.00e-18    BBBBA           1.00e-02  
-FC1          1.00e-18     10            1.00e-18    AAAAAAAAAA      1.00e-02  
-FC2          1.00e-18     10            1.00e-18    BBBB            1.00e-02  
-FC3          1.00e-18     10            1.00e-18    ABBBBB          1.00e-02  
-FC4          1.00e-18     10            1.00e-18    BAAAAAA         1.00e-02  
+FC0          1.00e-18     10            1.00e-18    ABBBBBB         1.00e-02  
+FC1          1.00e-18     10            1.00e-18    ABBBBA          1.00e-02  
+FC2          1.00e-18     10            1.00e-18    AAAAAABBAA      1.00e-02  
+FC3          1.00e-18     10            1.00e-18    ABBAAAAAB       1.00e-02  
+FC4          1.00e-18     10            1.00e-18    AABBABAABB      1.00e-02  

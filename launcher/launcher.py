@@ -131,6 +131,10 @@ class Launcher:
     def searchRAF(self, serieName, lap, loader):
         seriePath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output", "output-uniqueReactions.txt")
         venturiPath = os.path.join(BASE_DIR, "utils", "venturi")
+        venturiOutputPath = os.path.join(venturiPath, "Out")
+        if os.path.exists(venturiOutputPath):
+            shutil.rmtree(venturiOutputPath)
+        os.makedirs(venturiOutputPath, exist_ok=True)
         venturiInputPath = os.path.join(venturiPath, "In","output-uniqueReactions.txt")
         copyFile(seriePath, venturiInputPath)
         formatFileForVenturi(venturiInputPath)
@@ -140,15 +144,12 @@ class Launcher:
         runVenturi(venturiPath)
         if self.debug:
             loader.stop()
-        venturiOutputPath = os.path.join(venturiPath, "Out")
         if os.listdir(venturiOutputPath):
             outPath = os.path.join(BASE_DIR, "io", "launcher", "output", "series", serieName, str(lap), "output")
             venturiOutputFilePath = os.path.join(venturiOutputPath, os.listdir(venturiOutputPath)[0])
             copyFile(venturiOutputFilePath, outPath)
             if self.debug:
                 print(colored("RAF individuato","green",attrs=['underline']))
-            shutil.rmtree(venturiOutputPath)
-            os.makedirs(venturiOutputPath)
         else:
             if self.debug:
                 print(colored("RAF non individuato","red",attrs=['underline']))
