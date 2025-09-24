@@ -182,7 +182,7 @@ class Evolver:
         allCombinations = monomerCombinations(monomers, max_length)
         probabilityOfTypes = self.getParameter("probabilityOfTypes")
         pickedType = random.choices(list(probabilityOfTypes.keys()), list(probabilityOfTypes.values()), k=1)[0]
-        pickedSpecies = []  # Inizializza la variabile
+        pickedSpecies = []
         if pickedType == "B":
             filteredCombinations = [s for s in allCombinations if not (s.startswith("Cont") or s in species)]
             if len(filteredCombinations) == 0:
