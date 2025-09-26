@@ -393,6 +393,20 @@ def getKauffmanGeneratorParameters(path):
                         errorMessages.append(result[1])
                 case "- NOME DEL FILE DI OUTPUT -":
                         parameters['outputFile']=lines[i+1]
+                case "- CONCENTRAZIONE INTERNA -":
+                    result = checkFloatData(lines[i+1], "- CONCENTRAZIONE INTERNA -")
+                    if result[0]:
+                        parameters['internalConcentration']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
+                case "- COEFFICIENTE DI REAZIONE -":
+                    result = checkFloatData(lines[i+1], "- COEFFICIENTE DI REAZIONE -")
+                    if result[0]:
+                        parameters['reactionCoefficient']=lines[i+1]
+                    else:
+                        error=True
+                        errorMessages.append(result[1])
     if error:
         return error, errorMessages
     else:
